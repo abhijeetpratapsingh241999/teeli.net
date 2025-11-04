@@ -46,7 +46,7 @@ export default function NeuralLines({ count = 50 }) {
             )
         );
 
-        const connections = [];
+        const connections: SparkleLineProps[] = [];
         for (let i = 0; i < count; i++) {
             for (let j = i + 1; j < count; j++) {
                 if (Math.random() > 0.95) { // Randomly connect some points
