@@ -45,8 +45,8 @@ function ResponsiveAtomWrapper({ scrollProgress = 0 }: { scrollProgress?: number
   const atomScale = isMobile ? 0.5 : isTablet ? 0.6 : 0.9;
   
   // Position based on view type
-  let atomPosition;
-  let atomRotation;
+  let atomPosition: [number, number, number];
+  let atomRotation: [number, number, number];
   if (isMobile) {
     atomPosition = [-1.5, -4, 0];  // Slightly up from bottom
     atomRotation = [0, 0, 0];
@@ -60,7 +60,7 @@ function ResponsiveAtomWrapper({ scrollProgress = 0 }: { scrollProgress?: number
 
   // Move atom left on scroll
   const scrollOffsetX = -scrollProgress * 3;
-  const finalPosition = [Number(atomPosition[0]) + scrollOffsetX, atomPosition[1], atomPosition[2]] as [number, number, number];
+  const finalPosition: [number, number, number] = [atomPosition[0] + scrollOffsetX, atomPosition[1], atomPosition[2]];
 
   return <AIAtom position={finalPosition} rotation={atomRotation} scale={atomScale} />;
 }

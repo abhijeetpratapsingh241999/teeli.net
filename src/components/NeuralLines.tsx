@@ -5,10 +5,16 @@ import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
 // A single animated line
-function SparkleLine({ start, end, color, speed }) {
-    const ref = useRef();
+interface SparkleLineProps {
+    start: THREE.Vector3;
+    end: THREE.Vector3;
+    color: string;
+    speed: number;
+}
+
+function SparkleLine({ start, end, color, speed }: SparkleLineProps) {
+    const ref = useRef<THREE.Mesh>(null);
     const vec = useMemo(() => new THREE.Vector3().subVectors(end, start), [start, end]);
-    const length = useMemo(() => vec.length(), [vec]);
 
     useFrame((state) => {
         if (ref.current) {
