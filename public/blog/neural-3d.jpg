@@ -1,0 +1,35 @@
+<svg width="1200" height="600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a3e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4a00e0;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="600" fill="url(#bg2)"/>
+  <g stroke="#00d4ff" stroke-width="2" opacity="0.5" fill="none">
+    <line x1="200" y1="300" x2="400" y2="250">
+      <animate attributeName="stroke-dasharray" values="0,300;300,0" dur="3s" repeatCount="indefinite"/>
+    </line>
+    <line x1="400" y1="250" x2="600" y2="300">
+      <animate attributeName="stroke-dasharray" values="0,250;250,0" dur="3s" repeatCount="indefinite"/>
+    </line>
+    <line x1="600" y1="300" x2="800" y2="250">
+      <animate attributeName="stroke-dasharray" values="0,250;250,0" dur="3s" repeatCount="indefinite"/>
+    </line>
+    <line x1="800" y1="250" x2="1000" y2="300">
+      <animate attributeName="stroke-dasharray" values="0,300;300,0" dur="3s" repeatCount="indefinite"/>
+    </line>
+  </g>
+  <circle cx="300" cy="200" r="10" fill="#00d4ff">
+    <animate attributeName="r" values="8;15;8" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="600" cy="300" r="12" fill="#b366ff">
+    <animate attributeName="r" values="10;18;10" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="900" cy="200" r="10" fill="#00d4ff">
+    <animate attributeName="r" values="8;15;8" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <text x="600" y="280" font-family="Arial, sans-serif" font-size="56" font-weight="bold" fill="white" text-anchor="middle">Neural</text>
+  <text x="600" y="330" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#00d4ff" text-anchor="middle">Networks 3D</text>
+</svg>
+

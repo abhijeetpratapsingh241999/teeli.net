@@ -1,0 +1,193 @@
+<svg width="1200" height="600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0e27;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a1a3e;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="aiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00ffff;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#0080ff;stop-opacity:0.8" />
+    </linearGradient>
+    <linearGradient id="buildingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4a5568;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#2d3748;stop-opacity:0.9" />
+    </linearGradient>
+    <linearGradient id="pulseGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:0.6" />
+      <stop offset="100%" style="stop-color:#00ffff;stop-opacity:0.6" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="600" fill="url(#bg)"/>
+  
+  <!-- Grid pattern -->
+  <pattern id="gridPattern" width="40" height="40" patternUnits="userSpaceOnUse">
+    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#00d4ff" stroke-width="0.5" opacity="0.1"/>
+  </pattern>
+  <rect width="1200" height="600" fill="url(#gridPattern)"/>
+  
+  <!-- Left: Sketch/Prompt -->
+  <g transform="translate(150, 200)">
+    <!-- Paper/screen -->
+    <rect x="-80" y="-100" width="200" height="200" rx="12" fill="#1e293b" stroke="#00ffff" stroke-width="2" opacity="0.8">
+      <animate attributeName="opacity" values="0.6;1;0.6" dur="2.5s" repeatCount="indefinite"/>
+    </rect>
+    
+    <!-- Sketch lines -->
+    <g stroke="#00ffff" stroke-width="2" fill="none" opacity="0.7">
+      <path d="M -70 -80 L -70 20 L -30 20 L -30 -80 Z"/>
+      <path d="M 30 -80 L 30 20 L 70 20 L 70 -80 Z"/>
+      <line x1="-70" y1="0" x2="70" y2="0"/>
+      
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
+    </g>
+    
+    <!-- Pencil/pen icon -->
+    <g transform="translate(80, -80)">
+      <path d="M -30 -10 L -10 -30 L 10 -10 L -30 10 Z" fill="#8b5cf6" opacity="0.8"/>
+    </g>
+  </g>
+  
+  <!-- Center: AI Processing -->
+  <g transform="translate(600, 200)">
+    <!-- Neural network -->
+    <g opacity="0.8">
+      <!-- Input layer -->
+      <circle cx="-120" cy="0" r="12" fill="#00ffff">
+        <animate attributeName="r" values="10;16;10" dur="2s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="-120" cy="-40" r="12" fill="#00ffff">
+        <animate attributeName="r" values="10;16;10" dur="2.3s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="-120" cy="40" r="12" fill="#00ffff">
+        <animate attributeName="r" values="10;16;10" dur="2.5s" repeatCount="indefinite"/>
+      </circle>
+      
+      <!-- Hidden layer -->
+      <circle cx="0" cy="-30" r="15" fill="#8b5cf6">
+        <animate attributeName="r" values="12;20;12" dur="2.2s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="0" cy="0" r="20" fill="#8b5cf6">
+        <animate attributeName="r" values="15;25;15" dur="2s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="0" cy="30" r="15" fill="#8b5cf6">
+        <animate attributeName="r" values="12;20;12" dur="2.4s" repeatCount="indefinite"/>
+      </circle>
+      
+      <!-- Output layer -->
+      <circle cx="120" cy="0" r="12" fill="#00ff00">
+        <animate attributeName="r" values="10;16;10" dur="2.1s" repeatCount="indefinite"/>
+      </circle>
+      
+      <!-- Connections -->
+      <g stroke="#00ffff" stroke-width="2" opacity="0.4">
+        <line x1="-120" y1="-40" x2="0" y2="-30"/>
+        <line x1="-120" y1="0" x2="0" y2="-30"/>
+        <line x1="-120" y1="40" x2="0" y2="-30"/>
+        <line x1="-120" y1="-40" x2="0" y2="0"/>
+        <line x1="-120" y1="0" x2="0" y2="0"/>
+        <line x1="-120" y1="40" x2="0" y2="0"/>
+        <line x1="-120" y1="-40" x2="0" y2="30"/>
+        <line x1="-120" y1="0" x2="0" y2="30"/>
+        <line x1="-120" y1="40" x2="0" y2="30"/>
+        <line x1="0" y1="-30" x2="120" y2="0"/>
+        <line x1="0" y1="0" x2="120" y2="0"/>
+        <line x1="0" y1="30" x2="120" y2="0"/>
+      </g>
+    </g>
+    
+    <!-- Pulse waves -->
+    <circle cx="0" cy="0" r="0" stroke="#8b5cf6" stroke-width="3" fill="none" opacity="0.3">
+      <animate attributeName="r" values="0;150;150" dur="3s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.5;0;0" dur="3s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  
+  <!-- Right: Generated 3D Building -->
+  <g transform="translate(1050, 200)">
+    <!-- Building base -->
+    <rect x="-80" y="40" width="160" height="120" fill="url(#buildingGrad)" stroke="#00ffff" stroke-width="2" opacity="0.9">
+      <animate attributeName="opacity" values="0.7;1;0.7" dur="2s" repeatCount="indefinite"/>
+    </rect>
+    
+    <!-- Building sections -->
+    <rect x="-70" y="30" width="60" height="40" fill="#4a5568" opacity="0.8"/>
+    <rect x="10" y="30" width="60" height="60" fill="#4a5568" opacity="0.8"/>
+    <rect x="-70" y="-10" width="60" height="30" fill="#4a5568" opacity="0.8"/>
+    <rect x="10" y="-30" width="60" height="50" fill="#4a5568" opacity="0.8"/>
+    
+    <!-- Windows -->
+    <g fill="#00ffff" opacity="0.6">
+      <rect x="-60" y="10" width="12" height="12"/>
+      <rect x="-40" y="10" width="12" height="12"/>
+      <rect x="20" y="-20" width="12" height="12"/>
+      <rect x="40" y="-20" width="12" height="12"/>
+      <rect x="-60" y="50" width="12" height="12"/>
+      <rect x="-40" y="50" width="12" height="12"/>
+    </g>
+    
+    <!-- Glow effect -->
+    <rect x="-80" y="-50" width="160" height="250" fill="url(#aiGrad)" opacity="0.2">
+      <animate attributeName="opacity" values="0.1;0.3;0.1" dur="2.5s" repeatCount="indefinite"/>
+    </rect>
+  </g>
+  
+  <!-- Arrows showing flow -->
+  <g stroke="#00ffff" stroke-width="4" fill="none" opacity="0.7">
+    <path d="M 350 200 L 480 200" marker-end="url(#arrowhead)">
+      <animate attributeName="stroke-dasharray" values="0,200;200,0" dur="2s" repeatCount="indefinite"/>
+    </path>
+    <path d="M 720 200 L 830 200" marker-end="url(#arrowhead)">
+      <animate attributeName="stroke-dasharray" values="0,200;200,0" dur="2.5s" repeatCount="indefinite"/>
+    </path>
+  </g>
+  
+  <!-- Arrow head marker -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="5" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#00ffff" />
+    </marker>
+  </defs>
+  
+  <!-- Title Text -->
+  <text x="600" y="80" font-family="Arial, sans-serif" font-size="44" font-weight="bold" fill="white" text-anchor="middle" opacity="0.95">
+    Generative AI in Architecture
+  </text>
+  <text x="600" y="110" font-family="Arial, sans-serif" font-size="24" fill="#00d4ff" text-anchor="middle" opacity="0.8">
+    From Sketch to Skyscraper
+  </text>
+  
+  <!-- Tech badges -->
+  <g transform="translate(600, 450)">
+    <!-- AI badge -->
+    <rect x="-150" y="-15" width="100" height="30" fill="none" stroke="#8b5cf6" stroke-width="2" rx="15" opacity="0.6">
+      <animate attributeName="opacity" values="0.4;0.8;0.4" dur="3s" repeatCount="indefinite"/>
+    </rect>
+    <text x="-100" y="5" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#8b5cf6" text-anchor="middle">
+      AI-Powered
+    </text>
+    
+    <!-- Real-time badge -->
+    <rect x="-40" y="-15" width="120" height="30" fill="none" stroke="#00ffff" stroke-width="2" rx="15" opacity="0.6">
+      <animate attributeName="opacity" values="0.4;0.8;0.4" dur="2.5s" repeatCount="indefinite"/>
+    </rect>
+    <text x="20" y="5" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#00ffff" text-anchor="middle">
+      Real-time
+    </text>
+    
+    <!-- Generative badge -->
+    <rect x="90" y="-15" width="140" height="30" fill="none" stroke="#00ff00" stroke-width="2" rx="15" opacity="0.6">
+      <animate attributeName="opacity" values="0.4;0.8;0.4" dur="2.8s" repeatCount="indefinite"/>
+    </rect>
+    <text x="160" y="5" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#00ff00" text-anchor="middle">
+      Generative Design
+    </text>
+  </g>
+  
+  <!-- Message -->
+  <text x="600" y="520" font-family="Arial, sans-serif" font-size="16" fill="#00ffff" text-anchor="middle" opacity="0.9">
+    Transforming Ideas Into Reality
+  </text>
+</svg>
+

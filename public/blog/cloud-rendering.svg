@@ -1,0 +1,138 @@
+<svg width="1200" height="400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#064e40;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00d4ff;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="cloudGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#00d4ff;stop-opacity:0.8" />
+    </linearGradient>
+    <linearGradient id="lightningGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00ffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="400" fill="url(#bg)"/>
+  
+  <!-- Grid pattern -->
+  <pattern id="gridPattern" width="40" height="40" patternUnits="userSpaceOnUse">
+    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#00d4ff" stroke-width="0.5" opacity="0.1"/>
+  </pattern>
+  <rect width="1200" height="400" fill="url(#gridPattern)"/>
+  
+  <!-- Real-time Cloud Rendering Visualization -->
+  <g transform="translate(600, 200)">
+    <!-- Cloud structure (left) -->
+    <g transform="translate(-200, -80)">
+      <!-- Cloud layers -->
+      <ellipse cx="0" cy="0" rx="80" ry="40" fill="url(#cloudGrad)" opacity="0.7">
+        <animate attributeName="opacity" values="0.5;0.9;0.5" dur="3s" repeatCount="indefinite"/>
+      </ellipse>
+      <ellipse cx="60" cy="0" rx="70" ry="35" fill="url(#cloudGrad)" opacity="0.7">
+        <animate attributeName="opacity" values="0.5;0.9;0.5" dur="3.5s" repeatCount="indefinite"/>
+      </ellipse>
+      <ellipse cx="30" cy="-30" rx="60" ry="30" fill="url(#cloudGrad)" opacity="0.7">
+        <animate attributeName="opacity" values="0.5;0.9;0.5" dur="2.8s" repeatCount="indefinite"/>
+      </ellipse>
+      <ellipse cx="30" cy="30" rx="65" ry="32" fill="url(#cloudGrad)" opacity="0.7">
+        <animate attributeName="opacity" values="0.5;0.9;0.5" dur="3.2s" repeatCount="indefinite"/>
+      </ellipse>
+    </g>
+    
+    <!-- GPU symbols inside cloud -->
+    <g transform="translate(-200, -80)" opacity="0.8">
+      <rect x="-20" y="-30" width="40" height="20" rx="2" fill="none" stroke="#00ffff" stroke-width="2"/>
+      <rect x="-15" y="-25" width="30" height="10" rx="1" fill="#00ffff" opacity="0.3"/>
+      <line x1="-20" y1="-20" x2="20" y2="-20" stroke="#00ffff" stroke-width="1"/>
+      <line x1="-20" y1="-10" x2="20" y2="-10" stroke="#00ffff" stroke-width="1"/>
+      
+      <rect x="-20" y="10" width="40" height="20" rx="2" fill="none" stroke="#00ffff" stroke-width="2"/>
+      <rect x="-15" y="15" width="30" height="10" rx="1" fill="#00ffff" opacity="0.3"/>
+      <line x1="-20" y1="20" x2="20" y2="20" stroke="#00ffff" stroke-width="1"/>
+      <line x1="-20" y1="30" x2="20" y2="30" stroke="#00ffff" stroke-width="1"/>
+    </g>
+    
+    <!-- Lightning bolt (speed indicator) -->
+    <g transform="translate(-80, -30)" opacity="0.9">
+      <path d="M -10 -30 L 0 -20 L -5 -20 L 10 20 L 5 20 L -10 30 Z" fill="url(#lightningGrad)" opacity="0.9">
+        <animate attributeName="opacity" values="0.6;1;0.6" dur="1.5s" repeatCount="indefinite"/>
+        <animate attributeName="transform" type="translate" values="-80,-30;-60,-10;-80,-30" dur="1.5s" repeatCount="indefinite"/>
+      </path>
+    </g>
+    
+    <!-- Rendered 3D Scene (right) -->
+    <g transform="translate(100, -80)">
+      <!-- Monitor/Screen frame -->
+      <rect x="-80" y="-60" width="160" height="120" rx="8" fill="#1e293b" stroke="#00d4ff" stroke-width="3" opacity="0.9">
+        <animate attributeName="opacity" values="0.7;1;0.7" dur="2s" repeatCount="indefinite"/>
+      </rect>
+      
+      <!-- Screen content -->
+      <rect x="-70" y="-50" width="140" height="100" rx="4" fill="url(#cloudGrad)" opacity="0.5">
+        <animate attributeName="opacity" values="0.4;0.7;0.4" dur="2.5s" repeatCount="indefinite"/>
+      </rect>
+      
+      <!-- 3D buildings on screen -->
+      <g transform="translate(0, 20)">
+        <rect x="-40" y="0" width="15" height="25" fill="#ffffff" opacity="0.8">
+          <animate attributeName="height" values="25;35;25" dur="2s" repeatCount="indefinite"/>
+        </rect>
+        <rect x="-20" y="-10" width="15" height="35" fill="#ffffff" opacity="0.8">
+          <animate attributeName="height" values="35;45;35" dur="2.5s" repeatCount="indefinite"/>
+        </rect>
+        <rect x="0" y="-5" width="15" height="30" fill="#ffffff" opacity="0.8">
+          <animate attributeName="height" values="30;40;30" dur="2.2s" repeatCount="indefinite"/>
+        </rect>
+        <rect x="20" y="0" width="15" height="25" fill="#ffffff" opacity="0.8">
+          <animate attributeName="height" values="25;35;25" dur="2.3s" repeatCount="indefinite"/>
+        </rect>
+        <rect x="40" y="-15" width="15" height="40" fill="#ffffff" opacity="0.8">
+          <animate attributeName="height" values="40;50;40" dur="2.8s" repeatCount="indefinite"/>
+        </rect>
+      </g>
+    </g>
+    
+    <!-- Connection lines (data flow) -->
+    <g stroke="#00ffff" stroke-width="3" fill="none" opacity="0.6">
+      <path d="M -80 -30 L 20 -30">
+        <animate attributeName="stroke-dasharray" values="0,200;200,0" dur="2s" repeatCount="indefinite"/>
+      </path>
+      <path d="M -60 20 L 40 20">
+        <animate attributeName="stroke-dasharray" values="0,200;200,0" dur="2.3s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.4;0.8;0.4" dur="2.3s" repeatCount="indefinite"/>
+      </path>
+    </g>
+  </g>
+  
+  <!-- Title Text -->
+  <text x="600" y="320" font-family="Arial, sans-serif" font-size="38" font-weight="bold" fill="white" text-anchor="middle" opacity="0.95">
+    Real-time Cloud Rendering
+  </text>
+  <text x="600" y="355" font-family="Arial, sans-serif" font-size="20" fill="#00d4ff" text-anchor="middle" opacity="0.8">
+    Breaking Performance Barriers
+  </text>
+  
+  <!-- Floating speed/performance particles -->
+  <g opacity="0.6">
+    <circle cx="150" cy="120" r="3" fill="#00ffff">
+      <animate attributeName="cx" values="150;200;150" dur="3s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.3;1;0.3" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="1050" cy="100" r="2.5" fill="#3b82f6">
+      <animate attributeName="cx" values="1050;1000;1050" dur="2.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.3;1;0.3" dur="2.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="200" cy="280" r="3.5" fill="#00ffff">
+      <animate attributeName="cy" values="280;250;280" dur="3.8s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.3;1;0.3" dur="3.8s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="1000" cy="280" r="2.5" fill="#3b82f6">
+      <animate attributeName="cy" values="280;310;280" dur="2.8s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.3;1;0.3" dur="2.8s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+</svg>
+

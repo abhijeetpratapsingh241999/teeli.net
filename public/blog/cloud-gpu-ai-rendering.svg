@@ -1,0 +1,181 @@
+<svg width="1200" height="600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0e27;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a1a3e;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="cloudGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#1e40af;stop-opacity:0.8" />
+    </linearGradient>
+    <linearGradient id="gpuGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#4c1d95;stop-opacity:0.8" />
+    </linearGradient>
+    <linearGradient id="aiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00ffff;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#0080ff;stop-opacity:0.8" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="600" fill="url(#bg)"/>
+  
+  <!-- Grid pattern -->
+  <pattern id="gridPattern" width="40" height="40" patternUnits="userSpaceOnUse">
+    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#00d4ff" stroke-width="0.5" opacity="0.1"/>
+  </pattern>
+  <rect width="1200" height="600" fill="url(#gridPattern)"/>
+  
+  <!-- Cloud structure (left) -->
+  <g transform="translate(150, 150)">
+    <!-- Cloud layers -->
+    <ellipse cx="0" cy="0" rx="80" ry="40" fill="url(#cloudGrad)" opacity="0.7">
+      <animate attributeName="opacity" values="0.5;0.9;0.5" dur="3s" repeatCount="indefinite"/>
+    </ellipse>
+    <ellipse cx="60" cy="0" rx="70" ry="35" fill="url(#cloudGrad)" opacity="0.7">
+      <animate attributeName="opacity" values="0.5;0.9;0.5" dur="3.5s" repeatCount="indefinite"/>
+    </ellipse>
+    <ellipse cx="30" cy="-30" rx="60" ry="30" fill="url(#cloudGrad)" opacity="0.7">
+      <animate attributeName="opacity" values="0.5;0.9;0.5" dur="2.8s" repeatCount="indefinite"/>
+    </ellipse>
+    
+    <!-- GPU symbol -->
+    <rect x="-40" y="-50" width="160" height="100" rx="8" fill="none" stroke="#8b5cf6" stroke-width="3" opacity="0.6"/>
+    <g transform="translate(0, 0)">
+      <!-- GPU die -->
+      <rect x="-30" y="-30" width="60" height="40" rx="4" fill="url(#gpuGrad)" opacity="0.8">
+        <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
+      </rect>
+      <!-- Pins -->
+      <g stroke="#00ffff" stroke-width="2" opacity="0.6">
+        <line x1="-50" y1="-20" x2="-30" y2="-20"/>
+        <line x1="-50" y1="0" x2="-30" y2="0"/>
+        <line x1="-50" y1="20" x2="-30" y2="20"/>
+        <line x1="30" y1="-20" x2="50" y2="-20"/>
+        <line x1="30" y1="0" x2="50" y2="0"/>
+        <line x1="30" y1="20" x2="50" y2="20"/>
+      </g>
+    </g>
+  </g>
+  
+  <!-- AI neural network (center) -->
+  <g transform="translate(600, 200)">
+    <!-- Nodes -->
+    <g opacity="0.8">
+      <!-- Layer 1 -->
+      <circle cx="0" cy="-100" r="15" fill="#00ffff">
+        <animate attributeName="r" values="12;18;12" dur="2s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="0" cy="0" r="15" fill="#00ffff">
+        <animate attributeName="r" values="12;18;12" dur="2.5s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="0" cy="100" r="15" fill="#00ffff">
+        <animate attributeName="r" values="12;18;12" dur="2.2s" repeatCount="indefinite"/>
+      </circle>
+      
+      <!-- Layer 2 -->
+      <circle cx="150" cy="-100" r="15" fill="#8b5cf6">
+        <animate attributeName="r" values="12;18;12" dur="2.3s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="150" cy="0" r="15" fill="#8b5cf6">
+        <animate attributeName="r" values="12;18;12" dur="2.6s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="150" cy="100" r="15" fill="#8b5cf6">
+        <animate attributeName="r" values="12;18;12" dur="2.4s" repeatCount="indefinite"/>
+      </circle>
+      
+      <!-- Connections -->
+      <g stroke="#00ffff" stroke-width="2" opacity="0.4">
+        <line x1="0" y1="-100" x2="150" y2="-100"/>
+        <line x1="0" y1="-100" x2="150" y2="0"/>
+        <line x1="0" y1="-100" x2="150" y2="100"/>
+        <line x1="0" y1="0" x2="150" y2="-100"/>
+        <line x1="0" y1="0" x2="150" y2="0"/>
+        <line x1="0" y1="0" x2="150" y2="100"/>
+        <line x1="0" y1="100" x2="150" y2="-100"/>
+        <line x1="0" y1="100" x2="150" y2="0"/>
+        <line x1="0" y1="100" x2="150" y2="100"/>
+      </g>
+    </g>
+  </g>
+  
+  <!-- Rendered output (right) -->
+  <g transform="translate(950, 150)">
+    <!-- Screen frame -->
+    <rect x="-100" y="-80" width="200" height="160" rx="12" fill="#1e293b" stroke="#00ffff" stroke-width="3" opacity="0.8">
+      <animate attributeName="opacity" values="0.6;1;0.6" dur="2.5s" repeatCount="indefinite"/>
+    </rect>
+    
+    <!-- Rendered scene -->
+    <rect x="-90" y="-70" width="180" height="140" rx="8" fill="url(#aiGrad)" opacity="0.6">
+      <animate attributeName="opacity" values="0.4;0.8;0.4" dur="2s" repeatCount="indefinite"/>
+    </rect>
+    
+    <!-- Building representation -->
+    <g transform="translate(-30, 20)">
+      <rect width="20" height="40" fill="#ffffff" opacity="0.9"/>
+      <rect x="25" width="20" height="60" fill="#ffffff" opacity="0.9"/>
+      <rect x="50" width="20" height="30" fill="#ffffff" opacity="0.9"/>
+      <rect x="75" width="20" height="50" fill="#ffffff" opacity="0.9"/>
+    </g>
+  </g>
+  
+  <!-- Arrows showing flow -->
+  <g stroke="#00ffff" stroke-width="4" fill="none" opacity="0.7">
+    <path d="M 370 220 L 450 220" marker-end="url(#arrowhead)">
+      <animate attributeName="stroke-dasharray" values="0,100;100,0" dur="2s" repeatCount="indefinite"/>
+    </path>
+    <path d="M 750 220 L 810 220" marker-end="url(#arrowhead)">
+      <animate attributeName="stroke-dasharray" values="0,100;100,0" dur="2.5s" repeatCount="indefinite"/>
+    </path>
+  </g>
+  
+  <!-- Arrow head marker -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="5" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#00ffff" />
+    </marker>
+  </defs>
+  
+  <!-- Title Text -->
+  <text x="600" y="80" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="white" text-anchor="middle" opacity="0.95">
+    Cloud GPU + AI Rendering
+  </text>
+  <text x="600" y="110" font-family="Arial, sans-serif" font-size="24" fill="#00d4ff" text-anchor="middle" opacity="0.8">
+    Reinventing the Pipeline
+  </text>
+  
+  <!-- Tech badges -->
+  <g transform="translate(600, 450)">
+    <!-- Cloud badge -->
+    <rect x="-150" y="-15" width="90" height="30" fill="none" stroke="#3b82f6" stroke-width="2" rx="15" opacity="0.6">
+      <animate attributeName="opacity" values="0.4;0.8;0.4" dur="3s" repeatCount="indefinite"/>
+    </rect>
+    <text x="-105" y="5" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#3b82f6" text-anchor="middle">
+      Cloud
+    </text>
+    
+    <!-- AI badge -->
+    <rect x="-50" y="-15" width="80" height="30" fill="none" stroke="#8b5cf6" stroke-width="2" rx="15" opacity="0.6">
+      <animate attributeName="opacity" values="0.4;0.8;0.4" dur="2.5s" repeatCount="indefinite"/>
+    </rect>
+    <text x="-10" y="5" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#8b5cf6" text-anchor="middle">
+      AI
+    </text>
+    
+    <!-- Render badge -->
+    <rect x="40" y="-15" width="110" height="30" fill="none" stroke="#00ffff" stroke-width="2" rx="15" opacity="0.6">
+      <animate attributeName="opacity" values="0.4;0.8;0.4" dur="2.8s" repeatCount="indefinite"/>
+    </rect>
+    <text x="95" y="5" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#00ffff" text-anchor="middle">
+      Real-time
+    </text>
+  </g>
+  
+  <!-- Metrics display -->
+  <text x="600" y="520" font-family="Arial, sans-serif" font-size="16" fill="#00ffff" text-anchor="middle" opacity="0.7">
+    Faster • Smarter • Sustainable
+  </text>
+</svg>
+
