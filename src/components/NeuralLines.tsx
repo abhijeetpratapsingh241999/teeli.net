@@ -5,6 +5,7 @@ import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
 // A single animated line
+// TypeScript interface for proper type checking
 interface SparkleLineProps {
     start: THREE.Vector3;
     end: THREE.Vector3;
