@@ -30,16 +30,54 @@ export function getAllBlogPosts(): BlogPost[] {
 
     files.forEach((file) => {
       if (file.endsWith('.json') && !file.includes('template')) {
-        const filePath = path.join(blogDir, file);
-        const fileContent = fs.readFileSync(filePath, 'utf-8');
-        const post = JSON.parse(fileContent);
-        // Remove content for listing pages
-        const { content, ...metadata } = post;
-        posts.push(metadata);
+        try {
+          const filePath = path.join(blogDir, file);
+          let fileContent = fs.readFileSync(filePath, 'utf-8');
+          
+          // Remove BOM if present (check if file has content first)
+          if (fileContent.length > 0 && fileContent.charCodeAt(0) === 0xFEFF) {
+            fileContent = fileContent.slice(1);
+          }
+          
+          // Trim whitespace that might cause issues
+          fileContent = fileContent.trim();
+          
+          // Check if file is empty after trimming
+          if (!fileContent) {
+            console.warn(`Warning: Blog file ${file} is empty, skipping...`);
+            return;
+          }
+          
+          // Try to parse JSON
+          const post = JSON.parse(fileContent);
+          
+          // Validate that post has required fields
+          if (!post.slug || !post.title) {
+            console.warn(`Warning: Blog file ${file} is missing required fields (slug or title), skipping...`);
+            return;
+          }
+          
+          // Remove content for listing pages
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          const { content, ...metadata } = post;
+          posts.push(metadata);
+        } catch (error) {
+          console.error(`Error parsing blog file ${file}:`, error);
+          // Skip this file and continue with others
+        }
       }
     });
 
-    return posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    // Sort by date (newest first)
+    const sortedPosts = posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    
+    // Debug logging
+    console.log('📊 Total blogs loaded:', sortedPosts.length);
+    sortedPosts.slice(0, 3).forEach((post, i) => {
+      console.log(`${i + 1}. ${post.title.substring(0, 50)}... - ${post.date} - Featured: ${post.featured}`);
+    });
+    
+    return sortedPosts;
   } catch (error) {
     console.error('Error loading blog posts:', error);
     return [];
@@ -55,8 +93,31 @@ export function getBlogPostBySlug(slug: string): BlogPost | null {
       return null;
     }
 
-    const fileContent = fs.readFileSync(filePath, 'utf-8');
-    return JSON.parse(fileContent);
+    let fileContent = fs.readFileSync(filePath, 'utf-8');
+    
+    // Remove BOM if present (check if file has content first)
+    if (fileContent.length > 0 && fileContent.charCodeAt(0) === 0xFEFF) {
+      fileContent = fileContent.slice(1);
+    }
+    
+    // Trim whitespace that might cause issues
+    fileContent = fileContent.trim();
+    
+    // Check if file is empty after trimming
+    if (!fileContent) {
+      console.error(`Error: Blog file ${slug}.json is empty`);
+      return null;
+    }
+    
+    const post = JSON.parse(fileContent);
+    
+    // Validate required fields
+    if (!post.slug || !post.title) {
+      console.error(`Error: Blog file ${slug}.json is missing required fields`);
+      return null;
+    }
+    
+    return post;
   } catch (error) {
     console.error('Error loading blog post:', error);
     return null;
@@ -113,4 +174,3 @@ export function getLatestBlogPosts(limit: number = 3): BlogPost[] {
   const allPosts = getAllBlogPosts();
   return allPosts.slice(0, limit);
 }
-

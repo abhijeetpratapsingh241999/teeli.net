@@ -30,5 +30,22 @@
     "eslint-config-next": "16.0.1",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "overrides": {
+    "ink": {
+      "react": "$react",
+      "react-dom": "$react-dom",
+      "react-reconciler": {
+        "react": "$react"
+      }
+    },
+    "react-reconciler": {
+      "react": "$react"
+    }
+  },
+  "resolutions": {
+    "react-reconciler": {
+      "react": "$react"
+    }
   }
 }
