@@ -2,8 +2,9 @@
 
 import { motion } from 'framer-motion';
 import Header from '@/components/Header';
-import { Rocket, Users, Zap, Target, Award, Globe, TrendingUp, Code2 } from 'lucide-react';
+import { Rocket, Users, Zap, Target, Award, Globe, TrendingUp, Code2, Linkedin, Github, Twitter } from 'lucide-react';
 import Link from 'next/link';
+import { AuthorSchema } from '@/components/schema/generateAuthorSchema';
 
 export default function AboutPage() {
   const stats = [
@@ -69,6 +70,37 @@ export default function AboutPage() {
 
   return (
     <>
+      {/* SEO: Author Schemas for E-E-A-T */}
+      <AuthorSchema 
+        name="Alex Chen"
+        jobTitle="Chief Technology Officer"
+        description="Ex-NVIDIA GPU architect specializing in neural rendering and distributed computing systems. Led development of Instant-3D Neural Rendering pipeline at TEELI.NET."
+        url="https://teeli.net/team/alex-chen"
+        sameAs={[
+          'https://www.linkedin.com/in/alexchen-gpu',
+          'https://github.com/alexchen-teeli'
+        ]}
+        worksFor={{
+          name: 'TEELI.NET',
+          url: 'https://teeli.net'
+        }}
+      />
+      
+      <AuthorSchema 
+        name="Sarah Morgan"
+        jobTitle="Head of AI Research"
+        description="Neural radiance fields pioneer with PhD in Computer Vision from Stanford. Leading AI innovation in photorealistic 3D generation at TEELI.NET."
+        url="https://teeli.net/team/sarah-morgan"
+        sameAs={[
+          'https://www.linkedin.com/in/sarahmorgan-ai',
+          'https://scholar.google.com/citations?user=sarahmorgan'
+        ]}
+        worksFor={{
+          name: 'TEELI.NET',
+          url: 'https://teeli.net'
+        }}
+      />
+      
       <Header />
       
       {/* Hero Section */}
@@ -285,9 +317,33 @@ export default function AboutPage() {
                   <p className="text-cyan-400 mb-3">
                     {member.role}
                   </p>
-                  <p className="text-zinc-400 leading-relaxed">
+                  <p className="text-zinc-400 leading-relaxed mb-4">
                     {member.bio}
                   </p>
+                  {/* Social Proof Links */}
+                  <div className="flex gap-3 mt-auto">
+                    <a 
+                      href="#" 
+                      className="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 transition-all"
+                      aria-label="LinkedIn Profile"
+                    >
+                      <Linkedin className="w-4 h-4" />
+                    </a>
+                    <a 
+                      href="#" 
+                      className="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-purple-500/10 hover:bg-purple-500/20 text-purple-400 transition-all"
+                      aria-label="GitHub Profile"
+                    >
+                      <Github className="w-4 h-4" />
+                    </a>
+                    <a 
+                      href="#" 
+                      className="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 transition-all"
+                      aria-label="Twitter Profile"
+                    >
+                      <Twitter className="w-4 h-4" />
+                    </a>
+                  </div>
                 </div>
               </motion.div>
             ))}

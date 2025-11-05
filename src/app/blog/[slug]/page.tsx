@@ -23,11 +23,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     };
   }
 
-  const description = post.excerpt || (post.content ? post.content.substring(0, 160) + '...' : 'Read the full article on TEELI.NET Blog');
+  // Use metaTitle and metaDescription if provided, otherwise fallback to title and excerpt
+  const metaTitle = post.metaTitle || post.title;
+  const metaDescription = post.metaDescription || post.excerpt || (post.content ? post.content.substring(0, 160) + '...' : 'Read the full article on TEELI.NET Blog');
   
   return {
-    title: `${post.title} | TEELI.NET Blog`,
-    description,
+    title: `${metaTitle} | TEELI.NET Blog`,
+    description: metaDescription,
     keywords: [
       'AI rendering',
       '3D visualization',
@@ -41,8 +43,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     ].join(', '),
     authors: [{ name: post.author }],
     openGraph: {
-      title: post.title,
-      description,
+      title: metaTitle,
+      description: metaDescription,
       type: 'article',
       publishedTime: post.date,
       authors: [post.author],
@@ -50,8 +52,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     },
     twitter: {
       card: 'summary_large_image',
-      title: post.title,
-      description,
+      title: metaTitle,
+      description: metaDescription,
       images: post.image ? [`https://teeli.net${post.image}`] : [],
     },
     alternates: {

@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs>
+    <!-- Gradients for realistic materials -->
+    <linearGradient id="roofGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7c3aed;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#a855f7;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="wallGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0891b2;stop-opacity:1" />
+    </linearGradient>
+    
+    <radialGradient id="windowGlow">
+      <stop offset="0%" style="stop-color:#fbbf24;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f59e0b;stop-opacity:0.5" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#0f172a"/>
+  
+  <!-- Animated Grid -->
+  <g opacity="0.1" stroke="#06b6d4" stroke-width="1">
+    <line x1="0" y1="157.5" x2="1200" y2="157.5">
+      <animate attributeName="opacity" values="0.05;0.15;0.05" dur="4s" repeatCount="indefinite"/>
+    </line>
+    <line x1="0" y1="315" x2="1200" y2="315">
+      <animate attributeName="opacity" values="0.05;0.15;0.05" dur="4.5s" repeatCount="indefinite"/>
+    </line>
+    <line x1="0" y1="472.5" x2="1200" y2="472.5">
+      <animate attributeName="opacity" values="0.05;0.15;0.05" dur="5s" repeatCount="indefinite"/>
+    </line>
+    <line x1="300" y1="0" x2="300" y2="630">
+      <animate attributeName="opacity" values="0.05;0.15;0.05" dur="3.5s" repeatCount="indefinite"/>
+    </line>
+    <line x1="600" y1="0" x2="600" y2="630">
+      <animate attributeName="opacity" values="0.05;0.15;0.05" dur="4s" repeatCount="indefinite"/>
+    </line>
+    <line x1="900" y1="0" x2="900" y2="630">
+      <animate attributeName="opacity" values="0.05;0.15;0.05" dur="4.8s" repeatCount="indefinite"/>
+    </line>
+  </g>
+  
+  <!-- Title -->
+  <text x="600" y="60" text-anchor="middle" fill="#ffffff" font-size="42" font-weight="800" font-family="Arial, sans-serif">
+    3D House Rendering Process
+  </text>
+  <text x="600" y="95" text-anchor="middle" fill="#94a3b8" font-size="18" font-weight="500" font-family="Arial, sans-serif">
+    Transform Architectural Plans into Photorealistic Visuals
+  </text>
+  
+  <!-- Step 1: 2D Plans -->
+  <g transform="translate(100, 180)">
+    <circle cx="30" cy="30" r="20" fill="#06b6d4"/>
+    <text x="30" y="38" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="800" font-family="Arial">1</text>
+    
+    <rect x="10" y="70" width="200" height="220" fill="#1e293b" stroke="#06b6d4" stroke-width="3" rx="12"/>
+    
+    <g transform="translate(30, 100)" stroke="#06b6d4" stroke-width="2.5" fill="none">
+      <rect x="20" y="20" width="140" height="140"/>
+      <line x1="20" y1="90" x2="160" y2="90"/>
+      <line x1="90" y1="20" x2="90" y2="160"/>
+      <line x1="50" y1="20" x2="70" y2="20" stroke-width="4"/>
+      <line x1="110" y1="20" x2="130" y2="20" stroke-width="4"/>
+    </g>
+    
+    <text x="110" y="310" text-anchor="middle" fill="#06b6d4" font-size="15" font-weight="700" font-family="Arial">2D CAD Plans</text>
+  </g>
+  
+  <!-- Step 2: 3D Modeling -->
+  <g transform="translate(380, 180)">
+    <circle cx="30" cy="30" r="20" fill="#8b5cf6"/>
+    <text x="30" y="38" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="800" font-family="Arial">2</text>
+    
+    <rect x="10" y="70" width="200" height="220" fill="#1e293b" stroke="#8b5cf6" stroke-width="3" rx="12"/>
+    
+    <g transform="translate(110, 180)" stroke="#8b5cf6" stroke-width="2" fill="none">
+      <path d="M -40,-25 L 40,-25 L 40,35 L -40,35 Z"/>
+      <line x1="-40" y1="-25" x2="-25" y2="-37"/>
+      <line x1="40" y1="-25" x2="55" y2="-37"/>
+      <line x1="40" y1="35" x2="55" y2="23"/>
+      <line x1="-40" y1="35" x2="-25" y2="23"/>
+      <path d="M -25,-37 L 55,-37 L 55,23 L -25,23 Z" opacity="0.5"/>
+      <path d="M -40,-25 L 0,-50 L 40,-25" stroke="#a855f7" stroke-width="2.5"/>
+      <path d="M -25,-37 L 15,-62 L 55,-37" stroke="#a855f7" opacity="0.5"/>
+      <line x1="0" y1="-50" x2="15" y2="-62" stroke="#a855f7"/>
+    </g>
+    
+    <text x="110" y="310" text-anchor="middle" fill="#8b5cf6" font-size="15" font-weight="700" font-family="Arial">3D Modeling</text>
+  </g>
+  
+  <!-- Step 3: AI Rendering -->
+  <g transform="translate(660, 180)">
+    <circle cx="30" cy="30" r="20" fill="#ec4899"/>
+    <text x="30" y="38" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="800" font-family="Arial">3</text>
+    
+    <rect x="10" y="70" width="200" height="220" fill="#1e293b" stroke="#ec4899" stroke-width="3" rx="12"/>
+    
+    <g transform="translate(110, 180)">
+      <rect x="-50" y="-40" width="100" height="80" fill="#1e293b" stroke="#ec4899" stroke-width="2" rx="6"/>
+      
+      <g fill="#ec4899">
+        <rect x="-40" y="-30" width="15" height="15" rx="2"/>
+        <rect x="-20" y="-30" width="15" height="15" rx="2"/>
+        <rect x="0" y="-30" width="15" height="15" rx="2"/>
+        <rect x="20" y="-30" width="15" height="15" rx="2"/>
+        
+        <rect x="-40" y="-10" width="15" height="15" rx="2"/>
+        <rect x="-20" y="-10" width="15" height="15" rx="2"/>
+        <rect x="0" y="-10" width="15" height="15" rx="2"/>
+        <rect x="20" y="-10" width="15" height="15" rx="2"/>
+        
+        <rect x="-40" y="10" width="15" height="15" rx="2"/>
+        <rect x="-20" y="10" width="15" height="15" rx="2"/>
+        <rect x="0" y="10" width="15" height="15" rx="2"/>
+        <rect x="20" y="10" width="15" height="15" rx="2"/>
+      </g>
+      
+      <text x="0" y="55" text-anchor="middle" fill="#f97316" font-size="12" font-weight="700" font-family="Arial">AI GPU</text>
+    </g>
+    
+    <text x="110" y="310" text-anchor="middle" fill="#ec4899" font-size="15" font-weight="700" font-family="Arial">AI Rendering</text>
+  </g>
+  
+  <!-- Step 4: Enhanced Photorealistic Result -->
+  <g transform="translate(940, 180)">
+    <circle cx="30" cy="30" r="20" fill="#22d3ee">
+      <animate attributeName="fill" values="#22d3ee;#06b6d4;#22d3ee" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    <text x="30" y="38" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="800" font-family="Arial">4</text>
+    
+    <rect x="10" y="70" width="200" height="220" fill="#1e293b" stroke="#22d3ee" stroke-width="3" rx="12">
+      <animate attributeName="stroke-opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
+    </rect>
+    
+    <!-- Enhanced 3D House with realistic details -->
+    <g transform="translate(110, 175)">
+      <!-- Roof with gradient and shadows -->
+      <path d="M 0,-50 L 65,-32 L 65,-12 L 0,-30 Z" fill="url(#roofGrad)" opacity="0.95">
+        <animate attributeName="opacity" values="0.9;1;0.9" dur="3s" repeatCount="indefinite"/>
+      </path>
+      <path d="M -65,-32 L 0,-50 L 0,-30 L -65,-12 Z" fill="#7c3aed" opacity="0.9">
+        <animate attributeName="opacity" values="0.85;0.95;0.85" dur="3s" begin="0.3s" repeatCount="indefinite"/>
+      </path>
+      <path d="M -65,-32 L 0,-50 L 65,-32 L 0,-14 Z" fill="#a855f7" opacity="0.85">
+        <animate attributeName="opacity" values="0.8;0.9;0.8" dur="3s" begin="0.6s" repeatCount="indefinite"/>
+      </path>
+      
+      <!-- Chimney -->
+      <rect x="-15" y="-48" width="8" height="15" fill="#64748b" stroke="#475569" stroke-width="1"/>
+      <rect x="-16" y="-50" width="10" height="3" fill="#475569"/>
+      
+      <!-- Front Wall with texture -->
+      <rect x="-65" y="-12" width="65" height="72" fill="url(#wallGrad)" opacity="0.95">
+        <animate attributeName="opacity" values="0.9;1;0.9" dur="3s" repeatCount="indefinite"/>
+      </rect>
+      
+      <!-- Side Wall -->
+      <path d="M 0,-12 L 65,-32 L 65,40 L 0,60 Z" fill="#0891b2" opacity="0.9">
+        <animate attributeName="opacity" values="0.85;0.95;0.85" dur="3s" begin="0.4s" repeatCount="indefinite"/>
+      </path>
+      
+      <!-- Windows with realistic glow effect -->
+      <g>
+        <!-- Window 1 -->
+        <rect x="-56" y="2" width="20" height="20" fill="url(#windowGlow)" opacity="0.98" stroke="#d97706" stroke-width="1.5" rx="1">
+          <animate attributeName="opacity" values="0.95;1;0.95" dur="2s" repeatCount="indefinite"/>
+        </rect>
+        <line x1="-46" y1="2" x2="-46" y2="22" stroke="#d97706" stroke-width="1.5"/>
+        <line x1="-56" y1="12" x2="-36" y2="12" stroke="#d97706" stroke-width="1.5"/>
+        
+        <!-- Window 2 -->
+        <rect x="-30" y="2" width="20" height="20" fill="url(#windowGlow)" opacity="0.98" stroke="#d97706" stroke-width="1.5" rx="1">
+          <animate attributeName="opacity" values="0.95;1;0.95" dur="2s" begin="0.3s" repeatCount="indefinite"/>
+        </rect>
+        <line x1="-20" y1="2" x2="-20" y2="22" stroke="#d97706" stroke-width="1.5"/>
+        <line x1="-30" y1="12" x2="-10" y2="12" stroke="#d97706" stroke-width="1.5"/>
+        
+        <!-- Side Windows -->
+        <rect x="15" y="-6" width="26" height="17" fill="url(#windowGlow)" opacity="0.98" stroke="#d97706" stroke-width="1.5" rx="1">
+          <animate attributeName="opacity" values="0.95;1;0.95" dur="2s" begin="0.6s" repeatCount="indefinite"/>
+        </rect>
+        <line x1="28" y1="-6" x2="28" y2="11" stroke="#d97706" stroke-width="1.5"/>
+        
+        <rect x="15" y="16" width="26" height="17" fill="url(#windowGlow)" opacity="0.98" stroke="#d97706" stroke-width="1.5" rx="1">
+          <animate attributeName="opacity" values="0.95;1;0.95" dur="2s" begin="0.9s" repeatCount="indefinite"/>
+        </rect>
+        <line x1="28" y1="16" x2="28" y2="33" stroke="#d97706" stroke-width="1.5"/>
+      </g>
+      
+      <!-- Door with details -->
+      <rect x="-44" y="30" width="26" height="30" fill="#1e293b" stroke="#06b6d4" stroke-width="1.5" rx="1"/>
+      <circle cx="-37" cy="45" r="2" fill="#06b6d4"/>
+      <line x1="-31" y1="30" x2="-31" y2="60" stroke="#334155" stroke-width="1"/>
+      
+      <!-- Doorstep -->
+      <rect x="-46" y="59" width="30" height="3" fill="#475569"/>
+      
+      <!-- Bushes/Plants -->
+      <ellipse cx="-70" cy="58" rx="8" ry="6" fill="#22c55e" opacity="0.7"/>
+      <ellipse cx="-60" cy="60" rx="6" ry="5" fill="#16a34a" opacity="0.7"/>
+      <ellipse cx="68" cy="42" rx="7" ry="5" fill="#22c55e" opacity="0.7"/>
+      
+      <!-- Ground Shadow with animation -->
+      <ellipse cx="0" cy="63" rx="72" ry="7" fill="#000000" opacity="0.5">
+        <animate attributeName="opacity" values="0.4;0.6;0.4" dur="3s" repeatCount="indefinite"/>
+      </ellipse>
+    </g>
+    
+    <text x="110" y="310" text-anchor="middle" fill="#22d3ee" font-size="15" font-weight="700" font-family="Arial">Photorealistic</text>
+  </g>
+  
+  <!-- Process Arrows with animation -->
+  <g opacity="0.8">
+    <path d="M 320 280 L 365 280" stroke="#06b6d4" stroke-width="3" fill="none">
+      <animate attributeName="stroke-dasharray" from="0,45" to="45,0" dur="1.5s" repeatCount="indefinite"/>
+    </path>
+    <path d="M 365 280 L 358 275 L 358 285 Z" fill="#06b6d4">
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="1.5s" repeatCount="indefinite"/>
+    </path>
+    
+    <path d="M 600 280 L 645 280" stroke="#8b5cf6" stroke-width="3" fill="none">
+      <animate attributeName="stroke-dasharray" from="0,45" to="45,0" dur="1.5s" begin="0.5s" repeatCount="indefinite"/>
+    </path>
+    <path d="M 645 280 L 638 275 L 638 285 Z" fill="#8b5cf6">
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="1.5s" begin="0.5s" repeatCount="indefinite"/>
+    </path>
+    
+    <path d="M 880 280 L 925 280" stroke="#ec4899" stroke-width="3" fill="none">
+      <animate attributeName="stroke-dasharray" from="0,45" to="45,0" dur="1.5s" begin="1s" repeatCount="indefinite"/>
+    </path>
+    <path d="M 925 280 L 918 275 L 918 285 Z" fill="#ec4899">
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="1.5s" begin="1s" repeatCount="indefinite"/>
+    </path>
+  </g>
+  
+  <!-- Animated Particles flowing through process -->
+  <g opacity="0.7">
+    <!-- Particles from Step 1 to 2 -->
+    <circle r="4" fill="#06b6d4">
+      <animate attributeName="cx" from="320" to="375" dur="2s" repeatCount="indefinite"/>
+      <animate attributeName="cy" values="270;275;270" dur="2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle r="3" fill="#06b6d4">
+      <animate attributeName="cx" from="320" to="375" dur="2.3s" repeatCount="indefinite"/>
+      <animate attributeName="cy" values="285;290;285" dur="2.3s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;1;0" dur="2.3s" repeatCount="indefinite"/>
+    </circle>
+    
+    <!-- Particles from Step 2 to 3 -->
+    <circle r="4" fill="#8b5cf6">
+      <animate attributeName="cx" from="600" to="655" dur="2s" repeatCount="indefinite"/>
+      <animate attributeName="cy" values="270;275;270" dur="2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle r="3" fill="#8b5cf6">
+      <animate attributeName="cx" from="600" to="655" dur="2.2s" repeatCount="indefinite"/>
+      <animate attributeName="cy" values="285;290;285" dur="2.2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;1;0" dur="2.2s" repeatCount="indefinite"/>
+    </circle>
+    
+    <!-- Particles from Step 3 to 4 -->
+    <circle r="4" fill="#ec4899">
+      <animate attributeName="cx" from="880" to="935" dur="2s" repeatCount="indefinite"/>
+      <animate attributeName="cy" values="270;275;270" dur="2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle r="3" fill="#ec4899">
+      <animate attributeName="cx" from="880" to="935" dur="2.4s" repeatCount="indefinite"/>
+      <animate attributeName="cy" values="285;290;285" dur="2.4s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;1;0" dur="2.4s" repeatCount="indefinite"/>
+    </circle>
+    
+    <!-- Floating ambient particles -->
+    <circle cx="150" cy="130" r="2.5" fill="#22d3ee">
+      <animate attributeName="cy" values="130;120;130" dur="3s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.3;1;0.3" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="450" cy="110" r="2" fill="#a855f7">
+      <animate attributeName="cy" values="110;100;110" dur="4s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.3;1;0.3" dur="4s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="750" cy="120" r="3" fill="#ec4899">
+      <animate attributeName="cy" values="120;110;120" dur="3.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.3;1;0.3" dur="3.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="1050" cy="140" r="2.5" fill="#06b6d4">
+      <animate attributeName="cy" values="140;130;140" dur="3.8s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.3;1;0.3" dur="3.8s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="200" cy="500" r="2" fill="#22d3ee">
+      <animate attributeName="cy" values="500;490;500" dur="4.2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.3;1;0.3" dur="4.2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="600" cy="520" r="2.5" fill="#8b5cf6">
+      <animate attributeName="cy" values="520;510;520" dur="3.7s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.3;1;0.3" dur="3.7s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  
+  <!-- Bottom Benefits -->
+  <g transform="translate(120, 555)" fill="#e2e8f0" font-size="13" font-weight="600" font-family="Arial">
+    <circle cx="8" cy="8" r="8" fill="#06b6d4" opacity="0.3"/>
+    <text x="22" y="13">30% Faster Approvals</text>
+    
+    <g transform="translate(240, 0)">
+      <circle cx="8" cy="8" r="8" fill="#8b5cf6" opacity="0.3"/>
+      <text x="22" y="13">AI-Powered Workflow</text>
+    </g>
+    
+    <g transform="translate(480, 0)">
+      <circle cx="8" cy="8" r="8" fill="#ec4899" opacity="0.3"/>
+      <text x="22" y="13">Real-Time Rendering</text>
+    </g>
+    
+    <g transform="translate(705, 0)">
+      <circle cx="8" cy="8" r="8" fill="#22d3ee" opacity="0.3"/>
+      <text x="22" y="13">Cloud GPU Ready</text>
+    </g>
+    
+    <g transform="translate(905, 0)">
+      <circle cx="8" cy="8" r="8" fill="#f59e0b" opacity="0.3"/>
+      <text x="22" y="13">60% Cost Savings</text>
+    </g>
+  </g>
+  
+  <!-- Brand Badge -->
+  <rect x="1050" y="580" width="125" height="35" rx="17.5" fill="#06b6d4" opacity="0.9"/>
+  <text x="1112.5" y="602" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="800" font-family="Arial">TEELI.NET</text>
+</svg>

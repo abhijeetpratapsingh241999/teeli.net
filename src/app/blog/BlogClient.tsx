@@ -199,13 +199,16 @@ function BlogContent({ initialPosts, categories }: BlogClientProps) {
               </div>
             </motion.div>
 
-                          {/* Category Filter */}
+                          {/* Premium Category Filter - Scrollable but No Scrollbar */}
               <div 
                 id="category-filter"
-                className="overflow-x-auto pb-4 mb-8 scrollbar-hide pt-2"
+                className="overflow-x-auto scrollbar-hide mb-12 pt-2 pb-2"
                 style={{ scrollMarginTop: '8rem', scrollPaddingTop: '8rem' }}
               >
-                <nav aria-label="Blog categories" className="flex gap-4 justify-start md:justify-center min-w-max px-2 py-2">
+                <nav 
+                  aria-label="Blog categories" 
+                  className="flex gap-3 justify-start md:justify-center min-w-max px-4"
+                >
                   {categories.map((category) => (
                     <button
                       key={category}
@@ -229,12 +232,14 @@ function BlogContent({ initialPosts, categories }: BlogClientProps) {
                       }}
                       aria-pressed={selectedCategory === category}
                       aria-label={`Filter blog posts by ${category} category`}
-                      className={`px-6 py-3 rounded-full font-semibold transition-all whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-offset-2 relative ${
+                      className={`px-5 py-2.5 rounded-full font-medium text-sm transition-all duration-300 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-offset-2 relative shadow-sm hover:shadow-md ${
                         selectedCategory === category
-                          ? "bg-gradient-to-r from-cyan-400 to-purple-500 text-white focus:ring-cyan-400"
+                          ? theme === 'dark'
+                            ? "bg-gradient-to-r from-cyan-500 to-purple-600 text-white shadow-lg shadow-cyan-500/30 focus:ring-cyan-400"
+                            : "bg-gradient-to-r from-cyan-500 to-purple-600 text-white shadow-lg shadow-purple-500/30 focus:ring-purple-400"
                           : theme === 'dark' 
-                            ? "border border-white/20 bg-white/5 text-zinc-300 hover:border-cyan-500/50 focus:ring-cyan-500/50"
-                            : "border border-gray-300 bg-white text-gray-700 hover:border-cyan-500/50 focus:ring-cyan-500/50"
+                            ? "border border-white/10 bg-white/5 text-zinc-300 hover:bg-white/10 hover:border-cyan-400/40 focus:ring-cyan-500/50"
+                            : "border border-gray-200 bg-white text-gray-700 hover:border-cyan-400 hover:bg-gradient-to-r hover:from-cyan-50 hover:to-purple-50 focus:ring-cyan-500/50"
                       }`}
                     >
                       {category}

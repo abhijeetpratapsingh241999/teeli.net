@@ -7,6 +7,7 @@ import AnimatedHeroText from '@/components/AnimatedHeroText';
 import { motion } from 'framer-motion';
 import { Twitter, Linkedin, Instagram, Github } from 'lucide-react';
 import Link from 'next/link';
+import { OrganizationSchema } from '@/components/schema/generateOrganizationSchema';
 
 const Scene = dynamic(() => import('@/components/Scene'), { ssr: false })
 
@@ -27,6 +28,22 @@ export default function Home() {
 
   return (
     <>
+      {/* SEO: Organization Schema */}
+      <OrganizationSchema 
+        name="TEELI.NET"
+        url="https://teeli.net"
+        logo="https://teeli.net/logos/teeli-logo.png"
+        description="AI-Powered Cloud Rendering & 3D Visualization Platform"
+        sameAs={[
+          'https://www.linkedin.com/company/teeli',
+          'https://twitter.com/teeli',
+        ]}
+        contactPoint={{
+          email: 'contact@teeli.net',
+          contactType: 'customer service',
+        }}
+      />
+      
       <main className="relative flex h-screen w-full flex-col items-center justify-center bg-black">
         <Header />
         <div className="absolute top-0 left-0 h-full w-full">

@@ -3,13 +3,44 @@
 import { BlogThemeProvider, useBlogTheme } from '@/components/BlogThemeProvider';
 import BlogThemeToggle from '@/components/BlogThemeToggle';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ReactNode, useState, useEffect } from 'react';
+import { ReactNode, useState, useEffect, Suspense, lazy } from 'react';
 import { BlogPost } from '@/lib/blog';
-import RelatedPosts from './RelatedPosts';
 import { motion, AnimatePresence } from 'framer-motion';
+import FAQAccordion from '@/components/FAQAccordion';
+import HighlightBox from '@/components/blog/HighlightBox';
+import { BlogH1, BlogH2, BlogH3, BlogListItem } from '@/components/blog/BlogHeadings';
+import { OptimizedBlogImage, OptimizedBlogVideo } from '@/components/blog/OptimizedMedia';
+import * as FAQ from '@/data/faq';
+import { ArticleSchema } from '@/components/schema/generateArticleSchema';
+import { FAQSchema } from '@/components/schema/generateFAQSchema';
+import { BreadcrumbSchema } from '@/components/schema/generateBreadcrumbSchema';
+import dynamic from 'next/dynamic';
+
+// Lazy load heavy components for better performance
+const Footer = dynamic(() => import('@/components/Footer'), { ssr: true });
+const RelatedPosts = dynamic(() => import('./RelatedPosts'), { 
+  ssr: false,
+  loading: () => (
+    <div className="animate-pulse bg-gray-800/30 rounded-2xl h-64 my-8"></div>
+  )
+});
+
+// FAQ Mapping: Blog slug to FAQ data
+const FAQ_MAP: Record<string, FAQ.FAQItem[]> = {
+  '3d-rendering-house-process-benefits-costs-future-trends-2025': FAQ.faq_house_rendering,
+  'cloud-gpu-complete-guide-2025': FAQ.faq_cloud_gpu,
+  'cloud-computing-complete-guide-2025': FAQ.faq_cloud_computing,
+  '3d-visualisation-complete-guide-2025': FAQ.faq_3d_visualization,
+  'ai-rendering-trends': FAQ.faq_ai_rendering,
+  'image-to-3d-platforms-rise': FAQ.faq_image_to_3d,
+  'ai-digital-twins-aec-transformation': FAQ.faq_digital_twins,
+  'green-render-revolution-sustainable': FAQ.faq_sustainable_rendering,
+  'generative-ai-architectural-design': FAQ.faq_generative_ai_architecture,
+  'instant-3d-nerf-revolution': FAQ.faq_nerf_instant_3d,
+  'quantum-design-2028': FAQ.faq_quantum_design,
+};
 
 interface BlogPostClientProps {
   post: BlogPost;
@@ -20,7 +51,9 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
   const { theme } = useBlogTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+  
+  // Get FAQ items for this blog post
+  const faqItems = FAQ_MAP[post.slug] || [];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,19 +76,75 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
+  // Extract intro sections from content
+  const extractIntroSections = (content: string) => {
+    const lines = content.split('\n').filter(line => line.trim());
+    
+    // Extract H1 from content (first line with #)
+    let h1Title = '';
+    let contentStart = 0;
+    
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i].trim();
+      if (line.startsWith('# ')) {
+        h1Title = line.substring(2).trim();
+        contentStart = i + 1;
+        break;
+      }
+    }
+    
+    // Find first paragraph (intro sentence)
+    let introSentence = '';
+    let valueSummary = '';
+    let supportingContext = '';
+    const remainingContent: string[] = [];
+    
+    let paragraphCount = 0;
+    
+    for (let i = contentStart; i < lines.length; i++) {
+      const line = lines[i].trim();
+      
+      // Skip empty lines and headings
+      if (!line || line.startsWith('#') || line.startsWith('![') || line.startsWith('*') || line.startsWith('---')) {
+        if (paragraphCount >= 3) {
+          remainingContent.push(lines[i]);
+        }
+        continue;
+      }
+      
+      if (paragraphCount === 0) {
+        introSentence = line;
+        paragraphCount++;
+      } else if (paragraphCount === 1) {
+        valueSummary = line;
+        paragraphCount++;
+      } else if (paragraphCount === 2) {
+        supportingContext = line;
+        paragraphCount++;
+      } else {
+        remainingContent.push(lines[i]);
+      }
+    }
+    
+    return {
+      h1Title,
+      introSentence,
+      valueSummary,
+      supportingContext,
+      remainingContent: remainingContent.join('\n')
+    };
+  };
+
   const renderContent = (content: string) => {
     const lines = content.split('\n');
     const elements: ReactNode[] = [];
     let key = 0;
-    let isFirstH1 = true;
     let inTable = false;
     let tableRows: string[] = [];
     let inScript = false;
     let scriptContent: string[] = [];
-    let inFAQSection = false;
-    let faqItems: { question: string; answer: string }[] = [];
-    let currentFaqQuestion = '';
-    let currentFaqAnswer: string[] = [];
+    let foundH1 = false;
+    let isFirstParagraphAfterH1 = false;
 
     const processLine = (line: string) => {
       const trimmedLine = line.trim();
@@ -97,30 +186,20 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
         
         if (isVideo) {
           elements.push(
-            <div key={key++} className="my-6 sm:my-8">
-              <video 
-                src={`/blog/${src}`}
-                controls
-                className="w-full rounded-xl sm:rounded-2xl border-2 border-cyan-500/30 shadow-2xl"
-              >
-                Your browser does not support the video tag.
-              </video>
-            </div>
+            <OptimizedBlogVideo 
+              key={key++}
+              src={src}
+              className="my-6 sm:my-8"
+            />
           );
         } else {
           elements.push(
-            <div key={key++} className="my-6 sm:my-8">
-              <img 
-                src={`/blog/${src}`}
-                alt={alt}
-                className="w-full h-auto rounded-xl sm:rounded-2xl border-2 border-cyan-500/30 shadow-2xl"
-                loading="lazy"
-                onError={(e) => {
-                  console.error('Image failed to load:', `/blog/${src}`);
-                  e.currentTarget.style.display = 'none';
-                }}
-              />
-            </div>
+            <OptimizedBlogImage 
+              key={key++}
+              src={src}
+              alt={alt}
+              className="my-6 sm:my-8"
+            />
           );
         }
         return;
@@ -138,53 +217,53 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
         // End of table, render it
         if (tableRows.length > 0) {
           const tableHeaders = tableRows[0].split('|').map(h => h.trim()).filter(h => h);
-
           const dataRows = tableRows.slice(2);
+          const cardClasses = theme === 'dark'
+            ? 'bg-gradient-to-br from-gray-900/60 to-gray-800/40 border border-cyan-500/30 shadow-xl shadow-cyan-500/20'
+            : 'bg-white border border-gray-200 shadow-lg hover:shadow-xl';
+          const headerClasses = theme === 'dark'
+            ? 'bg-gradient-to-r from-cyan-900/50 to-purple-900/50'
+            : 'bg-gradient-to-r from-blue-50 to-indigo-50';
+          const headerTextClasses = theme === 'dark'
+            ? 'text-cyan-300 border-cyan-500/50'
+            : 'text-blue-900 border-blue-400';
+          const bodyClasses = theme === 'dark' ? 'bg-gray-900/30' : 'bg-white';
+          const hoverClasses = theme === 'dark' ? 'hover:bg-cyan-900/20' : 'hover:bg-blue-50/60';
+          const borderClasses = theme === 'dark' ? 'border-b border-white/10' : 'border-b border-gray-200/70';
+          const cellTextClasses = theme === 'dark' ? 'text-zinc-200' : 'text-gray-700';
           
           elements.push(
-            <div key={key++} className="my-6 sm:my-8 overflow-x-auto">
-              <div className={`rounded-lg border-2 overflow-hidden ${
-                theme === 'dark' ? 'border-cyan-500/30 bg-gray-900/30' : 'border-cyan-200 bg-white'
-              }`}>
-                <table className={`w-full border-collapse text-sm sm:text-base ${
-                  theme === 'dark' ? 'text-zinc-200' : 'text-gray-800'
-                }`}>
-                  <thead>
-                    <tr className={`${
-                      theme === 'dark' 
-                        ? 'bg-gradient-to-r from-cyan-900/50 to-purple-900/50 border-b-2 border-cyan-500/50' 
-                        : 'bg-gradient-to-r from-cyan-50 to-purple-50 border-b-2 border-cyan-600'
-                    }`}>
-                      {tableHeaders.map((header, idx) => (
-                        <th key={idx} className={`p-4 sm:p-5 text-left font-bold text-base sm:text-lg ${
-                          theme === 'dark' ? 'text-cyan-300' : 'text-cyan-700'
-                        }`}>
-                          {header}
-                        </th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {dataRows.map((row, rowIdx) => {
-                      const cells = row.split('|').map(c => c.trim()).filter(c => c);
-                      return (
-                        <tr key={rowIdx} className={`transition-colors hover:${
-                          theme === 'dark' ? 'bg-cyan-900/20' : 'bg-cyan-50/50'
-                        } ${
-                          theme === 'dark' ? 'border-b border-white/10' : 'border-b border-gray-200'
-                        }`}>
-                          {cells.map((cell, cellIdx) => (
-                            <td key={cellIdx} className={`p-4 sm:p-5 ${
-                              theme === 'dark' ? 'text-zinc-300' : 'text-gray-700'
-                            }`}>
-                              {cell}
-                            </td>
-                          ))}
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
+            <div key={key++} className="my-8 sm:my-10 md:my-12">
+              <div className={`rounded-2xl overflow-hidden backdrop-blur-md transition-all duration-300 hover:shadow-2xl ${cardClasses}`}>
+                <div className="overflow-x-auto">
+                  <table className="w-full border-collapse">
+                    <thead>
+                      <tr className={headerClasses}>
+                        {tableHeaders.map((header, idx) => (
+                          <th key={idx} className={`p-5 sm:p-6 text-left font-semibold text-sm sm:text-base lg:text-lg border-b-2 ${headerTextClasses}`}>
+                            {header}
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody className={bodyClasses}>
+                      {dataRows.map((row, rowIdx) => {
+                        const cells = row.split('|').map(c => c.trim()).filter(c => c);
+                        const isLastRow = rowIdx === dataRows.length - 1;
+                        const rowBorderClass = !isLastRow ? borderClasses : '';
+                        return (
+                          <tr key={rowIdx} className={`transition-all duration-200 ${hoverClasses} ${rowBorderClass}`}>
+                            {cells.map((cell, cellIdx) => (
+                              <td key={cellIdx} className={`p-5 sm:p-6 text-sm sm:text-base font-medium ${cellTextClasses}`}>
+                                {cell}
+                              </td>
+                            ))}
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           );
@@ -194,56 +273,45 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
       }
 
       if (trimmedLine.startsWith('# ')) {
-        if (isFirstH1) {
-          isFirstH1 = false;
-          return;
-        }
+        foundH1 = true;
         elements.push(
-          <h1 key={key++} className={`font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 mt-8 sm:mt-12 text-center md:text-left ${
-            theme === 'dark' ? 'text-white' : 'text-gray-900'
-          }`}>
+          <BlogH1 key={key++} theme={theme}>
             {renderInlineMarkdown(trimmedLine.slice(2))}
-          </h1>
+          </BlogH1>
         );
       } else if (trimmedLine.startsWith('## ')) {
         elements.push(
-          <h2 key={key++} className={`font-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 mt-8 sm:mt-10 text-center md:text-left ${
-            theme === 'dark' ? 'text-cyan-300' : 'text-cyan-600'
-          }`}>
+          <BlogH2 key={key++} theme={theme}>
             {renderInlineMarkdown(trimmedLine.slice(3))}
-          </h2>
+          </BlogH2>
         );
       } else if (trimmedLine.startsWith('### ')) {
         elements.push(
-          <h3 key={key++} className={`font-heading text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-2 sm:mb-3 mt-6 sm:mt-8 ${
-            theme === 'dark' ? 'text-purple-300' : 'text-purple-600'
-          }`}>
+          <BlogH3 key={key++} theme={theme}>
             {renderInlineMarkdown(trimmedLine.slice(4))}
-          </h3>
+          </BlogH3>
         );
       } else if (trimmedLine.startsWith('- ') || trimmedLine.startsWith('* ')) {
         elements.push(
-          <li key={key++} className={`ml-4 sm:ml-6 mb-2 list-disc text-sm sm:text-base md:text-lg ${
-            theme === 'dark' ? 'text-zinc-300' : 'text-gray-700'
-          }`}>
+          <BlogListItem key={key++} theme={theme} type="bullet">
             {renderInlineMarkdown(trimmedLine.slice(2))}
-          </li>
+          </BlogListItem>
         );
       } else if (trimmedLine.match(/^\d+\./)) {
         // Numbered list
         const match = trimmedLine.match(/^(\d+)\.\s*(.+)$/);
         if (match) {
+          const number = match[1];
+          const content = match[2];
           elements.push(
-            <li key={key++} className={`ml-4 sm:ml-6 mb-2 list-decimal text-sm sm:text-base md:text-lg ${
-              theme === 'dark' ? 'text-zinc-300' : 'text-gray-700'
-            }`}>
-              {renderInlineMarkdown(match[2])}
-            </li>
+            <BlogListItem key={key++} theme={theme} type="number" number={number}>
+              {renderInlineMarkdown(content)}
+            </BlogListItem>
           );
         }
       } else if (trimmedLine.match(/^\[\d+\]/)) {
         elements.push(
-          <p key={key++} className={`mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base md:text-lg ${
+          <p key={key++} className={`mb-3 sm:mb-4 md:mb-5 leading-relaxed text-base sm:text-lg md:text-xl ${
             theme === 'dark' ? 'text-zinc-200' : 'text-gray-800'
           }`}>
             <a href={trimmedLine.match(/\(([^)]+)\)/)?.[1]} target="_blank" rel="noopener noreferrer" 
@@ -254,7 +322,7 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
         );
       } else if (trimmedLine.startsWith('(') && trimmedLine.includes('utm_source')) {
         elements.push(
-          <p key={key++} className={`mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base md:text-lg ${
+          <p key={key++} className={`mb-3 sm:mb-4 md:mb-5 leading-relaxed text-base sm:text-lg md:text-xl ${
             theme === 'dark' ? 'text-zinc-200' : 'text-gray-800'
           }`}>
             <a href={trimmedLine.match(/\(([^)]+)\)/)?.[1]} target="_blank" rel="noopener noreferrer" 
@@ -264,125 +332,33 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
           </p>
         );
       } else if (trimmedLine.startsWith('## FAQ')) {
-        // FAQ Section Header - collect all FAQ items first
-        inFAQSection = true;
-        // Skip this line, continue processing
+        // Skip FAQ section header - will be rendered by FAQAccordion component
         return;
-      } else if (inFAQSection && trimmedLine.match(/^\*\*[^*]+\?\*\*$/)) {
-        // FAQ Question - save previous FAQ if exists
-        if (currentFaqQuestion && currentFaqAnswer.length > 0) {
-          faqItems.push({
-            question: currentFaqQuestion,
-            answer: currentFaqAnswer.join(' ')
-          });
-          currentFaqAnswer = [];
-        }
-        // Start new FAQ item
-        currentFaqQuestion = trimmedLine.replace(/\*\*/g, '');
-      } else if (inFAQSection && currentFaqQuestion && trimmedLine && !trimmedLine.startsWith('---') && !trimmedLine.startsWith('*Ready to transform')) {
-        // FAQ Answer - collect answer lines
-        currentFaqAnswer.push(trimmedLine);
-      } else if (inFAQSection && (trimmedLine.startsWith('---') || trimmedLine.startsWith('*Ready to transform'))) {
-        // End of FAQ section
-        if (currentFaqQuestion && currentFaqAnswer.length > 0) {
-          faqItems.push({
-            question: currentFaqQuestion,
-            answer: currentFaqAnswer.join(' ')
-          });
-        }
-        
-        // Render the complete FAQ section with accordion
-        if (faqItems.length > 0) {
-          elements.push(
-            <div key={key++} className="my-8 sm:my-12">
-              <h2 className={`font-heading text-2xl sm:text-3xl md:text-4xl font-bold mb-6 ${
-                theme === 'dark' ? 'text-cyan-300' : 'text-cyan-600'
-              }`}>
-                FAQ (Frequently Asked Questions)
-              </h2>
-              <div className={`max-h-[600px] overflow-y-auto pr-2 space-y-4 rounded-lg border-2 p-4 sm:p-6 ${
-                theme === 'dark' 
-                  ? 'border-cyan-500/30 bg-gray-900/50 scrollbar-thin scrollbar-thumb-cyan-500/50 scrollbar-track-gray-800' 
-                  : 'border-cyan-200 bg-gray-50 scrollbar-thin scrollbar-thumb-cyan-400 scrollbar-track-gray-200'
-              }`}>
-                {faqItems.map((faq, index) => (
-                  <div
-                    key={`faq-${index}`}
-                    className={`rounded-lg border overflow-hidden transition-all ${
-                      theme === 'dark'
-                        ? 'border-cyan-500/20 bg-gray-800/50'
-                        : 'border-cyan-200 bg-white'
-                    }`}
-                  >
-                    <button
-                      onClick={() => setOpenFaqIndex(openFaqIndex === index ? null : index)}
-                      className={`w-full text-left p-4 sm:p-5 flex items-start justify-between gap-3 transition-colors hover:${
-                        theme === 'dark' ? 'bg-cyan-900/20' : 'bg-cyan-50'
-                      }`}
-                    >
-                      <h4 className={`font-bold text-sm sm:text-base md:text-lg flex-1 ${
-                        theme === 'dark' ? 'text-cyan-300' : 'text-cyan-600'
-                      }`}>
-                        {faq.question}
-                      </h4>
-                      <svg
-                        className={`w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0 transition-transform ${
-                          openFaqIndex === index ? 'rotate-180' : ''
-                        } ${theme === 'dark' ? 'text-cyan-400' : 'text-cyan-600'}`}
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </button>
-                    <AnimatePresence>
-                      {openFaqIndex === index && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: 'auto', opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.3, ease: 'easeInOut' }}
-                          className="overflow-hidden"
-                        >
-                          <div className={`p-4 sm:p-5 pt-0 text-sm sm:text-base leading-relaxed ${
-                            theme === 'dark' ? 'text-zinc-300' : 'text-gray-700'
-                          }`}>
-                            {faq.answer}
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                ))}
-              </div>
-            </div>
-          );
-          
-          // Reset FAQ variables
-          faqItems = [];
-          currentFaqQuestion = '';
-          currentFaqAnswer = [];
-        }
-        
-        inFAQSection = false;
-        
-        // Process the current line if it's not just a separator
-        if (!trimmedLine.startsWith('---')) {
-          // Re-process this line normally
-          processLine(trimmedLine);
-        }
-      } else if (trimmedLine.match(/^\*\*[^*]+\?\*\*$/) || (trimmedLine.startsWith('**') && trimmedLine.includes('?'))) {
-        // FAQ Question outside FAQ section (legacy format) - skip for now
+      } else if (trimmedLine.match(/^\*\*[^*]+\?\*\*$/) || trimmedLine.startsWith('---')) {
+        // Skip FAQ questions and separators - handled by component
         return;
       } else {
-        elements.push(
-          <p key={key++} className={`mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base md:text-lg ${
-            theme === 'dark' ? 'text-zinc-200' : 'text-gray-800'
-          }`}>
-            {renderInlineMarkdown(trimmedLine)}
-          </p>
-        );
+        // Check if this is the first paragraph after H1
+        if (foundH1 && !isFirstParagraphAfterH1 && trimmedLine.length > 0) {
+          isFirstParagraphAfterH1 = true;
+          elements.push(
+            <HighlightBox key={key++} theme={theme} variant="gradient">
+              <p className={`leading-relaxed text-base sm:text-lg md:text-xl ${
+                theme === 'dark' ? 'text-zinc-200' : 'text-gray-800'
+              }`}>
+                {renderInlineMarkdown(trimmedLine)}
+              </p>
+            </HighlightBox>
+          );
+        } else {
+          elements.push(
+            <p key={key++} className={`mb-3 sm:mb-4 md:mb-5 leading-relaxed text-base sm:text-lg md:text-xl ${
+              theme === 'dark' ? 'text-zinc-200' : 'text-gray-800'
+            }`}>
+              {renderInlineMarkdown(trimmedLine)}
+            </p>
+          );
+        }
       }
     };
 
@@ -391,133 +367,56 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
       processLine(lines[i]);
     }
 
-    // Handle any remaining FAQ items at end of content
-    if (inFAQSection && faqItems.length > 0) {
-      // Add last FAQ if exists
-      if (currentFaqQuestion && currentFaqAnswer.length > 0) {
-        faqItems.push({
-          question: currentFaqQuestion,
-          answer: currentFaqAnswer.join(' ')
-        });
-      }
-      
-      // Render the complete FAQ section
-      elements.push(
-        <div key={key++} className="my-8 sm:my-12">
-          <h2 className={`font-heading text-2xl sm:text-3xl md:text-4xl font-bold mb-6 ${
-            theme === 'dark' ? 'text-cyan-300' : 'text-cyan-600'
-          }`}>
-            FAQ (Frequently Asked Questions)
-          </h2>
-          <div className={`max-h-[600px] overflow-y-auto pr-2 space-y-4 rounded-lg border-2 p-4 sm:p-6 ${
-            theme === 'dark' 
-              ? 'border-cyan-500/30 bg-gray-900/50 scrollbar-thin scrollbar-thumb-cyan-500/50 scrollbar-track-gray-800' 
-              : 'border-cyan-200 bg-gray-50 scrollbar-thin scrollbar-thumb-cyan-400 scrollbar-track-gray-200'
-          }`}>
-            {faqItems.map((faq, index) => (
-              <div
-                key={`faq-${index}`}
-                className={`rounded-lg border overflow-hidden transition-all ${
-                  theme === 'dark'
-                    ? 'border-cyan-500/20 bg-gray-800/50'
-                    : 'border-cyan-200 bg-white'
-                }`}
-              >
-                <button
-                  onClick={() => setOpenFaqIndex(openFaqIndex === index ? null : index)}
-                  className={`w-full text-left p-4 sm:p-5 flex items-start justify-between gap-3 transition-colors hover:${
-                    theme === 'dark' ? 'bg-cyan-900/20' : 'bg-cyan-50'
-                  }`}
-                >
-                  <h4 className={`font-bold text-sm sm:text-base md:text-lg flex-1 ${
-                    theme === 'dark' ? 'text-cyan-300' : 'text-cyan-600'
-                  }`}>
-                    {faq.question}
-                  </h4>
-                  <svg
-                    className={`w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0 transition-transform ${
-                      openFaqIndex === index ? 'rotate-180' : ''
-                    } ${theme === 'dark' ? 'text-cyan-400' : 'text-cyan-600'}`}
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-                <AnimatePresence>
-                  {openFaqIndex === index && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: 'easeInOut' }}
-                      className="overflow-hidden"
-                    >
-                      <div className={`p-4 sm:p-5 pt-0 text-sm sm:text-base leading-relaxed ${
-                        theme === 'dark' ? 'text-zinc-300' : 'text-gray-700'
-                      }`}>
-                        {faq.answer}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            ))}
-          </div>
-        </div>
-      );
-    }
-
     // Handle any remaining table
     if (inTable && tableRows.length > 0) {
       const tableHeaders = tableRows[0].split('|').map(h => h.trim()).filter(h => h);
       const dataRows = tableRows.slice(2);
+      const cardClasses = theme === 'dark'
+        ? 'bg-gradient-to-br from-gray-900/60 to-gray-800/40 border border-cyan-500/30 shadow-xl shadow-cyan-500/20'
+        : 'bg-white border border-gray-200 shadow-lg hover:shadow-xl';
+      const headerClasses = theme === 'dark'
+        ? 'bg-gradient-to-r from-cyan-900/50 to-purple-900/50'
+        : 'bg-gradient-to-r from-blue-50 to-indigo-50';
+      const headerTextClasses = theme === 'dark'
+        ? 'text-cyan-300 border-cyan-500/50'
+        : 'text-blue-900 border-blue-400';
+      const bodyClasses = theme === 'dark' ? 'bg-gray-900/30' : 'bg-white';
+      const hoverClasses = theme === 'dark' ? 'hover:bg-cyan-900/20' : 'hover:bg-blue-50/60';
+      const borderClasses = theme === 'dark' ? 'border-b border-white/10' : 'border-b border-gray-200/70';
+      const cellTextClasses = theme === 'dark' ? 'text-zinc-200' : 'text-gray-700';
       
       elements.push(
-        <div key={key++} className="my-6 sm:my-8 overflow-x-auto">
-          <div className={`rounded-lg border-2 overflow-hidden ${
-            theme === 'dark' ? 'border-cyan-500/30 bg-gray-900/30' : 'border-cyan-200 bg-white'
-          }`}>
-            <table className={`w-full border-collapse text-sm sm:text-base ${
-              theme === 'dark' ? 'text-zinc-200' : 'text-gray-800'
-            }`}>
-              <thead>
-                <tr className={`${
-                  theme === 'dark' 
-                    ? 'bg-gradient-to-r from-cyan-900/50 to-purple-900/50 border-b-2 border-cyan-500/50' 
-                    : 'bg-gradient-to-r from-cyan-50 to-purple-50 border-b-2 border-cyan-600'
-                }`}>
-                  {tableHeaders.map((header, idx) => (
-                    <th key={idx} className={`p-4 sm:p-5 text-left font-bold text-base sm:text-lg ${
-                      theme === 'dark' ? 'text-cyan-300' : 'text-cyan-700'
-                    }`}>
-                      {header}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {dataRows.map((row, rowIdx) => {
-                  const cells = row.split('|').map(c => c.trim()).filter(c => c);
-                  return (
-                    <tr key={rowIdx} className={`transition-colors hover:${
-                      theme === 'dark' ? 'bg-cyan-900/20' : 'bg-cyan-50/50'
-                    } ${
-                      theme === 'dark' ? 'border-b border-white/10' : 'border-b border-gray-200'
-                    }`}>
-                      {cells.map((cell, cellIdx) => (
-                        <td key={cellIdx} className={`p-4 sm:p-5 ${
-                          theme === 'dark' ? 'text-zinc-300' : 'text-gray-700'
-                        }`}>
-                          {cell}
-                        </td>
-                      ))}
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+        <div key={key++} className="my-8 sm:my-10 md:my-12">
+          <div className={`rounded-2xl overflow-hidden backdrop-blur-md transition-all duration-300 hover:shadow-2xl ${cardClasses}`}>
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse">
+                <thead>
+                  <tr className={headerClasses}>
+                    {tableHeaders.map((header, idx) => (
+                      <th key={idx} className={`p-5 sm:p-6 text-left font-semibold text-sm sm:text-base lg:text-lg border-b-2 ${headerTextClasses}`}>
+                        {header}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody className={bodyClasses}>
+                  {dataRows.map((row, rowIdx) => {
+                    const cells = row.split('|').map(c => c.trim()).filter(c => c);
+                    const isLastRow = rowIdx === dataRows.length - 1;
+                    const rowBorderClass = !isLastRow ? borderClasses : '';
+                    return (
+                      <tr key={rowIdx} className={`transition-all duration-200 ${hoverClasses} ${rowBorderClass}`}>
+                        {cells.map((cell, cellIdx) => (
+                          <td key={cellIdx} className={`p-5 sm:p-6 text-sm sm:text-base font-semibold tracking-tight leading-snug ${cellTextClasses}`}>
+                            {cell}
+                          </td>
+                        ))}
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       );
@@ -599,31 +498,32 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
           <BlogThemeToggle />
         </div>
 
-        {/* Article Schema */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'Article',
-              headline: post.title,
-              description: post.excerpt,
-              image: post.image ? `https://teeli.net${post.image}` : '',
-              datePublished: post.date,
-              author: {
-                '@type': 'Person',
-                name: post.author,
-                jobTitle: post.authorRole,
-              },
-              publisher: {
-                '@type': 'Organization',
-                name: 'TEELI.NET',
-              },
-            }),
-          }}
+        {/* SEO: Article Schema (JSON-LD) */}
+        <ArticleSchema 
+          title={post.title}
+          description={post.excerpt || post.content?.substring(0, 160) || ''}
+          url={`https://teeli.net/blog/${post.slug}`}
+          image={post.image ? `https://teeli.net${post.image}` : undefined}
+          author={post.author}
+          publishedTime={post.date}
+          category={post.category}
+          keywords={[post.category, 'AI rendering', '3D visualization', 'TEELI']}
+        />
+        
+        {/* SEO: FAQ Schema (JSON-LD) - Only if FAQs exist */}
+        {faqItems.length > 0 && <FAQSchema faqs={faqItems} />}
+        
+        {/* SEO: Breadcrumb Schema (JSON-LD) */}
+        <BreadcrumbSchema 
+          items={[
+            { name: 'Home', url: 'https://teeli.net' },
+            { name: 'Blog', url: 'https://teeli.net/blog' },
+            { name: post.title, url: `https://teeli.net/blog/${post.slug}` }
+          ]}
         />
 
         <article className="max-w-4xl mx-auto px-3 sm:px-4 md:px-6 pt-32 pb-16 sm:pb-24 md:pb-32">
+          {/* Premium Glass Card Header */}
           <div className={`relative rounded-2xl sm:rounded-3xl border-2 p-4 sm:p-6 md:p-8 lg:p-12 backdrop-blur-xl mb-8 sm:mb-12 overflow-hidden ${
             theme === 'dark'
               ? 'border-cyan-500/30 bg-gradient-to-br from-black/60 via-cyan-950/40 to-black/60'
@@ -645,13 +545,21 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
               </p>
               <div className="flex items-center gap-2 sm:gap-3 md:gap-4 flex-wrap text-xs sm:text-sm">
                 <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-cyan-500 to-purple-500 flex items-center justify-center text-white font-bold text-xs sm:text-sm">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-cyan-500 to-purple-500 flex items-center justify-center text-white font-bold text-xs sm:text-sm shadow-lg">
                     {post.author.split(' ').map(n => n[0]).join('')}
                   </div>
                   <div>
-                    <div className={`text-xs sm:text-sm font-semibold ${
-                      theme === 'dark' ? 'text-white' : 'text-gray-900'
-                    }`}>{post.author}</div>
+                    {/* Premium TEELI Team Badge */}
+                    <div className="flex items-center gap-1.5">
+                      <div className={`text-xs sm:text-sm font-semibold ${
+                        theme === 'dark' ? 'text-white' : 'text-gray-900'
+                      }`}>{post.author}</div>
+                      {post.author.includes('TEELI') && (
+                        <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-gradient-to-r from-cyan-500 to-purple-600 text-white shadow-md">
+                          ✓ TEAM
+                        </span>
+                      )}
+                    </div>
                     {post.authorRole && (
                       <div className={`text-xs ${
                         theme === 'dark' ? 'text-zinc-400' : 'text-gray-600'
@@ -660,34 +568,68 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
                   </div>
                 </div>
                 <span className={theme === 'dark' ? 'text-zinc-500' : 'text-gray-400'}>•</span>
-                <div className={`text-xs sm:text-sm ${
+                {/* Date with Calendar Icon */}
+                <div className={`flex items-center gap-1.5 text-xs sm:text-sm ${
                   theme === 'dark' ? 'text-zinc-400' : 'text-gray-600'
-                }`}>{post.date}</div>
+                }`}>
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  <span>{post.date}</span>
+                </div>
                 <span className={theme === 'dark' ? 'text-zinc-500' : 'text-gray-400'}>•</span>
-                <div className={`text-xs sm:text-sm ${
+                {/* Read Time with Clock Icon */}
+                <div className={`flex items-center gap-1.5 text-xs sm:text-sm ${
                   theme === 'dark' ? 'text-zinc-400' : 'text-gray-600'
-                }`}>{post.readTime}</div>
+                }`}>
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span>{post.readTime}</span>
+                </div>
               </div>
             </div>
           </div>
 
           {/* Featured Image */}
           {post.image && (
-            <div className="mb-8 sm:mb-12 overflow-hidden">
-              <Image 
-                src={post.image} 
-                alt={post.title}
-                width={1200}
-                height={675}
-                priority
-                className="w-full h-auto rounded-xl sm:rounded-2xl border-2 border-cyan-500/30 shadow-2xl"
-              />
+            <div className="mb-8 sm:mb-12 overflow-hidden max-h-[300px] sm:max-h-[400px] md:max-h-[450px] lg:max-h-[500px]">
+              {post.image.endsWith('.svg') ? (
+                <div className="relative w-full h-full">
+                  <img 
+                    src={post.image} 
+                    alt={post.title}
+                    loading="eager"
+                    decoding="async"
+                    className="w-full h-full object-cover rounded-xl sm:rounded-2xl border-2 border-cyan-500/30 shadow-2xl"
+                  />
+                </div>
+              ) : (
+                <Image 
+                  src={post.image} 
+                  alt={post.title}
+                  width={1200}
+                  height={675}
+                  quality={90}
+                  priority
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1200px"
+                  className="w-full h-full object-cover rounded-xl sm:rounded-2xl border-2 border-cyan-500/30 shadow-2xl"
+                />
+              )}
             </div>
           )}
 
+          {/* Blog Content */}
           <div className="max-w-none">
             {renderContent(post.content!)}
           </div>
+
+          {/* FAQ Section */}
+          {faqItems.length > 0 && (
+            <div className="my-8 sm:my-12">
+              <FAQAccordion items={faqItems} theme={theme} />
+            </div>
+          )}
 
           {/* CTA Section */}
           <div className={`mt-8 sm:mt-12 md:mt-16 pt-8 sm:pt-10 md:pt-12 border-t ${
