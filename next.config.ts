@@ -26,6 +26,7 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ['lucide-react', 'date-fns', 'framer-motion', '@react-three/fiber', '@react-three/drei'],
     optimizeCss: true,
+    serverMinification: true,
   },
   
   // Headers for aggressive caching and security

@@ -918,17 +918,41 @@ export default function Home() {
             <div className="flex flex-col items-center md:items-end">
               <div className="text-white font-semibold mb-4">Follow Us</div>
               <div className="flex gap-4">
-                <a href="#" className="w-10 h-10 rounded-full border border-white/20 bg-white/5 flex items-center justify-center hover:border-cyan-500 hover:bg-cyan-500/10 transition-all group">
-                  <Twitter className="w-5 h-5 text-zinc-300 group-hover:text-cyan-400 transition-colors" />
+                <a 
+                  href="https://twitter.com/teeli" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  aria-label="Follow TEELI on Twitter"
+                  className="w-10 h-10 rounded-full border border-white/20 bg-white/5 flex items-center justify-center hover:border-cyan-500 hover:bg-cyan-500/10 transition-all group"
+                >
+                  <Twitter className="w-5 h-5 text-zinc-300 group-hover:text-cyan-400 transition-colors" aria-hidden="true" />
                 </a>
-                <a href="#" className="w-10 h-10 rounded-full border border-white/20 bg-white/5 flex items-center justify-center hover:border-blue-500 hover:bg-blue-500/10 transition-all group">
-                  <Linkedin className="w-5 h-5 text-zinc-300 group-hover:text-blue-400 transition-colors" />
+                <a 
+                  href="https://linkedin.com/company/teeli" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  aria-label="Connect with TEELI on LinkedIn"
+                  className="w-10 h-10 rounded-full border border-white/20 bg-white/5 flex items-center justify-center hover:border-blue-500 hover:bg-blue-500/10 transition-all group"
+                >
+                  <Linkedin className="w-5 h-5 text-zinc-300 group-hover:text-blue-400 transition-colors" aria-hidden="true" />
                 </a>
-                <a href="#" className="w-10 h-10 rounded-full border border-white/20 bg-white/5 flex items-center justify-center hover:border-pink-500 hover:bg-pink-500/10 transition-all group">
-                  <Instagram className="w-5 h-5 text-zinc-300 group-hover:text-pink-400 transition-colors" />
+                <a 
+                  href="https://instagram.com/teeli.net" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  aria-label="Follow TEELI on Instagram"
+                  className="w-10 h-10 rounded-full border border-white/20 bg-white/5 flex items-center justify-center hover:border-pink-500 hover:bg-pink-500/10 transition-all group"
+                >
+                  <Instagram className="w-5 h-5 text-zinc-300 group-hover:text-pink-400 transition-colors" aria-hidden="true" />
                 </a>
-                <a href="#" className="w-10 h-10 rounded-full border border-white/20 bg-white/5 flex items-center justify-center hover:border-purple-500 hover:bg-purple-500/10 transition-all group">
-                  <Github className="w-5 h-5 text-zinc-300 group-hover:text-purple-400 transition-colors" />
+                <a 
+                  href="https://github.com/teeli-ai" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  aria-label="View TEELI on GitHub"
+                  className="w-10 h-10 rounded-full border border-white/20 bg-white/5 flex items-center justify-center hover:border-purple-500 hover:bg-purple-500/10 transition-all group"
+                >
+                  <Github className="w-5 h-5 text-zinc-300 group-hover:text-purple-400 transition-colors" aria-hidden="true" />
                 </a>
               </div>
             </div>
