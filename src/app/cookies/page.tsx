@@ -1,5 +1,3 @@
-"use client";
-
 // REMOVED: framer-motion import for performance (-50KB saved)
 import Header from '@/components/Header';
 import { Cookie, Settings, Shield, BarChart3, Palette, AlertCircle } from 'lucide-react';

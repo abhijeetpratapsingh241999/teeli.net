@@ -1,5 +1,3 @@
-"use client";
-
 // REMOVED: framer-motion import for performance (-50KB saved)
 import Header from '@/components/Header';
 import { Shield, Eye, Lock, Database, FileText, UserCheck } from 'lucide-react';

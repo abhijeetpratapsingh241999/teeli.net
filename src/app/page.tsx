@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic'
+import Image from 'next/image';
 import Header from '@/components/Header';
 import AnimatedHeroText from '@/components/AnimatedHeroText';
 import { Twitter, Linkedin, Instagram, Github } from 'lucide-react';
@@ -52,7 +53,7 @@ export default function Home() {
         }}
       />
       
-      <main className="relative flex h-screen w-full flex-col items-center justify-center bg-black">
+      <main className="relative flex h-screen w-full flex-col items-center justify-center bg-black" style={{ minHeight: '100vh' }}>
         <Header />
         <div className="absolute top-0 left-0 h-full w-full">
           <Scene scrollProgress={scrollProgress} />
@@ -488,7 +489,7 @@ export default function Home() {
               {/* AWS */}
               <div className="group relative flex flex-col items-center justify-center p-8 rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 to-zinc-950/60 backdrop-blur-sm hover:border-orange-500/50 transition-all hover:shadow-[0_0_30px_rgba(255,140,0,0.2)]">
                 <div className="mb-4 w-20 h-20 flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <img src="/logos/aws.svg" alt="AWS" className="w-full h-full drop-shadow-[0_0_10px_rgba(255,140,0,0.5)]" />
+                  <Image src="/logos/aws.svg" alt="AWS" width={80} height={80} className="w-full h-full drop-shadow-[0_0_10px_rgba(255,140,0,0.5)]" />
                 </div>
                 <div className="text-white font-bold text-xl md:text-2xl drop-shadow-[0_0_8px_rgba(255,140,0,0.4)]">AWS</div>
                 <div className="text-orange-500 text-xs mt-1">Amazon</div>
@@ -497,7 +498,7 @@ export default function Home() {
               {/* NVIDIA */}
               <div className="group relative flex flex-col items-center justify-center p-8 rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 to-zinc-950/60 backdrop-blur-sm hover:border-green-500/50 transition-all hover:shadow-[0_0_30px_rgba(76,175,80,0.2)]">
                 <div className="mb-4 w-20 h-20 flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <img src="/logos/nvidia.svg" alt="NVIDIA" className="w-full h-full" />
+                  <Image src="/logos/nvidia.svg" alt="NVIDIA" width={80} height={80} className="w-full h-full" />
                 </div>
                 <div className="text-white font-bold text-xl md:text-2xl">NVIDIA</div>
                 <div className="text-green-500 text-xs mt-1">GPUs</div>
@@ -506,7 +507,7 @@ export default function Home() {
               {/* CoreWeave */}
               <div className="group relative flex flex-col items-center justify-center p-8 rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 to-zinc-950/60 backdrop-blur-sm hover:border-purple-500/50 transition-all hover:shadow-[0_0_30px_rgba(156,39,176,0.2)]">
                 <div className="mb-4 w-20 h-20 flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <img src="/logos/coreweave.svg" alt="CoreWeave" className="w-full h-full drop-shadow-[0_0_10px_rgba(156,39,176,0.5)]" />
+                  <Image src="/logos/coreweave.svg" alt="CoreWeave" width={80} height={80} className="w-full h-full drop-shadow-[0_0_10px_rgba(156,39,176,0.5)]" />
                 </div>
                 <div className="text-white font-bold text-xl md:text-2xl">CoreWeave</div>
                 <div className="text-purple-500 text-xs mt-1">Infrastructure</div>
@@ -515,7 +516,7 @@ export default function Home() {
               {/* GCP */}
               <div className="group relative flex flex-col items-center justify-center p-8 rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 to-zinc-950/60 backdrop-blur-sm hover:border-blue-500/50 transition-all hover:shadow-[0_0_30px_rgba(66,133,244,0.2)]">
                 <div className="mb-4 w-28 h-28 flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <img src="/logos/gcp.svg" alt="GCP" className="w-full h-full" />
+                  <Image src="/logos/gcp.svg" alt="GCP" width={112} height={112} className="w-full h-full" />
                 </div>
                 <div className="text-white font-bold text-xl md:text-2xl">GCP</div>
                 <div className="text-blue-500 text-xs mt-1">Google Cloud</div>
@@ -524,7 +525,7 @@ export default function Home() {
               {/* Azure */}
               <div className="group relative flex flex-col items-center justify-center p-8 rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 to-zinc-950/60 backdrop-blur-sm hover:border-blue-400/50 transition-all hover:shadow-[0_0_30px_rgba(0,120,212,0.2)]">
                 <div className="mb-4 w-20 h-20 flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <img src="/logos/azure.svg" alt="Azure" className="w-full h-full" />
+                  <Image src="/logos/azure.svg" alt="Azure" width={80} height={80} className="w-full h-full" />
                 </div>
                 <div className="text-white font-bold text-xl md:text-2xl">Azure</div>
                 <div className="text-blue-400 text-xs mt-1">Microsoft</div>
@@ -533,7 +534,7 @@ export default function Home() {
               {/* Omniverse */}
               <div className="group relative flex flex-col items-center justify-center p-8 rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 to-zinc-950/60 backdrop-blur-sm hover:border-cyan-500/50 transition-all hover:shadow-[0_0_30px_rgba(0,255,255,0.2)]">
                 <div className="mb-4 w-20 h-20 flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <img src="/logos/omniverse.svg" alt="Omniverse" className="w-full h-full" />
+                  <Image src="/logos/omniverse.svg" alt="Omniverse" width={80} height={80} className="w-full h-full" />
                 </div>
                 <div className="text-white font-bold text-xl md:text-2xl">Omniverse</div>
                 <div className="text-cyan-500 text-xs mt-1">Collaboration</div>

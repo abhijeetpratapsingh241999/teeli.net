@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 /**
  * Visual Diagram Component for Blog Posts
  * Increases dwell time and engagement by adding visual anchors after H2 sections
@@ -48,9 +50,11 @@ export function VisualDiagram({ type, title, description, imageSrc, imageAlt }: 
         {/* Visual Content */}
         {imageSrc ? (
           <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-gray-900/50 to-gray-800/50 aspect-video">
-            <img 
+            <Image 
               src={imageSrc} 
               alt={imageAlt || config.defaultAlt}
+              width={1200}
+              height={675}
               className="w-full h-full object-cover"
               loading="lazy"
             />

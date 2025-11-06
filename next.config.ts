@@ -6,8 +6,8 @@ const nextConfig: NextConfig = {
   // Image optimization - CRITICAL FIX FOR LOCAL IMAGES
   images: {
     formats: ['image/webp'], // Only WebP - AVIF too slow
-    deviceSizes: [640, 750, 828], // Mobile-first
-    imageSizes: [16, 32, 48, 64, 96],
+    deviceSizes: [640, 750, 828, 1080, 1200], // Mobile-first + desktop
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     unoptimized: false,
     minimumCacheTTL: 31536000, // Cache 1 year
     dangerouslyAllowSVG: true,
