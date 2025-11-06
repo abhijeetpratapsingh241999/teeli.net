@@ -55,8 +55,9 @@ export default function RootLayout({
       </head>
 
       <body className={`${lexend.variable} ${inter.variable} font-body antialiased bg-black`} suppressHydrationWarning>
-        {/* ✅ Google Tag Manager - Ultra Delayed for Mobile Performance */}
-        {GTM_ID && (
+        {/* ✅ Google Tag Manager - TEMPORARILY DISABLED for mobile performance */}
+        {/* Will re-enable after achieving 90+ mobile score */}
+        {/* {GTM_ID && (
           <Script
             id="gtm-script"
             strategy="worker"
@@ -72,10 +73,10 @@ export default function RootLayout({
               `,
             }}
           />
-        )}
+        )} */}
         
-        {/* ✅ Google Tag Manager Fallback (Noscript) */}
-        {GTM_ID && (
+        {/* ✅ Google Tag Manager Fallback (Noscript) - DISABLED */}
+        {/* {GTM_ID && (
           <noscript>
             <iframe
               src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
@@ -84,10 +85,10 @@ export default function RootLayout({
               style={{ display: "none", visibility: "hidden" }}
             />
           </noscript>
-        )}
+        )} */}
 
-        {/* ✅ Page View Tracking - Delayed */}
-        <AnalyticsTracker />
+        {/* ✅ Page View Tracking - DISABLED for performance */}
+        {/* <AnalyticsTracker /> */}
 
         {children}
       </body>
