@@ -183,7 +183,7 @@ export default function ResearchPage() {
             return (
               <div
                 key={i}
-                style={{ left: `${Math.random() * 100}%` }}
+                style={{ left: `${Math.random() * 100}%` 
               />
             );
           })}
@@ -245,7 +245,7 @@ export default function ResearchPage() {
             </h1>
           </div>
 
-          <p}
+          <p
             className="text-xl md:text-2xl text-purple-200/80 mb-16 text-center max-w-3xl mx-auto leading-relaxed"
           >
             Pioneering the future of rendering, AI, and quantum computing through cutting-edge research and innovation.
@@ -266,7 +266,7 @@ export default function ResearchPage() {
                     className="relative group cursor-pointer"
                   >
                     {/* Card */}
-                    <div}
+                    <div
                       className={`relative rounded-2xl border-2 ${
                         isHovered ? 'border-purple-500' : 'border-purple-700/30'
                       } bg-gradient-to-br from-purple-950/60 to-black/60 backdrop-blur-xl p-6 overflow-hidden transition-all duration-300`}
@@ -461,7 +461,7 @@ export default function ResearchPage() {
 
                   {/* Content Card */}
                   <div className={`flex-1 ${isLeft ? 'md:text-right md:pr-12' : 'md:text-left md:pl-12'}`}>
-                    <div}
+                    <div
                       className="relative rounded-2xl border-2 border-purple-700/30 bg-gradient-to-br from-violet-950/60 to-black/60 backdrop-blur-xl p-6"
                     >
                       <div className={`inline-flex items-center gap-3 px-4 py-2 rounded-lg bg-gradient-to-br ${stage.color} mb-4 ${
@@ -489,7 +489,7 @@ export default function ResearchPage() {
               {[...Array(20)].map((_, i) => (
                 <div
                   key={i}
-                  style={{ left: `${Math.random() * 100}%` }}
+                  style={{ left: `${Math.random() * 100}%` 
                 />
               ))}
             </div>

@@ -242,7 +242,9 @@ export default function SignupPage() {
                           className={`h-full transition-all duration-300 ${
                             pwdStrength.color === 'red' ? 'bg-red-500' :
                             pwdStrength.color === 'yellow' ? 'bg-yellow-500' : 'bg-green-500'
-                          }`}%` ></div>
+                          }`}
+                          style={{ width: `${pwdStrength.strength}%` }}
+                        ></div>
                       </div>
                       <span className={`text-xs font-medium ${
                         pwdStrength.color === 'red' ? 'text-red-400' :

@@ -191,7 +191,7 @@ export default function CaseStudiesPage() {
             </h1>
           </div>
 
-          <p}
+          <p
             className="text-xl md:text-2xl text-amber-200/80 mb-12 text-center max-w-3xl mx-auto leading-relaxed"
           >
             Real projects. Real results. Discover how we've transformed rendering workflows for industry leaders.

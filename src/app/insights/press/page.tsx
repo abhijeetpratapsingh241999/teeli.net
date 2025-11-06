@@ -249,7 +249,7 @@ export default function PressNewsPage() {
             </div>
           </div>
 
-          <h1}
+          <h1
             className="text-center font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-tight mb-6"
           >
             <span className="block bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-violet-400">

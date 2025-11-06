@@ -140,8 +140,7 @@ export default function MultiCloudPage() {
           {[...Array(30)].map((_, i) => (
             <div
               key={i}
-              style={{ left: `${Math.random() * 100}%` }}
-              
+              style={{ left: `${Math.random() * 100}%` 
             />
           ))}
         </div>
@@ -196,7 +195,7 @@ export default function MultiCloudPage() {
           </div>
 
           {/* Main Title */}
-          <h1}
+          <h1
             className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 text-center leading-tight"
           >
             <span className="block bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-teal-400 to-blue-400">
@@ -205,7 +204,7 @@ export default function MultiCloudPage() {
             <span className="block text-white mt-2">Multi-Cloud Platform</span>
           </h1>
 
-          <p}
+          <p
             className="text-xl md:text-2xl text-cyan-200/80 mb-12 text-center max-w-3xl mx-auto leading-relaxed"
           >
             Seamlessly orchestrate workloads across AWS, Azure, GCP, and hybrid environments with unified management and automation.
@@ -221,7 +220,7 @@ export default function MultiCloudPage() {
                 onClick={() => setSelectedCloud(3)}
                 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer z-20"
               >
-                <div}
+                <div
                   className={`relative w-32 h-32 md:w-40 md:h-40 rounded-full bg-gradient-to-br ${cloudProviders[3].color} ${
                     selectedCloud === 3 ? 'ring-4 ring-cyan-400 ring-offset-4 ring-offset-black' : ''
                   } flex items-center justify-center transition-all duration-300 shadow-2xl`}
@@ -249,7 +248,7 @@ export default function MultiCloudPage() {
                 onClick={() => setSelectedCloud(0)}
                 className="absolute top-1/2 left-0 transform -translate-y-1/2 cursor-pointer z-10"
               >
-                <div}
+                <div
                   className={`relative w-28 h-28 md:w-36 md:h-36 rounded-full bg-gradient-to-br ${cloudProviders[0].color} ${
                     selectedCloud === 0 ? 'ring-4 ring-orange-400 ring-offset-4 ring-offset-black' : ''
                   } flex items-center justify-center transition-all duration-300 shadow-xl`}
@@ -275,7 +274,7 @@ export default function MultiCloudPage() {
                 onClick={() => setSelectedCloud(1)}
                 className="absolute top-0 left-1/2 transform -translate-x-1/2 cursor-pointer z-10"
               >
-                <div}
+                <div
                   className={`relative w-28 h-28 md:w-36 md:h-36 rounded-full bg-gradient-to-br ${cloudProviders[1].color} ${
                     selectedCloud === 1 ? 'ring-4 ring-blue-400 ring-offset-4 ring-offset-black' : ''
                   } flex items-center justify-center transition-all duration-300 shadow-xl`}
@@ -301,7 +300,7 @@ export default function MultiCloudPage() {
                 onClick={() => setSelectedCloud(2)}
                 className="absolute top-1/2 right-0 transform -translate-y-1/2 cursor-pointer z-10"
               >
-                <div}
+                <div
                   className={`relative w-28 h-28 md:w-36 md:h-36 rounded-full bg-gradient-to-br ${cloudProviders[2].color} ${
                     selectedCloud === 2 ? 'ring-4 ring-teal-400 ring-offset-4 ring-offset-black' : ''
                   } flex items-center justify-center transition-all duration-300 shadow-xl`}

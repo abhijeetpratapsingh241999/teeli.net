@@ -143,7 +143,7 @@ export default function SustainabilityPage() {
           </div>
 
           {/* Main Title */}
-          <h1}
+          <h1
             className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 text-center leading-tight"
           >
             <span className="block bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 via-green-400 to-teal-400">
@@ -152,7 +152,7 @@ export default function SustainabilityPage() {
             <span className="block text-white mt-2">Rendering Pipeline</span>
           </h1>
 
-          <p}
+          <p
             className="text-xl md:text-2xl text-emerald-200/80 mb-12 text-center max-w-3xl mx-auto leading-relaxed"
           >
             Transform your rendering workflow into an eco-friendly, carbon-negative operation with AI-optimized energy management and renewable infrastructure.
@@ -205,7 +205,7 @@ export default function SustainabilityPage() {
                     onClick={() => setSelectedMetric(step.id)}
                     className="cursor-pointer group"
                   >
-                    <div}
+                    <div
                       className={`relative w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br ${step.color} border-4 ${
                         isSelected ? 'border-white shadow-[0_0_30px_rgba(16,185,129,0.8)]' : 'border-emerald-900/50'
                       } flex items-center justify-center transition-all duration-300`}
@@ -351,7 +351,7 @@ export default function SustainabilityPage() {
                   <div className={`ml-16 md:ml-0 flex-1 ${
                     isEven ? 'md:mr-auto md:pr-12' : 'md:ml-auto md:pl-12'
                   }`}>
-                    <div}
+                    <div
                       className="relative rounded-2xl border-2 border-emerald-700/30 bg-gradient-to-br from-emerald-950/60 to-black/60 backdrop-blur-xl p-6 md:p-8"
                     >
                       <div className={`inline-flex items-center gap-3 px-4 py-2 rounded-lg bg-gradient-to-br ${step.color} mb-4`}>

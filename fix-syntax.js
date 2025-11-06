@@ -29,26 +29,30 @@ files.forEach(file => {
     
     // Fix various patterns of stray braces
     content = content
-      // Fix className="..."}> patterns (MOST COMMON ERROR)
+      // Fix <element} patterns (MOST CRITICAL - missing opening tag)
+      .replace(/(<(h1|h2|h3|h4|h5|h6|p|span|div|button|section|article))\s*}\s*\n/g, '$1\n')
+      .replace(/(<(h1|h2|h3|h4|h5|h6|p|span|div|button|section|article))\s*}\s*\n\s*className/g, '$1 className')
+      
+      // Fix className="..."}> patterns
       .replace(/className="([^"]+)"\s*}\s*\n/g, 'className="$1"\n')
       .replace(/className="([^"]+)"\s*}\s*>/g, 'className="$1">')
       
-      // Fix <element}}> patterns
-      .replace(/(<(div|button|h1|p)[^>]*)}}+\s*\n/g, '$1\n')
-      .replace(/(<(div|button|h1|p)[^>]*)}}+\s*>/g, '$1>')
+      // Fix style={{ ... patterns with broken syntax
+      .replace(/height:\s*`([^`]+)"\s*,\s*\n/g, 'height: `$1`,\n')
+      .replace(/width:\s*`([^`]+)"\s*,\s*\n/g, 'width: `$1`,\n')
+      
+      // Fix }% patterns (style objects)
+      .replace(/}\s*%\s*`/g, '}%`')
       
       // Fix value={{ ... > patterns (missing }})
-      .replace(/value=\{\{([^}]+)\s+>\s*\n/g, 'value={{$1}}\n  >')
+      .replace(/value=\{\{([^}]+)\s+>\s*\n/g, 'value={{$1}}\n>')
       
       // Fix camera={{ ... > patterns (missing }})
       .replace(/camera=\{\{([^}]+)\s+>\s*\n/g, 'camera={{$1}}>\n')
       
-      // Fix broken style objects - width: "... patterns
-      .replace(/width:\s*`([^`]+)"\s*,\s*\n\s*height:\s*`/g, 'width: `$1`,\n                height: `')
-      
-      // Fix broken className with stray % or rad)
-      .replace(/className="([^"]+)"[^>]*%`\s*,/g, 'style={{ left: `${Math.random() * 100}%` }}')
-      .replace(/className="([^"]+)"[^>]*rad\)\s*`\s*,/g, 'style={{ transform: `rotate(${angle}rad)` }}')
+      // Fix <element}} patterns
+      .replace(/(<(div|button|h1|p)[^>]*)}}+\s*\n/g, '$1\n')
+      .replace(/(<(div|button|h1|p)[^>]*)}}+\s*>/g, '$1>')
       
       // Fix standalone }}} or }}}}
       .replace(/^\s*}}}}+\s*$/gm, '')

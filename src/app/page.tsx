@@ -63,7 +63,7 @@ export default function Home() {
             style={{ 
               transform: `translateZ(${scrollProgress * 10}px)`,
               transformStyle: 'preserve-3d'
-            
+            }}
           >
             <h2 className="text-lg text-zinc-400 md:text-xl">Welcome to</h2>
             <h1 className="font-heading bg-gradient-to-b from-white to-zinc-400 bg-clip-text text-5xl font-bold text-transparent sm:text-6xl md:text-8xl">

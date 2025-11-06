@@ -157,7 +157,7 @@ export default function AIMLStackPage() {
             return (
               <div
                 key={i}
-                style={{ left: `${Math.random() * 100}%` }}
+                style={{ left: `${Math.random() * 100}%` 
               />
             );
           })}
@@ -201,7 +201,7 @@ export default function AIMLStackPage() {
           </div>
 
           {/* Main Title */}
-          <h1}
+          <h1
             className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 text-center leading-tight"
           >
             <span className="block bg-clip-text text-transparent bg-gradient-to-r from-pink-400 via-rose-400 to-orange-400">
@@ -210,7 +210,7 @@ export default function AIMLStackPage() {
             <span className="block text-white mt-2">AI & ML Stack</span>
           </h1>
 
-          <p}
+          <p
             className="text-xl md:text-2xl text-pink-200/80 mb-12 text-center max-w-3xl mx-auto leading-relaxed"
           >
             Complete machine learning infrastructure from training to production with cutting-edge frameworks and tools.
@@ -234,7 +234,7 @@ export default function AIMLStackPage() {
                       className="cursor-pointer group relative"
                     >
                       {/* Node */}
-                      <div}
+                      <div
                         className={`relative w-24 h-24 md:w-28 md:h-28 rounded-full bg-gradient-to-br ${layer.color} ${
                           isSelected ? 'ring-4 ring-pink-400 ring-offset-4 ring-offset-black' : ''
                         } flex items-center justify-center transition-all duration-300 shadow-lg`}

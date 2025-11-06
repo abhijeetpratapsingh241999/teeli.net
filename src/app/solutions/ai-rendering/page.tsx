@@ -288,7 +288,7 @@ export default function AIRenderingPage() {
                 <div className="flex flex-wrap gap-2">
                   {useCase.examples.map((example, idx) => (
                     <Link key={idx} href={example.href}>
-                      <span}
+                      <span
                         className="inline-block px-3 py-1 rounded-full bg-white/10 text-xs text-zinc-300 border border-white/20 hover:bg-white/20 hover:border-purple-400/50 hover:text-purple-300 transition-all cursor-pointer"
                       >
                         {example.label}

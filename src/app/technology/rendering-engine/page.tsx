@@ -160,10 +160,13 @@ export default function RenderingEnginePage() {
             return (
               <div
                 key={i}
-                style={{ transform: `rotate(${angle}rad)` }}
-                  height: `${length}px",
+                className="absolute top-1/2 left-1/2 w-px h-1 bg-gradient-to-t from-blue-500 via-cyan-400 to-transparent"
+                style={{ 
+                  transform: `rotate(${angle}rad)`,
+                  height: `${length}px`,
                   left: '50%',
                   top: '50%'
+                }}
               />
             );
           })}
@@ -181,7 +184,7 @@ export default function RenderingEnginePage() {
           </div>
 
           {/* Main Title */}
-          <h1}
+          <h1
             className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 text-center leading-tight"
           >
             <span className="block bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-400">
@@ -190,7 +193,7 @@ export default function RenderingEnginePage() {
             <span className="block text-white mt-2">Rendering Engine</span>
           </h1>
 
-          <p}
+          <p
             className="text-xl md:text-2xl text-blue-200/80 mb-12 text-center max-w-3xl mx-auto leading-relaxed"
           >
             Cutting-edge ray tracing, path tracing, and GPU acceleration for photorealistic rendering at unprecedented speeds.

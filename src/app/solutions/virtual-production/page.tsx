@@ -133,7 +133,7 @@ export default function VirtualProductionPage() {
         {/* Right Side - Control Panel */}
         <div 
           className="w-full md:w-1/2 h-auto md:h-full relative bg-gradient-to-br from-black to-zinc-950 flex flex-col justify-center px-6 md:px-12 py-12 md:py-0">
-          <div}
+          <div
             className="max-w-2xl"
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-amber-500/30 bg-amber-500/10 mb-8">
@@ -209,7 +209,7 @@ export default function VirtualProductionPage() {
                     </div>
 
                     {/* Stage Card */}
-                    <div}
+                    <div
                       className={`relative rounded-2xl border-2 p-6 md:p-8 transition-all duration-300 ${
                         isSelected
                           ? `border-amber-500/70 bg-gradient-to-br from-amber-950/40 to-orange-950/40 shadow-[0_0_40px_rgba(251,191,36,0.3)]`

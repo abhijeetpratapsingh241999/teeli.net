@@ -144,7 +144,7 @@ export default function InteractiveViewerPage() {
             </div>
           </div>
 
-          <h1}
+          <h1
             className="text-center font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-tight mb-4"
           >
             <span className="block bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400">

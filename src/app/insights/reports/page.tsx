@@ -219,7 +219,7 @@ export default function IndustryReportsPage() {
             </div>
           </div>
 
-          <h1}
+          <h1
             className="text-center font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-tight mb-6"
           >
             <span className="block bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400">
@@ -227,7 +227,7 @@ export default function IndustryReportsPage() {
             </span>
           </h1>
 
-          <p}
+          <p
             className="text-center text-xl text-emerald-200/80 max-w-3xl mx-auto"
           >
             Data-driven insights and comprehensive analysis of the 3D rendering, AI, and cloud infrastructure industries.
