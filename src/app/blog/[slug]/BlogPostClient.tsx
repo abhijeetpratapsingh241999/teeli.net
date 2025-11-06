@@ -7,7 +7,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ReactNode, useState, useEffect } from 'react';
 import { BlogPost } from '@/lib/blog';
-import { motion, AnimatePresence } from 'framer-motion';
+// import { motion, AnimatePresence } from 'framer-motion'; // REMOVED for performance
 import FAQAccordion from '@/components/FAQAccordion';
 import HighlightBox from '@/components/blog/HighlightBox';
 import { BlogH1, BlogH2, BlogH3, BlogListItem } from '@/components/blog/BlogHeadings';
@@ -614,10 +614,12 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
                   alt={post.title}
                   width={1200}
                   height={675}
-                  quality={90}
+                  quality={50}
                   priority
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1200px"
+                  sizes="(max-width: 640px) 95vw, (max-width: 1024px) 85vw, 1100px"
                   className="w-full h-full object-cover rounded-xl sm:rounded-2xl border-2 border-cyan-500/30 shadow-2xl"
+                  placeholder="blur"
+                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAKAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWEREiMxUf/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                 />
               )}
             </div>
