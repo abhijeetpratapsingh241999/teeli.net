@@ -3,17 +3,28 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* Aggressive Mobile Performance Optimizations */
   
-  // Image optimization - EXTREME MOBILE FIRST
+  // Image optimization - EXTREME MOBILE FIRST + WebP FIX
   images: {
-    formats: ['image/avif', 'image/webp'],
-    deviceSizes: [640, 750, 828],
-    imageSizes: [16, 32, 48],
-    unoptimized: false,
-    minimumCacheTTL: 31536000,
+    formats: ['image/webp'], // Only WebP - AVIF too slow to encode
+    deviceSizes: [640, 750, 828], // Mobile-first breakpoints
+    imageSizes: [16, 32, 48, 64, 96], // Add more sizes for better optimization
+    unoptimized: false, // MUST optimize all images
+    minimumCacheTTL: 31536000, // Cache 1 year
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-    remotePatterns: [],
-    domains: [], // Allow local images
+    // FIX: Use remotePatterns instead of domains (Next.js 16 best practice)
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'www.teeli.net',
+        pathname: '/blog/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'teeli.net',
+        pathname: '/blog/**',
+      },
+    ],
     // Note: quality moved to component level (Next.js 16 requirement)
   },
   
