@@ -126,7 +126,7 @@ export default function PrivacyPage() {
             {privacySections.map((section, index) => (
               <div
                 key={index}
-                className="relative rounded-2xl border-2 border-purple-500/20 bg-gradient-to-br from-black/60 via-purple-950/20 to-black/60 backdrop-blur-xl p-8"}
+                className="relative rounded-2xl border-2 border-purple-500/20 bg-gradient-to-br from-black/60 via-purple-950/20 to-black/60 backdrop-blur-xl p-8"
               >
                 <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-r from-purple-500 to-pink-600 mb-4">
                   <section.icon className="w-7 h-7 text-white" />
@@ -152,7 +152,7 @@ export default function PrivacyPage() {
       <section className="relative w-full bg-gradient-to-b from-black via-zinc-900 to-black py-24 px-4">
         <div className="mx-auto max-w-4xl">
           <div
-            className="relative rounded-3xl border-2 border-purple-500/30 bg-gradient-to-br from-black/80 via-purple-950/30 to-black/80 backdrop-blur-xl p-12"}
+            className="relative rounded-3xl border-2 border-purple-500/30 bg-gradient-to-br from-black/80 via-purple-950/30 to-black/80 backdrop-blur-xl p-12"
           >
             <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-purple-500/10 to-transparent rounded-bl-full"></div>
             <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-pink-500/10 to-transparent rounded-tr-full"></div>

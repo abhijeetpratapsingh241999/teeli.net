@@ -59,7 +59,7 @@ export default function CloudGPURenderingPage() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link href="/contact">
-                <button}}
+                <button
                   className="px-8 py-4 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-bold text-lg shadow-lg shadow-cyan-500/30 hover:shadow-xl transition-all flex items-center gap-2"
                 >
                   Start Rendering
@@ -459,7 +459,7 @@ export default function CloudGPURenderingPage() {
                 Start rendering with unlimited GPU power in the cloud.
               </p>
               <Link href="/contact">
-                <button}}
+                <button
                   className="w-full px-8 py-4 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-bold text-lg shadow-lg shadow-cyan-500/30 hover:shadow-xl transition-all flex items-center justify-center gap-2"
                 >
                   Start Rendering Now

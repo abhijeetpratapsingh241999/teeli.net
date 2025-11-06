@@ -104,7 +104,7 @@ export default function ContactPage() {
             {contactMethods.map((method, index) => (
               <div
                 key={index}
-                className="relative rounded-2xl border-2 border-green-500/20 bg-gradient-to-br from-black/60 via-emerald-950/20 to-black/60 backdrop-blur-xl p-6 text-center"}
+                className="relative rounded-2xl border-2 border-green-500/20 bg-gradient-to-br from-black/60 via-emerald-950/20 to-black/60 backdrop-blur-xl p-6 text-center"
               >
                 <div className={`inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-r ${method.color} mb-4`}>
                   <method.icon className="w-7 h-7 text-white" />
@@ -126,7 +126,7 @@ export default function ContactPage() {
           <div className="grid lg:grid-cols-3 gap-12">
             <div className="lg:col-span-2">
               <div
-                className="relative rounded-3xl border-2 border-green-500/30 bg-gradient-to-br from-black/80 via-emerald-950/30 to-black/80 backdrop-blur-xl p-8 md:p-12"}
+                className="relative rounded-3xl border-2 border-green-500/30 bg-gradient-to-br from-black/80 via-emerald-950/30 to-black/80 backdrop-blur-xl p-8 md:p-12"
               >
                 <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-green-500/10 to-transparent rounded-bl-full"></div>
                 <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-emerald-500/10 to-transparent rounded-tr-full"></div>

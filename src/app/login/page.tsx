@@ -63,7 +63,7 @@ export default function LoginPage() {
           className="relative z-10 w-full max-w-md md:max-w-xl lg:max-w-2xl"
         >
           {/* Login Card */}
-          <div className="relative rounded-3xl border-2 border-cyan-500/30 bg-gradient-to-br from-black/80 via-cyan-950/20 to-black/80 backdrop-blur-xl p-6 sm:p-8 md:p-10 lg:p-8 xl:p-10 shadow-2xl"}
+          <div className="relative rounded-3xl border-2 border-cyan-500/30 bg-gradient-to-br from-black/80 via-cyan-950/20 to-black/80 backdrop-blur-xl p-6 sm:p-8 md:p-10 lg:p-8 xl:p-10 shadow-2xl"
           >
             {/* Decorative elements */}
             <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-cyan-500/10 to-transparent rounded-bl-full"></div>
@@ -112,7 +112,7 @@ export default function LoginPage() {
                   />
                 </div>
                 {errors.email && (
-                  <p}}
+                  <p
                     className="mt-1 text-sm text-red-400"
                   >
                     {errors.email}
@@ -151,7 +151,7 @@ export default function LoginPage() {
                   </button>
                 </div>
                 {errors.password && (
-                  <p}}
+                  <p
                     className="mt-1 text-sm text-red-400"
                   >
                     {errors.password}

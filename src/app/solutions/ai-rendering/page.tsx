@@ -58,7 +58,7 @@ export default function AIRenderingPage() {
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link href="/contact">
-                  <button}}
+                  <button
                     className="px-8 py-4 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-lg shadow-lg shadow-purple-500/30 hover:shadow-xl transition-all flex items-center gap-2"
                   >
                     Experience AI Rendering
@@ -433,7 +433,7 @@ export default function AIRenderingPage() {
                 Get started with our AI rendering platform today.
               </p>
               <Link href="/contact">
-                <button}}
+                <button
                   className="w-full px-8 py-4 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-lg shadow-lg shadow-purple-500/30 hover:shadow-xl transition-all flex items-center justify-center gap-2"
                 >
                   Get Started Now

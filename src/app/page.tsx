@@ -63,7 +63,7 @@ export default function Home() {
             style={{ 
               transform: `translateZ(${scrollProgress * 10}px)`,
               transformStyle: 'preserve-3d'
-            }}
+            
           >
             <h2 className="text-lg text-zinc-400 md:text-xl">Welcome to</h2>
             <h1 className="font-heading bg-gradient-to-b from-white to-zinc-400 bg-clip-text text-5xl font-bold text-transparent sm:text-6xl md:text-8xl">
@@ -84,7 +84,7 @@ export default function Home() {
           <div className="absolute inset-0" style={{
             backgroundImage: 'linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px)',
             backgroundSize: '50px 50px'
-          }}></div>
+          ></div>
         </div>
         
         {/* Content Container */}
@@ -220,7 +220,7 @@ export default function Home() {
           <div className="absolute inset-0" style={{
             backgroundImage: 'linear-gradient(rgba(147, 51, 234, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(147, 51, 234, 0.1) 1px, transparent 1px)',
             backgroundSize: '60px 60px'
-          }}></div>
+          ></div>
         </div>
 
         {/* Content Container */}
@@ -318,7 +318,7 @@ export default function Home() {
           <div className="absolute inset-0" style={{
             backgroundImage: 'linear-gradient(rgba(6, 182, 212, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(6, 182, 212, 0.1) 1px, transparent 1px)',
             backgroundSize: '40px 40px'
-          }}></div>
+          ></div>
         </div>
 
         {/* Content Container */}
@@ -834,7 +834,7 @@ export default function Home() {
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="relative w-48 md:w-64 h-48 md:h-64">
                 {/* Outer glow ring */}
-                <div className="absolute inset-0 rounded-lg border-2 border-purple-500/30 animate-spin-slow" style={{animationDuration: '20s'}}></div>
+                <div className="absolute inset-0 rounded-lg border-2 border-purple-500/30 animate-spin-slow" style={{animationDuration: '20s'></div>
                 
                 {/* Inner chip structure */}
                 <div className="absolute inset-2 bg-gradient-to-br from-purple-500/20 via-cyan-500/20 to-pink-500/20 rounded-lg backdrop-blur-sm border border-purple-500/20">
@@ -879,7 +879,7 @@ export default function Home() {
                       top: particle.top,
                       animationDelay: particle.delay,
                       animationDuration: particle.duration
-                    }}
+                    
                   />
                 ))}
               </div>
@@ -895,7 +895,7 @@ export default function Home() {
           <div className="absolute inset-0" style={{
             backgroundImage: 'linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px)',
             backgroundSize: '20px 20px'
-          }}></div>
+          ></div>
         </div>
 
         {/* Footer Content */}

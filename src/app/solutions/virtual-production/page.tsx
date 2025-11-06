@@ -99,17 +99,17 @@ export default function VirtualProductionPage() {
                   <div className="w-64 h-40 md:w-96 md:h-64 bg-gradient-to-br from-cyan-900/40 via-blue-900/40 to-purple-900/40 rounded-lg border-2 border-cyan-500/30 shadow-2xl shadow-cyan-500/20">
                     {/* Virtual Environment Elements */}
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <div}}
+                      <div
                         className="absolute top-1/4 left-1/4 w-20 h-20 bg-gradient-to-br from-purple-500/30 to-pink-500/30 rounded-full blur-xl"
                       ></div>
-                      <div}}
+                      <div
                         className="absolute bottom-1/4 right-1/4 w-24 h-24 bg-gradient-to-br from-cyan-500/30 to-blue-500/30 rounded-full blur-xl"
                       ></div>
                     </div>
                   </div>
                   
                   {/* Camera Tracking Indicator */}
-                  <div}}
+                  <div
                     className="absolute -top-4 left-1/2 transform -translate-x-1/2 px-4 py-2 bg-amber-500/20 border border-amber-400/50 rounded-full text-xs text-amber-300 flex items-center gap-2"
                   >
                     <Radio className="w-3 h-3" />
@@ -155,7 +155,7 @@ export default function VirtualProductionPage() {
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Link href="/contact">
-                <button}}
+                <button
                   className="px-8 py-4 rounded-xl bg-gradient-to-r from-amber-600 to-orange-600 text-white font-bold text-lg shadow-lg shadow-amber-500/30 hover:shadow-xl transition-all flex items-center gap-2"
                 >
                   Start Production
@@ -398,7 +398,7 @@ export default function VirtualProductionPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/contact">
-                  <button}}
+                  <button
                     className="px-8 py-4 rounded-xl bg-gradient-to-r from-amber-600 to-orange-600 text-white font-bold text-lg shadow-lg shadow-amber-500/30 hover:shadow-xl transition-all flex items-center gap-2"
                   >
                     Book Studio Session

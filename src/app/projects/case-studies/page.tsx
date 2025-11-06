@@ -191,7 +191,7 @@ export default function CaseStudiesPage() {
             </h1>
           </div>
 
-          <p}}}
+          <p}
             className="text-xl md:text-2xl text-amber-200/80 mb-12 text-center max-w-3xl mx-auto leading-relaxed"
           >
             Real projects. Real results. Discover how we've transformed rendering workflows for industry leaders.
@@ -448,7 +448,7 @@ export default function CaseStudiesPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/contact">
-                  <button}}
+                  <button
                     className="px-8 py-4 rounded-xl bg-gradient-to-r from-amber-600 to-yellow-600 text-white font-bold text-lg shadow-lg shadow-amber-500/30 hover:shadow-xl transition-all flex items-center gap-2"
                   >
                     Start Your Project

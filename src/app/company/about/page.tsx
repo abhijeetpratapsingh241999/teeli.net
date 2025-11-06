@@ -132,7 +132,7 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             {/* Mission */}
             <div
-              className="relative rounded-3xl border-2 border-cyan-500/30 bg-gradient-to-br from-black/80 via-cyan-950/20 to-black/80 backdrop-blur-xl p-8 md:p-10 shadow-2xl"}
+              className="relative rounded-3xl border-2 border-cyan-500/30 bg-gradient-to-br from-black/80 via-cyan-950/20 to-black/80 backdrop-blur-xl p-8 md:p-10 shadow-2xl"
             >
               <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-cyan-500/10 to-transparent rounded-bl-full"></div>
               <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-purple-500/10 to-transparent rounded-tr-full"></div>
@@ -153,7 +153,7 @@ export default function AboutPage() {
 
             {/* Vision */}
             <div
-              className="relative rounded-3xl border-2 border-purple-500/30 bg-gradient-to-br from-black/80 via-purple-950/20 to-black/80 backdrop-blur-xl p-8 md:p-10 shadow-2xl"}
+              className="relative rounded-3xl border-2 border-purple-500/30 bg-gradient-to-br from-black/80 via-purple-950/20 to-black/80 backdrop-blur-xl p-8 md:p-10 shadow-2xl"
             >
               <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-500/10 to-transparent rounded-bl-full"></div>
               <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-pink-500/10 to-transparent rounded-tr-full"></div>
@@ -193,7 +193,7 @@ export default function AboutPage() {
             {stats.map((stat, index) => (
               <div
                 key={index}
-                className="relative rounded-2xl border-2 border-cyan-500/30 bg-gradient-to-br from-black/60 via-cyan-950/20 to-black/60 backdrop-blur-xl p-6 text-center group hover:border-cyan-500/60 transition-all"}
+                className="relative rounded-2xl border-2 border-cyan-500/30 bg-gradient-to-br from-black/60 via-cyan-950/20 to-black/60 backdrop-blur-xl p-6 text-center group hover:border-cyan-500/60 transition-all"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/0 to-purple-500/0 group-hover:from-cyan-500/10 group-hover:to-purple-500/10 transition-all rounded-2xl"></div>
                 <div className="relative">
@@ -264,7 +264,7 @@ export default function AboutPage() {
             {teamMembers.map((member, index) => (
               <div
                 key={index}
-                className="relative rounded-2xl border-2 border-cyan-500/20 bg-gradient-to-br from-black/60 via-cyan-950/20 to-black/60 backdrop-blur-xl p-8 group hover:border-cyan-500/40 transition-all"}
+                className="relative rounded-2xl border-2 border-cyan-500/20 bg-gradient-to-br from-black/60 via-cyan-950/20 to-black/60 backdrop-blur-xl p-8 group hover:border-cyan-500/40 transition-all"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/0 to-purple-500/0 group-hover:from-cyan-500/10 group-hover:to-purple-500/10 transition-all rounded-2xl"></div>
                 <div className="relative">
@@ -315,7 +315,7 @@ export default function AboutPage() {
       <section className="relative w-full bg-gradient-to-b from-black via-purple-950/30 to-black py-32 px-4">
         <div className="mx-auto max-w-4xl text-center">
           <div
-            className="relative rounded-3xl border-2 border-cyan-500/30 bg-gradient-to-br from-black/80 via-purple-950/30 to-black/80 backdrop-blur-xl p-12 md:p-16"}
+            className="relative rounded-3xl border-2 border-cyan-500/30 bg-gradient-to-br from-black/80 via-purple-950/30 to-black/80 backdrop-blur-xl p-12 md:p-16"
           >
             <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-cyan-500/10 to-transparent rounded-bl-full"></div>
             <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-purple-500/10 to-transparent rounded-tr-full"></div>

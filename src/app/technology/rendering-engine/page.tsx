@@ -160,7 +160,7 @@ export default function RenderingEnginePage() {
             return (
               <div
                 key={i}
-                className="absolute top-1/2 left-1/2 w-px h-1 bg-gradient-to-t from-blue-500 via-cyan-400 to-transparent"rad)`,
+                style={{ transform: `rotate(${angle}rad)` }}
                   height: `${length}px",
                   left: '50%',
                   top: '50%'
@@ -181,7 +181,7 @@ export default function RenderingEnginePage() {
           </div>
 
           {/* Main Title */}
-          <h1}}}
+          <h1}
             className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 text-center leading-tight"
           >
             <span className="block bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-400">
@@ -190,7 +190,7 @@ export default function RenderingEnginePage() {
             <span className="block text-white mt-2">Rendering Engine</span>
           </h1>
 
-          <p}}}
+          <p}
             className="text-xl md:text-2xl text-blue-200/80 mb-12 text-center max-w-3xl mx-auto leading-relaxed"
           >
             Cutting-edge ray tracing, path tracing, and GPU acceleration for photorealistic rendering at unprecedented speeds.
@@ -217,12 +217,12 @@ export default function RenderingEnginePage() {
                       <div
                         className={`absolute inset-0 bg-gradient-to-br ${feature.color} ${
                           isSelected ? 'opacity-100 scale-110' : 'opacity-60'
-                        } transition-all duration-300`}}
+                        } transition-all duration-300`
                       />
                       <div
                         className={`absolute inset-[2px] bg-black ${
                           isSelected ? 'border-2 border-blue-400' : 'border border-blue-500/30'
-                        } transition-all duration-300`}}
+                        } transition-all duration-300`
                       />
 
                       {/* Content */}
@@ -236,7 +236,7 @@ export default function RenderingEnginePage() {
                           {feature.title}
                         </h3>
                         {isSelected && (
-                          <div}}
+                          <div
                             className="text-xs text-blue-300 text-center"
                           >
                             {feature.specs}
@@ -247,7 +247,7 @@ export default function RenderingEnginePage() {
                       {/* Selection Indicator */}
                       {isSelected && (
                         <div
-                          className="absolute -inset-1 border-2 border-blue-400 rounded-full opacity-50"}
+                          className="absolute -inset-1 border-2 border-blue-400 rounded-full opacity-50"
                         />
                       )}
                     </div>
@@ -274,7 +274,7 @@ export default function RenderingEnginePage() {
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <Link href="/contact">
-              <button}}
+              <button
                 className="px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-bold text-lg shadow-lg shadow-blue-500/30 hover:shadow-xl transition-all flex items-center gap-2"
               >
                 Explore Engine
@@ -447,7 +447,7 @@ export default function RenderingEnginePage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/contact">
-                  <button}}
+                  <button
                     className="px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-bold text-lg shadow-lg shadow-blue-500/30 hover:shadow-xl transition-all flex items-center gap-2"
                   >
                     Get Started

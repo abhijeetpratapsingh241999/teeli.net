@@ -118,7 +118,7 @@ export default function SignupPage() {
           className="relative z-10 w-full max-w-md md:max-w-xl lg:max-w-2xl"
         >
           {/* Signup Card */}
-          <div className="relative rounded-3xl border-2 border-purple-500/30 bg-gradient-to-br from-black/80 via-purple-950/20 to-black/80 backdrop-blur-xl p-6 sm:p-8 md:p-10 lg:p-8 xl:p-10 shadow-2xl"}
+          <div className="relative rounded-3xl border-2 border-purple-500/30 bg-gradient-to-br from-black/80 via-purple-950/20 to-black/80 backdrop-blur-xl p-6 sm:p-8 md:p-10 lg:p-8 xl:p-10 shadow-2xl"
           >
             {/* Decorative elements */}
             <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-500/10 to-transparent rounded-bl-full"></div>
@@ -165,7 +165,7 @@ export default function SignupPage() {
                   />
                 </div>
                 {errors.name && (
-                  <p}}
+                  <p
                     className="mt-1 text-sm text-red-400"
                   >
                     {errors.name}
@@ -195,7 +195,7 @@ export default function SignupPage() {
                   />
                 </div>
                 {errors.email && (
-                  <p}}
+                  <p
                     className="mt-1 text-sm text-red-400"
                   >
                     {errors.email}
@@ -233,7 +233,7 @@ export default function SignupPage() {
                 </div>
                 {/* Password Strength Indicator */}
                 {formData.password && (
-                  <div}}
+                  <div
                     className="mt-2"
                   >
                     <div className="flex items-center gap-2 mb-1">
@@ -254,7 +254,7 @@ export default function SignupPage() {
                   </div>
                 )}
                 {errors.password && (
-                  <p}}
+                  <p
                     className="mt-1 text-sm text-red-400"
                   >
                     {errors.password}
@@ -293,7 +293,7 @@ export default function SignupPage() {
                   </button>
                 </div>
                 {formData.confirmPassword && formData.password === formData.confirmPassword && !errors.confirmPassword && (
-                  <div}}
+                  <div
                     className="mt-1 flex items-center gap-1 text-sm text-green-400"
                   >
                     <Check className="w-4 h-4" />
@@ -301,7 +301,7 @@ export default function SignupPage() {
                   </div>
                 )}
                 {errors.confirmPassword && (
-                  <p}}
+                  <p
                     className="mt-1 text-sm text-red-400"
                   >
                     {errors.confirmPassword}
@@ -341,7 +341,7 @@ export default function SignupPage() {
                 </label>
               </div>
               {errors.terms && (
-                <p}}
+                <p
                   className="text-sm text-red-400 -mt-3"
                 >
                   {errors.terms}

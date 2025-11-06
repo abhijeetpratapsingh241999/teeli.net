@@ -309,7 +309,7 @@ export default function ShowreelPage() {
 
               {/* Play Button Center */}
               {!isPlaying && (
-                <button}}
+                <button
                   onClick={() => setIsPlaying(true)}
                   className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 rounded-full bg-red-500/90 hover:bg-red-600 flex items-center justify-center transition-all hover:scale-110 shadow-2xl shadow-red-500/50"
                 >
@@ -381,10 +381,10 @@ export default function ShowreelPage() {
                       </div>
 
                       {/* Hover Overlay */}
-                      <div}}
+                      <div
                         className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-center justify-center"
                       >
-                        <div}}
+                        <div
                           className="w-20 h-20 rounded-full bg-red-500/90 flex items-center justify-center shadow-2xl shadow-red-500/50"
                         >
                           <Play className="w-8 h-8 text-white ml-1" />
@@ -509,7 +509,7 @@ export default function ShowreelPage() {
 
                 {/* Center Play Button */}
                 {!isPlaying && (
-                  <button}}
+                  <button
                     onClick={() => setIsPlaying(true)}
                     className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 rounded-full bg-red-500/90 hover:bg-red-600 flex items-center justify-center transition-all hover:scale-110 shadow-2xl shadow-red-500/50"
                   >
@@ -558,7 +558,7 @@ export default function ShowreelPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/contact">
-                  <button}}
+                  <button
                     className="px-8 py-4 rounded-xl bg-gradient-to-r from-red-600 to-rose-600 text-white font-bold text-lg shadow-lg shadow-red-500/30 hover:shadow-xl transition-all flex items-center gap-2"
                   >
                     Start Your Project

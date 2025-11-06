@@ -29,23 +29,30 @@ files.forEach(file => {
     
     // Fix various patterns of stray braces
     content = content
-      // Fix <div}}}} patterns (most common)
-      .replace(/(<(div|section|button|span|a|li|ul|nav)[^>]*)}}}}+\s*\n/g, '$1\n')
-      .replace(/(<(div|section|button|span|a|li|ul|nav)[^>]*)}}}\s*\n/g, '$1\n')
-      .replace(/(<(div|section|button|span|a|li|ul|nav)[^>]*)}}}}+\s*>/g, '$1>')
-      // Remove trailing }} after closing quotes
-      .replace(/className="([^"]*)"\s*}}\s*>/g, 'className="$1">')
-      .replace(/className="([^"]*)"\s*}}\s*\n/g, 'className="$1"\n')
-      // Fix key attributes with trailing braces
-      .replace(/key=\{([^}]+)\}}}+/g, 'key={$1}')
-      // Remove standalone }}} or }}}}
+      // Fix className="..."}> patterns (MOST COMMON ERROR)
+      .replace(/className="([^"]+)"\s*}\s*\n/g, 'className="$1"\n')
+      .replace(/className="([^"]+)"\s*}\s*>/g, 'className="$1">')
+      
+      // Fix <element}}> patterns
+      .replace(/(<(div|button|h1|p)[^>]*)}}+\s*\n/g, '$1\n')
+      .replace(/(<(div|button|h1|p)[^>]*)}}+\s*>/g, '$1>')
+      
+      // Fix value={{ ... > patterns (missing }})
+      .replace(/value=\{\{([^}]+)\s+>\s*\n/g, 'value={{$1}}\n  >')
+      
+      // Fix camera={{ ... > patterns (missing }})
+      .replace(/camera=\{\{([^}]+)\s+>\s*\n/g, 'camera={{$1}}>\n')
+      
+      // Fix broken style objects - width: "... patterns
+      .replace(/width:\s*`([^`]+)"\s*,\s*\n\s*height:\s*`/g, 'width: `$1`,\n                height: `')
+      
+      // Fix broken className with stray % or rad)
+      .replace(/className="([^"]+)"[^>]*%`\s*,/g, 'style={{ left: `${Math.random() * 100}%` }}')
+      .replace(/className="([^"]+)"[^>]*rad\)\s*`\s*,/g, 'style={{ transform: `rotate(${angle}rad)` }}')
+      
+      // Fix standalone }}} or }}}}
       .replace(/^\s*}}}}+\s*$/gm, '')
-      .replace(/^\s*}}}\s*$/gm, '')
-      // Fix px` issues
-      .replace(/"px`,/g, 'px",')
-      .replace(/px`\s*,/g, 'px",')
-      // Remove }} after style object properties
-      .replace(/(width|height|left|top|bottom|right):\s*`([^`]+)`\s*}}+/g, '$1: `$2`');
+      .replace(/^\s*}}}\s*$/gm, '');
     
     if (content !== original) {
       fs.writeFileSync(file, content, 'utf8');

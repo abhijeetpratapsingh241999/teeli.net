@@ -157,8 +157,7 @@ export default function AIMLStackPage() {
             return (
               <div
                 key={i}
-                className="absolute w-3 h-3 rounded-full bg-pink-500"%`,
-                  top: `${y}%`,
+                style={{ left: `${Math.random() * 100}%` }}
               />
             );
           })}
@@ -175,7 +174,7 @@ export default function AIMLStackPage() {
             return (
               <motion.svg
                 key={`line-${i}`}
-                className="absolute inset-0 pointer-events-none"}
+                className="absolute inset-0 pointer-events-none"
               >
                 <line
                   x1={`${startX}%`}
@@ -202,7 +201,7 @@ export default function AIMLStackPage() {
           </div>
 
           {/* Main Title */}
-          <h1}}}
+          <h1}
             className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 text-center leading-tight"
           >
             <span className="block bg-clip-text text-transparent bg-gradient-to-r from-pink-400 via-rose-400 to-orange-400">
@@ -211,7 +210,7 @@ export default function AIMLStackPage() {
             <span className="block text-white mt-2">AI & ML Stack</span>
           </h1>
 
-          <p}}}
+          <p}
             className="text-xl md:text-2xl text-pink-200/80 mb-12 text-center max-w-3xl mx-auto leading-relaxed"
           >
             Complete machine learning infrastructure from training to production with cutting-edge frameworks and tools.
@@ -244,7 +243,7 @@ export default function AIMLStackPage() {
                         
                         {/* Pulse Effect */}
                         {isSelected && (
-                          <div}}
+                          <div
                             className="absolute inset-0 rounded-full bg-pink-400"
                           />
                         )}
@@ -261,7 +260,7 @@ export default function AIMLStackPage() {
 
                       {/* Connection Lines to Next Node */}
                       {index < mlStackLayers.length - 1 && (
-                        <div className="hidden md:block absolute top-1/2 left-full w-8 h-0.5 bg-gradient-to-r from-pink-500/50 to-transparent transform -translate-y-1/2 z-0"}
+                        <div className="hidden md:block absolute top-1/2 left-full w-8 h-0.5 bg-gradient-to-r from-pink-500/50 to-transparent transform -translate-y-1/2 z-0"
                         />
                       )}
                     </div>
@@ -301,7 +300,7 @@ export default function AIMLStackPage() {
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <Link href="/contact">
-              <button}}
+              <button
                 className="px-8 py-4 rounded-xl bg-gradient-to-r from-pink-600 to-rose-600 text-white font-bold text-lg shadow-lg shadow-pink-500/30 hover:shadow-xl transition-all flex items-center gap-2"
               >
                 Explore Stack
@@ -467,7 +466,7 @@ export default function AIMLStackPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/contact">
-                  <button}}
+                  <button
                     className="px-8 py-4 rounded-xl bg-gradient-to-r from-pink-600 to-rose-600 text-white font-bold text-lg shadow-lg shadow-pink-500/30 hover:shadow-xl transition-all flex items-center gap-2"
                   >
                     Get Started

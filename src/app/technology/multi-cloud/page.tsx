@@ -140,13 +140,8 @@ export default function MultiCloudPage() {
           {[...Array(30)].map((_, i) => (
             <div
               key={i}
-              className="absolute rounded-full bg-cyan-500/20 blur-3xl"
-              style={{
-                width: `${100 + Math.random() * 200}px",
-                height: `${100 + Math.random() * 200}px",
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-              }}
+              style={{ left: `${Math.random() * 100}%` }}
+              
             />
           ))}
         </div>
@@ -201,7 +196,7 @@ export default function MultiCloudPage() {
           </div>
 
           {/* Main Title */}
-          <h1}}}
+          <h1}
             className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 text-center leading-tight"
           >
             <span className="block bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-teal-400 to-blue-400">
@@ -210,7 +205,7 @@ export default function MultiCloudPage() {
             <span className="block text-white mt-2">Multi-Cloud Platform</span>
           </h1>
 
-          <p}}}
+          <p}
             className="text-xl md:text-2xl text-cyan-200/80 mb-12 text-center max-w-3xl mx-auto leading-relaxed"
           >
             Seamlessly orchestrate workloads across AWS, Azure, GCP, and hybrid environments with unified management and automation.
@@ -235,7 +230,7 @@ export default function MultiCloudPage() {
                   
                   {/* Pulse Effect */}
                   {selectedCloud === 3 && (
-                    <div}}
+                    <div
                       className="absolute inset-0 rounded-full bg-cyan-400"
                     />
                   )}
@@ -261,7 +256,7 @@ export default function MultiCloudPage() {
                 >
                   <Cloud className="w-14 h-14 md:w-18 md:h-18 text-white" />
                   {selectedCloud === 0 && (
-                    <div}}
+                    <div
                       className="absolute inset-0 rounded-full bg-orange-400"
                     />
                   )}
@@ -287,7 +282,7 @@ export default function MultiCloudPage() {
                 >
                   <Cloud className="w-14 h-14 md:w-18 md:h-18 text-white" />
                   {selectedCloud === 1 && (
-                    <div}}
+                    <div
                       className="absolute inset-0 rounded-full bg-blue-400"
                     />
                   )}
@@ -313,7 +308,7 @@ export default function MultiCloudPage() {
                 >
                   <Cloud className="w-14 h-14 md:w-18 md:h-18 text-white" />
                   {selectedCloud === 2 && (
-                    <div}}
+                    <div
                       className="absolute inset-0 rounded-full bg-teal-400"
                     />
                   )}
@@ -359,7 +354,7 @@ export default function MultiCloudPage() {
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <Link href="/contact">
-              <button}}
+              <button
                 className="px-8 py-4 rounded-xl bg-gradient-to-r from-cyan-600 to-teal-600 text-white font-bold text-lg shadow-lg shadow-cyan-500/30 hover:shadow-xl transition-all flex items-center gap-2"
               >
                 Explore Platform
@@ -525,7 +520,7 @@ export default function MultiCloudPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/contact">
-                  <button}}
+                  <button
                     className="px-8 py-4 rounded-xl bg-gradient-to-r from-cyan-600 to-teal-600 text-white font-bold text-lg shadow-lg shadow-cyan-500/30 hover:shadow-xl transition-all flex items-center gap-2"
                   >
                     Get Started

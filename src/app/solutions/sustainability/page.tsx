@@ -123,10 +123,10 @@ export default function SustainabilityPage() {
       <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-32 md:pt-32 lg:pt-40 px-4 sm:px-6 lg:px-8">
         {/* Animated Background - Organic Flow Patterns */}
         <div className="absolute inset-0 opacity-20">
-          <div}}
+          <div
             className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-emerald-500/30 to-teal-500/30 rounded-full blur-3xl"
           />
-          <div}}
+          <div
             className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-green-500/30 to-lime-500/30 rounded-full blur-3xl"
           />
         </div>
@@ -143,7 +143,7 @@ export default function SustainabilityPage() {
           </div>
 
           {/* Main Title */}
-          <h1}}}
+          <h1}
             className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 text-center leading-tight"
           >
             <span className="block bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 via-green-400 to-teal-400">
@@ -152,7 +152,7 @@ export default function SustainabilityPage() {
             <span className="block text-white mt-2">Rendering Pipeline</span>
           </h1>
 
-          <p}}}
+          <p}
             className="text-xl md:text-2xl text-emerald-200/80 mb-12 text-center max-w-3xl mx-auto leading-relaxed"
           >
             Transform your rendering workflow into an eco-friendly, carbon-negative operation with AI-optimized energy management and renewable infrastructure.
@@ -201,7 +201,7 @@ export default function SustainabilityPage() {
                     key={step.id}%`,
                       top: `${y}%`,
                       transform: 'translate(-50%, -50%)'
-                    }}
+                    
                     onClick={() => setSelectedMetric(step.id)}
                     className="cursor-pointer group"
                   >
@@ -230,7 +230,7 @@ export default function SustainabilityPage() {
 
             {/* Center - Main Metric Display */}
             <div className="absolute inset-0 flex items-center justify-center">
-              <div : { scale: 1 }}
+              <div : { scale: 1 
                 className="relative w-48 h-48 md:w-64 md:h-64 rounded-full bg-gradient-to-br from-emerald-900/80 to-green-950/80 backdrop-blur-xl border-4 border-emerald-500/30 flex flex-col items-center justify-center p-8"
               >
                 <div className="text-5xl md:text-6xl font-bold text-emerald-400 mb-2">
@@ -249,7 +249,7 @@ export default function SustainabilityPage() {
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <Link href="/contact">
-              <button}}
+              <button
                 className="px-8 py-4 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold text-lg shadow-lg shadow-emerald-500/30 hover:shadow-xl transition-all flex items-center gap-2"
               >
                 Start Green Pipeline
@@ -465,7 +465,7 @@ export default function SustainabilityPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/contact">
-                  <button}}
+                  <button
                     className="px-8 py-4 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold text-lg shadow-lg shadow-emerald-500/30 hover:shadow-xl transition-all flex items-center gap-2"
                   >
                     Start Sustainability Journey

@@ -144,7 +144,7 @@ export default function InteractiveViewerPage() {
             </div>
           </div>
 
-          <h1}}}
+          <h1}
             className="text-center font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-tight mb-4"
           >
             <span className="block bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400">
@@ -212,12 +212,12 @@ export default function InteractiveViewerPage() {
                 <div className="absolute inset-0">
                   {/* Grid Pattern */}
                   <div
-                    className="absolute inset-0 opacity-20"}
+                    className="absolute inset-0 opacity-20"
                   />
 
                   {/* 3D Model Placeholder */}
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div}}
+                    <div
                       className="relative"
                     >
                       {/* 3D Cube Representation */}
@@ -273,7 +273,7 @@ export default function InteractiveViewerPage() {
 
                 {/* Bottom Stats */}
                 {showStats && (
-                  <div}}
+                  <div
                     className="absolute bottom-4 left-4 right-4 px-4 py-3 rounded-lg bg-black/50 backdrop-blur-sm border border-cyan-700/30"
                   >
                     <div className="grid grid-cols-4 gap-4 text-sm">
@@ -454,7 +454,7 @@ export default function InteractiveViewerPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/contact">
-                  <button}}
+                  <button
                     className="px-8 py-4 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-bold text-lg shadow-lg shadow-cyan-500/30 hover:shadow-xl transition-all flex items-center gap-2"
                   >
                     Get Started

@@ -219,7 +219,7 @@ export default function IndustryReportsPage() {
             </div>
           </div>
 
-          <h1}}}
+          <h1}
             className="text-center font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-tight mb-6"
           >
             <span className="block bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400">
@@ -227,7 +227,7 @@ export default function IndustryReportsPage() {
             </span>
           </h1>
 
-          <p}}}
+          <p}
             className="text-center text-xl text-emerald-200/80 max-w-3xl mx-auto"
           >
             Data-driven insights and comprehensive analysis of the 3D rendering, AI, and cloud infrastructure industries.
@@ -418,7 +418,7 @@ export default function IndustryReportsPage() {
 
                   {/* Action Button */}
                   <div className="absolute bottom-0 left-0 right-0 p-6 pt-0">
-                    <button}}
+                    <button
                       className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-semibold hover:shadow-lg hover:shadow-emerald-500/30 transition-all"
                     >
                       <Download className="w-4 h-4" />
@@ -456,7 +456,7 @@ export default function IndustryReportsPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/contact">
-                  <button}}
+                  <button
                     className="px-8 py-4 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold text-lg shadow-lg shadow-emerald-500/30 hover:shadow-xl transition-all flex items-center gap-2"
                   >
                     Request Custom Report

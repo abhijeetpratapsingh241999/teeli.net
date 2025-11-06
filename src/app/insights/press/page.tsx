@@ -219,7 +219,7 @@ export default function PressNewsPage() {
       {/* News Ticker */}
       <div className="fixed top-0 left-0 right-0 z-40 bg-gradient-to-r from-purple-900/90 via-violet-900/90 to-purple-900/90 backdrop-blur-sm border-b border-purple-700/30">
         <div className="overflow-hidden h-10 flex items-center">
-          <div}}
+          <div
             className="flex items-center gap-8 whitespace-nowrap"
           >
             {[...Array(3)].map((_, i) => (
@@ -249,7 +249,7 @@ export default function PressNewsPage() {
             </div>
           </div>
 
-          <h1}}}
+          <h1}
             className="text-center font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-tight mb-6"
           >
             <span className="block bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-violet-400">
@@ -318,7 +318,7 @@ export default function PressNewsPage() {
 
                 <div className="flex items-center gap-3">
                   <Link href={featuredNews.link}>
-                    <button}}
+                    <button
                       className="px-6 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold hover:shadow-lg hover:shadow-purple-500/30 transition-all flex items-center gap-2"
                     >
                       Read More
@@ -460,7 +460,7 @@ export default function PressNewsPage() {
                                   <span className="font-semibold">{item.source}</span>
                                 </div>
                                 <Link href={item.link}>
-                                  <button}}
+                                  <button
                                     className="flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-600/20 hover:bg-purple-600/30 text-purple-300 text-sm font-semibold transition-all"
                                   >
                                     {item.external ? 'Read Article' : 'Read More'}
@@ -552,7 +552,7 @@ export default function PressNewsPage() {
                   </div>
                 </div>
                 <Link href="/contact">
-                  <button}}
+                  <button
                     className="w-full px-6 py-4 rounded-xl bg-gradient-to-r from-pink-600 to-purple-600 text-white font-bold hover:shadow-lg hover:shadow-pink-500/30 transition-all flex items-center justify-center gap-2"
                   >
                     Contact Press Team

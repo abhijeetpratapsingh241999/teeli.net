@@ -114,10 +114,10 @@ export default function Rotatable3DModel({ className = "" }: Rotatable3DModelPro
           transition: isDragging ? 'none' : 'transform 0.1s ease-out'
         >
         {/* 3D House Model */}
-        <div className="relative flex items-center justify-center"}>
+        <div className="relative flex items-center justify-center">
           {/* Front Face */}
           <div
-            className="absolute bg-gradient-to-br from-pink-500/50 to-purple-500/50 border-2 border-pink-400/60"}
+            className="absolute bg-gradient-to-br from-pink-500/50 to-purple-500/50 border-2 border-pink-400/60"
           >
             <div className="absolute inset-2 border border-pink-300/40 rounded"></div>
             {/* Window */}
@@ -129,34 +129,34 @@ export default function Rotatable3DModel({ className = "" }: Rotatable3DModelPro
 
           {/* Back Face */}
           <div
-            className="absolute bg-gradient-to-br from-purple-500/50 to-pink-500/50 border-2 border-purple-400/60"}
+            className="absolute bg-gradient-to-br from-purple-500/50 to-pink-500/50 border-2 border-purple-400/60"
           ></div>
 
           {/* Right Face */}
           <div
-            className="absolute bg-gradient-to-br from-pink-600/40 to-purple-600/40 border-2 border-pink-500/50"}
+            className="absolute bg-gradient-to-br from-pink-600/40 to-purple-600/40 border-2 border-pink-500/50"
           ></div>
 
           {/* Left Face */}
           <div
-            className="absolute bg-gradient-to-br from-purple-600/40 to-pink-600/40 border-2 border-purple-500/50"}
+            className="absolute bg-gradient-to-br from-purple-600/40 to-pink-600/40 border-2 border-purple-500/50"
           ></div>
 
           {/* Top Face (Roof) */}
           <div
-            className="absolute bg-gradient-to-br from-cyan-500/50 to-pink-500/50 border-2 border-cyan-400/60"}
+            className="absolute bg-gradient-to-br from-cyan-500/50 to-pink-500/50 border-2 border-cyan-400/60"
           ></div>
 
           {/* Bottom Face */}
           <div
-            className="absolute bg-gradient-to-br from-zinc-700/50 to-zinc-800/50 border-2 border-zinc-600/60"}
+            className="absolute bg-gradient-to-br from-zinc-700/50 to-zinc-800/50 border-2 border-zinc-600/60"
           ></div>
         </div>
       </div>
 
       {/* Instructions */}
       {!isDragging && (
-        <div}}
+        <div
           className="absolute bottom-2 left-1/2 transform -translate-x-1/2 text-xs text-pink-300/70 pointer-events-none"
         >
           Drag to rotate

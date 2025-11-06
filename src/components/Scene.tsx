@@ -90,7 +90,7 @@ function ResponsiveHouse({ scrollProgress = 0 }: { scrollProgress?: number }) {
 
 export default function Scene({ scrollProgress = 0 }: { scrollProgress?: number }) {
   return (
-    <Canvas camera={{ position: [0, 0, 14], fov: 50 >
+    <Canvas camera={{ position: [0, 0, 14], fov: 50 }}>
       <ambientLight intensity={0.2} />
       <directionalLight position={[5, 10, 7]} intensity={0.8} />
       

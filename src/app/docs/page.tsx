@@ -137,7 +137,7 @@ export default function TechDocsPage() {
               <a
                 key={index}
                 href={section.href}
-                className="group relative rounded-2xl border-2 border-cyan-500/20 bg-gradient-to-br from-black/60 via-cyan-950/20 to-black/60 backdrop-blur-xl p-6 md:p-8 hover:border-cyan-500/40 transition-all"}
+                className="group relative rounded-2xl border-2 border-cyan-500/20 bg-gradient-to-br from-black/60 via-cyan-950/20 to-black/60 backdrop-blur-xl p-6 md:p-8 hover:border-cyan-500/40 transition-all"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/0 to-purple-500/0 group-hover:from-cyan-500/10 group-hover:to-purple-500/10 transition-all rounded-2xl"></div>
                 <div className="relative">
@@ -167,7 +167,7 @@ export default function TechDocsPage() {
       <section className="relative w-full bg-black py-24 px-4">
         <div className="mx-auto max-w-4xl">
           <div
-            className="relative rounded-3xl border-2 border-cyan-500/30 bg-gradient-to-br from-black/80 via-purple-950/30 to-black/80 backdrop-blur-xl p-12"}
+            className="relative rounded-3xl border-2 border-cyan-500/30 bg-gradient-to-br from-black/80 via-purple-950/30 to-black/80 backdrop-blur-xl p-12"
           >
             <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-cyan-500/10 to-transparent rounded-bl-full"></div>
             <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-purple-500/10 to-transparent rounded-tr-full"></div>

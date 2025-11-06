@@ -36,7 +36,7 @@ function Globe3D() {
 export default function AnimatedGlobe() {
   return (
     <div className="h-10 w-10">
-      <Canvas camera={{ position: [0, 0, 3], fov: 50 >
+      <Canvas camera={{ position: [0, 0, 3], fov: 50}}>
         <Globe3D />
       </Canvas>
     </div>

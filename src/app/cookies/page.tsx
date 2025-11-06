@@ -111,7 +111,7 @@ export default function CookiePolicyPage() {
             {cookieTypes.map((cookie, index) => (
               <div
                 key={index}
-                className="relative rounded-2xl border-2 border-yellow-500/20 bg-gradient-to-br from-black/60 via-amber-950/20 to-black/60 backdrop-blur-xl p-8"}
+                className="relative rounded-2xl border-2 border-yellow-500/20 bg-gradient-to-br from-black/60 via-amber-950/20 to-black/60 backdrop-blur-xl p-8"
               >
                 <div className="flex items-start gap-4 mb-4">
                   <div className={`inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-r ${cookie.color} flex-shrink-0`}>
@@ -151,7 +151,7 @@ export default function CookiePolicyPage() {
       <section className="relative w-full bg-gradient-to-b from-black via-zinc-900 to-black py-24 px-4">
         <div className="mx-auto max-w-4xl">
           <div
-            className="relative rounded-3xl border-2 border-yellow-500/30 bg-gradient-to-br from-black/80 via-amber-950/30 to-black/80 backdrop-blur-xl p-12"}
+            className="relative rounded-3xl border-2 border-yellow-500/30 bg-gradient-to-br from-black/80 via-amber-950/30 to-black/80 backdrop-blur-xl p-12"
           >
             <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-yellow-500/10 to-transparent rounded-bl-full"></div>
             <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-amber-500/10 to-transparent rounded-tr-full"></div>

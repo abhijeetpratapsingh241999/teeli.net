@@ -183,8 +183,7 @@ export default function ResearchPage() {
             return (
               <div
                 key={i}
-                className="absolute w-2 h-2 rounded-full bg-purple-400"%`,
-                  top: `${Math.random() * 100}%`,
+                style={{ left: `${Math.random() * 100}%` }}
               />
             );
           })}
@@ -192,10 +191,10 @@ export default function ResearchPage() {
 
         {/* Interactive Cursor Follower - Research Beam */}
         <div
-          className="absolute pointer-events-none z-0"}
+          className="absolute pointer-events-none z-0"
         >
           <div 
-            className="absolute inset-0 rounded-full blur-3xl"}
+            className="absolute inset-0 rounded-full blur-3xl"
           />
         </div>
 
@@ -246,7 +245,7 @@ export default function ResearchPage() {
             </h1>
           </div>
 
-          <p}}}
+          <p}
             className="text-xl md:text-2xl text-purple-200/80 mb-16 text-center max-w-3xl mx-auto leading-relaxed"
           >
             Pioneering the future of rendering, AI, and quantum computing through cutting-edge research and innovation.
@@ -321,7 +320,7 @@ export default function ResearchPage() {
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <Link href="/contact">
-              <button}}
+              <button
                 className="px-8 py-4 rounded-xl bg-gradient-to-r from-purple-600 to-violet-600 text-white font-bold text-lg shadow-lg shadow-purple-500/30 hover:shadow-xl transition-all flex items-center gap-2"
               >
                 Explore Research
@@ -490,8 +489,7 @@ export default function ResearchPage() {
               {[...Array(20)].map((_, i) => (
                 <div
                   key={i}
-                  className="absolute w-1 h-1 rounded-full bg-purple-400"%`,
-                    top: `${Math.random() * 100}%`,
+                  style={{ left: `${Math.random() * 100}%` }}
                 />
               ))}
             </div>
@@ -508,7 +506,7 @@ export default function ResearchPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/contact">
-                  <button}}
+                  <button
                     className="px-8 py-4 rounded-xl bg-gradient-to-r from-purple-600 to-violet-600 text-white font-bold text-lg shadow-lg shadow-purple-500/30 hover:shadow-xl transition-all flex items-center gap-2"
                   >
                     Collaborate

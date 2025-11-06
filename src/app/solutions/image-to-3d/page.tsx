@@ -65,7 +65,7 @@ export default function ImageTo3DPage() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link href="/contact">
-                <button}}
+                <button
                   className="px-8 py-4 rounded-xl bg-gradient-to-r from-pink-600 to-purple-600 text-white font-bold text-lg shadow-lg shadow-pink-500/30 hover:shadow-xl transition-all flex items-center gap-2"
                 >
                   Start Converting
@@ -113,7 +113,7 @@ export default function ImageTo3DPage() {
 
                {/* Arrow */}
                <div className="hidden md:flex items-center justify-center absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 pointer-events-none">
-                 <div}}
+                 <div
                    className="w-16 h-16 rounded-full bg-gradient-to-r from-pink-600 to-purple-600 flex items-center justify-center border-4 border-black shadow-2xl"
                  >
                    <ArrowLeftRight className="w-8 h-8 text-white" />
@@ -431,7 +431,7 @@ export default function ImageTo3DPage() {
                 Upload your photos and get started with 3D conversion.
               </p>
               <Link href="/contact">
-                <button}}
+                <button
                   className="w-full px-8 py-4 rounded-xl bg-gradient-to-r from-pink-600 to-purple-600 text-white font-bold text-lg shadow-lg shadow-pink-500/30 hover:shadow-xl transition-all flex items-center justify-center gap-2"
                 >
                   Convert Now
