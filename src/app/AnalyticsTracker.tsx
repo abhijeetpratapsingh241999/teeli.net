@@ -20,11 +20,13 @@ export default function AnalyticsTracker() {
   const pathname = usePathname();
 
   useEffect(() => {
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: "page_view",
-      page_path: pathname,
-    });
+    if (typeof window !== "undefined") {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: "page_view",
+        page_path: pathname,
+      });
+    }
   }, [pathname]);
 
   return null;

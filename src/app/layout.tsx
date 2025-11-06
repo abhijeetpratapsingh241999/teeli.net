@@ -3,6 +3,9 @@ import { Lexend, Inter } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 
+// ✅ यह import add किया गया है
+import AnalyticsTracker from "./AnalyticsTracker";
+
 // Lexend for clean readable body text
 const lexend = Lexend({
   subsets: ["latin"],
@@ -62,6 +65,9 @@ export default function RootLayout({
             />
           </noscript>
         )}
+
+        {/* ✅ Page View Tracking Enabled */}
+        <AnalyticsTracker />
 
         {children}
       </body>
