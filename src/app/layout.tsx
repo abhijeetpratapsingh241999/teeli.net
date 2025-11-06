@@ -6,25 +6,26 @@ import "./globals.css";
 // ✅ यह import add किया गया है
 import AnalyticsTracker from "./AnalyticsTracker";
 
-// Lexend for clean readable body text - Optimized for mobile
+// Lexend for clean readable body text - Ultra optimized
 const lexend = Lexend({
   subsets: ["latin"],
   variable: "--font-lexend",
-  display: "optional", // Faster render, show fallback immediately
-  weight: ['400', '600'], // Reduced weights for smaller file size
-  preload: true,
-  fallback: ['-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif'],
-  adjustFontFallback: true,
+  display: "swap", // Immediate render with fallback
+  weight: ['400'], // Only ONE weight - minimum possible
+  preload: false, // Don't preload - let browser decide
+  fallback: ['system-ui', 'sans-serif'],
+  adjustFontFallback: false, // Disable for faster load
 });
 
-// Inter for headings - Optimized for mobile
+// Inter for headings - Ultra optimized
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
-  display: "optional", // Faster render, show fallback immediately
-  preload: true,
-  fallback: ['-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif'],
-  adjustFontFallback: true,
+  display: "swap", // Immediate render with fallback
+  weight: ['600'], // Only ONE weight
+  preload: false, // Don't preload
+  fallback: ['system-ui', 'sans-serif'],
+  adjustFontFallback: false, // Disable for faster load
 });
 
 export const metadata: Metadata = {
@@ -54,12 +55,22 @@ export default function RootLayout({
       </head>
 
       <body className={`${lexend.variable} ${inter.variable} font-body antialiased bg-black`} suppressHydrationWarning>
-        {/* ✅ Google Tag Manager - Completely deferred */}
+        {/* ✅ Google Tag Manager - Maximum Delay for Performance */}
         {GTM_ID && (
           <Script
             id="gtm-script"
-            src={`https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`}
-            strategy="lazyOnload"
+            strategy="worker"
+            dangerouslySetInnerHTML={{
+              __html: `
+                setTimeout(function(){
+                  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                  })(window,document,'script','dataLayer','${GTM_ID}');
+                }, 5000);
+              `,
+            }}
           />
         )}
         
@@ -75,7 +86,7 @@ export default function RootLayout({
           </noscript>
         )}
 
-        {/* ✅ Page View Tracking Enabled */}
+        {/* ✅ Page View Tracking - Delayed */}
         <AnalyticsTracker />
 
         {children}

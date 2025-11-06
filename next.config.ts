@@ -3,17 +3,16 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* Aggressive Mobile Performance Optimizations */
   
-  // Image optimization - Mobile First with priority
+  // Image optimization - ULTRA AGGRESSIVE
   images: {
     formats: ['image/avif', 'image/webp'],
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256],
+    deviceSizes: [640, 750, 828, 1080],
+    imageSizes: [16, 32, 48, 64, 96],
     unoptimized: false,
     minimumCacheTTL: 31536000,
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     remotePatterns: [],
-    loader: 'default',
   },
   
   // Enable maximum compression

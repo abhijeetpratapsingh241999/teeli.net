@@ -56,7 +56,7 @@ export function OptimizedBlogImage({
         alt={alt}
         width={1200}
         height={675}
-        quality={75}
+        quality={60}
         priority={priority}
         loading={priority ? undefined : 'lazy'}
         decoding="async"
