@@ -56,7 +56,7 @@ export function OptimizedBlogImage({
         alt={alt}
         width={800}
         height={450}
-        quality={35}
+        quality={30}
         priority={priority}
         loading={priority ? 'eager' : 'lazy'}
         decoding="async"
@@ -66,7 +66,7 @@ export function OptimizedBlogImage({
         className={`w-full h-auto rounded-xl sm:rounded-2xl border-2 border-cyan-500/30 shadow-2xl transition-opacity duration-300 ${
           isLoading ? 'opacity-0' : 'opacity-100'
         }`}
-        sizes="(max-width: 640px) 80vw, (max-width: 1024px) 70vw, 900px"
+        sizes="(max-width: 640px) 75vw, (max-width: 1024px) 65vw, 850px"
         onLoad={() => setIsLoading(false)}
         onError={() => {
           setError(true);

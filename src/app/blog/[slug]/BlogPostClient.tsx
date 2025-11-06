@@ -615,10 +615,10 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
                   alt={post.title}
                   width={800}
                   height={450}
-                  quality={35}
+                  quality={30}
                   priority
                   loading="eager"
-                  sizes="(max-width: 640px) 80vw, (max-width: 1024px) 70vw, 900px"
+                  sizes="(max-width: 640px) 75vw, (max-width: 1024px) 65vw, 850px"
                   className="w-full h-full object-cover rounded-xl sm:rounded-2xl border-2 border-cyan-500/30 shadow-2xl"
                   placeholder="blur"
                   blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAKAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWEREiMxUf/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="

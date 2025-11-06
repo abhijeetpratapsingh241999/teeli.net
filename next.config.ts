@@ -13,7 +13,7 @@ const nextConfig: NextConfig = {
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     remotePatterns: [],
-    quality: 35,
+    quality: 30,
   },
   
   // Enable maximum compression

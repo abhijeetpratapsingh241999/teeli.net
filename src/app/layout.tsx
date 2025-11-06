@@ -50,15 +50,17 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning className="bg-black">
       <head>
         {/* Critical DNS prefetch for faster resource loading */}
-        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         {/* Preconnect to image domains for faster loading */}
-        <link rel="preconnect" href="https://teeli.net" />
+        <link rel="preconnect" href="https://teeli.net" crossOrigin="anonymous" />
+        {/* Reduce mobile network requests */}
+        <meta httpEquiv="x-dns-prefetch-control" content="on" />
       </head>
 
       <body className={`${lexend.variable} ${inter.variable} font-body antialiased bg-black`} suppressHydrationWarning>
-        {/* ✅ Google Tag Manager - ULTRA SMART LOADING */}
-        {/* Only loads AFTER user interaction OR 30 seconds (increased delay) */}
+        {/* ✅ Google Tag Manager - MOBILE OPTIMIZED */}
+        {/* Loads ONLY after 60 seconds on mobile for better LCP */}
         {GTM_ID && (
           <Script
             id="gtm-script"
@@ -76,12 +78,12 @@ export default function RootLayout({
                     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
                     })(window,document,'script','dataLayer','${GTM_ID}');
                   }
-                  // Load on first interaction
-                  ['mousedown', 'touchstart', 'scroll', 'keydown'].forEach(function(e) {
+                  // Mobile: Only load on interaction (NOT on scroll for better performance)
+                  ['mousedown', 'touchstart', 'keydown'].forEach(function(e) {
                     window.addEventListener(e, loadGTM, { once: true, passive: true });
                   });
-                  // Or after 30 seconds (increased from 20)
-                  setTimeout(loadGTM, 30000);
+                  // Or after 60 seconds (mobile-optimized delay)
+                  setTimeout(loadGTM, 60000);
                 })();
               `,
             }}
