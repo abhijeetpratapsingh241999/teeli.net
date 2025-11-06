@@ -55,28 +55,39 @@ export default function RootLayout({
       </head>
 
       <body className={`${lexend.variable} ${inter.variable} font-body antialiased bg-black`} suppressHydrationWarning>
-        {/* ✅ Google Tag Manager - TEMPORARILY DISABLED for mobile performance */}
-        {/* Will re-enable after achieving 90+ mobile score */}
-        {/* {GTM_ID && (
+        {/* ✅ Google Tag Manager - ULTRA SMART LOADING */}
+        {/* Only loads AFTER user interaction OR 20 seconds */}
+        {GTM_ID && (
           <Script
             id="gtm-script"
-            strategy="worker"
+            strategy="lazyOnload"
             dangerouslySetInnerHTML={{
               __html: `
-                setTimeout(function(){
-                  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-                  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-                  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-                  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-                  })(window,document,'script','dataLayer','${GTM_ID}');
-                }, 10000);
+                (function(){
+                  var loaded = false;
+                  function loadGTM() {
+                    if (loaded) return;
+                    loaded = true;
+                    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                    })(window,document,'script','dataLayer','${GTM_ID}');
+                  }
+                  // Load on first interaction
+                  ['mousedown', 'touchstart', 'scroll', 'keydown'].forEach(function(e) {
+                    window.addEventListener(e, loadGTM, { once: true, passive: true });
+                  });
+                  // Or after 20 seconds
+                  setTimeout(loadGTM, 20000);
+                })();
               `,
             }}
           />
-        )} */}
+        )}
         
-        {/* ✅ Google Tag Manager Fallback (Noscript) - DISABLED */}
-        {/* {GTM_ID && (
+        {/* ✅ Google Tag Manager Fallback (Noscript) */}
+        {GTM_ID && (
           <noscript>
             <iframe
               src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
@@ -85,10 +96,10 @@ export default function RootLayout({
               style={{ display: "none", visibility: "hidden" }}
             />
           </noscript>
-        )} */}
+        )}
 
-        {/* ✅ Page View Tracking - DISABLED for performance */}
-        {/* <AnalyticsTracker /> */}
+        {/* ✅ Page View Tracking - Enabled with delay */}
+        <AnalyticsTracker />
 
         {children}
       </body>
