@@ -52,11 +52,13 @@ export default function RootLayout({
         {/* Critical DNS prefetch for faster resource loading */}
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        {/* Preconnect to image domains for faster loading */}
+        <link rel="preconnect" href="https://teeli.net" />
       </head>
 
       <body className={`${lexend.variable} ${inter.variable} font-body antialiased bg-black`} suppressHydrationWarning>
         {/* ✅ Google Tag Manager - ULTRA SMART LOADING */}
-        {/* Only loads AFTER user interaction OR 20 seconds */}
+        {/* Only loads AFTER user interaction OR 30 seconds (increased delay) */}
         {GTM_ID && (
           <Script
             id="gtm-script"
@@ -78,8 +80,8 @@ export default function RootLayout({
                   ['mousedown', 'touchstart', 'scroll', 'keydown'].forEach(function(e) {
                     window.addEventListener(e, loadGTM, { once: true, passive: true });
                   });
-                  // Or after 20 seconds
-                  setTimeout(loadGTM, 20000);
+                  // Or after 30 seconds (increased from 20)
+                  setTimeout(loadGTM, 30000);
                 })();
               `,
             }}

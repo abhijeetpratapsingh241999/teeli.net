@@ -605,6 +605,7 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
                     width={1200}
                     height={675}
                     priority
+                    fetchPriority="high"
                     className="w-full h-full object-cover rounded-xl sm:rounded-2xl border-2 border-cyan-500/30 shadow-2xl"
                   />
                 </div>
@@ -616,6 +617,7 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
                   height={450}
                   quality={35}
                   priority
+                  loading="eager"
                   sizes="(max-width: 640px) 80vw, (max-width: 1024px) 70vw, 900px"
                   className="w-full h-full object-cover rounded-xl sm:rounded-2xl border-2 border-cyan-500/30 shadow-2xl"
                   placeholder="blur"
