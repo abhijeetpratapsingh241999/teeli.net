@@ -228,8 +228,8 @@ export default function ResearchPage() {
                 return (
                   <div
                     key={area.id}
-                    onHoverStart={() => setHoveredCard(area.id)}
-                    onHoverEnd={() => setHoveredCard(null)}
+                    onMouseEnter={() => setHoveredCard(area.id)}
+                    onMouseLeave={() => setHoveredCard(null)}
                     className="relative group cursor-pointer"
                   >
                     {/* Card */}
