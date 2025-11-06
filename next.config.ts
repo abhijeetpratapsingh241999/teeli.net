@@ -3,11 +3,11 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* Aggressive Mobile Performance Optimizations */
   
-  // Image optimization - MOBILE FIRST AGGRESSIVE
+  // Image optimization - EXTREME MOBILE FIRST
   images: {
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [640, 750, 828],
-    imageSizes: [16, 32, 48, 64],
+    imageSizes: [16, 32, 48],
     unoptimized: false,
     minimumCacheTTL: 31536000,
     dangerouslyAllowSVG: true,

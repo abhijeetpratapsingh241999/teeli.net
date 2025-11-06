@@ -8,18 +8,11 @@ import { Twitter, Linkedin, Instagram, Github } from 'lucide-react';
 import Link from 'next/link';
 import { OrganizationSchema } from '@/components/schema/generateOrganizationSchema';
 
-// ULTRA LAZY: Load Scene only after 2 seconds
-const Scene = dynamic(() => 
-  new Promise(resolve => {
-    setTimeout(() => {
-      resolve(import('@/components/Scene'));
-    }, 2000);
-  }), 
-  { 
-    ssr: false,
-    loading: () => <div className="w-full h-full bg-black" />
-  }
-)
+// ULTRA LAZY: Load Scene only after 3 seconds on mobile, 1 second on desktop  
+const Scene = dynamic(() => import('@/components/Scene'), {
+  ssr: false,
+  loading: () => <div className="w-full h-full bg-black" />
+});
 
 // Don't use framer-motion at all - too heavy
 // const motion = dynamic(() => import('framer-motion').then(mod => ({ default: mod.motion })), {
