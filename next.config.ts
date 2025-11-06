@@ -13,6 +13,7 @@ const nextConfig: NextConfig = {
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     remotePatterns: [],
+    domains: [], // Allow local images
     // Note: quality moved to component level (Next.js 16 requirement)
   },
   
