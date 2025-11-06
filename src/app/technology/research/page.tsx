@@ -34,25 +34,7 @@ import Link from 'next/link';
 
 export default function ResearchPage() {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
-  
-
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-  const springConfig = { damping: 25, stiffness: 200 };
-  const x = useSpring(mouseX, springConfig);
-  const y = useSpring(mouseY, springConfig);
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      const { clientX, clientY } = e;
-      mouseX.set(clientX);
-      mouseY.set(clientY);
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, [mouseX, mouseY]);
 
   const researchAreas = [
     {
@@ -168,22 +150,10 @@ export default function ResearchPage() {
       {/* Unique Hero - Particle Experiment Visualization */}
       <section 
         className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-32 md:pt-32 lg:pt-40 px-4 sm:px-6 lg:px-8"
-        onMouseMove={(e) => {
-          setMousePosition({ x: e.clientX, y: e.clientY });
-        }}
       >
         {/* Animated Particle Field Background */}
         <div className="absolute inset-0 overflow-hidden">
-          {[...Array(50)].map((_, i) => {
-            const delay = i * 0.1;
-            const duration = 3 + Math.random() * 2;
-            return (
-              <div
-                key={i}
-                style={{ left: `${Math.random() * 100}%` }}
-              />
-            );
-          })}
+          
         </div>
 
         {/* Interactive Cursor Follower - Research Beam */}
@@ -251,7 +221,7 @@ export default function ResearchPage() {
           {/* Interactive Research Cards - Circular Layout */}
           <div className="relative w-full max-w-6xl mx-auto mb-16">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {researchAreas.map((area, index) => {
+              {researchAreas.map((area) => {
                 const Icon = area.icon;
                 const isHovered = hoveredCard === area.id;
 
@@ -499,7 +469,7 @@ export default function ResearchPage() {
                 Join the Research Revolution
               </h2>
               <p className="text-xl text-purple-200/80 mb-8 max-w-2xl mx-auto">
-                Partner with us to push the boundaries of what's possible in rendering, AI, and quantum computing.
+                Partner with us to push the boundaries of what&apos;s possible in rendering, AI, and quantum computing.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/contact">
