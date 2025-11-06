@@ -305,7 +305,6 @@ export default function ResearchPage() {
                       {/* Hover Glow Effect */}
                       {isHovered && (
                         <div
-                          layoutId="hoverGlow"
                           className="absolute inset-0 rounded-2xl border-2 border-purple-400/50"
                         />
                       )}
