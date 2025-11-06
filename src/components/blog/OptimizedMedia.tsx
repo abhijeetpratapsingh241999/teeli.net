@@ -22,8 +22,10 @@ export function OptimizedBlogImage({
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  // Construct full image path
-  const imagePath = src.startsWith('/') ? src : `/blog/${src}`;
+  // Construct full image path - check if already starts with /blog/
+  const imagePath = src.startsWith('/blog/') ? src : 
+                    src.startsWith('/') ? src : 
+                    `/blog/${src}`;
 
   if (error) {
     return (
