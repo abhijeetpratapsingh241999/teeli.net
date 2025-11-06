@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from 'framer-motion';
+// REMOVED: framer-motion import for performance (-50KB saved)
 import { useState, useRef, useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -135,29 +135,23 @@ export default function InteractiveViewerPage() {
       {/* Unique Hero - Minimal Tech Header */}
       <section className="relative pt-32 md:pt-32 lg:pt-40 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto mb-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+          <div}}}
             className="flex justify-center mb-6"
           >
             <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-cyan-500/30 bg-cyan-500/10 backdrop-blur-sm">
               <Box className="w-5 h-5 text-cyan-400" />
               <span className="text-cyan-400 font-semibold text-sm uppercase tracking-wider">Interactive 3D Viewer</span>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+          <h1}}}
             className="text-center font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-tight mb-4"
           >
             <span className="block bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400">
               Interactive
             </span>
             <span className="block text-white mt-2">3D Viewer</span>
-          </motion.h1>
+          </h1>
         </div>
       </section>
 
@@ -166,10 +160,7 @@ export default function InteractiveViewerPage() {
         <div className="max-w-[1800px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
             {/* Left Sidebar - Model Library */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
+            <div}}}
               className="lg:col-span-3"
             >
               <div className="rounded-2xl border border-cyan-700/30 bg-gradient-to-br from-slate-900/60 to-black/60 backdrop-blur-xl p-6">
@@ -179,10 +170,8 @@ export default function InteractiveViewerPage() {
                 </div>
                 <div className="space-y-3">
                   {models.map((model) => (
-                    <motion.button
-                      key={model.id}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
+                    <button
+                      key={model.id}}}
                       onClick={() => {
                         setSelectedModel(model.id);
                         resetView();
@@ -206,19 +195,16 @@ export default function InteractiveViewerPage() {
                         <span>{model.triangles} tris</span>
                         <span>{model.materials} mats</span>
                       </div>
-                    </motion.button>
+                    </button>
                   ))}
                 </div>
               </div>
-            </motion.div>
+            </div>
 
             {/* Main Viewer Area */}
             <div className="lg:col-span-6 relative">
               {/* Viewer Canvas */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
+              <div}}}
                 ref={viewerRef}
                 className="relative aspect-square rounded-2xl border-2 border-cyan-700/30 bg-gradient-to-br from-slate-900/80 via-blue-950/60 to-black/80 backdrop-blur-xl overflow-hidden"
               >
@@ -226,63 +212,42 @@ export default function InteractiveViewerPage() {
                 <div className="absolute inset-0">
                   {/* Grid Pattern */}
                   <div
-                    className="absolute inset-0 opacity-20"
-                    style={{
-                      backgroundImage: `
-                        linear-gradient(cyan 1px, transparent 1px),
-                        linear-gradient(90deg, cyan 1px, transparent 1px)
-                      `,
-                      backgroundSize: '50px 50px'
-                    }}
+                    className="absolute inset-0 opacity-20"}
                   />
 
                   {/* 3D Model Placeholder */}
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <motion.div
-                      animate={{
-                        rotateY: rotation.y,
-                        rotateX: rotation.x,
-                        scale: zoom / 100
-                      }}
-                      transition={{ type: 'spring', stiffness: 100 }}
+                    <div}}
                       className="relative"
                     >
                       {/* 3D Cube Representation */}
                       <div className="relative w-64 h-64 perspective-1000">
                         <div
-                          className="relative w-full h-full preserve-3d"
-                          style={{
-                            transform: `rotateY(${rotation.y}deg) rotateX(${rotation.x}deg)`,
+                          className="relative w-full h-full preserve-3d"deg) rotateX(${rotation.x}deg)`,
                             transformStyle: 'preserve-3d'
                           }}
                         >
                           {/* Front */}
-                          <div className="absolute w-64 h-64 bg-gradient-to-br from-cyan-500/40 to-blue-500/40 border-2 border-cyan-400/50" style={{ transform: 'translateZ(128px)' }} />
+                          <div className="absolute w-64 h-64 bg-gradient-to-br from-cyan-500/40 to-blue-500/40 border-2 border-cyan-400/50"} />
                           {/* Back */}
-                          <div className="absolute w-64 h-64 bg-gradient-to-br from-indigo-500/40 to-blue-500/40 border-2 border-indigo-400/50" style={{ transform: 'translateZ(-128px) rotateY(180deg)' }} />
+                          <div className="absolute w-64 h-64 bg-gradient-to-br from-indigo-500/40 to-blue-500/40 border-2 border-indigo-400/50"} />
                           {/* Right */}
-                          <div className="absolute w-64 h-64 bg-gradient-to-br from-blue-500/40 to-cyan-500/40 border-2 border-blue-400/50" style={{ transform: 'rotateY(90deg) translateZ(128px)' }} />
+                          <div className="absolute w-64 h-64 bg-gradient-to-br from-blue-500/40 to-cyan-500/40 border-2 border-blue-400/50"} />
                           {/* Left */}
-                          <div className="absolute w-64 h-64 bg-gradient-to-br from-blue-500/40 to-indigo-500/40 border-2 border-blue-400/50" style={{ transform: 'rotateY(-90deg) translateZ(128px)' }} />
+                          <div className="absolute w-64 h-64 bg-gradient-to-br from-blue-500/40 to-indigo-500/40 border-2 border-blue-400/50"} />
                           {/* Top */}
-                          <div className="absolute w-64 h-64 bg-gradient-to-br from-cyan-500/40 to-indigo-500/40 border-2 border-cyan-400/50" style={{ transform: 'rotateX(90deg) translateZ(128px)' }} />
+                          <div className="absolute w-64 h-64 bg-gradient-to-br from-cyan-500/40 to-indigo-500/40 border-2 border-cyan-400/50"} />
                           {/* Bottom */}
-                          <div className="absolute w-64 h-64 bg-gradient-to-br from-indigo-500/40 to-cyan-500/40 border-2 border-indigo-400/50" style={{ transform: 'rotateX(-90deg) translateZ(128px)' }} />
+                          <div className="absolute w-64 h-64 bg-gradient-to-br from-indigo-500/40 to-cyan-500/40 border-2 border-indigo-400/50"} />
                         </div>
                       </div>
-                    </motion.div>
+                    </div>
                   </div>
 
                   {/* View Mode Indicator */}
                   {viewMode === 'wireframe' && (
                     <div className="absolute inset-0 pointer-events-none">
-                      <div className="absolute inset-0" style={{
-                        backgroundImage: `
-                          repeating-linear-gradient(0deg, transparent, transparent 2px, cyan 2px, cyan 4px),
-                          repeating-linear-gradient(90deg, transparent, transparent 2px, cyan 2px, cyan 4px)
-                        `,
-                        opacity: 0.3
-                      }} />
+                      <div className="absolute inset-0"} />
                     </div>
                   )}
                 </div>
@@ -309,9 +274,7 @@ export default function InteractiveViewerPage() {
 
                 {/* Bottom Stats */}
                 {showStats && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
+                  <div}}
                     className="absolute bottom-4 left-4 right-4 px-4 py-3 rounded-lg bg-black/50 backdrop-blur-sm border border-cyan-700/30"
                   >
                     <div className="grid grid-cols-4 gap-4 text-sm">
@@ -332,7 +295,7 @@ export default function InteractiveViewerPage() {
                         <div className="text-white font-semibold">60</div>
                       </div>
                     </div>
-                  </motion.div>
+                  </div>
                 )}
 
                 {/* Center Controls */}
@@ -356,14 +319,11 @@ export default function InteractiveViewerPage() {
                     <RefreshCw className="w-4 h-4 text-cyan-400" />
                   </button>
                 </div>
-              </motion.div>
+              </div>
             </div>
 
             {/* Right Sidebar - Controls */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
+            <div}}}
               className="lg:col-span-3 space-y-6"
             >
               {/* View Mode Controls */}
@@ -474,7 +434,7 @@ export default function InteractiveViewerPage() {
                   </button>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -483,11 +443,7 @@ export default function InteractiveViewerPage() {
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-blue-950/20 to-black">
         <div className="max-w-7xl mx-auto">
           <div className="relative rounded-3xl border-2 border-cyan-500/30 bg-gradient-to-br from-slate-900/40 via-blue-950/40 to-black/40 backdrop-blur-xl p-12 md:p-16 text-center overflow-hidden">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+            <div}}}}
               className="relative z-10"
             >
               <Box className="w-16 h-16 text-cyan-400 mx-auto mb-6" />
@@ -499,14 +455,12 @@ export default function InteractiveViewerPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/contact">
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                  <button}}
                     className="px-8 py-4 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-bold text-lg shadow-lg shadow-cyan-500/30 hover:shadow-xl transition-all flex items-center gap-2"
                   >
                     Get Started
                     <ChevronDown className="w-5 h-5 rotate-[-90deg]" />
-                  </motion.button>
+                  </button>
                 </Link>
                 <Link href="/contact">
                   <button className="px-8 py-4 rounded-xl border-2 border-cyan-500/30 bg-cyan-500/10 text-cyan-400 font-bold text-lg hover:bg-cyan-500/20 transition-all flex items-center gap-2">
@@ -515,7 +469,7 @@ export default function InteractiveViewerPage() {
                   </button>
                 </Link>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>

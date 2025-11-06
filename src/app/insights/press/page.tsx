@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from 'framer-motion';
+// REMOVED: framer-motion import for performance (-50KB saved)
 import { useState, useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -219,9 +219,7 @@ export default function PressNewsPage() {
       {/* News Ticker */}
       <div className="fixed top-0 left-0 right-0 z-40 bg-gradient-to-r from-purple-900/90 via-violet-900/90 to-purple-900/90 backdrop-blur-sm border-b border-purple-700/30">
         <div className="overflow-hidden h-10 flex items-center">
-          <motion.div
-            animate={{ x: tickerPosition }}
-            transition={{ duration: 0, ease: 'linear' }}
+          <div}}
             className="flex items-center gap-8 whitespace-nowrap"
           >
             {[...Array(3)].map((_, i) => (
@@ -235,43 +233,34 @@ export default function PressNewsPage() {
                 <span className="text-purple-200 text-sm">•</span>
               </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </div>
 
       {/* Hero - Featured News */}
       <section className="relative pt-32 md:pt-32 lg:pt-40 px-4 sm:px-6 lg:px-8 mt-10">
         <div className="max-w-7xl mx-auto mb-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+          <div}}}
             className="flex justify-center mb-6"
           >
             <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-purple-500/30 bg-purple-500/10 backdrop-blur-sm">
               <Newspaper className="w-5 h-5 text-purple-400" />
               <span className="text-purple-400 font-semibold text-sm uppercase tracking-wider">Press & Media Center</span>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+          <h1}}}
             className="text-center font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-tight mb-6"
           >
             <span className="block bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-violet-400">
               Press & News
             </span>
-          </motion.h1>
+          </h1>
         </div>
 
         {/* Featured News Card */}
         <div className="max-w-7xl mx-auto mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+          <div}}}
             className="relative rounded-3xl border-2 border-purple-500/30 bg-gradient-to-br from-purple-900/40 via-violet-900/40 to-black/40 backdrop-blur-xl overflow-hidden group"
           >
             <div className="absolute top-6 left-6 z-10">
@@ -329,15 +318,13 @@ export default function PressNewsPage() {
 
                 <div className="flex items-center gap-3">
                   <Link href={featuredNews.link}>
-                    <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
+                    <button}}
                       className="px-6 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold hover:shadow-lg hover:shadow-purple-500/30 transition-all flex items-center gap-2"
                     >
                       Read More
                       {featuredNews.external && <ExternalLink className="w-4 h-4" />}
                       <ChevronRight className="w-4 h-4" />
-                    </motion.button>
+                    </button>
                   </Link>
                   <button className="px-6 py-3 rounded-xl border-2 border-purple-500/30 bg-purple-500/10 text-purple-400 font-semibold hover:bg-purple-500/20 transition-all flex items-center gap-2">
                     <Share2 className="w-4 h-4" />
@@ -346,7 +333,7 @@ export default function PressNewsPage() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -393,14 +380,10 @@ export default function PressNewsPage() {
       {/* Timeline Feed */}
       <section className="relative px-4 sm:px-6 lg:px-8 pb-20">
         <div className="max-w-7xl mx-auto">
-          <AnimatePresence mode="wait">
+          
             {Object.entries(groupedByDate).map(([date, items], dateIdx) => (
-              <motion.div
-                key={date}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.5, delay: dateIdx * 0.1 }}
+              <div
+                key={date}}}}}
                 className="mb-12"
               >
                 {/* Date Header */}
@@ -421,11 +404,8 @@ export default function PressNewsPage() {
                     {items.map((item, idx) => {
                       const isEven = idx % 2 === 0;
                       return (
-                        <motion.div
-                          key={item.id}
-                          initial={{ opacity: 0, x: isEven ? -50 : 50 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.6, delay: idx * 0.1 }}
+                        <div
+                          key={item.id}}}}
                           className={`relative flex items-start gap-6 ${
                             isEven ? 'md:flex-row' : 'md:flex-row-reverse'
                           }`}
@@ -480,27 +460,25 @@ export default function PressNewsPage() {
                                   <span className="font-semibold">{item.source}</span>
                                 </div>
                                 <Link href={item.link}>
-                                  <motion.button
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
+                                  <button}}
                                     className="flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-600/20 hover:bg-purple-600/30 text-purple-300 text-sm font-semibold transition-all"
                                   >
                                     {item.external ? 'Read Article' : 'Read More'}
                                     {item.external && <ExternalLink className="w-4 h-4" />}
                                     {!item.external && <ChevronRight className="w-4 h-4" />}
-                                  </motion.button>
+                                  </button>
                                 </Link>
                               </div>
                             </div>
                           </div>
-                        </motion.div>
+                        </div>
                       );
                     })}
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </AnimatePresence>
+          
 
           {filteredNews.length === 0 && (
             <div className="text-center py-20">
@@ -516,11 +494,7 @@ export default function PressNewsPage() {
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 gap-8">
             {/* Press Kit */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+            <div}}}}
               className="rounded-3xl border-2 border-purple-500/30 bg-gradient-to-br from-slate-900/40 via-purple-950/40 to-black/40 backdrop-blur-xl p-8 md:p-12"
             >
               <FileText className="w-16 h-16 text-purple-400 mx-auto mb-6" />
@@ -551,14 +525,10 @@ export default function PressNewsPage() {
                   <ChevronRight className="w-5 h-5 text-purple-400 group-hover:translate-x-1 transition-transform" />
                 </button>
               </div>
-            </motion.div>
+            </div>
 
             {/* Media Contact */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+            <div}}}}
               className="rounded-3xl border-2 border-pink-500/30 bg-gradient-to-br from-slate-900/40 via-pink-950/40 to-black/40 backdrop-blur-xl p-8 md:p-12"
             >
               <Mail className="w-16 h-16 text-pink-400 mx-auto mb-6" />
@@ -582,17 +552,15 @@ export default function PressNewsPage() {
                   </div>
                 </div>
                 <Link href="/contact">
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                  <button}}
                     className="w-full px-6 py-4 rounded-xl bg-gradient-to-r from-pink-600 to-purple-600 text-white font-bold hover:shadow-lg hover:shadow-pink-500/30 transition-all flex items-center justify-center gap-2"
                   >
                     Contact Press Team
                     <ArrowRight className="w-5 h-5" />
-                  </motion.button>
+                  </button>
                 </Link>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>

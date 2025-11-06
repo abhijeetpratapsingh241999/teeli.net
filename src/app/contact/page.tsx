@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+// REMOVED: framer-motion import for performance (-50KB saved)
 import Header from '@/components/Header';
 import { Mail, MessageSquare, HeadphonesIcon, Send, Phone, MapPin, Clock } from 'lucide-react';
 
@@ -79,14 +79,11 @@ export default function ContactPage() {
       <section className="relative min-h-screen w-full bg-black flex items-center justify-center px-4 py-24 pt-32 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-0 left-1/4 w-96 h-96 bg-green-500/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-emerald-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-emerald-500/20 rounded-full blur-3xl animate-pulse"}></div>
         </div>
 
         <div className="relative z-10 mx-auto max-w-6xl text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+          <div}}}
           >
             <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-r from-green-500/20 to-emerald-500/20 mb-6">
               <HeadphonesIcon className="w-10 h-10 text-green-400" />
@@ -97,7 +94,7 @@ export default function ContactPage() {
             <p className="text-xl sm:text-2xl md:text-3xl text-zinc-300 max-w-4xl mx-auto leading-relaxed">
               We're here to help. Reach out anytime for support, partnerships, or just to say hello.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -106,14 +103,9 @@ export default function ContactPage() {
         <div className="mx-auto max-w-6xl">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
             {contactMethods.map((method, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="relative rounded-2xl border-2 border-green-500/20 bg-gradient-to-br from-black/60 via-emerald-950/20 to-black/60 backdrop-blur-xl p-6 text-center"
-                style={{ boxShadow: '0 10px 30px rgba(16, 185, 129, 0.05)' }}
+              <div
+                key={index}}}}}
+                className="relative rounded-2xl border-2 border-green-500/20 bg-gradient-to-br from-black/60 via-emerald-950/20 to-black/60 backdrop-blur-xl p-6 text-center"}
               >
                 <div className={`inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-r ${method.color} mb-4`}>
                   <method.icon className="w-7 h-7 text-white" />
@@ -127,19 +119,15 @@ export default function ContactPage() {
                 <p className="text-green-400 font-semibold">
                   {method.contact}
                 </p>
-              </motion.div>
+              </div>
             ))}
           </div>
 
           {/* Main Contact Form */}
           <div className="grid lg:grid-cols-3 gap-12">
             <div className="lg:col-span-2">
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="relative rounded-3xl border-2 border-green-500/30 bg-gradient-to-br from-black/80 via-emerald-950/30 to-black/80 backdrop-blur-xl p-8 md:p-12"
-                style={{ boxShadow: '0 20px 60px rgba(16, 185, 129, 0.1)' }}
+              <div}}}
+                className="relative rounded-3xl border-2 border-green-500/30 bg-gradient-to-br from-black/80 via-emerald-950/30 to-black/80 backdrop-blur-xl p-8 md:p-12"}
               >
                 <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-green-500/10 to-transparent rounded-bl-full"></div>
                 <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-emerald-500/10 to-transparent rounded-tr-full"></div>
@@ -243,15 +231,12 @@ export default function ContactPage() {
                     )}
                   </button>
                 </form>
-              </motion.div>
+              </div>
             </div>
 
             {/* Sidebar */}
             <div>
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
+              <div}}}
                 className="relative rounded-2xl border-2 border-green-500/30 bg-gradient-to-br from-black/60 via-emerald-950/20 to-black/60 backdrop-blur-xl p-8 mb-6"
               >
                 <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-r from-amber-500 to-orange-600 mb-4">
@@ -271,7 +256,7 @@ export default function ContactPage() {
                     </li>
                   ))}
                 </ul>
-              </motion.div>
+              </div>
             </div>
           </div>
         </div>

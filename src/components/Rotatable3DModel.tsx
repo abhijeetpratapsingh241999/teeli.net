@@ -1,8 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-
+// REMOVED: framer-motion import for performance (-50KB saved)
 interface Rotatable3DModelProps {
   className?: string;
 }
@@ -108,28 +107,19 @@ export default function Rotatable3DModel({ className = "" }: Rotatable3DModelPro
       ref={containerRef}
       className={`relative w-full h-full perspective-1000 ${className}`}
       onMouseDown={handleMouseDown}
-      onTouchStart={handleTouchStart}
-      style={{ cursor: isDragging ? 'grabbing' : 'grab', touchAction: 'none' }}
+      onTouchStart={handleTouchStart}}
     >
       <div
-        className="relative w-full h-full preserve-3d flex items-center justify-center"
-        style={{
-          transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
+        className="relative w-full h-full preserve-3d flex items-center justify-center"deg) rotateY(${rotation.y}deg)`,
           transformStyle: 'preserve-3d',
           transition: isDragging ? 'none' : 'transform 0.1s ease-out'
         }}
       >
         {/* 3D House Model */}
-        <div className="relative flex items-center justify-center" style={{ width: 'clamp(150px, 80%, 200px)', height: 'clamp(150px, 80%, 200px)' }}>
+        <div className="relative flex items-center justify-center"}>
           {/* Front Face */}
           <div
-            className="absolute bg-gradient-to-br from-pink-500/50 to-purple-500/50 border-2 border-pink-400/60"
-            style={{
-              width: '140px',
-              height: '120px',
-              transform: 'translateZ(70px)',
-              boxShadow: 'inset 0 0 30px rgba(255, 255, 255, 0.15), 0 0 20px rgba(255, 0, 150, 0.2)'
-            }}
+            className="absolute bg-gradient-to-br from-pink-500/50 to-purple-500/50 border-2 border-pink-400/60"}
           >
             <div className="absolute inset-2 border border-pink-300/40 rounded"></div>
             {/* Window */}
@@ -141,70 +131,38 @@ export default function Rotatable3DModel({ className = "" }: Rotatable3DModelPro
 
           {/* Back Face */}
           <div
-            className="absolute bg-gradient-to-br from-purple-500/50 to-pink-500/50 border-2 border-purple-400/60"
-            style={{
-              width: '140px',
-              height: '120px',
-              transform: 'translateZ(-70px) rotateY(180deg)',
-              boxShadow: 'inset 0 0 30px rgba(255, 255, 255, 0.15)'
-            }}
+            className="absolute bg-gradient-to-br from-purple-500/50 to-pink-500/50 border-2 border-purple-400/60"}
           ></div>
 
           {/* Right Face */}
           <div
-            className="absolute bg-gradient-to-br from-pink-600/40 to-purple-600/40 border-2 border-pink-500/50"
-            style={{
-              width: '140px',
-              height: '120px',
-              transform: 'rotateY(90deg) translateZ(70px)',
-              boxShadow: 'inset 0 0 30px rgba(255, 255, 255, 0.1)'
-            }}
+            className="absolute bg-gradient-to-br from-pink-600/40 to-purple-600/40 border-2 border-pink-500/50"}
           ></div>
 
           {/* Left Face */}
           <div
-            className="absolute bg-gradient-to-br from-purple-600/40 to-pink-600/40 border-2 border-purple-500/50"
-            style={{
-              width: '140px',
-              height: '120px',
-              transform: 'rotateY(-90deg) translateZ(70px)',
-              boxShadow: 'inset 0 0 30px rgba(255, 255, 255, 0.1)'
-            }}
+            className="absolute bg-gradient-to-br from-purple-600/40 to-pink-600/40 border-2 border-purple-500/50"}
           ></div>
 
           {/* Top Face (Roof) */}
           <div
-            className="absolute bg-gradient-to-br from-cyan-500/50 to-pink-500/50 border-2 border-cyan-400/60"
-            style={{
-              width: '140px',
-              height: '140px',
-              transform: 'rotateX(90deg) translateZ(70px)',
-              clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)',
-              boxShadow: '0 0 20px rgba(0, 255, 255, 0.2)'
-            }}
+            className="absolute bg-gradient-to-br from-cyan-500/50 to-pink-500/50 border-2 border-cyan-400/60"}
           ></div>
 
           {/* Bottom Face */}
           <div
-            className="absolute bg-gradient-to-br from-zinc-700/50 to-zinc-800/50 border-2 border-zinc-600/60"
-            style={{
-              width: '140px',
-              height: '140px',
-              transform: 'rotateX(-90deg) translateZ(60px)'
-            }}
+            className="absolute bg-gradient-to-br from-zinc-700/50 to-zinc-800/50 border-2 border-zinc-600/60"}
           ></div>
         </div>
       </div>
 
       {/* Instructions */}
       {!isDragging && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+        <div}}
           className="absolute bottom-2 left-1/2 transform -translate-x-1/2 text-xs text-pink-300/70 pointer-events-none"
         >
           Drag to rotate
-        </motion.div>
+        </div>
       )}
     </div>
   );

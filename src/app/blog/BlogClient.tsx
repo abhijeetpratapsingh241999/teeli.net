@@ -5,7 +5,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { BlogThemeProvider, useBlogTheme } from '@/components/BlogThemeProvider';
 import BlogThemeToggle from '@/components/BlogThemeToggle';
-import { motion } from 'framer-motion';
+// REMOVED: framer-motion import for performance (-50KB saved)
 import { BlogPost } from '@/lib/blog';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -169,10 +169,7 @@ function BlogContent({ initialPosts, categories }: BlogClientProps) {
               </ol>
             </nav>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+            <div}}}
               className="text-center mb-16"
             >
               <h1 className={`font-heading bg-clip-text text-5xl md:text-7xl font-bold text-transparent mb-6 leading-none pb-2 ${
@@ -197,13 +194,12 @@ function BlogContent({ initialPosts, categories }: BlogClientProps) {
                   <span>{categories.length - 1} Categories</span>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
                           {/* Premium Category Filter - Scrollable but No Scrollbar */}
               <div 
                 id="category-filter"
-                className="overflow-x-auto scrollbar-hide mb-12 pt-2 pb-2"
-                style={{ scrollMarginTop: '8rem', scrollPaddingTop: '8rem' }}
+                className="overflow-x-auto scrollbar-hide mb-12 pt-2 pb-2"}
               >
                 <nav 
                   aria-label="Blog categories" 
@@ -256,10 +252,7 @@ function BlogContent({ initialPosts, categories }: BlogClientProps) {
                 className="block focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 rounded-2xl overflow-hidden mb-8"
                 aria-label={`Read featured article: ${featuredPost.title}`}
               >
-                <motion.article
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
+                <article}}}
                   itemScope
                   itemType="https://schema.org/BlogPosting"
                   className={`relative rounded-2xl overflow-hidden backdrop-blur-xl group transition-all duration-300 hover:scale-[1.01] focus-within:ring-2 focus-within:ring-purple-400 ${
@@ -420,7 +413,7 @@ function BlogContent({ initialPosts, categories }: BlogClientProps) {
                       </div>
                     </div>
                   </div>
-                </motion.article>
+                </article>
               </Link>
             )}
 
@@ -447,10 +440,7 @@ function BlogContent({ initialPosts, categories }: BlogClientProps) {
                       className="block h-full focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 rounded-2xl sm:rounded-3xl"
                       aria-label={`Read article: ${post.title} in ${post.category} category`}
                     >
-                      <motion.article
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.1 * index }}
+                      <article}}}
                         itemScope
                         itemType="https://schema.org/BlogPosting"
                         className={`group relative rounded-2xl sm:rounded-3xl border overflow-hidden backdrop-blur-xl transition-all duration-300 md:hover:scale-[1.02] h-full flex flex-col focus-within:ring-2 focus-within:ring-cyan-400 ${
@@ -582,7 +572,7 @@ function BlogContent({ initialPosts, categories }: BlogClientProps) {
                             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                           </div>
                         </div>
-                      </motion.article>
+                      </article>
                     </Link>
                   </div>
                 );

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
+// REMOVED: framer-motion import for performance (-50KB saved)
 import { useState, useRef, useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -181,47 +181,24 @@ export default function ResearchPage() {
             const delay = i * 0.1;
             const duration = 3 + Math.random() * 2;
             return (
-              <motion.div
+              <div
                 key={i}
-                className="absolute w-2 h-2 rounded-full bg-purple-400"
-                style={{
-                  left: `${Math.random() * 100}%`,
+                className="absolute w-2 h-2 rounded-full bg-purple-400"%`,
                   top: `${Math.random() * 100}%`,
-                }}
-                animate={{
-                  x: [0, Math.random() * 200 - 100],
-                  y: [0, Math.random() * 200 - 100],
-                  opacity: [0, 0.8, 0],
-                  scale: [0, 1.5, 0]
-                }}
-                transition={{
-                  duration,
-                  repeat: Infinity,
-                  delay,
-                  ease: "easeInOut"
-                }}
+                }}}}
               />
             );
           })}
         </div>
 
         {/* Interactive Cursor Follower - Research Beam */}
-        <motion.div
-          className="absolute pointer-events-none z-0"
-          style={{
-            x,
-            y,
-            width: 400,
-            height: 400,
-          }}
+        <div
+          className="absolute pointer-events-none z-0"}
         >
           <div 
-            className="absolute inset-0 rounded-full blur-3xl"
-            style={{
-              background: 'radial-gradient(circle, rgba(168, 85, 247, 0.2) 0%, rgba(139, 92, 246, 0.1) 50%, transparent 100%)'
-            }}
+            className="absolute inset-0 rounded-full blur-3xl"}
           />
-        </motion.div>
+        </div>
 
         {/* Molecular Structure Connections */}
         <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-20">
@@ -234,23 +211,14 @@ export default function ResearchPage() {
             const y = cy + (radius / 100) * Math.sin((angle * Math.PI) / 180);
             
             return (
-              <motion.line
+              <line
                 key={`line-${i}`}
                 x1={`${cx}%`}
                 y1={`${cy}%`}
                 x2={`${x}%`}
                 y2={`${y}%`}
                 stroke="rgba(168, 85, 247, 0.3)"
-                strokeWidth="1"
-                animate={{
-                  opacity: [0.2, 0.5, 0.2],
-                  pathLength: [0, 1, 0]
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  delay: i * 0.3
-                }}
+                strokeWidth="1"}}
               />
             );
           })}
@@ -258,23 +226,17 @@ export default function ResearchPage() {
 
         <div className="relative z-10 max-w-7xl mx-auto w-full">
           {/* Header Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+          <div}}}
             className="flex justify-center mb-8"
           >
             <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-purple-500/30 bg-purple-500/10 backdrop-blur-sm">
               <FlaskConical className="w-5 h-5 text-purple-400" />
               <span className="text-purple-400 font-semibold text-sm uppercase tracking-wider">Research & Innovation Lab</span>
             </div>
-          </motion.div>
+          </div>
 
           {/* Main Title - Split Typography */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+          <div}}}
             className="text-center mb-6"
           >
             <h1 className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-tight">
@@ -283,16 +245,13 @@ export default function ResearchPage() {
               </span>
               <span className="block text-white mt-2">& Innovation</span>
             </h1>
-          </motion.div>
+          </div>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+          <p}}}
             className="text-xl md:text-2xl text-purple-200/80 mb-16 text-center max-w-3xl mx-auto leading-relaxed"
           >
             Pioneering the future of rendering, AI, and quantum computing through cutting-edge research and innovation.
-          </motion.p>
+          </p>
 
           {/* Interactive Research Cards - Circular Layout */}
           <div className="relative w-full max-w-6xl mx-auto mb-16">
@@ -302,33 +261,26 @@ export default function ResearchPage() {
                 const isHovered = hoveredCard === area.id;
 
                 return (
-                  <motion.div
-                    key={area.id}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
+                  <div
+                    key={area.id}}}}
                     onHoverStart={() => setHoveredCard(area.id)}
                     onHoverEnd={() => setHoveredCard(null)}
                     className="relative group cursor-pointer"
                   >
                     {/* Card */}
-                    <motion.div
-                      whileHover={{ y: -8, scale: 1.02 }}
+                    <div}
                       className={`relative rounded-2xl border-2 ${
                         isHovered ? 'border-purple-500' : 'border-purple-700/30'
                       } bg-gradient-to-br from-purple-950/60 to-black/60 backdrop-blur-xl p-6 overflow-hidden transition-all duration-300`}
                     >
                       {/* Animated Background */}
-                      <motion.div
+                      <div
                         className={`absolute inset-0 bg-gradient-to-br ${area.color} opacity-0 group-hover:opacity-20 transition-opacity duration-300`}
                       />
 
                       {/* Progress Bar */}
                       <div className="relative w-full h-1 bg-purple-900/50 rounded-full mb-4 overflow-hidden">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          animate={{ width: `${area.progress}%` }}
-                          transition={{ duration: 1, delay: 0.8 + index * 0.1 }}
+                        <div}%` }}}
                           className={`h-full bg-gradient-to-r ${area.color}`}
                         />
                       </div>
@@ -353,37 +305,29 @@ export default function ResearchPage() {
 
                       {/* Hover Glow Effect */}
                       {isHovered && (
-                        <motion.div
+                        <div
                           layoutId="hoverGlow"
-                          className="absolute inset-0 rounded-2xl border-2 border-purple-400/50"
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          transition={{ duration: 0.3 }}
+                          className="absolute inset-0 rounded-2xl border-2 border-purple-400/50"}}}
                         />
                       )}
-                    </motion.div>
-                  </motion.div>
+                    </div>
+                  </div>
                 );
               })}
             </div>
           </div>
 
           {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.2 }}
+          <div}}}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <Link href="/contact">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+              <button}}
                 className="px-8 py-4 rounded-xl bg-gradient-to-r from-purple-600 to-violet-600 text-white font-bold text-lg shadow-lg shadow-purple-500/30 hover:shadow-xl transition-all flex items-center gap-2"
               >
                 Explore Research
                 <ArrowRight className="w-5 h-5" />
-              </motion.button>
+              </button>
             </Link>
             <Link href="/contact">
               <button className="px-8 py-4 rounded-xl border-2 border-purple-500/30 bg-purple-500/10 text-purple-400 font-bold text-lg hover:bg-purple-500/20 transition-all flex items-center gap-2">
@@ -391,18 +335,14 @@ export default function ResearchPage() {
                 View Publications
               </button>
             </Link>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Research Metrics - Dashboard Style */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-purple-950/20 to-black">
         <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+          <div}}}}
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
@@ -411,18 +351,14 @@ export default function ResearchPage() {
             <p className="text-lg text-purple-200/80 max-w-3xl mx-auto">
               Quantifying our research impact and innovation output
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {innovations.map((innovation, index) => {
               const Icon = innovation.icon;
               return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                <div
+                  key={index}}}}}
                   className="relative rounded-2xl border-2 border-purple-700/30 bg-gradient-to-br from-violet-950/60 to-black/60 backdrop-blur-xl p-6 hover:border-purple-500/50 transition-all group overflow-hidden"
                 >
                   {/* Animated Background */}
@@ -436,7 +372,7 @@ export default function ResearchPage() {
                     <h4 className="font-heading text-lg font-bold text-white mb-2">{innovation.title}</h4>
                     <p className="text-sm text-purple-200/70 leading-relaxed">{innovation.description}</p>
                   </div>
-                </motion.div>
+                </div>
               );
             })}
           </div>
@@ -446,11 +382,7 @@ export default function ResearchPage() {
       {/* Research Publications - Grid with Interactive Cards */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-black">
         <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+          <div}}}}
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
@@ -459,17 +391,12 @@ export default function ResearchPage() {
             <p className="text-lg text-purple-200/80 max-w-3xl mx-auto">
               Cutting-edge research across multiple domains
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {publications.map((pub, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
+              <div
+                key={index}}}}}}
                 className="relative rounded-2xl border-2 border-purple-700/30 bg-gradient-to-br from-violet-950/60 to-black/60 backdrop-blur-xl p-6 hover:border-purple-500/50 transition-all group"
               >
                 {/* Icon Badge */}
@@ -480,20 +407,16 @@ export default function ResearchPage() {
                 <h3 className="font-heading text-xl font-bold text-white mb-4">{pub.category}</h3>
                 <div className="space-y-3">
                   {pub.items.map((item, idx) => (
-                    <motion.div
-                      key={idx}
-                      initial={{ opacity: 0, x: -10 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.4, delay: index * 0.1 + idx * 0.05 }}
+                    <div
+                      key={idx}}}}}
                       className="flex items-start gap-2"
                     >
                       <div className="w-1.5 h-1.5 rounded-full bg-purple-400 mt-2 flex-shrink-0" />
                       <span className="text-sm text-purple-200/80 leading-relaxed">{item}</span>
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -502,11 +425,7 @@ export default function ResearchPage() {
       {/* Innovation Pipeline - Unique Vertical Flow */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-purple-950/20 to-black">
         <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+          <div}}}}
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
@@ -515,7 +434,7 @@ export default function ResearchPage() {
             <p className="text-lg text-purple-200/80 max-w-3xl mx-auto">
               From ideation to implementation - our research journey
             </p>
-          </motion.div>
+          </div>
 
           {/* Unique Vertical Timeline with Branches */}
           <div className="relative max-w-4xl mx-auto">
@@ -533,12 +452,8 @@ export default function ResearchPage() {
               const isLeft = stage.side === "left";
               
               return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: isLeft ? -50 : 50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: index * 0.2 }}
+                <div
+                  key={index}}}}}
                   className={`relative flex items-center gap-8 mb-12 ${
                     isLeft ? 'md:flex-row' : 'md:flex-row-reverse'
                   }`}
@@ -548,8 +463,7 @@ export default function ResearchPage() {
 
                   {/* Content Card */}
                   <div className={`flex-1 ${isLeft ? 'md:text-right md:pr-12' : 'md:text-left md:pl-12'}`}>
-                    <motion.div
-                      whileHover={{ scale: 1.05 }}
+                    <div}
                       className="relative rounded-2xl border-2 border-purple-700/30 bg-gradient-to-br from-violet-950/60 to-black/60 backdrop-blur-xl p-6"
                     >
                       <div className={`inline-flex items-center gap-3 px-4 py-2 rounded-lg bg-gradient-to-br ${stage.color} mb-4 ${
@@ -559,9 +473,9 @@ export default function ResearchPage() {
                         <span className="text-white font-bold text-sm">Phase {index + 1}</span>
                       </div>
                       <h3 className="font-heading text-2xl font-bold text-white mb-2">{stage.title}</h3>
-                    </motion.div>
+                    </div>
                   </div>
-                </motion.div>
+                </div>
               );
             })}
           </div>
@@ -575,32 +489,16 @@ export default function ResearchPage() {
             {/* Animated Particle Background */}
             <div className="absolute inset-0 overflow-hidden">
               {[...Array(20)].map((_, i) => (
-                <motion.div
+                <div
                   key={i}
-                  className="absolute w-1 h-1 rounded-full bg-purple-400"
-                  style={{
-                    left: `${Math.random() * 100}%`,
+                  className="absolute w-1 h-1 rounded-full bg-purple-400"%`,
                     top: `${Math.random() * 100}%`,
-                  }}
-                  animate={{
-                    y: [0, -30, 0],
-                    opacity: [0, 1, 0],
-                    scale: [0, 1, 0]
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    delay: Math.random() * 2
-                  }}
+                  }}}}
                 />
               ))}
             </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+            <div}}}}
               className="relative z-10"
             >
               <FlaskConical className="w-16 h-16 text-purple-400 mx-auto mb-6" />
@@ -612,14 +510,12 @@ export default function ResearchPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/contact">
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                  <button}}
                     className="px-8 py-4 rounded-xl bg-gradient-to-r from-purple-600 to-violet-600 text-white font-bold text-lg shadow-lg shadow-purple-500/30 hover:shadow-xl transition-all flex items-center gap-2"
                   >
                     Collaborate
                     <ArrowRight className="w-5 h-5" />
-                  </motion.button>
+                  </button>
                 </Link>
                 <Link href="/contact">
                   <button className="px-8 py-4 rounded-xl border-2 border-purple-500/30 bg-purple-500/10 text-purple-400 font-bold text-lg hover:bg-purple-500/20 transition-all flex items-center gap-2">
@@ -628,7 +524,7 @@ export default function ResearchPage() {
                   </button>
                 </Link>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>

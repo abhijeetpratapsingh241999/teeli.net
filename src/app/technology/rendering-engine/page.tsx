@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform } from 'framer-motion';
+// REMOVED: framer-motion import for performance (-50KB saved)
 import { useState, useRef } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -149,10 +149,7 @@ export default function RenderingEnginePage() {
       <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-32 md:pt-32 lg:pt-40 px-4 sm:px-6 lg:px-8">
         {/* Animated Background - Hexagonal Grid Pattern */}
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 0 L93.3 25 L93.3 75 L50 100 L6.7 75 L6.7 25 Z' fill='none' stroke='%236366f1' stroke-width='1'/%3E%3C/svg%3E")`,
-            backgroundSize: '100px 100px'
-          }}></div>
+          <div className="absolute inset-0"}></div>
         </div>
 
         {/* Animated Ray Lines */}
@@ -161,25 +158,13 @@ export default function RenderingEnginePage() {
             const angle = (i * 30) * Math.PI / 180;
             const length = 800;
             return (
-              <motion.div
+              <div
                 key={i}
-                className="absolute top-1/2 left-1/2 w-px h-1 bg-gradient-to-t from-blue-500 via-cyan-400 to-transparent"
-                style={{
-                  transformOrigin: '0 0',
-                  transform: `rotate(${angle}rad)`,
+                className="absolute top-1/2 left-1/2 w-px h-1 bg-gradient-to-t from-blue-500 via-cyan-400 to-transparent"rad)`,
                   height: `${length}px`,
                   left: '50%',
                   top: '50%'
-                }}
-                animate={{
-                  opacity: [0.3, 0.8, 0.3],
-                  scaleY: [1, 1.2, 1]
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  delay: i * 0.2
-                }}
+                }}}}
               />
             );
           })}
@@ -187,45 +172,33 @@ export default function RenderingEnginePage() {
 
         <div className="relative z-10 max-w-7xl mx-auto w-full">
           {/* Header Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+          <div}}}
             className="flex justify-center mb-8"
           >
             <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-blue-500/30 bg-blue-500/10 backdrop-blur-sm">
               <Cpu className="w-5 h-5 text-blue-400" />
               <span className="text-blue-400 font-semibold text-sm uppercase tracking-wider">Advanced Rendering Engine</span>
             </div>
-          </motion.div>
+          </div>
 
           {/* Main Title */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+          <h1}}}
             className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 text-center leading-tight"
           >
             <span className="block bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-400">
               Next-Gen
             </span>
             <span className="block text-white mt-2">Rendering Engine</span>
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+          <p}}}
             className="text-xl md:text-2xl text-blue-200/80 mb-12 text-center max-w-3xl mx-auto leading-relaxed"
           >
             Cutting-edge ray tracing, path tracing, and GPU acceleration for photorealistic rendering at unprecedented speeds.
-          </motion.p>
+          </p>
 
           {/* Hexagonal Feature Grid */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.6 }}
+          <div}}}
             className="relative w-full max-w-5xl mx-auto mb-12"
           >
             <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
@@ -234,11 +207,8 @@ export default function RenderingEnginePage() {
                 const isSelected = selectedFeature === feature.id;
 
                 return (
-                  <motion.div
-                    key={feature.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
+                  <div
+                    key={feature.id}}}}
                     onClick={() => setSelectedFeature(feature.id)}
                     className="cursor-pointer group relative"
                   >
@@ -248,18 +218,12 @@ export default function RenderingEnginePage() {
                       <div
                         className={`absolute inset-0 bg-gradient-to-br ${feature.color} ${
                           isSelected ? 'opacity-100 scale-110' : 'opacity-60'
-                        } transition-all duration-300`}
-                        style={{
-                          clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)'
-                        }}
+                        } transition-all duration-300`}}
                       />
                       <div
                         className={`absolute inset-[2px] bg-black ${
                           isSelected ? 'border-2 border-blue-400' : 'border border-blue-500/30'
-                        } transition-all duration-300`}
-                        style={{
-                          clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)'
-                        }}
+                        } transition-all duration-300`}}
                       />
 
                       {/* Content */}
@@ -273,40 +237,30 @@ export default function RenderingEnginePage() {
                           {feature.title}
                         </h3>
                         {isSelected && (
-                          <motion.div
-                            initial={{ opacity: 0, scale: 0 }}
-                            animate={{ opacity: 1, scale: 1 }}
+                          <div}}
                             className="text-xs text-blue-300 text-center"
                           >
                             {feature.specs}
-                          </motion.div>
+                          </div>
                         )}
                       </div>
 
                       {/* Selection Indicator */}
                       {isSelected && (
-                        <motion.div
-                          initial={{ scale: 0 }}
-                          animate={{ scale: [1, 1.2, 1] }}
-                          transition={{ duration: 0.5, repeat: Infinity }}
-                          className="absolute -inset-1 border-2 border-blue-400 rounded-full opacity-50"
-                          style={{
-                            clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)'
-                          }}
+                        <div}}}
+                          className="absolute -inset-1 border-2 border-blue-400 rounded-full opacity-50"}
                         />
                       )}
                     </div>
-                  </motion.div>
+                  </div>
                 );
               })}
             </div>
-          </motion.div>
+          </div>
 
           {/* Selected Feature Details */}
-          <motion.div
-            key={selectedFeature}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+          <div
+            key={selectedFeature}}}
             className="max-w-2xl mx-auto mb-12"
           >
             <div className="relative rounded-2xl border-2 border-blue-500/30 bg-gradient-to-br from-blue-950/60 to-black/60 backdrop-blur-xl p-8 text-center">
@@ -314,24 +268,19 @@ export default function RenderingEnginePage() {
                 {renderingFeatures[selectedFeature]?.description}
               </p>
             </div>
-          </motion.div>
+          </div>
 
           {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1 }}
+          <div}}}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <Link href="/contact">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+              <button}}
                 className="px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-bold text-lg shadow-lg shadow-blue-500/30 hover:shadow-xl transition-all flex items-center gap-2"
               >
                 Explore Engine
                 <ArrowRight className="w-5 h-5" />
-              </motion.button>
+              </button>
             </Link>
             <Link href="/contact">
               <button className="px-8 py-4 rounded-xl border-2 border-blue-500/30 bg-blue-500/10 text-blue-400 font-bold text-lg hover:bg-blue-500/20 transition-all flex items-center gap-2">
@@ -339,18 +288,14 @@ export default function RenderingEnginePage() {
                 View API Docs
               </button>
             </Link>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Performance Metrics - Technical Dashboard */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-indigo-950/20 to-black">
         <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+          <div}}}}
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
@@ -359,18 +304,14 @@ export default function RenderingEnginePage() {
             <p className="text-lg text-blue-200/80 max-w-3xl mx-auto">
               Industry-leading rendering performance and efficiency metrics
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {performanceMetrics.map((metric, index) => {
               const Icon = metric.icon;
               return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                <div
+                  key={index}}}}}
                   className="relative rounded-2xl border-2 border-blue-700/30 bg-gradient-to-br from-indigo-950/60 to-black/60 backdrop-blur-xl p-6 hover:border-blue-500/50 transition-all group overflow-hidden"
                 >
                   {/* Animated Background */}
@@ -391,7 +332,7 @@ export default function RenderingEnginePage() {
                     <h4 className="font-heading text-lg font-bold text-white mb-2">{metric.title}</h4>
                     <p className="text-sm text-blue-200/70 leading-relaxed">{metric.description}</p>
                   </div>
-                </motion.div>
+                </div>
               );
             })}
           </div>
@@ -401,11 +342,7 @@ export default function RenderingEnginePage() {
       {/* Technical Specifications - Grid Layout */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-black">
         <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+          <div}}}}
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
@@ -414,16 +351,12 @@ export default function RenderingEnginePage() {
             <p className="text-lg text-blue-200/80 max-w-3xl mx-auto">
               Comprehensive rendering capabilities and supported technologies
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {technicalSpecs.map((spec, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+              <div
+                key={index}}}}}
                 className="relative rounded-2xl border-2 border-blue-700/30 bg-gradient-to-br from-indigo-950/60 to-black/60 backdrop-blur-xl p-6 hover:border-blue-500/50 transition-all"
               >
                 <h3 className="font-heading text-xl font-bold text-white mb-4">{spec.category}</h3>
@@ -435,7 +368,7 @@ export default function RenderingEnginePage() {
                     </div>
                   ))}
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -444,11 +377,7 @@ export default function RenderingEnginePage() {
       {/* Rendering Pipeline - Flow Diagram */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-indigo-950/20 to-black">
         <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+          <div}}}}
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
@@ -457,7 +386,7 @@ export default function RenderingEnginePage() {
             <p className="text-lg text-blue-200/80 max-w-3xl mx-auto">
               Advanced multi-stage rendering architecture
             </p>
-          </motion.div>
+          </div>
 
           {/* Pipeline Flow */}
           <div className="relative">
@@ -474,12 +403,8 @@ export default function RenderingEnginePage() {
               ].map((stage, index) => {
                 const Icon = stage.icon;
                 return (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                  <div
+                    key={index}}}}}
                     className="relative"
                   >
                     {/* Connection Dot */}
@@ -494,7 +419,7 @@ export default function RenderingEnginePage() {
                       </div>
                       <h3 className="font-heading text-lg font-bold text-white">{stage.title}</h3>
                     </div>
-                  </motion.div>
+                  </div>
                 );
               })}
             </div>
@@ -508,18 +433,10 @@ export default function RenderingEnginePage() {
           <div className="relative rounded-3xl border-2 border-blue-500/30 bg-gradient-to-br from-indigo-950/40 via-blue-950/40 to-black/40 backdrop-blur-xl p-12 md:p-16 text-center overflow-hidden">
             {/* Background Pattern - Technical Grid */}
             <div className="absolute inset-0 opacity-10">
-              <div className="absolute inset-0" style={{
-                backgroundImage: `linear-gradient(rgba(99, 102, 241, 0.3) 1px, transparent 1px),
-                                 linear-gradient(90deg, rgba(99, 102, 241, 0.3) 1px, transparent 1px)`,
-                backgroundSize: '50px 50px'
-              }}></div>
+              <div className="absolute inset-0"}></div>
             </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+            <div}}}}
               className="relative z-10"
             >
               <Cpu className="w-16 h-16 text-blue-400 mx-auto mb-6" />
@@ -531,14 +448,12 @@ export default function RenderingEnginePage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/contact">
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                  <button}}
                     className="px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-bold text-lg shadow-lg shadow-blue-500/30 hover:shadow-xl transition-all flex items-center gap-2"
                   >
                     Get Started
                     <ArrowRight className="w-5 h-5" />
-                  </motion.button>
+                  </button>
                 </Link>
                 <Link href="/contact">
                   <button className="px-8 py-4 rounded-xl border-2 border-blue-500/30 bg-blue-500/10 text-blue-400 font-bold text-lg hover:bg-blue-500/20 transition-all flex items-center gap-2">
@@ -547,7 +462,7 @@ export default function RenderingEnginePage() {
                   </button>
                 </Link>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>

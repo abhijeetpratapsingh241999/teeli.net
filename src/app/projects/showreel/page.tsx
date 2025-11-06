@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from 'framer-motion';
+// REMOVED: framer-motion import for performance (-50KB saved)
 import { useState, useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -205,37 +205,24 @@ export default function ShowreelPage() {
         {/* Animated Background */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-br from-red-900/30 via-rose-900/20 to-orange-900/20"></div>
-          <motion.div
-            className="absolute top-0 left-0 w-full h-full"
-            style={{
-              background: 'radial-gradient(circle at 20% 50%, rgba(239, 68, 68, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(251, 146, 60, 0.1) 0%, transparent 50%)'
-            }}
-            animate={{
-              opacity: [0.5, 0.8, 0.5]
-            }}
-            transition={{ duration: 8, repeat: Infinity }}
+          <div
+            className="absolute top-0 left-0 w-full h-full"}}}
           />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto w-full">
           {/* Header Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+          <div}}}
             className="flex justify-center mb-8"
           >
             <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-red-500/30 bg-red-500/10 backdrop-blur-sm">
               <Film className="w-5 h-5 text-red-400" />
               <span className="text-red-400 font-semibold text-sm uppercase tracking-wider">Showreel Gallery</span>
             </div>
-          </motion.div>
+          </div>
 
           {/* Main Title */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+          <div}}}
             className="text-center mb-12"
           >
             <h1 className="font-heading text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold leading-none mb-4">
@@ -247,13 +234,10 @@ export default function ShowreelPage() {
             <p className="text-xl md:text-2xl text-red-200/80 max-w-3xl mx-auto leading-relaxed">
               Explore our collection of stunning renders, animations, and cinematic visualizations
             </p>
-          </motion.div>
+          </div>
 
           {/* Featured Video Player */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+          <div}}}
             className="relative w-full max-w-6xl mx-auto mb-16 rounded-2xl overflow-hidden border-2 border-red-700/30 bg-gradient-to-br from-red-950/60 to-black/60 backdrop-blur-xl group"
           >
             {/* Video Container */}
@@ -291,7 +275,7 @@ export default function ShowreelPage() {
                       )}
                     </button>
                     <div className="flex-1 h-1 bg-white/20 rounded-full overflow-hidden">
-                      <div className="h-full bg-red-500 rounded-full" style={{ width: '35%' }}></div>
+                      <div className="h-full bg-red-500 rounded-full"}></div>
                     </div>
                     <div className="text-white text-sm font-semibold">{featuredVideo.duration}</div>
                     <button
@@ -325,17 +309,15 @@ export default function ShowreelPage() {
 
               {/* Play Button Center */}
               {!isPlaying && (
-                <motion.button
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
+                <button}}
                   onClick={() => setIsPlaying(true)}
                   className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 rounded-full bg-red-500/90 hover:bg-red-600 flex items-center justify-center transition-all hover:scale-110 shadow-2xl shadow-red-500/50"
                 >
                   <Play className="w-10 h-10 text-white ml-2" />
-                </motion.button>
+                </button>
               )}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -347,10 +329,8 @@ export default function ShowreelPage() {
               const Icon = cat.icon;
               const isActive = selectedCategory === cat.id;
               return (
-                <motion.button
-                  key={cat.id}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                <button
+                  key={cat.id}}}
                   onClick={() => setSelectedCategory(cat.id)}
                   className={`flex items-center gap-2 px-5 py-2.5 rounded-full border-2 transition-all ${
                     isActive
@@ -360,7 +340,7 @@ export default function ShowreelPage() {
                 >
                   <Icon className="w-4 h-4" />
                   <span className="font-semibold text-sm">{cat.label}</span>
-                </motion.button>
+                </button>
               );
             })}
           </div>
@@ -370,11 +350,7 @@ export default function ShowreelPage() {
       {/* Video Grid */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-black">
         <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+          <div}}}}
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
@@ -383,19 +359,15 @@ export default function ShowreelPage() {
             <p className="text-lg text-red-200/80 max-w-3xl mx-auto">
               Browse our complete library of visualizations and animations
             </p>
-          </motion.div>
+          </div>
 
-          <AnimatePresence mode="wait">
+          
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {filteredVideos.filter(v => !v.featured).map((video, index) => {
                 const isHovered = hoveredVideo === video.id;
                 return (
-                  <motion.div
-                    key={video.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    transition={{ duration: 0.5, delay: index * 0.05 }}
+                  <div
+                    key={video.id}}}}}
                     onHoverStart={() => setHoveredVideo(video.id)}
                     onHoverEnd={() => setHoveredVideo(null)}
                     onClick={() => setSelectedVideo(video.id)}
@@ -409,19 +381,15 @@ export default function ShowreelPage() {
                       </div>
 
                       {/* Hover Overlay */}
-                      <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: isHovered ? 1 : 0 }}
+                      <div}}
                         className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-center justify-center"
                       >
-                        <motion.div
-                          initial={{ scale: 0.8 }}
-                          animate={{ scale: isHovered ? 1 : 0.8 }}
+                        <div}}
                           className="w-20 h-20 rounded-full bg-red-500/90 flex items-center justify-center shadow-2xl shadow-red-500/50"
                         >
                           <Play className="w-8 h-8 text-white ml-1" />
-                        </motion.div>
-                      </motion.div>
+                        </div>
+                      </div>
 
                       {/* Duration Badge */}
                       <div className="absolute bottom-2 right-2 px-2 py-1 rounded bg-black/70 backdrop-blur-sm border border-red-700/30">
@@ -456,36 +424,27 @@ export default function ShowreelPage() {
 
                     {/* Hover Glow Effect */}
                     {isHovered && (
-                      <motion.div
+                      <div
                         layoutId="videoHoverGlow"
-                        className="absolute inset-0 rounded-xl border-2 border-red-400/50 pointer-events-none"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 0.3 }}
+                        className="absolute inset-0 rounded-xl border-2 border-red-400/50 pointer-events-none"}}}
                       />
                     )}
-                  </motion.div>
+                  </div>
                 );
               })}
             </div>
-          </AnimatePresence>
+          
         </div>
       </section>
 
       {/* Video Lightbox Modal */}
-      <AnimatePresence>
+      
         {selectedVideo !== null && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+          <div}}}
             className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex items-center justify-center p-4"
             onClick={() => setSelectedVideo(null)}
           >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
+            <div}}}
               onClick={(e) => e.stopPropagation()}
               className="relative w-full max-w-6xl"
             >
@@ -533,7 +492,7 @@ export default function ShowreelPage() {
                         )}
                       </button>
                       <div className="flex-1 h-1 bg-white/20 rounded-full overflow-hidden">
-                        <div className="h-full bg-red-500 rounded-full" style={{ width: '35%' }}></div>
+                        <div className="h-full bg-red-500 rounded-full"}></div>
                       </div>
                       <div className="text-white text-sm font-semibold">
                         {videos.find(v => v.id === selectedVideo)?.duration}
@@ -550,14 +509,12 @@ export default function ShowreelPage() {
 
                 {/* Center Play Button */}
                 {!isPlaying && (
-                  <motion.button
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
+                  <button}}
                     onClick={() => setIsPlaying(true)}
                     className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 rounded-full bg-red-500/90 hover:bg-red-600 flex items-center justify-center transition-all hover:scale-110 shadow-2xl shadow-red-500/50"
                   >
                     <Play className="w-10 h-10 text-white ml-2" />
-                  </motion.button>
+                  </button>
                 )}
               </div>
 
@@ -580,20 +537,16 @@ export default function ShowreelPage() {
                   </div>
                 </div>
               </div>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         )}
-      </AnimatePresence>
+      
 
       {/* CTA Section */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-red-950/20 to-black">
         <div className="max-w-7xl mx-auto">
           <div className="relative rounded-3xl border-2 border-red-500/30 bg-gradient-to-br from-red-950/40 via-rose-950/40 to-black/40 backdrop-blur-xl p-12 md:p-16 text-center overflow-hidden">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+            <div}}}}
               className="relative z-10"
             >
               <Film className="w-16 h-16 text-red-400 mx-auto mb-6" />
@@ -605,14 +558,12 @@ export default function ShowreelPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/contact">
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                  <button}}
                     className="px-8 py-4 rounded-xl bg-gradient-to-r from-red-600 to-rose-600 text-white font-bold text-lg shadow-lg shadow-red-500/30 hover:shadow-xl transition-all flex items-center gap-2"
                   >
                     Start Your Project
                     <ArrowRight className="w-5 h-5" />
-                  </motion.button>
+                  </button>
                 </Link>
                 <Link href="/contact">
                   <button className="px-8 py-4 rounded-xl border-2 border-red-500/30 bg-red-500/10 text-red-400 font-bold text-lg hover:bg-red-500/20 transition-all flex items-center gap-2">
@@ -621,7 +572,7 @@ export default function ShowreelPage() {
                   </button>
                 </Link>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>

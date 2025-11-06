@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from 'framer-motion';
+// REMOVED: framer-motion import for performance (-50KB saved)
 import Header from '@/components/Header';
 import { Cookie, Settings, Shield, BarChart3, Palette, AlertCircle } from 'lucide-react';
 import Link from 'next/link';
@@ -69,14 +69,11 @@ export default function CookiePolicyPage() {
       <section className="relative min-h-screen w-full bg-black flex items-center justify-center px-4 py-24 pt-32 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-0 left-1/4 w-96 h-96 bg-yellow-500/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-amber-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-amber-500/20 rounded-full blur-3xl animate-pulse"}></div>
         </div>
 
         <div className="relative z-10 mx-auto max-w-6xl text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+          <div}}}
           >
             <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-r from-yellow-500/20 to-amber-500/20 mb-6">
               <Cookie className="w-10 h-10 text-yellow-400" />
@@ -90,24 +87,21 @@ export default function CookiePolicyPage() {
             <p className="text-sm text-zinc-400">
               Last updated: December 2024 | Effective as of January 1, 2024
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Introduction */}
       <section className="relative w-full bg-gradient-to-b from-black via-yellow-950/20 to-black py-16 px-4">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div}}}
             className="prose prose-invert max-w-none text-center"
           >
             <p className="text-lg text-zinc-300 leading-relaxed mb-6">
               Cookies are small text files that are placed on your device when you visit our website. 
               They help us provide you with a better experience and allow us to analyze how our site is used.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -116,14 +110,9 @@ export default function CookiePolicyPage() {
         <div className="mx-auto max-w-6xl">
           <div className="grid md:grid-cols-2 gap-8">
             {cookieTypes.map((cookie, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="relative rounded-2xl border-2 border-yellow-500/20 bg-gradient-to-br from-black/60 via-amber-950/20 to-black/60 backdrop-blur-xl p-8"
-                style={{ boxShadow: '0 10px 30px rgba(234, 179, 8, 0.05)' }}
+              <div
+                key={index}}}}}
+                className="relative rounded-2xl border-2 border-yellow-500/20 bg-gradient-to-br from-black/60 via-amber-950/20 to-black/60 backdrop-blur-xl p-8"}
               >
                 <div className="flex items-start gap-4 mb-4">
                   <div className={`inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-r ${cookie.color} flex-shrink-0`}>
@@ -153,7 +142,7 @@ export default function CookiePolicyPage() {
                     </li>
                   ))}
                 </ul>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -162,12 +151,8 @@ export default function CookiePolicyPage() {
       {/* Cookie Management */}
       <section className="relative w-full bg-gradient-to-b from-black via-zinc-900 to-black py-24 px-4">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="relative rounded-3xl border-2 border-yellow-500/30 bg-gradient-to-br from-black/80 via-amber-950/30 to-black/80 backdrop-blur-xl p-12"
-            style={{ boxShadow: '0 20px 60px rgba(234, 179, 8, 0.1)' }}
+          <div}}}
+            className="relative rounded-3xl border-2 border-yellow-500/30 bg-gradient-to-br from-black/80 via-amber-950/30 to-black/80 backdrop-blur-xl p-12"}
           >
             <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-yellow-500/10 to-transparent rounded-bl-full"></div>
             <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-amber-500/10 to-transparent rounded-tr-full"></div>
@@ -214,17 +199,14 @@ export default function CookiePolicyPage() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Third-Party Cookies */}
       <section className="relative w-full bg-black py-24 px-4 border-y border-white/10">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div}}}
             className="flex items-start gap-4 p-8 rounded-2xl border-2 border-yellow-500/20 bg-gradient-to-br from-black/60 via-amber-950/20 to-black/60"
           >
             <AlertCircle className="w-8 h-8 text-yellow-400 flex-shrink-0" />
@@ -237,7 +219,7 @@ export default function CookiePolicyPage() {
                 All cookies are first-party cookies served directly by TEELI.NET to enhance your experience.
               </p>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 

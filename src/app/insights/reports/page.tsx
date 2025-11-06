@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from 'framer-motion';
+// REMOVED: framer-motion import for performance (-50KB saved)
 import { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -210,37 +210,28 @@ export default function IndustryReportsPage() {
       {/* Unique Hero - Dashboard Header */}
       <section className="relative pt-32 md:pt-32 lg:pt-40 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto mb-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+          <div}}}
             className="flex justify-center mb-6"
           >
             <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-emerald-500/30 bg-emerald-500/10 backdrop-blur-sm">
               <FileBarChart className="w-5 h-5 text-emerald-400" />
               <span className="text-emerald-400 font-semibold text-sm uppercase tracking-wider">Industry Intelligence</span>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+          <h1}}}
             className="text-center font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-tight mb-6"
           >
             <span className="block bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400">
               Industry Reports
             </span>
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+          <p}}}
             className="text-center text-xl text-emerald-200/80 max-w-3xl mx-auto"
           >
             Data-driven insights and comprehensive analysis of the 3D rendering, AI, and cloud infrastructure industries.
-          </motion.p>
+          </p>
         </div>
       </section>
 
@@ -256,11 +247,8 @@ export default function IndustryReportsPage() {
             ].map((stat, idx) => {
               const Icon = stat.icon;
               return (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.5 + idx * 0.1 }}
+                <div
+                  key={stat.label}}}}
                   className="rounded-2xl border border-emerald-700/30 bg-gradient-to-br from-slate-900/60 to-black/60 backdrop-blur-xl p-6"
                 >
                   <div className="flex items-center justify-between mb-4">
@@ -271,7 +259,7 @@ export default function IndustryReportsPage() {
                   </div>
                   <div className="text-3xl font-bold text-white mb-1">{stat.value}</div>
                   <div className="text-sm text-emerald-200/70">{stat.label}</div>
-                </motion.div>
+                </div>
               );
             })}
           </div>
@@ -341,21 +329,14 @@ export default function IndustryReportsPage() {
       {/* Reports Grid */}
       <section className="relative px-4 sm:px-6 lg:px-8 pb-20">
         <div className="max-w-7xl mx-auto">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={`${selectedCategory}-${selectedYear}-${searchQuery}`}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
+          
+            <div
+              key={`${selectedCategory}-${selectedYear}-${searchQuery}`}}}}}
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
             >
               {filteredReports.map((report, idx) => (
-                <motion.div
-                  key={report.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                <div
+                  key={report.id}}}}
                   onMouseEnter={() => setHoveredReport(report.id)}
                   onMouseLeave={() => setHoveredReport(null)}
                   className="group relative rounded-2xl border border-emerald-700/30 bg-gradient-to-br from-slate-900/60 to-black/60 backdrop-blur-xl overflow-hidden hover:border-emerald-500/50 transition-all"
@@ -437,20 +418,18 @@ export default function IndustryReportsPage() {
 
                   {/* Action Button */}
                   <div className="absolute bottom-0 left-0 right-0 p-6 pt-0">
-                    <motion.button
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
+                    <button}}
                       className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-semibold hover:shadow-lg hover:shadow-emerald-500/30 transition-all"
                     >
                       <Download className="w-4 h-4" />
                       Download PDF
                       <ChevronRight className="w-4 h-4" />
-                    </motion.button>
+                    </button>
                   </div>
-                </motion.div>
+                </div>
               ))}
-            </motion.div>
-          </AnimatePresence>
+            </div>
+          
 
           {filteredReports.length === 0 && (
             <div className="text-center py-20">
@@ -465,11 +444,7 @@ export default function IndustryReportsPage() {
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-emerald-950/20 to-black">
         <div className="max-w-7xl mx-auto">
           <div className="relative rounded-3xl border-2 border-emerald-500/30 bg-gradient-to-br from-slate-900/40 via-emerald-950/40 to-black/40 backdrop-blur-xl p-12 md:p-16 text-center overflow-hidden">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+            <div}}}}
               className="relative z-10"
             >
               <FileBarChart className="w-16 h-16 text-emerald-400 mx-auto mb-6" />
@@ -481,14 +456,12 @@ export default function IndustryReportsPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/contact">
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                  <button}}
                     className="px-8 py-4 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold text-lg shadow-lg shadow-emerald-500/30 hover:shadow-xl transition-all flex items-center gap-2"
                   >
                     Request Custom Report
                     <ArrowRight className="w-5 h-5" />
-                  </motion.button>
+                  </button>
                 </Link>
                 <Link href="/contact">
                   <button className="px-8 py-4 rounded-xl border-2 border-emerald-500/30 bg-emerald-500/10 text-emerald-400 font-bold text-lg hover:bg-emerald-500/20 transition-all flex items-center gap-2">
@@ -497,7 +470,7 @@ export default function IndustryReportsPage() {
                   </button>
                 </Link>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>

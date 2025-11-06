@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from 'framer-motion';
+// REMOVED: framer-motion import for performance (-50KB saved)
 import { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -162,43 +162,25 @@ export default function CaseStudiesPage() {
       <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-32 md:pt-32 lg:pt-40 px-4 sm:px-6 lg:px-8">
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-br from-amber-900/20 via-yellow-900/10 to-emerald-900/20"></div>
-          <motion.div
-            className="absolute top-1/4 left-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl"
-            animate={{
-              x: [0, 100, 0],
-              y: [0, 50, 0],
-              scale: [1, 1.2, 1]
-            }}
-            transition={{ duration: 20, repeat: Infinity }}
+          <div
+            className="absolute top-1/4 left-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl"}}
           />
-          <motion.div
-            className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl"
-            animate={{
-              x: [0, -100, 0],
-              y: [0, -50, 0],
-              scale: [1, 1.3, 1]
-            }}
-            transition={{ duration: 25, repeat: Infinity, delay: 2 }}
+          <div
+            className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl"}}
           />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto w-full">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+          <div}}}
             className="flex justify-center mb-8"
           >
             <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-amber-500/30 bg-amber-500/10 backdrop-blur-sm">
               <Award className="w-5 h-5 text-amber-400" />
               <span className="text-amber-400 font-semibold text-sm uppercase tracking-wider">Project Portfolio</span>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+          <div}}}
             className="text-center mb-6"
           >
             <h1 className="font-heading text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold leading-none mb-4">
@@ -207,21 +189,15 @@ export default function CaseStudiesPage() {
               </span>
               <span className="block text-white mt-2">Studies</span>
             </h1>
-          </motion.div>
+          </div>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+          <p}}}
             className="text-xl md:text-2xl text-amber-200/80 mb-12 text-center max-w-3xl mx-auto leading-relaxed"
           >
             Real projects. Real results. Discover how we've transformed rendering workflows for industry leaders.
-          </motion.p>
+          </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+          <div}}}
             className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-16"
           >
             {[
@@ -232,20 +208,17 @@ export default function CaseStudiesPage() {
             ].map((stat, index) => {
               const Icon = stat.icon;
               return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
+                <div
+                  key={index}}}}
                   className="text-center p-6 rounded-2xl border border-amber-700/30 bg-gradient-to-br from-amber-950/60 to-black/60 backdrop-blur-xl"
                 >
                   <Icon className="w-8 h-8 text-amber-400 mx-auto mb-3" />
                   <div className="text-3xl font-bold text-amber-400 mb-1">{stat.value}</div>
                   <div className="text-sm text-amber-200/70">{stat.label}</div>
-                </motion.div>
+                </div>
               );
             })}
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -257,10 +230,8 @@ export default function CaseStudiesPage() {
               const Icon = cat.icon;
               const isActive = selectedCategory === cat.id;
               return (
-                <motion.button
-                  key={cat.id}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                <button
+                  key={cat.id}}}
                   onClick={() => setSelectedCategory(cat.id)}
                   className={`flex items-center gap-2 px-5 py-2.5 rounded-full border-2 transition-all ${
                     isActive
@@ -270,7 +241,7 @@ export default function CaseStudiesPage() {
                 >
                   <Icon className="w-4 h-4" />
                   <span className="font-semibold text-sm">{cat.label}</span>
-                </motion.button>
+                </button>
               );
             })}
           </div>
@@ -280,29 +251,21 @@ export default function CaseStudiesPage() {
       {/* Case Studies Grid - Continue in next part due to length */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-black">
         <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+          <div}}}}
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
               All Projects
             </h2>
-          </motion.div>
+          </div>
 
-          <AnimatePresence mode="wait">
+          
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredCases.map((caseStudy, index) => {
                 const isExpanded = expandedCase === caseStudy.id;
                 return (
-                  <motion.div
-                    key={caseStudy.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                  <div
+                    key={caseStudy.id}}}}}
                     className="relative rounded-2xl border-2 border-amber-700/30 bg-gradient-to-br from-amber-950/60 to-black/60 backdrop-blur-xl overflow-hidden group"
                   >
                     {/* Before/After Mini Slider */}
@@ -326,9 +289,7 @@ export default function CaseStudiesPage() {
                         </div>
                         {/* After Image - Full Quality */}
                         <div
-                          className="absolute inset-0"
-                          style={{
-                            clipPath: `inset(0 ${100 - (sliderPosition[caseStudy.id] || 50)}% 0 0)`
+                          className="absolute inset-0"% 0 0)`
                           }}
                         >
                           <Image
@@ -341,8 +302,7 @@ export default function CaseStudiesPage() {
                         </div>
                         {/* Slider Line */}
                         <div
-                          className="absolute top-0 bottom-0 w-0.5 bg-amber-400 shadow-lg z-10"
-                          style={{ left: `${sliderPosition[caseStudy.id] || 50}%` }}
+                          className="absolute top-0 bottom-0 w-0.5 bg-amber-400 shadow-lg z-10"%` }}
                         >
                           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-amber-400 border-2 border-white shadow-lg flex items-center justify-center">
                             <div className="w-2 h-2 bg-white rounded-full"></div>
@@ -416,13 +376,9 @@ export default function CaseStudiesPage() {
                       </button>
 
                       {/* Expanded Content */}
-                      <AnimatePresence>
+                      
                         {isExpanded && (
-                          <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: "auto", opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.3 }}
+                          <div}}}}
                             className="overflow-hidden mt-4"
                           >
                             <div className="space-y-4 pt-4 border-t border-amber-800/30">
@@ -466,15 +422,15 @@ export default function CaseStudiesPage() {
                                 </div>
                               </div>
                             </div>
-                          </motion.div>
+                          </div>
                         )}
-                      </AnimatePresence>
+                      
                     </div>
-                  </motion.div>
+                  </div>
                 );
               })}
             </div>
-          </AnimatePresence>
+          
         </div>
       </section>
 
@@ -482,11 +438,7 @@ export default function CaseStudiesPage() {
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-amber-950/20 to-black">
         <div className="max-w-7xl mx-auto">
           <div className="relative rounded-3xl border-2 border-amber-500/30 bg-gradient-to-br from-amber-950/40 via-yellow-950/40 to-black/40 backdrop-blur-xl p-12 md:p-16 text-center overflow-hidden">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+            <div}}}}
               className="relative z-10"
             >
               <Award className="w-16 h-16 text-amber-400 mx-auto mb-6" />
@@ -498,14 +450,12 @@ export default function CaseStudiesPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/contact">
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                  <button}}
                     className="px-8 py-4 rounded-xl bg-gradient-to-r from-amber-600 to-yellow-600 text-white font-bold text-lg shadow-lg shadow-amber-500/30 hover:shadow-xl transition-all flex items-center gap-2"
                   >
                     Start Your Project
                     <ArrowRight className="w-5 h-5" />
-                  </motion.button>
+                  </button>
                 </Link>
                 <Link href="/contact">
                   <button className="px-8 py-4 rounded-xl border-2 border-amber-500/30 bg-amber-500/10 text-amber-400 font-bold text-lg hover:bg-amber-500/20 transition-all flex items-center gap-2">
@@ -514,7 +464,7 @@ export default function CaseStudiesPage() {
                   </button>
                 </Link>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>

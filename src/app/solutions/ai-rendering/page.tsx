@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from 'framer-motion';
+// REMOVED: framer-motion import for performance (-50KB saved)
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { 
@@ -36,10 +36,7 @@ export default function AIRenderingPage() {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left Side - Content */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
+            <div}}}
             >
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-12 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center">
@@ -62,23 +59,18 @@ export default function AIRenderingPage() {
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link href="/contact">
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                  <button}}
                     className="px-8 py-4 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-lg shadow-lg shadow-purple-500/30 hover:shadow-xl transition-all flex items-center gap-2"
                   >
                     Experience AI Rendering
                     <ArrowRight className="w-5 h-5" />
-                  </motion.button>
+                  </button>
                 </Link>
               </div>
-            </motion.div>
+            </div>
 
             {/* Right Side - Visual Stats Grid */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+            <div}}}
               className="grid grid-cols-2 gap-6"
             >
               {[
@@ -87,19 +79,16 @@ export default function AIRenderingPage() {
                 { value: "24/7", label: "Learning", icon: Brain, color: "from-purple-500 to-pink-500" },
                 { value: "∞", label: "Iterations", icon: Infinity, color: "from-pink-500 to-purple-700" }
               ].map((stat, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
+                <div
+                  key={index}}}}
                   className={`relative rounded-2xl p-6 bg-gradient-to-br ${stat.color} border border-white/10`}
                 >
                   <stat.icon className="w-8 h-8 mb-3 text-white" />
                   <div className="text-3xl font-bold text-white mb-1">{stat.value}</div>
                   <div className="text-sm text-white/80">{stat.label}</div>
-                </motion.div>
+                </div>
               ))}
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -107,11 +96,7 @@ export default function AIRenderingPage() {
       {/* What is AI Rendering - Timeline Style */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-purple-950/20 to-black">
         <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+          <div}}}}
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl font-bold mb-4 text-white">
@@ -120,7 +105,7 @@ export default function AIRenderingPage() {
             <p className="text-lg text-zinc-400 max-w-3xl mx-auto">
               Traditional rendering relies on computational physics. AI rendering learns from millions of real-world scenes.
             </p>
-          </motion.div>
+          </div>
 
           {/* Timeline */}
           <div className="relative">
@@ -147,12 +132,8 @@ export default function AIRenderingPage() {
                 color: "border-pink-500/30 bg-pink-950/20"
               }
             ].map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
+              <div
+                key={index}}}}}
                 className="relative mb-12 md:pl-20"
               >
                 <div className="absolute left-0 top-0 w-16 h-16 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 border-4 border-black flex items-center justify-center hidden md:flex">
@@ -165,7 +146,7 @@ export default function AIRenderingPage() {
                   </div>
                   <p className="text-zinc-300">{item.description}</p>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -174,11 +155,7 @@ export default function AIRenderingPage() {
       {/* Neural Network Features - Network Style */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+          <div}}}}
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl font-bold mb-4 text-white">
@@ -187,7 +164,7 @@ export default function AIRenderingPage() {
             <p className="text-lg text-zinc-400">
               Powered by advanced deep learning architectures
             </p>
-          </motion.div>
+          </div>
 
           {/* Network Grid Layout */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -211,12 +188,8 @@ export default function AIRenderingPage() {
                 connections: ["PBR Materials", "Texture Synthesis", "Surface Response"]
               }
             ].map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+              <div
+                key={index}}}}}
                 className="relative rounded-3xl border-2 border-purple-500/30 bg-gradient-to-br from-black/60 via-purple-950/40 to-black/60 backdrop-blur-xl p-8 hover:border-pink-500/50 transition-all group"
               >
                 <div className="absolute top-4 right-4 w-16 h-16 rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
@@ -234,7 +207,7 @@ export default function AIRenderingPage() {
                     </div>
                   ))}
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -243,17 +216,13 @@ export default function AIRenderingPage() {
       {/* Industry Applications - Card Stack Style */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-pink-950/20 to-black">
         <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+          <div}}}}
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl font-bold mb-4 text-white">
               Industry Applications
             </h2>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
@@ -310,12 +279,8 @@ export default function AIRenderingPage() {
                 borderColor: "border-green-500/30"
               }
             ].map((useCase, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+              <div
+                key={index}}}}}
                 className={`relative rounded-3xl border-2 ${useCase.borderColor} bg-gradient-to-br ${useCase.gradient} backdrop-blur-xl p-8 hover:scale-[1.02] transition-transform duration-300`}
               >
                 <useCase.icon className="w-12 h-12 text-white mb-6" />
@@ -324,16 +289,15 @@ export default function AIRenderingPage() {
                 <div className="flex flex-wrap gap-2">
                   {useCase.examples.map((example, idx) => (
                     <Link key={idx} href={example.href}>
-                      <motion.span
-                        whileHover={{ scale: 1.05 }}
+                      <span}
                         className="inline-block px-3 py-1 rounded-full bg-white/10 text-xs text-zinc-300 border border-white/20 hover:bg-white/20 hover:border-purple-400/50 hover:text-purple-300 transition-all cursor-pointer"
                       >
                         {example.label}
-                      </motion.span>
+                      </span>
                     </Link>
                   ))}
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -342,17 +306,13 @@ export default function AIRenderingPage() {
       {/* How It Works - Process Flow */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+          <div}}}}
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl font-bold mb-4 text-white">
               AI Rendering Process
             </h2>
-          </motion.div>
+          </div>
 
           {/* Horizontal Flow */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -382,12 +342,8 @@ export default function AIRenderingPage() {
                 icon: Sparkles
               }
             ].map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+              <div
+                key={index}}}}}
                 className="relative"
               >
                 <div className="relative rounded-3xl border-2 border-purple-500/30 bg-gradient-to-br from-black/60 via-purple-950/40 to-black/60 backdrop-blur-xl p-6 text-center h-full">
@@ -401,7 +357,7 @@ export default function AIRenderingPage() {
                     <ArrowRight className="w-6 h-6 text-purple-500/50" />
                   </div>
                 )}
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -410,17 +366,13 @@ export default function AIRenderingPage() {
       {/* Technology Stack - Minimal Cards */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-purple-950/20 to-black">
         <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+          <div}}}}
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl font-bold mb-4 text-white">
               Advanced Technology Stack
             </h2>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
             {[
@@ -430,17 +382,13 @@ export default function AIRenderingPage() {
               { name: "Path Tracing", icon: Sparkles },
               { name: "PBR Materials", icon: Layers }
             ].map((tech, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+              <div
+                key={index}}}}}
                 className="rounded-2xl border border-purple-500/20 bg-black/40 backdrop-blur-xl p-6 text-center hover:border-pink-500/50 transition-all group"
               >
                 <tech.icon className="w-10 h-10 text-purple-400 mx-auto mb-3 group-hover:text-pink-400 transition-colors" />
                 <h3 className="text-sm font-semibold text-white">{tech.name}</h3>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -450,11 +398,7 @@ export default function AIRenderingPage() {
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+            <div}}}}
             >
               <h2 className="font-heading text-4xl md:text-5xl font-bold mb-6 text-white">
                 Ready to Experience
@@ -478,13 +422,9 @@ export default function AIRenderingPage() {
                   </div>
                 ))}
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+            <div}}}}
               className="relative rounded-3xl border-2 border-purple-500/30 bg-gradient-to-br from-purple-950/40 via-pink-950/40 to-purple-950/40 backdrop-blur-xl p-10 text-center"
             >
               <Rocket className="w-16 h-16 text-purple-400 mx-auto mb-6" />
@@ -495,16 +435,14 @@ export default function AIRenderingPage() {
                 Get started with our AI rendering platform today.
               </p>
               <Link href="/contact">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                <button}}
                   className="w-full px-8 py-4 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-lg shadow-lg shadow-purple-500/30 hover:shadow-xl transition-all flex items-center justify-center gap-2"
                 >
                   Get Started Now
                   <ArrowRight className="w-5 h-5" />
-                </motion.button>
+                </button>
               </Link>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>

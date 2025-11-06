@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from 'framer-motion';
+// REMOVED: framer-motion import for performance (-50KB saved)
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Rotatable3DModel from '@/components/Rotatable3DModel';
@@ -42,10 +42,7 @@ export default function ImageTo3DPage() {
       {/* Unique Hero - Before/After Split */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+          <div}}}
             className="text-center mb-16"
           >
             <div className="flex items-center justify-center gap-4 mb-6">
@@ -68,24 +65,19 @@ export default function ImageTo3DPage() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link href="/contact">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                <button}}
                   className="px-8 py-4 rounded-xl bg-gradient-to-r from-pink-600 to-purple-600 text-white font-bold text-lg shadow-lg shadow-pink-500/30 hover:shadow-xl transition-all flex items-center gap-2"
                 >
                   Start Converting
                   <ArrowRight className="w-5 h-5" />
-                </motion.button>
+                </button>
               </Link>
             </div>
-          </motion.div>
+          </div>
 
                      {/* Before/After Visual */}
            <div className="relative">
-             <motion.div
-               initial={{ opacity: 0, scale: 0.95 }}
-               animate={{ opacity: 1, scale: 1 }}
-               transition={{ duration: 0.8, delay: 0.3 }}
+             <div}}}
                className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto"
              >
                {/* Before - 2D Image */}
@@ -109,8 +101,7 @@ export default function ImageTo3DPage() {
                            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-4 h-8 bg-purple-600/60 rounded-t border border-purple-400/50"></div>
                          </div>
                          {/* Roof */}
-                         <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-32 h-12 bg-gradient-to-br from-pink-400/60 to-purple-400/60" 
-                              style={{ clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)' }}></div>
+                         <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-32 h-12 bg-gradient-to-br from-pink-400/60 to-purple-400/60"}></div>
                          {/* Ground */}
                          <div className="absolute top-full left-0 w-40 h-4 bg-gradient-to-r from-green-600/30 via-green-500/30 to-green-600/30 mt-2"></div>
                        </div>
@@ -122,13 +113,11 @@ export default function ImageTo3DPage() {
 
                {/* Arrow */}
                <div className="hidden md:flex items-center justify-center absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 pointer-events-none">
-                 <motion.div
-                   animate={{ x: [0, 10, 0] }}
-                   transition={{ duration: 2, repeat: Infinity }}
+                 <div}}
                    className="w-16 h-16 rounded-full bg-gradient-to-r from-pink-600 to-purple-600 flex items-center justify-center border-4 border-black shadow-2xl"
                  >
                    <ArrowLeftRight className="w-8 h-8 text-white" />
-                 </motion.div>
+                 </div>
                </div>
 
                {/* After - 3D Model */}
@@ -143,7 +132,7 @@ export default function ImageTo3DPage() {
                  </div>
                  <p className="text-center text-pink-400 mt-4 text-sm font-semibold">Fully Navigable 3D Model</p>
                </div>
-             </motion.div>
+             </div>
            </div>
         </div>
       </section>
@@ -151,11 +140,7 @@ export default function ImageTo3DPage() {
       {/* Transformation Pipeline - Vertical Flow */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-pink-950/10 to-black">
         <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+          <div}}}}
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl font-bold mb-4 text-white">
@@ -164,7 +149,7 @@ export default function ImageTo3DPage() {
             <p className="text-lg text-zinc-400 max-w-3xl mx-auto">
               From a simple photo to a complete 3D model in three steps
             </p>
-          </motion.div>
+          </div>
 
           {/* Vertical Pipeline */}
           <div className="relative">
@@ -194,12 +179,8 @@ export default function ImageTo3DPage() {
                 color: "from-cyan-500 to-cyan-700"
               }
             ].map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
+              <div
+                key={index}}}}}
                 className="relative mb-12 md:pl-32"
               >
                 <div className={`absolute left-0 top-0 w-24 h-24 rounded-full bg-gradient-to-br ${item.color} border-4 border-black flex items-center justify-center hidden md:flex`}>
@@ -212,7 +193,7 @@ export default function ImageTo3DPage() {
                   </div>
                   <p className="text-zinc-300 leading-relaxed">{item.description}</p>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -221,17 +202,13 @@ export default function ImageTo3DPage() {
       {/* Key Features - Icon Grid with Descriptions */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+          <div}}}}
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl font-bold mb-4 text-white">
               Powerful Conversion Features
             </h2>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
@@ -278,18 +255,14 @@ export default function ImageTo3DPage() {
                 borderColor: "border-cyan-500/30"
               }
             ].map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+              <div
+                key={index}}}}}
                 className={`relative rounded-3xl border-2 ${feature.borderColor} bg-gradient-to-br ${feature.gradient} backdrop-blur-xl p-8 hover:scale-105 transition-transform duration-300`}
               >
                 <feature.icon className="w-12 h-12 text-white mb-6" />
                 <h3 className="font-heading text-xl font-bold text-white mb-4">{feature.title}</h3>
                 <p className="text-zinc-300 leading-relaxed">{feature.description}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -298,17 +271,13 @@ export default function ImageTo3DPage() {
       {/* Use Cases - Comparison Cards */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-purple-950/10 to-black">
         <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+          <div}}}}
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl font-bold mb-4 text-white">
               Industry Applications
             </h2>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
@@ -365,12 +334,8 @@ export default function ImageTo3DPage() {
                 borderColor: "border-cyan-500/30"
               }
             ].map((useCase, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+              <div
+                key={index}}}}}
                 className={`relative rounded-3xl border-2 ${useCase.borderColor} bg-gradient-to-br ${useCase.gradient} backdrop-blur-xl p-8 hover:scale-[1.02] transition-transform duration-300`}
               >
                 <useCase.icon className="w-12 h-12 text-white mb-6" />
@@ -379,16 +344,15 @@ export default function ImageTo3DPage() {
                 <div className="flex flex-wrap gap-2">
                   {useCase.examples.map((example, idx) => (
                     <Link key={idx} href={example.href}>
-                      <motion.span
-                        whileHover={{ scale: 1.05 }}
+                      <span}
                         className="inline-block px-3 py-1 rounded-full bg-white/10 text-xs text-zinc-300 border border-white/20 hover:bg-white/20 hover:border-pink-400/50 hover:text-pink-300 transition-all cursor-pointer"
                       >
                         {example.label}
-                      </motion.span>
+                      </span>
                     </Link>
                   ))}
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -397,17 +361,13 @@ export default function ImageTo3DPage() {
       {/* Technology - Stacked Cards */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+          <div}}}}
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl font-bold mb-4 text-white">
               Advanced Technology
             </h2>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
@@ -418,18 +378,14 @@ export default function ImageTo3DPage() {
               { name: "Mesh Generation", description: "High-quality 3D mesh creation", icon: Layers },
               { name: "Format Conversion", description: "Export to multiple 3D file formats", icon: Code }
             ].map((tech, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+              <div
+                key={index}}}}}
                 className="rounded-2xl border border-pink-500/20 bg-black/40 backdrop-blur-xl p-6 hover:border-purple-500/50 transition-all"
               >
                 <tech.icon className="w-8 h-8 text-pink-400 mb-4" />
                 <h3 className="font-heading text-lg font-bold text-white mb-2">{tech.name}</h3>
                 <p className="text-sm text-zinc-400">{tech.description}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -439,11 +395,7 @@ export default function ImageTo3DPage() {
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-pink-950/10 to-black">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+            <div}}}}
             >
               <h2 className="font-heading text-4xl md:text-5xl font-bold mb-6 text-white">
                 Ready to Transform
@@ -467,13 +419,9 @@ export default function ImageTo3DPage() {
                   </div>
                 ))}
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+            <div}}}}
               className="relative rounded-3xl border-2 border-pink-500/30 bg-gradient-to-br from-pink-950/40 via-purple-950/40 to-cyan-950/40 backdrop-blur-xl p-10 text-center"
             >
               <Box className="w-16 h-16 text-pink-400 mx-auto mb-6" />
@@ -484,16 +432,14 @@ export default function ImageTo3DPage() {
                 Upload your photos and get started with 3D conversion.
               </p>
               <Link href="/contact">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                <button}}
                   className="w-full px-8 py-4 rounded-xl bg-gradient-to-r from-pink-600 to-purple-600 text-white font-bold text-lg shadow-lg shadow-pink-500/30 hover:shadow-xl transition-all flex items-center justify-center gap-2"
                 >
                   Convert Now
                   <ArrowRight className="w-5 h-5" />
-                </motion.button>
+                </button>
               </Link>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>

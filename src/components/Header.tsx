@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Search, User, Menu, X, ChevronDown } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+// REMOVED: framer-motion import for performance (-50KB saved)
 import Link from 'next/link';
 import AnimatedGlobe from './AnimatedGlobe';
 
@@ -67,7 +67,7 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 left-0 z-30 w-full p-6">
-      <div className="mx-auto flex max-w-7xl items-center justify-between rounded-full bg-black/30 p-2 px-6 backdrop-blur-sm" style={{ boxShadow: '0 0 20px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 255, 255, 0.1), inset 0 0 20px rgba(0, 0, 0, 0.3)' }}>
+      <div className="mx-auto flex max-w-7xl items-center justify-between rounded-full bg-black/30 p-2 px-6 backdrop-blur-sm"}>
         {/* Logo */}
         <div className="flex items-center gap-2">
           <AnimatedGlobe />
@@ -92,22 +92,14 @@ export default function Header() {
                     </Link>
                     
                     {/* Dropdown Menu */}
-                    <AnimatePresence>
+                    
                       {openDropdown === item && (
-                        <motion.div
-                          initial={{ opacity: 0, y: -10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -10 }}
-                          transition={{ duration: 0.3 }}
-                          className="absolute top-full left-0 mt-2 min-w-[220px] rounded-2xl border border-cyan-500/30 bg-black/95 backdrop-blur-xl p-2 shadow-2xl"
-                          style={{ boxShadow: '0 20px 60px rgba(0, 255, 255, 0.1), inset 0 0 30px rgba(0, 255, 255, 0.05)' }}
+                        <div}}}}
+                          className="absolute top-full left-0 mt-2 min-w-[220px] rounded-2xl border border-cyan-500/30 bg-black/95 backdrop-blur-xl p-2 shadow-2xl"}
                         >
                           {dropdownItems[item]?.map((subItem, index) => (
-                            <motion.div
-                              key={subItem.href}
-                              initial={{ opacity: 0, x: -10 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: index * 0.05 }}
+                            <div
+                              key={subItem.href}}}}
                             >
                               <Link
                                 href={subItem.href}
@@ -125,11 +117,11 @@ export default function Header() {
                                   <span className="opacity-0 group-hover:opacity-100 transition-opacity">→</span>
                                 </div>
                               </Link>
-                            </motion.div>
+                            </div>
                           ))}
-                        </motion.div>
+                        </div>
                       )}
-                    </AnimatePresence>
+                    
                   </div>
                 ) : (
                   <Link href={getNavLink(item)} className="block px-3 py-2 text-sm text-zinc-300 transition-colors hover:text-white rounded-lg hover:bg-white/5">
@@ -177,26 +169,17 @@ export default function Header() {
       </div>
 
       {/* Search Popup Modal */}
-      <AnimatePresence>
+      
         {showSearch && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
+          <div}}}}
             className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm"
             onClick={() => setShowSearch(false)}
           >
-            <motion.div
-              initial={{ y: -50, opacity: 0, scale: 0.95 }}
-              animate={{ y: 0, opacity: 1, scale: 1 }}
-              exit={{ y: -50, opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
+            <div}}}}
               className="absolute top-24 left-1/2 transform -translate-x-1/2 w-full max-w-2xl mx-4"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="relative rounded-2xl border border-cyan-500/30 bg-black/95 backdrop-blur-xl p-6 shadow-2xl"
-                style={{ boxShadow: '0 20px 60px rgba(0, 255, 255, 0.2), inset 0 0 30px rgba(0, 255, 255, 0.05)' }}
+              <div className="relative rounded-2xl border border-cyan-500/30 bg-black/95 backdrop-blur-xl p-6 shadow-2xl"}
               >
                 {/* Close button */}
                 <button
@@ -223,24 +206,16 @@ export default function Header() {
                   <p>Popular searches: AI Rendering, Cloud GPU, Sustainability</p>
                 </div>
               </div>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         )}
-      </AnimatePresence>
+      
 
       {/* Mobile Menu - Slide down from top */}
-      <AnimatePresence>
+      
         {isMenuOpen && (
-          <motion.div
-            initial={{ y: -100, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -100, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            className="lg:hidden fixed top-0 left-0 w-full h-screen bg-black/80 backdrop-blur-xl border-b border-cyan-400/30 overflow-y-auto"
-            style={{ 
-              boxShadow: '0 10px 40px rgba(0, 0, 0, 0.5), 0 0 60px rgba(0, 255, 255, 0.1), inset 0 0 100px rgba(0, 255, 255, 0.05)',
-              background: 'linear-gradient(to bottom, rgba(0, 20, 40, 0.9), rgba(0, 10, 20, 0.8)), url("data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.02"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")'
-            }}
+          <div}}}}
+            className="lg:hidden fixed top-0 left-0 w-full h-screen bg-black/80 backdrop-blur-xl border-b border-cyan-400/30 overflow-y-auto"}
           >
             <div className="mx-auto max-w-7xl px-6 py-12 pt-20">
               {/* Close button */}
@@ -258,10 +233,7 @@ export default function Header() {
                 <ul className="flex flex-col gap-2">
                   {navItems.map((item, index) => (
                     <li key={item}>
-                      <motion.div
-                        initial={{ x: -20, opacity: 0 }}
-                        animate={{ x: 0, opacity: 1 }}
-                        transition={{ delay: index * 0.05 }}
+                      <div}}}
                       >
                         {hasDropdown(item) ? (
                           <div>
@@ -272,13 +244,9 @@ export default function Header() {
                               <span>{item}</span>
                               <ChevronDown className={`h-5 w-5 transition-transform duration-300 ${openDropdown === item ? 'rotate-180' : ''}`} />
                             </button>
-                            <AnimatePresence>
+                            
                               {openDropdown === item && (
-                                <motion.div
-                                  initial={{ height: 0, opacity: 0 }}
-                                  animate={{ height: 'auto', opacity: 1 }}
-                                  exit={{ height: 0, opacity: 0 }}
-                                  transition={{ duration: 0.3 }}
+                                <div}}}}
                                   className="overflow-hidden"
                                 >
                                   <div className="pl-4 pt-2 pb-2 space-y-2">
@@ -293,9 +261,9 @@ export default function Header() {
                                       </Link>
                                     ))}
                                   </div>
-                                </motion.div>
+                                </div>
                               )}
-                            </AnimatePresence>
+                            
                           </div>
                         ) : (
                           <Link
@@ -306,7 +274,7 @@ export default function Header() {
                             {item}
                           </Link>
                         )}
-                      </motion.div>
+                      </div>
                     </li>
                   ))}
                 </ul>
@@ -340,9 +308,9 @@ export default function Header() {
                 </Link>
               </div>
             </div>
-          </motion.div>
+          </div>
         )}
-      </AnimatePresence>
+      
     </header>
   );
 }

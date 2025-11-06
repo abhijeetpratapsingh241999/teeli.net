@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from 'framer-motion';
+// REMOVED: framer-motion import for performance (-50KB saved)
 import Header from '@/components/Header';
 import { FileText, Scale, Shield, AlertTriangle, CheckCircle, Ban } from 'lucide-react';
 import Link from 'next/link';
@@ -53,14 +53,11 @@ export default function TermsPage() {
       <section className="relative min-h-screen w-full bg-black flex items-center justify-center px-4 py-24 pt-32 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-0 left-1/4 w-96 h-96 bg-orange-500/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-red-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-red-500/20 rounded-full blur-3xl animate-pulse"}></div>
         </div>
 
         <div className="relative z-10 mx-auto max-w-6xl text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+          <div}}}
           >
             <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-r from-orange-500/20 to-red-500/20 mb-6">
               <FileText className="w-10 h-10 text-orange-400" />
@@ -74,7 +71,7 @@ export default function TermsPage() {
             <p className="text-sm text-zinc-400">
               Last updated: December 2024 | Effective as of January 1, 2024
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -83,14 +80,9 @@ export default function TermsPage() {
         <div className="mx-auto max-w-4xl">
           <div className="space-y-8">
             {sections.map((section, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="relative rounded-2xl border-2 border-orange-500/20 bg-gradient-to-br from-black/60 via-red-950/20 to-black/60 backdrop-blur-xl p-8"
-                style={{ boxShadow: '0 10px 30px rgba(249, 115, 22, 0.05)' }}
+              <div
+                key={index}}}}}
+                className="relative rounded-2xl border-2 border-orange-500/20 bg-gradient-to-br from-black/60 via-red-950/20 to-black/60 backdrop-blur-xl p-8"}
               >
                 <div className="flex items-start gap-4">
                   <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-r from-orange-500 to-red-600 flex-shrink-0">
@@ -105,7 +97,7 @@ export default function TermsPage() {
                     </p>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -114,12 +106,8 @@ export default function TermsPage() {
       {/* Additional Terms */}
       <section className="relative w-full bg-gradient-to-b from-black via-zinc-900 to-black py-24 px-4">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="relative rounded-3xl border-2 border-orange-500/30 bg-gradient-to-br from-black/80 via-red-950/30 to-black/80 backdrop-blur-xl p-12"
-            style={{ boxShadow: '0 20px 60px rgba(249, 115, 22, 0.1)' }}
+          <div}}}
+            className="relative rounded-3xl border-2 border-orange-500/30 bg-gradient-to-br from-black/80 via-red-950/30 to-black/80 backdrop-blur-xl p-12"}
           >
             <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-orange-500/10 to-transparent rounded-bl-full"></div>
             <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-red-500/10 to-transparent rounded-tr-full"></div>
@@ -169,17 +157,14 @@ export default function TermsPage() {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Contact Section */}
       <section className="relative w-full bg-black py-24 px-4 border-y border-white/10">
         <div className="mx-auto max-w-4xl text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div}}}
           >
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4">
               Questions About Our Terms?
@@ -193,7 +178,7 @@ export default function TermsPage() {
             >
               Contact Legal Team
             </Link>
-          </motion.div>
+          </div>
         </div>
       </section>
 

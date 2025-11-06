@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform } from 'framer-motion';
+// REMOVED: framer-motion import for performance (-50KB saved)
 import { useState, useRef } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -146,9 +146,7 @@ export default function AIMLStackPage() {
       <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-32 md:pt-32 lg:pt-40 px-4 sm:px-6 lg:px-8">
         {/* Matrix-style Background Pattern */}
         <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(236, 72, 153, 0.1) 2px, rgba(236, 72, 153, 0.1) 4px)`,
-          }}></div>
+          <div className="absolute inset-0"}></div>
         </div>
 
         {/* Animated Neural Network Nodes */}
@@ -157,22 +155,11 @@ export default function AIMLStackPage() {
             const x = (i % 5) * 20 + 10 + Math.random() * 5;
             const y = Math.floor(i / 5) * 20 + 10 + Math.random() * 5;
             return (
-              <motion.div
+              <div
                 key={i}
-                className="absolute w-3 h-3 rounded-full bg-pink-500"
-                style={{
-                  left: `${x}%`,
+                className="absolute w-3 h-3 rounded-full bg-pink-500"%`,
                   top: `${y}%`,
-                }}
-                animate={{
-                  opacity: [0.3, 1, 0.3],
-                  scale: [1, 1.5, 1]
-                }}
-                transition={{
-                  duration: 2 + Math.random(),
-                  repeat: Infinity,
-                  delay: Math.random() * 2
-                }}
+                }}}}
               />
             );
           })}
@@ -189,24 +176,15 @@ export default function AIMLStackPage() {
             return (
               <motion.svg
                 key={`line-${i}`}
-                className="absolute inset-0 pointer-events-none"
-                style={{ zIndex: 0 }}
+                className="absolute inset-0 pointer-events-none"}
               >
-                <motion.line
+                <line
                   x1={`${startX}%`}
                   y1={`${startY}%`}
                   x2={`${endX}%`}
                   y2={`${endY}%`}
                   stroke="rgba(236, 72, 153, 0.2)"
-                  strokeWidth="1"
-                  animate={{
-                    opacity: [0.1, 0.4, 0.1]
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    delay: i * 0.1
-                  }}
+                  strokeWidth="1"}}
                 />
               </motion.svg>
             );
@@ -215,45 +193,33 @@ export default function AIMLStackPage() {
 
         <div className="relative z-10 max-w-7xl mx-auto w-full">
           {/* Header Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+          <div}}}
             className="flex justify-center mb-8"
           >
             <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-pink-500/30 bg-pink-500/10 backdrop-blur-sm">
               <Brain className="w-5 h-5 text-pink-400" />
               <span className="text-pink-400 font-semibold text-sm uppercase tracking-wider">AI & Machine Learning Stack</span>
             </div>
-          </motion.div>
+          </div>
 
           {/* Main Title */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+          <h1}}}
             className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 text-center leading-tight"
           >
             <span className="block bg-clip-text text-transparent bg-gradient-to-r from-pink-400 via-rose-400 to-orange-400">
               Enterprise
             </span>
             <span className="block text-white mt-2">AI & ML Stack</span>
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+          <p}}}
             className="text-xl md:text-2xl text-pink-200/80 mb-12 text-center max-w-3xl mx-auto leading-relaxed"
           >
             Complete machine learning infrastructure from training to production with cutting-edge frameworks and tools.
-          </motion.p>
+          </p>
 
           {/* Neural Network Layer Visualization */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.6 }}
+          <div}}}
             className="relative w-full max-w-6xl mx-auto mb-12"
           >
             <div className="relative">
@@ -264,17 +230,13 @@ export default function AIMLStackPage() {
                   const isSelected = selectedLayer === layer.id;
 
                   return (
-                    <motion.div
-                      key={layer.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
+                    <div
+                      key={layer.id}}}}
                       onClick={() => setSelectedLayer(layer.id)}
                       className="cursor-pointer group relative"
                     >
                       {/* Node */}
-                      <motion.div
-                        whileHover={{ scale: 1.1 }}
+                      <div}
                         className={`relative w-24 h-24 md:w-28 md:h-28 rounded-full bg-gradient-to-br ${layer.color} ${
                           isSelected ? 'ring-4 ring-pink-400 ring-offset-4 ring-offset-black' : ''
                         } flex items-center justify-center transition-all duration-300 shadow-lg`}
@@ -283,13 +245,11 @@ export default function AIMLStackPage() {
                         
                         {/* Pulse Effect */}
                         {isSelected && (
-                          <motion.div
-                            animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
-                            transition={{ duration: 2, repeat: Infinity }}
+                          <div}}
                             className="absolute inset-0 rounded-full bg-pink-400"
                           />
                         )}
-                      </motion.div>
+                      </div>
 
                       {/* Label */}
                       <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 w-32">
@@ -302,22 +262,19 @@ export default function AIMLStackPage() {
 
                       {/* Connection Lines to Next Node */}
                       {index < mlStackLayers.length - 1 && (
-                        <div className="hidden md:block absolute top-1/2 left-full w-8 h-0.5 bg-gradient-to-r from-pink-500/50 to-transparent transform -translate-y-1/2 z-0"
-                          style={{ left: 'calc(100% + 1rem)' }}
+                        <div className="hidden md:block absolute top-1/2 left-full w-8 h-0.5 bg-gradient-to-r from-pink-500/50 to-transparent transform -translate-y-1/2 z-0"}
                         />
                       )}
-                    </motion.div>
+                    </div>
                   );
                 })}
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Selected Layer Details */}
-          <motion.div
-            key={selectedLayer}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+          <div
+            key={selectedLayer}}}
             className="max-w-3xl mx-auto mb-12"
           >
             <div className="relative rounded-2xl border-2 border-pink-500/30 bg-gradient-to-br from-pink-950/60 to-black/60 backdrop-blur-xl p-8">
@@ -338,24 +295,19 @@ export default function AIMLStackPage() {
                 ))}
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1 }}
+          <div}}}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <Link href="/contact">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+              <button}}
                 className="px-8 py-4 rounded-xl bg-gradient-to-r from-pink-600 to-rose-600 text-white font-bold text-lg shadow-lg shadow-pink-500/30 hover:shadow-xl transition-all flex items-center gap-2"
               >
                 Explore Stack
                 <ArrowRight className="w-5 h-5" />
-              </motion.button>
+              </button>
             </Link>
             <Link href="/contact">
               <button className="px-8 py-4 rounded-xl border-2 border-pink-500/30 bg-pink-500/10 text-pink-400 font-bold text-lg hover:bg-pink-500/20 transition-all flex items-center gap-2">
@@ -363,18 +315,14 @@ export default function AIMLStackPage() {
                 View Docs
               </button>
             </Link>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Capabilities - Grid Layout */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-purple-950/20 to-black">
         <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+          <div}}}}
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
@@ -383,18 +331,14 @@ export default function AIMLStackPage() {
             <p className="text-lg text-pink-200/80 max-w-3xl mx-auto">
               Enterprise-grade AI/ML infrastructure performance metrics
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {capabilities.map((capability, index) => {
               const Icon = capability.icon;
               return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                <div
+                  key={index}}}}}
                   className="relative rounded-2xl border-2 border-pink-700/30 bg-gradient-to-br from-purple-950/60 to-black/60 backdrop-blur-xl p-6 hover:border-pink-500/50 transition-all group overflow-hidden"
                 >
                   {/* Animated Background */}
@@ -408,7 +352,7 @@ export default function AIMLStackPage() {
                     <h4 className="font-heading text-lg font-bold text-white mb-2">{capability.title}</h4>
                     <p className="text-sm text-pink-200/70 leading-relaxed">{capability.description}</p>
                   </div>
-                </motion.div>
+                </div>
               );
             })}
           </div>
@@ -418,11 +362,7 @@ export default function AIMLStackPage() {
       {/* Framework Stack - Grid Layout */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-black">
         <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+          <div}}}}
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
@@ -431,16 +371,12 @@ export default function AIMLStackPage() {
             <p className="text-lg text-pink-200/80 max-w-3xl mx-auto">
               Comprehensive ML framework support and ecosystem
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {frameworks.map((framework, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+              <div
+                key={index}}}}}
                 className="relative rounded-2xl border-2 border-pink-700/30 bg-gradient-to-br from-purple-950/60 to-black/60 backdrop-blur-xl p-6 hover:border-pink-500/50 transition-all"
               >
                 <h3 className="font-heading text-xl font-bold text-white mb-4">{framework.category}</h3>
@@ -452,7 +388,7 @@ export default function AIMLStackPage() {
                     </div>
                   ))}
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -461,11 +397,7 @@ export default function AIMLStackPage() {
       {/* ML Pipeline - Flow Visualization */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-purple-950/20 to-black">
         <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+          <div}}}}
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
@@ -474,7 +406,7 @@ export default function AIMLStackPage() {
             <p className="text-lg text-pink-200/80 max-w-3xl mx-auto">
               End-to-end machine learning workflow from data to deployment
             </p>
-          </motion.div>
+          </div>
 
           {/* Pipeline Flow */}
           <div className="relative">
@@ -491,12 +423,8 @@ export default function AIMLStackPage() {
               ].map((stage, index) => {
                 const Icon = stage.icon;
                 return (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                  <div
+                    key={index}}}}}
                     className="relative"
                   >
                     {/* Connection Dot */}
@@ -511,7 +439,7 @@ export default function AIMLStackPage() {
                       </div>
                       <h3 className="font-heading text-lg font-bold text-white">{stage.title}</h3>
                     </div>
-                  </motion.div>
+                  </div>
                 );
               })}
             </div>
@@ -525,17 +453,10 @@ export default function AIMLStackPage() {
           <div className="relative rounded-3xl border-2 border-pink-500/30 bg-gradient-to-br from-purple-950/40 via-pink-950/40 to-black/40 backdrop-blur-xl p-12 md:p-16 text-center overflow-hidden">
             {/* Background Pattern - Neural Network */}
             <div className="absolute inset-0 opacity-10">
-              <div className="absolute inset-0" style={{
-                backgroundImage: `radial-gradient(circle at 20% 50%, rgba(236, 72, 153, 0.3) 0%, transparent 50%),
-                                 radial-gradient(circle at 80% 80%, rgba(244, 63, 94, 0.3) 0%, transparent 50%)`
-              }}></div>
+              <div className="absolute inset-0"}></div>
             </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+            <div}}}}
               className="relative z-10"
             >
               <Brain className="w-16 h-16 text-pink-400 mx-auto mb-6" />
@@ -547,14 +468,12 @@ export default function AIMLStackPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/contact">
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                  <button}}
                     className="px-8 py-4 rounded-xl bg-gradient-to-r from-pink-600 to-rose-600 text-white font-bold text-lg shadow-lg shadow-pink-500/30 hover:shadow-xl transition-all flex items-center gap-2"
                   >
                     Get Started
                     <ArrowRight className="w-5 h-5" />
-                  </motion.button>
+                  </button>
                 </Link>
                 <Link href="/contact">
                   <button className="px-8 py-4 rounded-xl border-2 border-pink-500/30 bg-pink-500/10 text-pink-400 font-bold text-lg hover:bg-pink-500/20 transition-all flex items-center gap-2">
@@ -563,7 +482,7 @@ export default function AIMLStackPage() {
                   </button>
                 </Link>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>

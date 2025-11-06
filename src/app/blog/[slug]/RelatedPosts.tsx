@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from 'framer-motion';
+// REMOVED: framer-motion import for performance (-50KB saved)
 import Link from 'next/link';
 import { BlogPost } from '@/lib/blog';
 import { useBlogTheme } from '@/components/BlogThemeProvider';
@@ -24,12 +24,8 @@ export default function RelatedPosts({ posts }: RelatedPostsProps) {
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
         {posts.map((post, index) => (
-          <motion.div
+          <div
             key={post.slug}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: index * 0.1 }}
             className="group"
           >
             <Link href={`/blog/${post.slug}`}>
@@ -64,7 +60,7 @@ export default function RelatedPosts({ posts }: RelatedPostsProps) {
                 </div>
               </div>
             </Link>
-          </motion.div>
+          </div>
         ))}
       </div>
     </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform } from 'framer-motion';
+// REMOVED: framer-motion import for performance (-50KB saved)
 import { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -84,23 +84,14 @@ export default function VirtualProductionPage() {
       {/* Unique Hero - Split Screen Studio View */}
       <section className="relative min-h-screen md:h-screen flex flex-col md:flex-row items-center overflow-hidden pt-32 md:pt-32 lg:pt-40">
         {/* Left Side - Live Feed Simulation */}
-        <motion.div 
-          className="w-full md:w-1/2 h-[50vh] md:h-full relative bg-gradient-to-br from-zinc-900 to-black border-b-2 md:border-b-0 md:border-r-2 border-amber-500/30"
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
+        <div 
+          className="w-full md:w-1/2 h-[50vh] md:h-full relative bg-gradient-to-br from-zinc-900 to-black border-b-2 md:border-b-0 md:border-r-2 border-amber-500/30"}}}
         >
           <div className="absolute inset-0 p-4 md:p-8">
             {/* Camera Viewport Frame */}
             <div className="relative h-full border-2 md:border-4 border-amber-400/50 rounded-lg overflow-hidden bg-black/80 backdrop-blur-sm">
               {/* Grid Overlay (like camera viewfinder) */}
-              <div className="absolute inset-0 opacity-20" style={{
-                backgroundImage: `
-                  linear-gradient(rgba(255, 193, 7, 0.3) 1px, transparent 1px),
-                  linear-gradient(90deg, rgba(255, 193, 7, 0.3) 1px, transparent 1px)
-                `,
-                backgroundSize: '50px 50px'
-              }}></div>
+              <div className="absolute inset-0 opacity-20"}></div>
               
               {/* Virtual Set Visualization */}
               <div className="absolute inset-0 flex items-center justify-center">
@@ -109,34 +100,22 @@ export default function VirtualProductionPage() {
                   <div className="w-64 h-40 md:w-96 md:h-64 bg-gradient-to-br from-cyan-900/40 via-blue-900/40 to-purple-900/40 rounded-lg border-2 border-cyan-500/30 shadow-2xl shadow-cyan-500/20">
                     {/* Virtual Environment Elements */}
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <motion.div
-                        animate={{ 
-                          scale: [1, 1.05, 1],
-                          opacity: [0.6, 0.8, 0.6]
-                        }}
-                        transition={{ duration: 4, repeat: Infinity }}
+                      <div}}
                         className="absolute top-1/4 left-1/4 w-20 h-20 bg-gradient-to-br from-purple-500/30 to-pink-500/30 rounded-full blur-xl"
-                      ></motion.div>
-                      <motion.div
-                        animate={{ 
-                          scale: [1, 1.08, 1],
-                          opacity: [0.5, 0.7, 0.5]
-                        }}
-                        transition={{ duration: 5, repeat: Infinity, delay: 1 }}
+                      ></div>
+                      <div}}
                         className="absolute bottom-1/4 right-1/4 w-24 h-24 bg-gradient-to-br from-cyan-500/30 to-blue-500/30 rounded-full blur-xl"
-                      ></motion.div>
+                      ></div>
                     </div>
                   </div>
                   
                   {/* Camera Tracking Indicator */}
-                  <motion.div
-                    animate={{ x: [-20, 20, -20] }}
-                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                  <div}}
                     className="absolute -top-4 left-1/2 transform -translate-x-1/2 px-4 py-2 bg-amber-500/20 border border-amber-400/50 rounded-full text-xs text-amber-300 flex items-center gap-2"
                   >
                     <Radio className="w-3 h-3" />
                     <span>Tracking: Active</span>
-                  </motion.div>
+                  </div>
                 </div>
               </div>
 
@@ -150,17 +129,13 @@ export default function VirtualProductionPage() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* Right Side - Control Panel */}
-        <motion.div 
-          className="w-full md:w-1/2 h-auto md:h-full relative bg-gradient-to-br from-black to-zinc-950 flex flex-col justify-center px-6 md:px-12 py-12 md:py-0"
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
+        <div 
+          className="w-full md:w-1/2 h-auto md:h-full relative bg-gradient-to-br from-black to-zinc-950 flex flex-col justify-center px-6 md:px-12 py-12 md:py-0"}}}
         >
-          <motion.div
-            style={{ opacity, scale }}
+          <div}
             className="max-w-2xl"
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-amber-500/30 bg-amber-500/10 mb-8">
@@ -182,32 +157,26 @@ export default function VirtualProductionPage() {
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Link href="/contact">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                <button}}
                   className="px-8 py-4 rounded-xl bg-gradient-to-r from-amber-600 to-orange-600 text-white font-bold text-lg shadow-lg shadow-amber-500/30 hover:shadow-xl transition-all flex items-center gap-2"
                 >
                   Start Production
                   <ArrowRight className="w-5 h-5" />
-                </motion.button>
+                </button>
               </Link>
               <button className="px-8 py-4 rounded-xl border-2 border-amber-500/30 bg-amber-500/10 text-amber-400 font-bold text-lg hover:bg-amber-500/20 transition-all flex items-center gap-2">
                 <Play className="w-5 h-5" />
                 Watch Demo
               </button>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </section>
 
       {/* Production Timeline - Unique Horizontal Scrolling Section */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-zinc-950 to-black">
         <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+          <div}}}}
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
@@ -216,7 +185,7 @@ export default function VirtualProductionPage() {
             <p className="text-lg text-zinc-400 max-w-3xl mx-auto">
               From concept to final cut - seamless virtual production workflow
             </p>
-          </motion.div>
+          </div>
 
           {/* Interactive Timeline */}
           <div className="relative">
@@ -229,27 +198,20 @@ export default function VirtualProductionPage() {
                 const isSelected = selectedStage === stage.id;
                 
                 return (
-                  <motion.div
-                    key={stage.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                  <div
+                    key={stage.id}}}}}
                     onClick={() => setSelectedStage(stage.id)}
                     className="relative cursor-pointer group"
                   >
                     {/* Timeline Dot */}
                     <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 hidden md:block">
-                      <motion.div
-                        animate={isSelected ? { scale: [1, 1.3, 1] } : { scale: 1 }}
-                        transition={{ duration: 0.3 }}
+                      <div : { scale: 1 }}}
                         className={`w-6 h-6 rounded-full bg-gradient-to-r ${stage.color} border-4 border-black shadow-lg`}
-                      ></motion.div>
+                      ></div>
                     </div>
 
                     {/* Stage Card */}
-                    <motion.div
-                      whileHover={{ scale: 1.05, y: -10 }}
+                    <div}
                       className={`relative rounded-2xl border-2 p-6 md:p-8 transition-all duration-300 ${
                         isSelected
                           ? `border-amber-500/70 bg-gradient-to-br from-amber-950/40 to-orange-950/40 shadow-[0_0_40px_rgba(251,191,36,0.3)]`
@@ -261,8 +223,8 @@ export default function VirtualProductionPage() {
                       </div>
                       <h3 className="font-heading text-xl font-bold text-white mb-3 text-center">{stage.title}</h3>
                       <p className="text-sm text-zinc-400 text-center leading-relaxed">{stage.description}</p>
-                    </motion.div>
-                  </motion.div>
+                    </div>
+                  </div>
                 );
               })}
             </div>
@@ -273,11 +235,7 @@ export default function VirtualProductionPage() {
       {/* Technical Stack - Grid Layout with Real-Time Indicators */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-black">
         <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+          <div}}}}
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
@@ -286,7 +244,7 @@ export default function VirtualProductionPage() {
             <p className="text-lg text-zinc-400 max-w-3xl mx-auto">
               Industry-leading tools for professional virtual production
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
@@ -335,12 +293,8 @@ export default function VirtualProductionPage() {
             ].map((tech, index) => {
               const Icon = tech.icon;
               return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                <div
+                  key={index}}}}}
                   className="relative rounded-2xl border-2 border-zinc-700 bg-gradient-to-br from-zinc-900/60 to-black/60 backdrop-blur-xl p-6 hover:border-amber-500/50 transition-all group overflow-hidden"
                 >
                   {/* Animated Background Gradient */}
@@ -357,7 +311,7 @@ export default function VirtualProductionPage() {
                       <span className="font-semibold">{tech.stats}</span>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               );
             })}
           </div>
@@ -367,17 +321,13 @@ export default function VirtualProductionPage() {
       {/* Use Cases - Film Studio Theme */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-zinc-950 to-black">
         <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+          <div}}}}
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
               Production Applications
             </h2>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {[
@@ -410,12 +360,8 @@ export default function VirtualProductionPage() {
                 borderColor: "border-red-500/30"
               }
             ].map((useCase, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
+              <div
+                key={index}}}}}
                 className={`relative rounded-3xl border-2 ${useCase.borderColor} bg-gradient-to-br ${useCase.gradient} backdrop-blur-xl p-8 hover:scale-[1.02] transition-transform duration-300`}
               >
                 <Film className="w-12 h-12 text-white mb-6" />
@@ -429,7 +375,7 @@ export default function VirtualProductionPage() {
                     </div>
                   ))}
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -440,19 +386,9 @@ export default function VirtualProductionPage() {
         <div className="max-w-7xl mx-auto">
           <div className="relative rounded-3xl border-2 border-amber-500/30 bg-gradient-to-br from-amber-950/40 via-orange-950/40 to-red-950/40 backdrop-blur-xl p-12 md:p-16 text-center overflow-hidden">
             {/* Studio Floor Pattern Background */}
-            <div className="absolute inset-0 opacity-10" style={{
-              backgroundImage: `
-                linear-gradient(rgba(255, 193, 7, 0.2) 2px, transparent 2px),
-                linear-gradient(90deg, rgba(255, 193, 7, 0.2) 2px, transparent 2px)
-              `,
-              backgroundSize: '100px 100px'
-            }}></div>
+            <div className="absolute inset-0 opacity-10"}></div>
             
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+            <div}}}}
               className="relative z-10"
             >
               <Film className="w-16 h-16 text-amber-400 mx-auto mb-6" />
@@ -464,14 +400,12 @@ export default function VirtualProductionPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/contact">
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                  <button}}
                     className="px-8 py-4 rounded-xl bg-gradient-to-r from-amber-600 to-orange-600 text-white font-bold text-lg shadow-lg shadow-amber-500/30 hover:shadow-xl transition-all flex items-center gap-2"
                   >
                     Book Studio Session
                     <ArrowRight className="w-5 h-5" />
-                  </motion.button>
+                  </button>
                 </Link>
                 <Link href="/contact">
                   <button className="px-8 py-4 rounded-xl border-2 border-amber-500/30 bg-amber-500/10 text-amber-400 font-bold text-lg hover:bg-amber-500/20 transition-all">
@@ -479,7 +413,7 @@ export default function VirtualProductionPage() {
                   </button>
                 </Link>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>

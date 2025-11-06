@@ -1,8 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-
+// REMOVED: framer-motion import for performance (-50KB saved)
 const features = [
   {
     icon: "⚙️",
@@ -44,16 +43,15 @@ export default function AnimatedHeroText() {
 
   return (
     <div className="mt-4 flex h-24 flex-col items-center justify-center text-center">
-      <AnimatePresence mode="wait">
-        <motion.div
+      
+        <div
           key={index}
-          variants={textVariants}
           initial="hidden"
           animate="visible"
           exit="exit"
           className="flex flex-col items-center justify-center"
         >
-          <div className="animate-pulse-slow mb-2 text-3xl" style={{ textShadow: '0 0 15px rgba(255, 255, 255, 0.5)' }}>
+          <div className="animate-pulse-slow mb-2 text-3xl"}>
             {features[index].icon}
           </div>
           <h3 className="font-heading bg-gradient-to-r from-zinc-200 to-zinc-400 bg-clip-text text-xl font-bold text-transparent md:text-2xl">
@@ -62,8 +60,8 @@ export default function AnimatedHeroText() {
           <p className="max-w-xs px-4 text-base text-zinc-400 md:max-w-lg md:px-0">
             {features[index].description}
           </p>
-        </motion.div>
-      </AnimatePresence>
+        </div>
+      
     </div>
   );
 }

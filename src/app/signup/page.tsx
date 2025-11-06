@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+// REMOVED: framer-motion import for performance (-50KB saved)
 import Link from 'next/link';
 import { Mail, Lock, Eye, EyeOff, ArrowRight, Sparkles, User, Check } from 'lucide-react';
 import Header from '@/components/Header';
@@ -111,28 +111,21 @@ export default function SignupPage() {
         {/* Animated background gradient */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl animate-pulse"}></div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+        <div}}}
           className="relative z-10 w-full max-w-md md:max-w-xl lg:max-w-2xl"
         >
           {/* Signup Card */}
-          <div className="relative rounded-3xl border-2 border-purple-500/30 bg-gradient-to-br from-black/80 via-purple-950/20 to-black/80 backdrop-blur-xl p-6 sm:p-8 md:p-10 lg:p-8 xl:p-10 shadow-2xl"
-            style={{ boxShadow: '0 20px 60px rgba(147, 51, 234, 0.1), inset 0 0 30px rgba(147, 51, 234, 0.05)' }}
+          <div className="relative rounded-3xl border-2 border-purple-500/30 bg-gradient-to-br from-black/80 via-purple-950/20 to-black/80 backdrop-blur-xl p-6 sm:p-8 md:p-10 lg:p-8 xl:p-10 shadow-2xl"}
           >
             {/* Decorative elements */}
             <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-500/10 to-transparent rounded-bl-full"></div>
             <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-cyan-500/10 to-transparent rounded-tr-full"></div>
 
             {/* Header */}
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
+            <div}}}
               className="relative mb-6 md:mb-8 lg:mb-6 text-center lg:text-left"
             >
               <div className="inline-flex lg:flex items-center justify-center w-14 h-14 lg:w-12 lg:h-12 rounded-full bg-gradient-to-r from-purple-500/20 to-cyan-500/20 mb-3 lg:mb-0 lg:mr-4 lg:inline-flex">
@@ -146,15 +139,12 @@ export default function SignupPage() {
                   Join TEELI.NET and start your journey
                 </p>
               </div>
-            </motion.div>
+            </div>
 
             {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-4 md:space-y-5 lg:space-y-4">
               {/* Name Field */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.3 }}
+              <div}}}
               >
                 <label htmlFor="name" className="block text-sm font-medium text-zinc-300 mb-2">
                   Full Name
@@ -176,21 +166,16 @@ export default function SignupPage() {
                   />
                 </div>
                 {errors.name && (
-                  <motion.p
-                    initial={{ opacity: 0, y: -5 }}
-                    animate={{ opacity: 1, y: 0 }}
+                  <p}}
                     className="mt-1 text-sm text-red-400"
                   >
                     {errors.name}
-                  </motion.p>
+                  </p>
                 )}
-              </motion.div>
+              </div>
 
               {/* Email Field */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.4 }}
+              <div}}}
               >
                 <label htmlFor="email" className="block text-sm font-medium text-zinc-300 mb-2">
                   Email Address
@@ -212,21 +197,16 @@ export default function SignupPage() {
                   />
                 </div>
                 {errors.email && (
-                  <motion.p
-                    initial={{ opacity: 0, y: -5 }}
-                    animate={{ opacity: 1, y: 0 }}
+                  <p}}
                     className="mt-1 text-sm text-red-400"
                   >
                     {errors.email}
-                  </motion.p>
+                  </p>
                 )}
-              </motion.div>
+              </div>
 
               {/* Password Field */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.5 }}
+              <div}}}
               >
                 <label htmlFor="password" className="block text-sm font-medium text-zinc-300 mb-2">
                   Password
@@ -256,9 +236,7 @@ export default function SignupPage() {
                 </div>
                 {/* Password Strength Indicator */}
                 {formData.password && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
+                  <div}}
                     className="mt-2"
                   >
                     <div className="flex items-center gap-2 mb-1">
@@ -267,8 +245,7 @@ export default function SignupPage() {
                           className={`h-full transition-all duration-300 ${
                             pwdStrength.color === 'red' ? 'bg-red-500' :
                             pwdStrength.color === 'yellow' ? 'bg-yellow-500' : 'bg-green-500'
-                          }`}
-                          style={{ width: `${(pwdStrength.strength / 6) * 100}%` }}
+                          }`}%` }}
                         ></div>
                       </div>
                       <span className={`text-xs font-medium ${
@@ -278,24 +255,19 @@ export default function SignupPage() {
                         {pwdStrength.label}
                       </span>
                     </div>
-                  </motion.div>
+                  </div>
                 )}
                 {errors.password && (
-                  <motion.p
-                    initial={{ opacity: 0, y: -5 }}
-                    animate={{ opacity: 1, y: 0 }}
+                  <p}}
                     className="mt-1 text-sm text-red-400"
                   >
                     {errors.password}
-                  </motion.p>
+                  </p>
                 )}
-              </motion.div>
+              </div>
 
               {/* Confirm Password Field */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.6 }}
+              <div}}}
               >
                 <label htmlFor="confirmPassword" className="block text-sm font-medium text-zinc-300 mb-2">
                   Confirm Password
@@ -326,31 +298,24 @@ export default function SignupPage() {
                   </button>
                 </div>
                 {formData.confirmPassword && formData.password === formData.confirmPassword && !errors.confirmPassword && (
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
+                  <div}}
                     className="mt-1 flex items-center gap-1 text-sm text-green-400"
                   >
                     <Check className="w-4 h-4" />
                     <span>Passwords match</span>
-                  </motion.div>
+                  </div>
                 )}
                 {errors.confirmPassword && (
-                  <motion.p
-                    initial={{ opacity: 0, y: -5 }}
-                    animate={{ opacity: 1, y: 0 }}
+                  <p}}
                     className="mt-1 text-sm text-red-400"
                   >
                     {errors.confirmPassword}
-                  </motion.p>
+                  </p>
                 )}
-              </motion.div>
+              </div>
 
               {/* Terms and Conditions */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.7 }}
+              <div}}}
                 className="flex items-start gap-3"
               >
                 <input
@@ -379,22 +344,17 @@ export default function SignupPage() {
                     Privacy Policy
                   </Link>
                 </label>
-              </motion.div>
+              </div>
               {errors.terms && (
-                <motion.p
-                  initial={{ opacity: 0, y: -5 }}
-                  animate={{ opacity: 1, y: 0 }}
+                <p}}
                   className="text-sm text-red-400 -mt-3"
                 >
                   {errors.terms}
-                </motion.p>
+                </p>
               )}
 
               {/* Submit Button */}
-              <motion.button
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8 }}
+              <button}}}
                 type="submit"
                 disabled={isLoading}
                 className="w-full py-3 md:py-4 lg:py-3 rounded-xl bg-gradient-to-r from-purple-500 to-cyan-500 text-white font-semibold text-sm md:text-base lg:text-sm shadow-lg shadow-purple-500/30 hover:shadow-xl hover:shadow-purple-500/50 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 group"
@@ -410,26 +370,20 @@ export default function SignupPage() {
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </>
                 )}
-              </motion.button>
+              </button>
             </form>
 
             {/* Divider */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.9 }}
+            <div}}}
               className="relative my-6 md:my-8 lg:my-6 flex items-center"
             >
               <div className="flex-1 border-t border-purple-500/20"></div>
               <span className="px-3 md:px-4 text-xs md:text-sm text-zinc-500">or continue with</span>
               <div className="flex-1 border-t border-purple-500/20"></div>
-            </motion.div>
+            </div>
 
             {/* Social Login */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.0 }}
+            <div}}}
               className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4"
             >
               <button className="py-2.5 md:py-3 px-3 md:px-4 rounded-xl border-2 border-purple-500/30 bg-black/50 text-white hover:border-purple-500/50 hover:bg-purple-500/10 transition-all flex items-center justify-center gap-2">
@@ -459,13 +413,10 @@ export default function SignupPage() {
                 </svg>
                 <span className="text-xs md:text-sm">Microsoft</span>
               </button>
-            </motion.div>
+            </div>
 
             {/* Login Link */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.1 }}
+            <div}}}
               className="mt-6 md:mt-8 lg:mt-6 text-center text-xs md:text-sm text-zinc-400"
             >
               Already have an account?{' '}
@@ -475,9 +426,9 @@ export default function SignupPage() {
               >
                 Sign in
               </Link>
-            </motion.div>
+            </div>
           </div>
-        </motion.div>
+        </div>
       </main>
     </>
   );
