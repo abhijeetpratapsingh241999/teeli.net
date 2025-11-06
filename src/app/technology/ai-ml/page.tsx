@@ -34,10 +34,7 @@ import Link from 'next/link';
 export default function AIMLStackPage() {
   const [selectedLayer, setSelectedLayer] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
+  
 
   const mlStackLayers = [
     {
@@ -136,7 +133,7 @@ export default function AIMLStackPage() {
     }
   ];
 
-  const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
+  
 
   return (
     <div ref={containerRef} className="relative min-h-screen bg-gradient-to-b from-purple-950 via-pink-950 to-black text-white overflow-hidden">

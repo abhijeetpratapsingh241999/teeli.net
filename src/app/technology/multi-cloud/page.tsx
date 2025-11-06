@@ -33,10 +33,7 @@ import Link from 'next/link';
 export default function MultiCloudPage() {
   const [selectedCloud, setSelectedCloud] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
+  
 
   const cloudProviders = [
     {
@@ -127,7 +124,7 @@ export default function MultiCloudPage() {
     }
   ];
 
-  const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
+  
 
   return (
     <div ref={containerRef} className="relative min-h-screen bg-gradient-to-b from-teal-950 via-cyan-950 to-black text-white overflow-hidden">

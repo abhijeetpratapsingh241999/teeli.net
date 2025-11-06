@@ -36,10 +36,7 @@ export default function ResearchPage() {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
+  
 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);

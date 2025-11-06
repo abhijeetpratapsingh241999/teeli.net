@@ -33,10 +33,7 @@ import Link from 'next/link';
 export default function RenderingEnginePage() {
   const [selectedFeature, setSelectedFeature] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
+  
 
   const renderingFeatures = [
     {
@@ -139,7 +136,7 @@ export default function RenderingEnginePage() {
     }
   ];
 
-  const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
+  
 
   return (
     <div ref={containerRef} className="relative min-h-screen bg-gradient-to-b from-indigo-950 via-blue-950 to-black text-white overflow-hidden">
