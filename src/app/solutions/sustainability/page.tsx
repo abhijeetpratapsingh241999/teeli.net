@@ -198,9 +198,12 @@ export default function SustainabilityPage() {
 
                 return (
                   <div
-                    key={step.id}%`,
+                    key={step.id}
+                    style={{
+                      left: `${x}%`,
                       top: `${y}%`,
                       transform: 'translate(-50%, -50%)'
+                    }}
                     
                     onClick={() => setSelectedMetric(step.id)}
                     className="cursor-pointer group"
@@ -230,7 +233,7 @@ export default function SustainabilityPage() {
 
             {/* Center - Main Metric Display */}
             <div className="absolute inset-0 flex items-center justify-center">
-              <div : { scale: 1 
+              <div
                 className="relative w-48 h-48 md:w-64 md:h-64 rounded-full bg-gradient-to-br from-emerald-900/80 to-green-950/80 backdrop-blur-xl border-4 border-emerald-500/30 flex flex-col items-center justify-center p-8"
               >
                 <div className="text-5xl md:text-6xl font-bold text-emerald-400 mb-2">

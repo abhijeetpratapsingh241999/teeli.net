@@ -223,21 +223,24 @@ export default function InteractiveViewerPage() {
                       {/* 3D Cube Representation */}
                       <div className="relative w-64 h-64 perspective-1000">
                         <div
-                          className="relative w-full h-full preserve-3d"deg) rotateX(${rotation.x}deg)`,
+                          className="relative w-full h-full preserve-3d"
+                          style={{
+                            transform: `rotateZ(${rotation.z}deg) rotateY(${rotation.y}deg) rotateX(${rotation.x}deg)`,
                             transformStyle: 'preserve-3d'
+                          }}
                           >
                           {/* Front */}
-                          <div className="absolute w-64 h-64 bg-gradient-to-br from-cyan-500/40 to-blue-500/40 border-2 border-cyan-400/50"} />
+                          <div className="absolute w-64 h-64 bg-gradient-to-br from-cyan-500/40 to-blue-500/40 border-2 border-cyan-400/50" />
                           {/* Back */}
-                          <div className="absolute w-64 h-64 bg-gradient-to-br from-indigo-500/40 to-blue-500/40 border-2 border-indigo-400/50"} />
+                          <div className="absolute w-64 h-64 bg-gradient-to-br from-indigo-500/40 to-blue-500/40 border-2 border-indigo-400/50" />
                           {/* Right */}
-                          <div className="absolute w-64 h-64 bg-gradient-to-br from-blue-500/40 to-cyan-500/40 border-2 border-blue-400/50"} />
+                          <div className="absolute w-64 h-64 bg-gradient-to-br from-blue-500/40 to-cyan-500/40 border-2 border-blue-400/50" />
                           {/* Left */}
-                          <div className="absolute w-64 h-64 bg-gradient-to-br from-blue-500/40 to-indigo-500/40 border-2 border-blue-400/50"} />
+                          <div className="absolute w-64 h-64 bg-gradient-to-br from-blue-500/40 to-indigo-500/40 border-2 border-blue-400/50" />
                           {/* Top */}
-                          <div className="absolute w-64 h-64 bg-gradient-to-br from-cyan-500/40 to-indigo-500/40 border-2 border-cyan-400/50"} />
+                          <div className="absolute w-64 h-64 bg-gradient-to-br from-cyan-500/40 to-indigo-500/40 border-2 border-cyan-400/50" />
                           {/* Bottom */}
-                          <div className="absolute w-64 h-64 bg-gradient-to-br from-indigo-500/40 to-cyan-500/40 border-2 border-indigo-400/50"} />
+                          <div className="absolute w-64 h-64 bg-gradient-to-br from-indigo-500/40 to-cyan-500/40 border-2 border-indigo-400/50" />
                         </div>
                       </div>
                     </div>
@@ -246,7 +249,7 @@ export default function InteractiveViewerPage() {
                   {/* View Mode Indicator */}
                   {viewMode === 'wireframe' && (
                     <div className="absolute inset-0 pointer-events-none">
-                      <div className="absolute inset-0"} />
+                      <div className="absolute inset-0" />
                     </div>
                   )}
                 </div>

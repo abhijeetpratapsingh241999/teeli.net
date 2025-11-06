@@ -368,8 +368,8 @@ export default function ShowreelPage() {
                 return (
                   <div
                     key={video.id}
-                    onHoverStart={() => setHoveredVideo(video.id)}
-                    onHoverEnd={() => setHoveredVideo(null)}
+                    onMouseEnter={() => setHoveredVideo(video.id)}
+                    onMouseLeave={() => setHoveredVideo(null)}
                     onClick={() => setSelectedVideo(video.id)}
                     className="relative rounded-xl border-2 border-red-700/30 bg-gradient-to-br from-red-950/60 to-black/60 backdrop-blur-xl overflow-hidden group cursor-pointer"
                   >

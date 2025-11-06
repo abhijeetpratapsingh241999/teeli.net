@@ -140,7 +140,7 @@ export default function MultiCloudPage() {
           {[...Array(30)].map((_, i) => (
             <div
               key={i}
-              style={{ left: `${Math.random() * 100}%` 
+              style={{ left: `${Math.random() * 100}%` }}
             />
           ))}
         </div>

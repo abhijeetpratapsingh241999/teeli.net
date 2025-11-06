@@ -183,7 +183,7 @@ export default function ResearchPage() {
             return (
               <div
                 key={i}
-                style={{ left: `${Math.random() * 100}%` 
+                style={{ left: `${Math.random() * 100}%` }}
               />
             );
           })}
@@ -278,8 +278,9 @@ export default function ResearchPage() {
 
                       {/* Progress Bar */}
                       <div className="relative w-full h-1 bg-purple-900/50 rounded-full mb-4 overflow-hidden">
-                        <div}%` 
+                        <div
                           className={`h-full bg-gradient-to-r ${area.color}`}
+                          style={{ width: `${area.percentage}%` }}
                         />
                       </div>
 
@@ -489,7 +490,7 @@ export default function ResearchPage() {
               {[...Array(20)].map((_, i) => (
                 <div
                   key={i}
-                  style={{ left: `${Math.random() * 100}%` 
+                  style={{ left: `${Math.random() * 100}%` }}
                 />
               ))}
             </div>

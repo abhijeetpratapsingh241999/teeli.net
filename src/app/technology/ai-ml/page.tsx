@@ -157,7 +157,7 @@ export default function AIMLStackPage() {
             return (
               <div
                 key={i}
-                style={{ left: `${Math.random() * 100}%` 
+                style={{ left: `${Math.random() * 100}%` }}
               />
             );
           })}

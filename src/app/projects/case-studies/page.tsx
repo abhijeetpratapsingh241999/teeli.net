@@ -289,7 +289,7 @@ export default function CaseStudiesPage() {
                         </div>
                         {/* After Image - Full Quality */}
                         <div
-                          className="absolute inset-0"% 0 0)`
+                          className="absolute inset-0"
                           >
                           <Image
                             src={caseStudy.image}
@@ -301,7 +301,9 @@ export default function CaseStudiesPage() {
                         </div>
                         {/* Slider Line */}
                         <div
-                          className="absolute top-0 bottom-0 w-0.5 bg-amber-400 shadow-lg z-10"%` >
+                          className="absolute top-0 bottom-0 w-0.5 bg-amber-400 shadow-lg z-10"
+                          style={{ left: `${sliderPosition[caseStudy.id] || 50}%` }}
+                        >
                           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-amber-400 border-2 border-white shadow-lg flex items-center justify-center">
                             <div className="w-2 h-2 bg-white rounded-full"></div>
                           </div>

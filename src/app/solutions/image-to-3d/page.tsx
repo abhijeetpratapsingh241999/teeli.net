@@ -395,7 +395,7 @@ export default function ImageTo3DPage() {
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-pink-950/10 to-black">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div}>
+            <div>
               <h2 className="font-heading text-4xl md:text-5xl font-bold mb-6 text-white">
                 Ready to Transform
                 <span className="block bg-clip-text text-transparent bg-gradient-to-r from-pink-400 to-purple-400">

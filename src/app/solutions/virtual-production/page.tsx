@@ -203,7 +203,7 @@ export default function VirtualProductionPage() {
                   >
                     {/* Timeline Dot */}
                     <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 hidden md:block">
-                      <div : { scale: 1 
+                      <div
                         className={`w-6 h-6 rounded-full bg-gradient-to-r ${stage.color} border-4 border-black shadow-lg`}
                       ></div>
                     </div>

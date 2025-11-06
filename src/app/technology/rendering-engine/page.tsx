@@ -220,12 +220,12 @@ export default function RenderingEnginePage() {
                       <div
                         className={`absolute inset-0 bg-gradient-to-br ${feature.color} ${
                           isSelected ? 'opacity-100 scale-110' : 'opacity-60'
-                        } transition-all duration-300`
+                        } transition-all duration-300`}
                       />
                       <div
                         className={`absolute inset-[2px] bg-black ${
                           isSelected ? 'border-2 border-blue-400' : 'border border-blue-500/30'
-                        } transition-all duration-300`
+                        } transition-all duration-300`}
                       />
 
                       {/* Content */}
