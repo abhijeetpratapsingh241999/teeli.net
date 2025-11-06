@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Lexend, Inter } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/react";
 
 // ✅ यह import add किया गया है
 import AnalyticsTracker from "./AnalyticsTracker";
@@ -59,6 +60,9 @@ export default function RootLayout({
       </head>
 
       <body className={`${lexend.variable} ${inter.variable} font-body antialiased bg-black`} suppressHydrationWarning>
+        {/* ✅ Vercel Analytics */}
+        <Analytics />
+        
         {/* ✅ Google Tag Manager - MOBILE OPTIMIZED */}
         {/* Loads ONLY after 60 seconds on mobile for better LCP */}
         {GTM_ID && (
