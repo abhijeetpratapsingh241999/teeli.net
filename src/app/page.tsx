@@ -68,7 +68,7 @@ export default function Home() {
             <h2 className="text-lg text-zinc-400 md:text-xl">Welcome to</h2>
             <h1 className="font-heading bg-gradient-to-b from-white to-zinc-400 bg-clip-text text-5xl font-bold text-transparent sm:text-6xl md:text-8xl">
               TEELI.NET
-          </h1>
+            </h1>
           </div>
           <AnimatedHeroText />
           <button className="pointer-events-auto mt-8 rounded-full bg-gradient-to-r from-cyan-400 to-purple-500 px-8 py-3 font-semibold text-white transition-transform hover:scale-105">

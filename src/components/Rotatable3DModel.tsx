@@ -107,14 +107,12 @@ export default function Rotatable3DModel({ className = "" }: Rotatable3DModelPro
       ref={containerRef}
       className={`relative w-full h-full perspective-1000 ${className}`}
       onMouseDown={handleMouseDown}
-      onTouchStart={handleTouchStart}}
-    >
+      onTouchStart={handleTouchStart>
       <div
         className="relative w-full h-full preserve-3d flex items-center justify-center"deg) rotateY(${rotation.y}deg)`,
           transformStyle: 'preserve-3d',
           transition: isDragging ? 'none' : 'transform 0.1s ease-out'
-        }}
-      >
+        >
         {/* 3D House Model */}
         <div className="relative flex items-center justify-center"}>
           {/* Front Face */}

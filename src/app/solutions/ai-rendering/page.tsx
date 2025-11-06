@@ -36,8 +36,7 @@ export default function AIRenderingPage() {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left Side - Content */}
-            <div}}}
-            >
+            <div>
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-12 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center">
                   <Brain className="w-6 h-6" />
@@ -70,7 +69,7 @@ export default function AIRenderingPage() {
             </div>
 
             {/* Right Side - Visual Stats Grid */}
-            <div}}}
+            <div
               className="grid grid-cols-2 gap-6"
             >
               {[
@@ -80,7 +79,7 @@ export default function AIRenderingPage() {
                 { value: "∞", label: "Iterations", icon: Infinity, color: "from-pink-500 to-purple-700" }
               ].map((stat, index) => (
                 <div
-                  key={index}}}}
+                  key={index}
                   className={`relative rounded-2xl p-6 bg-gradient-to-br ${stat.color} border border-white/10`}
                 >
                   <stat.icon className="w-8 h-8 mb-3 text-white" />
@@ -96,7 +95,7 @@ export default function AIRenderingPage() {
       {/* What is AI Rendering - Timeline Style */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-purple-950/20 to-black">
         <div className="max-w-6xl mx-auto">
-          <div}}}}
+          <div
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl font-bold mb-4 text-white">
@@ -133,7 +132,7 @@ export default function AIRenderingPage() {
               }
             ].map((item, index) => (
               <div
-                key={index}}}}}
+                key={index}
                 className="relative mb-12 md:pl-20"
               >
                 <div className="absolute left-0 top-0 w-16 h-16 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 border-4 border-black flex items-center justify-center hidden md:flex">
@@ -155,7 +154,7 @@ export default function AIRenderingPage() {
       {/* Neural Network Features - Network Style */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div}}}}
+          <div
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl font-bold mb-4 text-white">
@@ -189,7 +188,7 @@ export default function AIRenderingPage() {
               }
             ].map((feature, index) => (
               <div
-                key={index}}}}}
+                key={index}
                 className="relative rounded-3xl border-2 border-purple-500/30 bg-gradient-to-br from-black/60 via-purple-950/40 to-black/60 backdrop-blur-xl p-8 hover:border-pink-500/50 transition-all group"
               >
                 <div className="absolute top-4 right-4 w-16 h-16 rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
@@ -216,7 +215,7 @@ export default function AIRenderingPage() {
       {/* Industry Applications - Card Stack Style */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-pink-950/20 to-black">
         <div className="max-w-7xl mx-auto">
-          <div}}}}
+          <div
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl font-bold mb-4 text-white">
@@ -280,7 +279,7 @@ export default function AIRenderingPage() {
               }
             ].map((useCase, index) => (
               <div
-                key={index}}}}}
+                key={index}
                 className={`relative rounded-3xl border-2 ${useCase.borderColor} bg-gradient-to-br ${useCase.gradient} backdrop-blur-xl p-8 hover:scale-[1.02] transition-transform duration-300`}
               >
                 <useCase.icon className="w-12 h-12 text-white mb-6" />
@@ -306,7 +305,7 @@ export default function AIRenderingPage() {
       {/* How It Works - Process Flow */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div}}}}
+          <div
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl font-bold mb-4 text-white">
@@ -343,7 +342,7 @@ export default function AIRenderingPage() {
               }
             ].map((item, index) => (
               <div
-                key={index}}}}}
+                key={index}
                 className="relative"
               >
                 <div className="relative rounded-3xl border-2 border-purple-500/30 bg-gradient-to-br from-black/60 via-purple-950/40 to-black/60 backdrop-blur-xl p-6 text-center h-full">
@@ -366,7 +365,7 @@ export default function AIRenderingPage() {
       {/* Technology Stack - Minimal Cards */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-purple-950/20 to-black">
         <div className="max-w-7xl mx-auto">
-          <div}}}}
+          <div
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl font-bold mb-4 text-white">
@@ -383,7 +382,7 @@ export default function AIRenderingPage() {
               { name: "PBR Materials", icon: Layers }
             ].map((tech, index) => (
               <div
-                key={index}}}}}
+                key={index}
                 className="rounded-2xl border border-purple-500/20 bg-black/40 backdrop-blur-xl p-6 text-center hover:border-pink-500/50 transition-all group"
               >
                 <tech.icon className="w-10 h-10 text-purple-400 mx-auto mb-3 group-hover:text-pink-400 transition-colors" />
@@ -398,8 +397,7 @@ export default function AIRenderingPage() {
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div}}}}
-            >
+            <div}>
               <h2 className="font-heading text-4xl md:text-5xl font-bold mb-6 text-white">
                 Ready to Experience
                 <span className="block bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400">
@@ -424,7 +422,7 @@ export default function AIRenderingPage() {
               </div>
             </div>
 
-            <div}}}}
+            <div
               className="relative rounded-3xl border-2 border-purple-500/30 bg-gradient-to-br from-purple-950/40 via-pink-950/40 to-purple-950/40 backdrop-blur-xl p-10 text-center"
             >
               <Rocket className="w-16 h-16 text-purple-400 mx-auto mb-6" />

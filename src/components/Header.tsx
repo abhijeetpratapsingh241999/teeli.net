@@ -67,7 +67,7 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 left-0 z-30 w-full p-6">
-      <div className="mx-auto flex max-w-7xl items-center justify-between rounded-full bg-black/30 p-2 px-6 backdrop-blur-sm"}>
+      <div className="mx-auto flex max-w-7xl items-center justify-between rounded-full bg-black/30 p-2 px-6 backdrop-blur-sm">
         {/* Logo */}
         <div className="flex items-center gap-2">
           <AnimatedGlobe />
@@ -94,12 +94,12 @@ export default function Header() {
                     {/* Dropdown Menu */}
                     
                       {openDropdown === item && (
-                        <div}}}}
+                        <div
                           className="absolute top-full left-0 mt-2 min-w-[220px] rounded-2xl border border-cyan-500/30 bg-black/95 backdrop-blur-xl p-2 shadow-2xl"}
                         >
                           {dropdownItems[item]?.map((subItem, index) => (
                             <div
-                              key={subItem.href}}}}
+                              key={subItem.href}
                             >
                               <Link
                                 href={subItem.href}
@@ -171,11 +171,11 @@ export default function Header() {
       {/* Search Popup Modal */}
       
         {showSearch && (
-          <div}}}}
+          <div
             className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm"
             onClick={() => setShowSearch(false)}
           >
-            <div}}}}
+            <div
               className="absolute top-24 left-1/2 transform -translate-x-1/2 w-full max-w-2xl mx-4"
               onClick={(e) => e.stopPropagation()}
             >
@@ -214,7 +214,7 @@ export default function Header() {
       {/* Mobile Menu - Slide down from top */}
       
         {isMenuOpen && (
-          <div}}}}
+          <div
             className="lg:hidden fixed top-0 left-0 w-full h-screen bg-black/80 backdrop-blur-xl border-b border-cyan-400/30 overflow-y-auto"}
           >
             <div className="mx-auto max-w-7xl px-6 py-12 pt-20">
@@ -233,8 +233,7 @@ export default function Header() {
                 <ul className="flex flex-col gap-2">
                   {navItems.map((item, index) => (
                     <li key={item}>
-                      <div}}}
-                      >
+                      <div>
                         {hasDropdown(item) ? (
                           <div>
                             <button
@@ -246,7 +245,7 @@ export default function Header() {
                             </button>
                             
                               {openDropdown === item && (
-                                <div}}}}
+                                <div
                                   className="overflow-hidden"
                                 >
                                   <div className="pl-4 pt-2 pb-2 space-y-2">

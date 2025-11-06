@@ -83,12 +83,11 @@ export default function TechDocsPage() {
         {/* Animated Background */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-0 left-1/4 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse"}></div>
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
         </div>
 
         <div className="relative z-10 mx-auto max-w-6xl text-center">
-          <div}}}
-          >
+          <div>
             <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-r from-cyan-500/20 to-purple-500/20 mb-6">
               <Book className="w-10 h-10 text-cyan-400" />
             </div>
@@ -109,7 +108,7 @@ export default function TechDocsPage() {
             {quickLinks.map((link, index) => (
               <a
                 key={index}
-                href={link.href}}}}}
+                href={link.href}
                 className="px-4 py-2 rounded-lg border border-cyan-500/30 bg-black/50 text-zinc-300 hover:text-white hover:border-cyan-500 hover:bg-cyan-500/10 transition-all text-sm"
               >
                 {link.label}
@@ -122,7 +121,7 @@ export default function TechDocsPage() {
       {/* Documentation Sections */}
       <section className="relative w-full bg-gradient-to-b from-black via-purple-950/20 to-black py-24 px-4">
         <div className="mx-auto max-w-6xl">
-          <div}}}}
+          <div
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl font-bold text-white mb-4">
@@ -137,7 +136,7 @@ export default function TechDocsPage() {
             {docSections.map((section, index) => (
               <a
                 key={index}
-                href={section.href}}}}}
+                href={section.href}
                 className="group relative rounded-2xl border-2 border-cyan-500/20 bg-gradient-to-br from-black/60 via-cyan-950/20 to-black/60 backdrop-blur-xl p-6 md:p-8 hover:border-cyan-500/40 transition-all"}
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/0 to-purple-500/0 group-hover:from-cyan-500/10 group-hover:to-purple-500/10 transition-all rounded-2xl"></div>
@@ -167,7 +166,7 @@ export default function TechDocsPage() {
       {/* Community Section */}
       <section className="relative w-full bg-black py-24 px-4">
         <div className="mx-auto max-w-4xl">
-          <div}}}}
+          <div
             className="relative rounded-3xl border-2 border-cyan-500/30 bg-gradient-to-br from-black/80 via-purple-950/30 to-black/80 backdrop-blur-xl p-12"}
           >
             <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-cyan-500/10 to-transparent rounded-bl-full"></div>

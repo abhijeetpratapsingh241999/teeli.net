@@ -185,7 +185,6 @@ export default function ResearchPage() {
                 key={i}
                 className="absolute w-2 h-2 rounded-full bg-purple-400"%`,
                   top: `${Math.random() * 100}%`,
-                }}}}
               />
             );
           })}
@@ -218,7 +217,7 @@ export default function ResearchPage() {
                 x2={`${x}%`}
                 y2={`${y}%`}
                 stroke="rgba(168, 85, 247, 0.3)"
-                strokeWidth="1"}}
+                strokeWidth="1"
               />
             );
           })}
@@ -226,7 +225,7 @@ export default function ResearchPage() {
 
         <div className="relative z-10 max-w-7xl mx-auto w-full">
           {/* Header Badge */}
-          <div}}}
+          <div
             className="flex justify-center mb-8"
           >
             <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-purple-500/30 bg-purple-500/10 backdrop-blur-sm">
@@ -236,7 +235,7 @@ export default function ResearchPage() {
           </div>
 
           {/* Main Title - Split Typography */}
-          <div}}}
+          <div
             className="text-center mb-6"
           >
             <h1 className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-tight">
@@ -262,7 +261,7 @@ export default function ResearchPage() {
 
                 return (
                   <div
-                    key={area.id}}}}
+                    key={area.id}
                     onHoverStart={() => setHoveredCard(area.id)}
                     onHoverEnd={() => setHoveredCard(null)}
                     className="relative group cursor-pointer"
@@ -280,7 +279,7 @@ export default function ResearchPage() {
 
                       {/* Progress Bar */}
                       <div className="relative w-full h-1 bg-purple-900/50 rounded-full mb-4 overflow-hidden">
-                        <div}%` }}}
+                        <div}%` 
                           className={`h-full bg-gradient-to-r ${area.color}`}
                         />
                       </div>
@@ -307,7 +306,7 @@ export default function ResearchPage() {
                       {isHovered && (
                         <div
                           layoutId="hoverGlow"
-                          className="absolute inset-0 rounded-2xl border-2 border-purple-400/50"}}}
+                          className="absolute inset-0 rounded-2xl border-2 border-purple-400/50"
                         />
                       )}
                     </div>
@@ -318,7 +317,7 @@ export default function ResearchPage() {
           </div>
 
           {/* CTA Buttons */}
-          <div}}}
+          <div
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <Link href="/contact">
@@ -342,7 +341,7 @@ export default function ResearchPage() {
       {/* Research Metrics - Dashboard Style */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-purple-950/20 to-black">
         <div className="max-w-7xl mx-auto">
-          <div}}}}
+          <div
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
@@ -358,7 +357,7 @@ export default function ResearchPage() {
               const Icon = innovation.icon;
               return (
                 <div
-                  key={index}}}}}
+                  key={index}
                   className="relative rounded-2xl border-2 border-purple-700/30 bg-gradient-to-br from-violet-950/60 to-black/60 backdrop-blur-xl p-6 hover:border-purple-500/50 transition-all group overflow-hidden"
                 >
                   {/* Animated Background */}
@@ -382,7 +381,7 @@ export default function ResearchPage() {
       {/* Research Publications - Grid with Interactive Cards */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-black">
         <div className="max-w-7xl mx-auto">
-          <div}}}}
+          <div
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
@@ -396,7 +395,7 @@ export default function ResearchPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {publications.map((pub, index) => (
               <div
-                key={index}}}}}}
+                key={index}
                 className="relative rounded-2xl border-2 border-purple-700/30 bg-gradient-to-br from-violet-950/60 to-black/60 backdrop-blur-xl p-6 hover:border-purple-500/50 transition-all group"
               >
                 {/* Icon Badge */}
@@ -408,7 +407,7 @@ export default function ResearchPage() {
                 <div className="space-y-3">
                   {pub.items.map((item, idx) => (
                     <div
-                      key={idx}}}}}
+                      key={idx}
                       className="flex items-start gap-2"
                     >
                       <div className="w-1.5 h-1.5 rounded-full bg-purple-400 mt-2 flex-shrink-0" />
@@ -425,7 +424,7 @@ export default function ResearchPage() {
       {/* Innovation Pipeline - Unique Vertical Flow */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-purple-950/20 to-black">
         <div className="max-w-7xl mx-auto">
-          <div}}}}
+          <div
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
@@ -453,7 +452,7 @@ export default function ResearchPage() {
               
               return (
                 <div
-                  key={index}}}}}
+                  key={index}
                   className={`relative flex items-center gap-8 mb-12 ${
                     isLeft ? 'md:flex-row' : 'md:flex-row-reverse'
                   }`}
@@ -493,12 +492,11 @@ export default function ResearchPage() {
                   key={i}
                   className="absolute w-1 h-1 rounded-full bg-purple-400"%`,
                     top: `${Math.random() * 100}%`,
-                  }}}}
                 />
               ))}
             </div>
 
-            <div}}}}
+            <div
               className="relative z-10"
             >
               <FlaskConical className="w-16 h-16 text-purple-400 mx-auto mb-6" />

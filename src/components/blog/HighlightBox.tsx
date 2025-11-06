@@ -38,7 +38,7 @@ export default function HighlightBox({
   };
 
   return (
-    <div}}}
+    <div
       className={`
         relative overflow-hidden rounded-2xl sm:rounded-3xl
         ${variants[variant][theme]}

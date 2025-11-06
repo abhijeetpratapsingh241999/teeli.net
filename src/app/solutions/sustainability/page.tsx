@@ -133,7 +133,7 @@ export default function SustainabilityPage() {
 
         <div className="relative z-10 max-w-7xl mx-auto w-full">
           {/* Header Badge */}
-          <div}}}
+          <div
             className="flex justify-center mb-8"
           >
             <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-emerald-500/30 bg-emerald-500/10 backdrop-blur-sm">
@@ -159,7 +159,7 @@ export default function SustainabilityPage() {
           </p>
 
           {/* Circular Pipeline Visualization */}
-          <div}}}
+          <div
             className="relative w-full max-w-4xl mx-auto aspect-square mb-12"
           >
             {/* Outer Ring - Pipeline Flow */}
@@ -198,7 +198,7 @@ export default function SustainabilityPage() {
 
                 return (
                   <div
-                    key={step.id}}}}%`,
+                    key={step.id}%`,
                       top: `${y}%`,
                       transform: 'translate(-50%, -50%)'
                     }}
@@ -212,7 +212,7 @@ export default function SustainabilityPage() {
                     >
                       <Icon className="w-10 h-10 md:w-12 md:h-12 text-white" />
                       {isSelected && (
-                        <div}}}
+                        <div
                           className="absolute -inset-2 rounded-full border-2 border-emerald-400"
                         />
                       )}
@@ -245,7 +245,7 @@ export default function SustainabilityPage() {
           </div>
 
           {/* CTA Buttons */}
-          <div}}}
+          <div
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <Link href="/contact">
@@ -269,7 +269,7 @@ export default function SustainabilityPage() {
       {/* Sustainability Metrics Grid - Unique Card Layout */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-emerald-950/20 to-black">
         <div className="max-w-7xl mx-auto">
-          <div}}}}
+          <div
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
@@ -285,7 +285,7 @@ export default function SustainabilityPage() {
               const Icon = metric.icon;
               return (
                 <div
-                  key={index}}}}}
+                  key={index}
                   className="relative rounded-2xl border-2 border-emerald-700/30 bg-gradient-to-br from-emerald-950/60 to-black/60 backdrop-blur-xl p-6 hover:border-emerald-500/50 transition-all group overflow-hidden"
                 >
                   {/* Animated Background */}
@@ -316,7 +316,7 @@ export default function SustainabilityPage() {
       {/* Pipeline Process - Vertical Flow with Connection Lines */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-black">
         <div className="max-w-5xl mx-auto">
-          <div}}}}
+          <div
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
@@ -339,7 +339,7 @@ export default function SustainabilityPage() {
 
               return (
                 <div
-                  key={step.id}}}}}
+                  key={step.id}
                   className={`relative flex items-center gap-6 md:gap-12 mb-12 ${
                     isEven ? 'md:flex-row' : 'md:flex-row-reverse'
                   }`}
@@ -376,7 +376,7 @@ export default function SustainabilityPage() {
       {/* Benefits Grid - Organic Layout */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-emerald-950/20 to-black">
         <div className="max-w-7xl mx-auto">
-          <div}}}}
+          <div
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
@@ -429,7 +429,7 @@ export default function SustainabilityPage() {
               const Icon = benefit.icon;
               return (
                 <div
-                  key={index}}}}}
+                  key={index}
                   className="relative rounded-2xl border-2 border-emerald-700/30 bg-gradient-to-br from-emerald-950/60 to-black/60 backdrop-blur-xl p-6 hover:border-emerald-500/50 transition-all group"
                 >
                   <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${benefit.color} flex items-center justify-center mb-4`}>
@@ -450,10 +450,10 @@ export default function SustainabilityPage() {
           <div className="relative rounded-3xl border-2 border-emerald-500/30 bg-gradient-to-br from-emerald-950/40 via-green-950/40 to-black/40 backdrop-blur-xl p-12 md:p-16 text-center overflow-hidden">
             {/* Background Pattern - Leaf/Organic */}
             <div className="absolute inset-0 opacity-10">
-              <div className="absolute inset-0"}></div>
+              <div className="absolute inset-0"></div>
             </div>
 
-            <div}}}}
+            <div
               className="relative z-10"
             >
               <Earth className="w-16 h-16 text-emerald-400 mx-auto mb-6" />

@@ -163,15 +163,15 @@ export default function CaseStudiesPage() {
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-br from-amber-900/20 via-yellow-900/10 to-emerald-900/20"></div>
           <div
-            className="absolute top-1/4 left-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl"}}
+            className="absolute top-1/4 left-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl"
           />
           <div
-            className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl"}}
+            className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl"
           />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto w-full">
-          <div}}}
+          <div
             className="flex justify-center mb-8"
           >
             <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-amber-500/30 bg-amber-500/10 backdrop-blur-sm">
@@ -180,7 +180,7 @@ export default function CaseStudiesPage() {
             </div>
           </div>
 
-          <div}}}
+          <div
             className="text-center mb-6"
           >
             <h1 className="font-heading text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold leading-none mb-4">
@@ -197,7 +197,7 @@ export default function CaseStudiesPage() {
             Real projects. Real results. Discover how we've transformed rendering workflows for industry leaders.
           </p>
 
-          <div}}}
+          <div
             className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-16"
           >
             {[
@@ -209,7 +209,7 @@ export default function CaseStudiesPage() {
               const Icon = stat.icon;
               return (
                 <div
-                  key={index}}}}
+                  key={index}
                   className="text-center p-6 rounded-2xl border border-amber-700/30 bg-gradient-to-br from-amber-950/60 to-black/60 backdrop-blur-xl"
                 >
                   <Icon className="w-8 h-8 text-amber-400 mx-auto mb-3" />
@@ -231,7 +231,7 @@ export default function CaseStudiesPage() {
               const isActive = selectedCategory === cat.id;
               return (
                 <button
-                  key={cat.id}}}
+                  key={cat.id}
                   onClick={() => setSelectedCategory(cat.id)}
                   className={`flex items-center gap-2 px-5 py-2.5 rounded-full border-2 transition-all ${
                     isActive
@@ -251,7 +251,7 @@ export default function CaseStudiesPage() {
       {/* Case Studies Grid - Continue in next part due to length */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-black">
         <div className="max-w-7xl mx-auto">
-          <div}}}}
+          <div
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
@@ -265,7 +265,7 @@ export default function CaseStudiesPage() {
                 const isExpanded = expandedCase === caseStudy.id;
                 return (
                   <div
-                    key={caseStudy.id}}}}}
+                    key={caseStudy.id}
                     className="relative rounded-2xl border-2 border-amber-700/30 bg-gradient-to-br from-amber-950/60 to-black/60 backdrop-blur-xl overflow-hidden group"
                   >
                     {/* Before/After Mini Slider */}
@@ -290,8 +290,7 @@ export default function CaseStudiesPage() {
                         {/* After Image - Full Quality */}
                         <div
                           className="absolute inset-0"% 0 0)`
-                          }}
-                        >
+                          >
                           <Image
                             src={caseStudy.image}
                             alt={`${caseStudy.title} - After`}
@@ -302,8 +301,7 @@ export default function CaseStudiesPage() {
                         </div>
                         {/* Slider Line */}
                         <div
-                          className="absolute top-0 bottom-0 w-0.5 bg-amber-400 shadow-lg z-10"%` }}
-                        >
+                          className="absolute top-0 bottom-0 w-0.5 bg-amber-400 shadow-lg z-10"%` >
                           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-amber-400 border-2 border-white shadow-lg flex items-center justify-center">
                             <div className="w-2 h-2 bg-white rounded-full"></div>
                           </div>
@@ -378,7 +376,7 @@ export default function CaseStudiesPage() {
                       {/* Expanded Content */}
                       
                         {isExpanded && (
-                          <div}}}}
+                          <div
                             className="overflow-hidden mt-4"
                           >
                             <div className="space-y-4 pt-4 border-t border-amber-800/30">
@@ -438,7 +436,7 @@ export default function CaseStudiesPage() {
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-amber-950/20 to-black">
         <div className="max-w-7xl mx-auto">
           <div className="relative rounded-3xl border-2 border-amber-500/30 bg-gradient-to-br from-amber-950/40 via-yellow-950/40 to-black/40 backdrop-blur-xl p-12 md:p-16 text-center overflow-hidden">
-            <div}}}}
+            <div
               className="relative z-10"
             >
               <Award className="w-16 h-16 text-amber-400 mx-auto mb-6" />

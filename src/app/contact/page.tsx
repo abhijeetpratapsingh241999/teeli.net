@@ -79,12 +79,11 @@ export default function ContactPage() {
       <section className="relative min-h-screen w-full bg-black flex items-center justify-center px-4 py-24 pt-32 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-0 left-1/4 w-96 h-96 bg-green-500/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-emerald-500/20 rounded-full blur-3xl animate-pulse"}></div>
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-emerald-500/20 rounded-full blur-3xl animate-pulse"></div>
         </div>
 
         <div className="relative z-10 mx-auto max-w-6xl text-center">
-          <div}}}
-          >
+          <div>
             <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-r from-green-500/20 to-emerald-500/20 mb-6">
               <HeadphonesIcon className="w-10 h-10 text-green-400" />
             </div>
@@ -104,7 +103,7 @@ export default function ContactPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
             {contactMethods.map((method, index) => (
               <div
-                key={index}}}}}
+                key={index}
                 className="relative rounded-2xl border-2 border-green-500/20 bg-gradient-to-br from-black/60 via-emerald-950/20 to-black/60 backdrop-blur-xl p-6 text-center"}
               >
                 <div className={`inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-r ${method.color} mb-4`}>
@@ -126,7 +125,7 @@ export default function ContactPage() {
           {/* Main Contact Form */}
           <div className="grid lg:grid-cols-3 gap-12">
             <div className="lg:col-span-2">
-              <div}}}
+              <div
                 className="relative rounded-3xl border-2 border-green-500/30 bg-gradient-to-br from-black/80 via-emerald-950/30 to-black/80 backdrop-blur-xl p-8 md:p-12"}
               >
                 <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-green-500/10 to-transparent rounded-bl-full"></div>
@@ -236,7 +235,7 @@ export default function ContactPage() {
 
             {/* Sidebar */}
             <div>
-              <div}}}
+              <div
                 className="relative rounded-2xl border-2 border-green-500/30 bg-gradient-to-br from-black/60 via-emerald-950/20 to-black/60 backdrop-blur-xl p-8 mb-6"
               >
                 <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-r from-amber-500 to-orange-600 mb-4">

@@ -169,7 +169,7 @@ function BlogContent({ initialPosts, categories }: BlogClientProps) {
               </ol>
             </nav>
 
-            <div}}}
+            <div
               className="text-center mb-16"
             >
               <h1 className={`font-heading bg-clip-text text-5xl md:text-7xl font-bold text-transparent mb-6 leading-none pb-2 ${
@@ -199,7 +199,7 @@ function BlogContent({ initialPosts, categories }: BlogClientProps) {
                           {/* Premium Category Filter - Scrollable but No Scrollbar */}
               <div 
                 id="category-filter"
-                className="overflow-x-auto scrollbar-hide mb-12 pt-2 pb-2"}
+                className="overflow-x-auto scrollbar-hide mb-12 pt-2 pb-2"
               >
                 <nav 
                   aria-label="Blog categories" 
@@ -252,7 +252,7 @@ function BlogContent({ initialPosts, categories }: BlogClientProps) {
                 className="block focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 rounded-2xl overflow-hidden mb-8"
                 aria-label={`Read featured article: ${featuredPost.title}`}
               >
-                <article}}}
+                <article
                   itemScope
                   itemType="https://schema.org/BlogPosting"
                   className={`relative rounded-2xl overflow-hidden backdrop-blur-xl group transition-all duration-300 hover:scale-[1.01] focus-within:ring-2 focus-within:ring-purple-400 ${
@@ -440,7 +440,7 @@ function BlogContent({ initialPosts, categories }: BlogClientProps) {
                       className="block h-full focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 rounded-2xl sm:rounded-3xl"
                       aria-label={`Read article: ${post.title} in ${post.category} category`}
                     >
-                      <article}}}
+                      <article
                         itemScope
                         itemType="https://schema.org/BlogPosting"
                         className={`group relative rounded-2xl sm:rounded-3xl border overflow-hidden backdrop-blur-xl transition-all duration-300 md:hover:scale-[1.02] h-full flex flex-col focus-within:ring-2 focus-within:ring-cyan-400 ${

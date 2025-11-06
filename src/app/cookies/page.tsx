@@ -69,12 +69,11 @@ export default function CookiePolicyPage() {
       <section className="relative min-h-screen w-full bg-black flex items-center justify-center px-4 py-24 pt-32 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-0 left-1/4 w-96 h-96 bg-yellow-500/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-amber-500/20 rounded-full blur-3xl animate-pulse"}></div>
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-amber-500/20 rounded-full blur-3xl animate-pulse"></div>
         </div>
 
         <div className="relative z-10 mx-auto max-w-6xl text-center">
-          <div}}}
-          >
+          <div>
             <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-r from-yellow-500/20 to-amber-500/20 mb-6">
               <Cookie className="w-10 h-10 text-yellow-400" />
             </div>
@@ -94,7 +93,7 @@ export default function CookiePolicyPage() {
       {/* Introduction */}
       <section className="relative w-full bg-gradient-to-b from-black via-yellow-950/20 to-black py-16 px-4">
         <div className="mx-auto max-w-4xl">
-          <div}}}
+          <div
             className="prose prose-invert max-w-none text-center"
           >
             <p className="text-lg text-zinc-300 leading-relaxed mb-6">
@@ -111,7 +110,7 @@ export default function CookiePolicyPage() {
           <div className="grid md:grid-cols-2 gap-8">
             {cookieTypes.map((cookie, index) => (
               <div
-                key={index}}}}}
+                key={index}
                 className="relative rounded-2xl border-2 border-yellow-500/20 bg-gradient-to-br from-black/60 via-amber-950/20 to-black/60 backdrop-blur-xl p-8"}
               >
                 <div className="flex items-start gap-4 mb-4">
@@ -151,7 +150,7 @@ export default function CookiePolicyPage() {
       {/* Cookie Management */}
       <section className="relative w-full bg-gradient-to-b from-black via-zinc-900 to-black py-24 px-4">
         <div className="mx-auto max-w-4xl">
-          <div}}}
+          <div
             className="relative rounded-3xl border-2 border-yellow-500/30 bg-gradient-to-br from-black/80 via-amber-950/30 to-black/80 backdrop-blur-xl p-12"}
           >
             <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-yellow-500/10 to-transparent rounded-bl-full"></div>
@@ -206,7 +205,7 @@ export default function CookiePolicyPage() {
       {/* Third-Party Cookies */}
       <section className="relative w-full bg-black py-24 px-4 border-y border-white/10">
         <div className="mx-auto max-w-4xl">
-          <div}}}
+          <div
             className="flex items-start gap-4 p-8 rounded-2xl border-2 border-yellow-500/20 bg-gradient-to-br from-black/60 via-amber-950/20 to-black/60"
           >
             <AlertCircle className="w-8 h-8 text-yellow-400 flex-shrink-0" />

@@ -51,7 +51,7 @@ export default function AnimatedHeroText() {
           exit="exit"
           className="flex flex-col items-center justify-center"
         >
-          <div className="animate-pulse-slow mb-2 text-3xl"}>
+          <div className="animate-pulse-slow mb-2 text-3xl">
             {features[index].icon}
           </div>
           <h3 className="font-heading bg-gradient-to-r from-zinc-200 to-zinc-400 bg-clip-text text-xl font-bold text-transparent md:text-2xl">

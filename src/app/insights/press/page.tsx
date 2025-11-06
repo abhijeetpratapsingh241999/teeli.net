@@ -240,7 +240,7 @@ export default function PressNewsPage() {
       {/* Hero - Featured News */}
       <section className="relative pt-32 md:pt-32 lg:pt-40 px-4 sm:px-6 lg:px-8 mt-10">
         <div className="max-w-7xl mx-auto mb-12">
-          <div}}}
+          <div
             className="flex justify-center mb-6"
           >
             <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-purple-500/30 bg-purple-500/10 backdrop-blur-sm">
@@ -260,7 +260,7 @@ export default function PressNewsPage() {
 
         {/* Featured News Card */}
         <div className="max-w-7xl mx-auto mb-16">
-          <div}}}
+          <div
             className="relative rounded-3xl border-2 border-purple-500/30 bg-gradient-to-br from-purple-900/40 via-violet-900/40 to-black/40 backdrop-blur-xl overflow-hidden group"
           >
             <div className="absolute top-6 left-6 z-10">
@@ -383,7 +383,7 @@ export default function PressNewsPage() {
           
             {Object.entries(groupedByDate).map(([date, items], dateIdx) => (
               <div
-                key={date}}}}}
+                key={date}
                 className="mb-12"
               >
                 {/* Date Header */}
@@ -405,7 +405,7 @@ export default function PressNewsPage() {
                       const isEven = idx % 2 === 0;
                       return (
                         <div
-                          key={item.id}}}}
+                          key={item.id}
                           className={`relative flex items-start gap-6 ${
                             isEven ? 'md:flex-row' : 'md:flex-row-reverse'
                           }`}
@@ -494,7 +494,7 @@ export default function PressNewsPage() {
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 gap-8">
             {/* Press Kit */}
-            <div}}}}
+            <div
               className="rounded-3xl border-2 border-purple-500/30 bg-gradient-to-br from-slate-900/40 via-purple-950/40 to-black/40 backdrop-blur-xl p-8 md:p-12"
             >
               <FileText className="w-16 h-16 text-purple-400 mx-auto mb-6" />
@@ -528,7 +528,7 @@ export default function PressNewsPage() {
             </div>
 
             {/* Media Contact */}
-            <div}}}}
+            <div
               className="rounded-3xl border-2 border-pink-500/30 bg-gradient-to-br from-slate-900/40 via-pink-950/40 to-black/40 backdrop-blur-xl p-8 md:p-12"
             >
               <Mail className="w-16 h-16 text-pink-400 mx-auto mb-6" />

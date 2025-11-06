@@ -149,7 +149,7 @@ export default function RenderingEnginePage() {
       <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-32 md:pt-32 lg:pt-40 px-4 sm:px-6 lg:px-8">
         {/* Animated Background - Hexagonal Grid Pattern */}
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0"}></div>
+          <div className="absolute inset-0"></div>
         </div>
 
         {/* Animated Ray Lines */}
@@ -161,10 +161,9 @@ export default function RenderingEnginePage() {
               <div
                 key={i}
                 className="absolute top-1/2 left-1/2 w-px h-1 bg-gradient-to-t from-blue-500 via-cyan-400 to-transparent"rad)`,
-                  height: `${length}px`,
+                  height: `${length}px",
                   left: '50%',
                   top: '50%'
-                }}}}
               />
             );
           })}
@@ -172,7 +171,7 @@ export default function RenderingEnginePage() {
 
         <div className="relative z-10 max-w-7xl mx-auto w-full">
           {/* Header Badge */}
-          <div}}}
+          <div
             className="flex justify-center mb-8"
           >
             <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-blue-500/30 bg-blue-500/10 backdrop-blur-sm">
@@ -198,7 +197,7 @@ export default function RenderingEnginePage() {
           </p>
 
           {/* Hexagonal Feature Grid */}
-          <div}}}
+          <div
             className="relative w-full max-w-5xl mx-auto mb-12"
           >
             <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
@@ -208,7 +207,7 @@ export default function RenderingEnginePage() {
 
                 return (
                   <div
-                    key={feature.id}}}}
+                    key={feature.id}
                     onClick={() => setSelectedFeature(feature.id)}
                     className="cursor-pointer group relative"
                   >
@@ -247,7 +246,7 @@ export default function RenderingEnginePage() {
 
                       {/* Selection Indicator */}
                       {isSelected && (
-                        <div}}}
+                        <div
                           className="absolute -inset-1 border-2 border-blue-400 rounded-full opacity-50"}
                         />
                       )}
@@ -260,7 +259,7 @@ export default function RenderingEnginePage() {
 
           {/* Selected Feature Details */}
           <div
-            key={selectedFeature}}}
+            key={selectedFeature}
             className="max-w-2xl mx-auto mb-12"
           >
             <div className="relative rounded-2xl border-2 border-blue-500/30 bg-gradient-to-br from-blue-950/60 to-black/60 backdrop-blur-xl p-8 text-center">
@@ -271,7 +270,7 @@ export default function RenderingEnginePage() {
           </div>
 
           {/* CTA Buttons */}
-          <div}}}
+          <div
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <Link href="/contact">
@@ -295,7 +294,7 @@ export default function RenderingEnginePage() {
       {/* Performance Metrics - Technical Dashboard */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-indigo-950/20 to-black">
         <div className="max-w-7xl mx-auto">
-          <div}}}}
+          <div
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
@@ -311,7 +310,7 @@ export default function RenderingEnginePage() {
               const Icon = metric.icon;
               return (
                 <div
-                  key={index}}}}}
+                  key={index}
                   className="relative rounded-2xl border-2 border-blue-700/30 bg-gradient-to-br from-indigo-950/60 to-black/60 backdrop-blur-xl p-6 hover:border-blue-500/50 transition-all group overflow-hidden"
                 >
                   {/* Animated Background */}
@@ -342,7 +341,7 @@ export default function RenderingEnginePage() {
       {/* Technical Specifications - Grid Layout */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-black">
         <div className="max-w-7xl mx-auto">
-          <div}}}}
+          <div
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
@@ -356,7 +355,7 @@ export default function RenderingEnginePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {technicalSpecs.map((spec, index) => (
               <div
-                key={index}}}}}
+                key={index}
                 className="relative rounded-2xl border-2 border-blue-700/30 bg-gradient-to-br from-indigo-950/60 to-black/60 backdrop-blur-xl p-6 hover:border-blue-500/50 transition-all"
               >
                 <h3 className="font-heading text-xl font-bold text-white mb-4">{spec.category}</h3>
@@ -377,7 +376,7 @@ export default function RenderingEnginePage() {
       {/* Rendering Pipeline - Flow Diagram */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-indigo-950/20 to-black">
         <div className="max-w-7xl mx-auto">
-          <div}}}}
+          <div
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
@@ -404,7 +403,7 @@ export default function RenderingEnginePage() {
                 const Icon = stage.icon;
                 return (
                   <div
-                    key={index}}}}}
+                    key={index}
                     className="relative"
                   >
                     {/* Connection Dot */}
@@ -433,10 +432,10 @@ export default function RenderingEnginePage() {
           <div className="relative rounded-3xl border-2 border-blue-500/30 bg-gradient-to-br from-indigo-950/40 via-blue-950/40 to-black/40 backdrop-blur-xl p-12 md:p-16 text-center overflow-hidden">
             {/* Background Pattern - Technical Grid */}
             <div className="absolute inset-0 opacity-10">
-              <div className="absolute inset-0"}></div>
+              <div className="absolute inset-0"></div>
             </div>
 
-            <div}}}}
+            <div
               className="relative z-10"
             >
               <Cpu className="w-16 h-16 text-blue-400 mx-auto mb-6" />

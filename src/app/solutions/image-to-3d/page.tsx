@@ -42,7 +42,7 @@ export default function ImageTo3DPage() {
       {/* Unique Hero - Before/After Split */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div}}}
+          <div
             className="text-center mb-16"
           >
             <div className="flex items-center justify-center gap-4 mb-6">
@@ -77,7 +77,7 @@ export default function ImageTo3DPage() {
 
                      {/* Before/After Visual */}
            <div className="relative">
-             <div}}}
+             <div
                className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto"
              >
                {/* Before - 2D Image */}
@@ -101,7 +101,7 @@ export default function ImageTo3DPage() {
                            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-4 h-8 bg-purple-600/60 rounded-t border border-purple-400/50"></div>
                          </div>
                          {/* Roof */}
-                         <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-32 h-12 bg-gradient-to-br from-pink-400/60 to-purple-400/60"}></div>
+                         <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-32 h-12 bg-gradient-to-br from-pink-400/60 to-purple-400/60"></div>
                          {/* Ground */}
                          <div className="absolute top-full left-0 w-40 h-4 bg-gradient-to-r from-green-600/30 via-green-500/30 to-green-600/30 mt-2"></div>
                        </div>
@@ -140,7 +140,7 @@ export default function ImageTo3DPage() {
       {/* Transformation Pipeline - Vertical Flow */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-pink-950/10 to-black">
         <div className="max-w-6xl mx-auto">
-          <div}}}}
+          <div
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl font-bold mb-4 text-white">
@@ -180,7 +180,7 @@ export default function ImageTo3DPage() {
               }
             ].map((item, index) => (
               <div
-                key={index}}}}}
+                key={index}
                 className="relative mb-12 md:pl-32"
               >
                 <div className={`absolute left-0 top-0 w-24 h-24 rounded-full bg-gradient-to-br ${item.color} border-4 border-black flex items-center justify-center hidden md:flex`}>
@@ -202,7 +202,7 @@ export default function ImageTo3DPage() {
       {/* Key Features - Icon Grid with Descriptions */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div}}}}
+          <div
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl font-bold mb-4 text-white">
@@ -256,7 +256,7 @@ export default function ImageTo3DPage() {
               }
             ].map((feature, index) => (
               <div
-                key={index}}}}}
+                key={index}
                 className={`relative rounded-3xl border-2 ${feature.borderColor} bg-gradient-to-br ${feature.gradient} backdrop-blur-xl p-8 hover:scale-105 transition-transform duration-300`}
               >
                 <feature.icon className="w-12 h-12 text-white mb-6" />
@@ -271,7 +271,7 @@ export default function ImageTo3DPage() {
       {/* Use Cases - Comparison Cards */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-purple-950/10 to-black">
         <div className="max-w-7xl mx-auto">
-          <div}}}}
+          <div
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl font-bold mb-4 text-white">
@@ -335,7 +335,7 @@ export default function ImageTo3DPage() {
               }
             ].map((useCase, index) => (
               <div
-                key={index}}}}}
+                key={index}
                 className={`relative rounded-3xl border-2 ${useCase.borderColor} bg-gradient-to-br ${useCase.gradient} backdrop-blur-xl p-8 hover:scale-[1.02] transition-transform duration-300`}
               >
                 <useCase.icon className="w-12 h-12 text-white mb-6" />
@@ -361,7 +361,7 @@ export default function ImageTo3DPage() {
       {/* Technology - Stacked Cards */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div}}}}
+          <div
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl font-bold mb-4 text-white">
@@ -379,7 +379,7 @@ export default function ImageTo3DPage() {
               { name: "Format Conversion", description: "Export to multiple 3D file formats", icon: Code }
             ].map((tech, index) => (
               <div
-                key={index}}}}}
+                key={index}
                 className="rounded-2xl border border-pink-500/20 bg-black/40 backdrop-blur-xl p-6 hover:border-purple-500/50 transition-all"
               >
                 <tech.icon className="w-8 h-8 text-pink-400 mb-4" />
@@ -395,8 +395,7 @@ export default function ImageTo3DPage() {
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-pink-950/10 to-black">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div}}}}
-            >
+            <div}>
               <h2 className="font-heading text-4xl md:text-5xl font-bold mb-6 text-white">
                 Ready to Transform
                 <span className="block bg-clip-text text-transparent bg-gradient-to-r from-pink-400 to-purple-400">
@@ -421,7 +420,7 @@ export default function ImageTo3DPage() {
               </div>
             </div>
 
-            <div}}}}
+            <div
               className="relative rounded-3xl border-2 border-pink-500/30 bg-gradient-to-br from-pink-950/40 via-purple-950/40 to-cyan-950/40 backdrop-blur-xl p-10 text-center"
             >
               <Box className="w-16 h-16 text-pink-400 mx-auto mb-6" />

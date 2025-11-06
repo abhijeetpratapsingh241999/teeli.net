@@ -111,10 +111,10 @@ export default function SignupPage() {
         {/* Animated background gradient */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl animate-pulse"}></div>
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl animate-pulse"></div>
         </div>
 
-        <div}}}
+        <div
           className="relative z-10 w-full max-w-md md:max-w-xl lg:max-w-2xl"
         >
           {/* Signup Card */}
@@ -125,7 +125,7 @@ export default function SignupPage() {
             <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-cyan-500/10 to-transparent rounded-tr-full"></div>
 
             {/* Header */}
-            <div}}}
+            <div
               className="relative mb-6 md:mb-8 lg:mb-6 text-center lg:text-left"
             >
               <div className="inline-flex lg:flex items-center justify-center w-14 h-14 lg:w-12 lg:h-12 rounded-full bg-gradient-to-r from-purple-500/20 to-cyan-500/20 mb-3 lg:mb-0 lg:mr-4 lg:inline-flex">
@@ -144,8 +144,7 @@ export default function SignupPage() {
             {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-4 md:space-y-5 lg:space-y-4">
               {/* Name Field */}
-              <div}}}
-              >
+              <div>
                 <label htmlFor="name" className="block text-sm font-medium text-zinc-300 mb-2">
                   Full Name
                 </label>
@@ -175,8 +174,7 @@ export default function SignupPage() {
               </div>
 
               {/* Email Field */}
-              <div}}}
-              >
+              <div>
                 <label htmlFor="email" className="block text-sm font-medium text-zinc-300 mb-2">
                   Email Address
                 </label>
@@ -206,8 +204,7 @@ export default function SignupPage() {
               </div>
 
               {/* Password Field */}
-              <div}}}
-              >
+              <div>
                 <label htmlFor="password" className="block text-sm font-medium text-zinc-300 mb-2">
                   Password
                 </label>
@@ -245,8 +242,7 @@ export default function SignupPage() {
                           className={`h-full transition-all duration-300 ${
                             pwdStrength.color === 'red' ? 'bg-red-500' :
                             pwdStrength.color === 'yellow' ? 'bg-yellow-500' : 'bg-green-500'
-                          }`}%` }}
-                        ></div>
+                          }`}%` ></div>
                       </div>
                       <span className={`text-xs font-medium ${
                         pwdStrength.color === 'red' ? 'text-red-400' :
@@ -267,8 +263,7 @@ export default function SignupPage() {
               </div>
 
               {/* Confirm Password Field */}
-              <div}}}
-              >
+              <div>
                 <label htmlFor="confirmPassword" className="block text-sm font-medium text-zinc-300 mb-2">
                   Confirm Password
                 </label>
@@ -315,7 +310,7 @@ export default function SignupPage() {
               </div>
 
               {/* Terms and Conditions */}
-              <div}}}
+              <div
                 className="flex items-start gap-3"
               >
                 <input
@@ -354,7 +349,7 @@ export default function SignupPage() {
               )}
 
               {/* Submit Button */}
-              <button}}}
+              <button
                 type="submit"
                 disabled={isLoading}
                 className="w-full py-3 md:py-4 lg:py-3 rounded-xl bg-gradient-to-r from-purple-500 to-cyan-500 text-white font-semibold text-sm md:text-base lg:text-sm shadow-lg shadow-purple-500/30 hover:shadow-xl hover:shadow-purple-500/50 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 group"
@@ -374,7 +369,7 @@ export default function SignupPage() {
             </form>
 
             {/* Divider */}
-            <div}}}
+            <div
               className="relative my-6 md:my-8 lg:my-6 flex items-center"
             >
               <div className="flex-1 border-t border-purple-500/20"></div>
@@ -383,7 +378,7 @@ export default function SignupPage() {
             </div>
 
             {/* Social Login */}
-            <div}}}
+            <div
               className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4"
             >
               <button className="py-2.5 md:py-3 px-3 md:px-4 rounded-xl border-2 border-purple-500/30 bg-black/50 text-white hover:border-purple-500/50 hover:bg-purple-500/10 transition-all flex items-center justify-center gap-2">
@@ -416,7 +411,7 @@ export default function SignupPage() {
             </div>
 
             {/* Login Link */}
-            <div}}}
+            <div
               className="mt-6 md:mt-8 lg:mt-6 text-center text-xs md:text-sm text-zinc-400"
             >
               Already have an account?{' '}

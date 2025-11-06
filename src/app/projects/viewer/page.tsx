@@ -135,7 +135,7 @@ export default function InteractiveViewerPage() {
       {/* Unique Hero - Minimal Tech Header */}
       <section className="relative pt-32 md:pt-32 lg:pt-40 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto mb-8">
-          <div}}}
+          <div
             className="flex justify-center mb-6"
           >
             <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-cyan-500/30 bg-cyan-500/10 backdrop-blur-sm">
@@ -160,7 +160,7 @@ export default function InteractiveViewerPage() {
         <div className="max-w-[1800px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
             {/* Left Sidebar - Model Library */}
-            <div}}}
+            <div
               className="lg:col-span-3"
             >
               <div className="rounded-2xl border border-cyan-700/30 bg-gradient-to-br from-slate-900/60 to-black/60 backdrop-blur-xl p-6">
@@ -171,7 +171,7 @@ export default function InteractiveViewerPage() {
                 <div className="space-y-3">
                   {models.map((model) => (
                     <button
-                      key={model.id}}}
+                      key={model.id}
                       onClick={() => {
                         setSelectedModel(model.id);
                         resetView();
@@ -204,7 +204,7 @@ export default function InteractiveViewerPage() {
             {/* Main Viewer Area */}
             <div className="lg:col-span-6 relative">
               {/* Viewer Canvas */}
-              <div}}}
+              <div
                 ref={viewerRef}
                 className="relative aspect-square rounded-2xl border-2 border-cyan-700/30 bg-gradient-to-br from-slate-900/80 via-blue-950/60 to-black/80 backdrop-blur-xl overflow-hidden"
               >
@@ -225,8 +225,7 @@ export default function InteractiveViewerPage() {
                         <div
                           className="relative w-full h-full preserve-3d"deg) rotateX(${rotation.x}deg)`,
                             transformStyle: 'preserve-3d'
-                          }}
-                        >
+                          >
                           {/* Front */}
                           <div className="absolute w-64 h-64 bg-gradient-to-br from-cyan-500/40 to-blue-500/40 border-2 border-cyan-400/50"} />
                           {/* Back */}
@@ -323,7 +322,7 @@ export default function InteractiveViewerPage() {
             </div>
 
             {/* Right Sidebar - Controls */}
-            <div}}}
+            <div
               className="lg:col-span-3 space-y-6"
             >
               {/* View Mode Controls */}
@@ -443,7 +442,7 @@ export default function InteractiveViewerPage() {
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-blue-950/20 to-black">
         <div className="max-w-7xl mx-auto">
           <div className="relative rounded-3xl border-2 border-cyan-500/30 bg-gradient-to-br from-slate-900/40 via-blue-950/40 to-black/40 backdrop-blur-xl p-12 md:p-16 text-center overflow-hidden">
-            <div}}}}
+            <div
               className="relative z-10"
             >
               <Box className="w-16 h-16 text-cyan-400 mx-auto mb-6" />

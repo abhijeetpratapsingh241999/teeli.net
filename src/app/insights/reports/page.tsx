@@ -210,7 +210,7 @@ export default function IndustryReportsPage() {
       {/* Unique Hero - Dashboard Header */}
       <section className="relative pt-32 md:pt-32 lg:pt-40 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto mb-12">
-          <div}}}
+          <div
             className="flex justify-center mb-6"
           >
             <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-emerald-500/30 bg-emerald-500/10 backdrop-blur-sm">
@@ -248,7 +248,7 @@ export default function IndustryReportsPage() {
               const Icon = stat.icon;
               return (
                 <div
-                  key={stat.label}}}}
+                  key={stat.label}
                   className="rounded-2xl border border-emerald-700/30 bg-gradient-to-br from-slate-900/60 to-black/60 backdrop-blur-xl p-6"
                 >
                   <div className="flex items-center justify-between mb-4">
@@ -331,12 +331,12 @@ export default function IndustryReportsPage() {
         <div className="max-w-7xl mx-auto">
           
             <div
-              key={`${selectedCategory}-${selectedYear}-${searchQuery}`}}}}}
+              key={`${selectedCategory}-${selectedYear}-${searchQuery}`}
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
             >
               {filteredReports.map((report, idx) => (
                 <div
-                  key={report.id}}}}
+                  key={report.id}
                   onMouseEnter={() => setHoveredReport(report.id)}
                   onMouseLeave={() => setHoveredReport(null)}
                   className="group relative rounded-2xl border border-emerald-700/30 bg-gradient-to-br from-slate-900/60 to-black/60 backdrop-blur-xl overflow-hidden hover:border-emerald-500/50 transition-all"
@@ -444,7 +444,7 @@ export default function IndustryReportsPage() {
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-emerald-950/20 to-black">
         <div className="max-w-7xl mx-auto">
           <div className="relative rounded-3xl border-2 border-emerald-500/30 bg-gradient-to-br from-slate-900/40 via-emerald-950/40 to-black/40 backdrop-blur-xl p-12 md:p-16 text-center overflow-hidden">
-            <div}}}}
+            <div
               className="relative z-10"
             >
               <FileBarChart className="w-16 h-16 text-emerald-400 mx-auto mb-6" />

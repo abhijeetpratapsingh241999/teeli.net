@@ -85,13 +85,12 @@ export default function VirtualProductionPage() {
       <section className="relative min-h-screen md:h-screen flex flex-col md:flex-row items-center overflow-hidden pt-32 md:pt-32 lg:pt-40">
         {/* Left Side - Live Feed Simulation */}
         <div 
-          className="w-full md:w-1/2 h-[50vh] md:h-full relative bg-gradient-to-br from-zinc-900 to-black border-b-2 md:border-b-0 md:border-r-2 border-amber-500/30"}}}
-        >
+          className="w-full md:w-1/2 h-[50vh] md:h-full relative bg-gradient-to-br from-zinc-900 to-black border-b-2 md:border-b-0 md:border-r-2 border-amber-500/30">
           <div className="absolute inset-0 p-4 md:p-8">
             {/* Camera Viewport Frame */}
             <div className="relative h-full border-2 md:border-4 border-amber-400/50 rounded-lg overflow-hidden bg-black/80 backdrop-blur-sm">
               {/* Grid Overlay (like camera viewfinder) */}
-              <div className="absolute inset-0 opacity-20"}></div>
+              <div className="absolute inset-0 opacity-20"></div>
               
               {/* Virtual Set Visualization */}
               <div className="absolute inset-0 flex items-center justify-center">
@@ -133,8 +132,7 @@ export default function VirtualProductionPage() {
 
         {/* Right Side - Control Panel */}
         <div 
-          className="w-full md:w-1/2 h-auto md:h-full relative bg-gradient-to-br from-black to-zinc-950 flex flex-col justify-center px-6 md:px-12 py-12 md:py-0"}}}
-        >
+          className="w-full md:w-1/2 h-auto md:h-full relative bg-gradient-to-br from-black to-zinc-950 flex flex-col justify-center px-6 md:px-12 py-12 md:py-0">
           <div}
             className="max-w-2xl"
           >
@@ -176,7 +174,7 @@ export default function VirtualProductionPage() {
       {/* Production Timeline - Unique Horizontal Scrolling Section */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-zinc-950 to-black">
         <div className="max-w-7xl mx-auto">
-          <div}}}}
+          <div
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
@@ -199,13 +197,13 @@ export default function VirtualProductionPage() {
                 
                 return (
                   <div
-                    key={stage.id}}}}}
+                    key={stage.id}
                     onClick={() => setSelectedStage(stage.id)}
                     className="relative cursor-pointer group"
                   >
                     {/* Timeline Dot */}
                     <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 hidden md:block">
-                      <div : { scale: 1 }}}
+                      <div : { scale: 1 
                         className={`w-6 h-6 rounded-full bg-gradient-to-r ${stage.color} border-4 border-black shadow-lg`}
                       ></div>
                     </div>
@@ -235,7 +233,7 @@ export default function VirtualProductionPage() {
       {/* Technical Stack - Grid Layout with Real-Time Indicators */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-black">
         <div className="max-w-7xl mx-auto">
-          <div}}}}
+          <div
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
@@ -294,7 +292,7 @@ export default function VirtualProductionPage() {
               const Icon = tech.icon;
               return (
                 <div
-                  key={index}}}}}
+                  key={index}
                   className="relative rounded-2xl border-2 border-zinc-700 bg-gradient-to-br from-zinc-900/60 to-black/60 backdrop-blur-xl p-6 hover:border-amber-500/50 transition-all group overflow-hidden"
                 >
                   {/* Animated Background Gradient */}
@@ -321,7 +319,7 @@ export default function VirtualProductionPage() {
       {/* Use Cases - Film Studio Theme */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-zinc-950 to-black">
         <div className="max-w-7xl mx-auto">
-          <div}}}}
+          <div
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
@@ -361,7 +359,7 @@ export default function VirtualProductionPage() {
               }
             ].map((useCase, index) => (
               <div
-                key={index}}}}}
+                key={index}
                 className={`relative rounded-3xl border-2 ${useCase.borderColor} bg-gradient-to-br ${useCase.gradient} backdrop-blur-xl p-8 hover:scale-[1.02] transition-transform duration-300`}
               >
                 <Film className="w-12 h-12 text-white mb-6" />
@@ -386,9 +384,9 @@ export default function VirtualProductionPage() {
         <div className="max-w-7xl mx-auto">
           <div className="relative rounded-3xl border-2 border-amber-500/30 bg-gradient-to-br from-amber-950/40 via-orange-950/40 to-red-950/40 backdrop-blur-xl p-12 md:p-16 text-center overflow-hidden">
             {/* Studio Floor Pattern Background */}
-            <div className="absolute inset-0 opacity-10"}></div>
+            <div className="absolute inset-0 opacity-10"></div>
             
-            <div}}}}
+            <div
               className="relative z-10"
             >
               <Film className="w-16 h-16 text-amber-400 mx-auto mb-6" />

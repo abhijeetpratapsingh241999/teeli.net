@@ -146,7 +146,7 @@ export default function AIMLStackPage() {
       <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-32 md:pt-32 lg:pt-40 px-4 sm:px-6 lg:px-8">
         {/* Matrix-style Background Pattern */}
         <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0"}></div>
+          <div className="absolute inset-0"></div>
         </div>
 
         {/* Animated Neural Network Nodes */}
@@ -159,7 +159,6 @@ export default function AIMLStackPage() {
                 key={i}
                 className="absolute w-3 h-3 rounded-full bg-pink-500"%`,
                   top: `${y}%`,
-                }}}}
               />
             );
           })}
@@ -184,7 +183,7 @@ export default function AIMLStackPage() {
                   x2={`${endX}%`}
                   y2={`${endY}%`}
                   stroke="rgba(236, 72, 153, 0.2)"
-                  strokeWidth="1"}}
+                  strokeWidth="1"
                 />
               </motion.svg>
             );
@@ -193,7 +192,7 @@ export default function AIMLStackPage() {
 
         <div className="relative z-10 max-w-7xl mx-auto w-full">
           {/* Header Badge */}
-          <div}}}
+          <div
             className="flex justify-center mb-8"
           >
             <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-pink-500/30 bg-pink-500/10 backdrop-blur-sm">
@@ -219,7 +218,7 @@ export default function AIMLStackPage() {
           </p>
 
           {/* Neural Network Layer Visualization */}
-          <div}}}
+          <div
             className="relative w-full max-w-6xl mx-auto mb-12"
           >
             <div className="relative">
@@ -231,7 +230,7 @@ export default function AIMLStackPage() {
 
                   return (
                     <div
-                      key={layer.id}}}}
+                      key={layer.id}
                       onClick={() => setSelectedLayer(layer.id)}
                       className="cursor-pointer group relative"
                     >
@@ -274,7 +273,7 @@ export default function AIMLStackPage() {
 
           {/* Selected Layer Details */}
           <div
-            key={selectedLayer}}}
+            key={selectedLayer}
             className="max-w-3xl mx-auto mb-12"
           >
             <div className="relative rounded-2xl border-2 border-pink-500/30 bg-gradient-to-br from-pink-950/60 to-black/60 backdrop-blur-xl p-8">
@@ -298,7 +297,7 @@ export default function AIMLStackPage() {
           </div>
 
           {/* CTA Buttons */}
-          <div}}}
+          <div
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <Link href="/contact">
@@ -322,7 +321,7 @@ export default function AIMLStackPage() {
       {/* Capabilities - Grid Layout */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-purple-950/20 to-black">
         <div className="max-w-7xl mx-auto">
-          <div}}}}
+          <div
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
@@ -338,7 +337,7 @@ export default function AIMLStackPage() {
               const Icon = capability.icon;
               return (
                 <div
-                  key={index}}}}}
+                  key={index}
                   className="relative rounded-2xl border-2 border-pink-700/30 bg-gradient-to-br from-purple-950/60 to-black/60 backdrop-blur-xl p-6 hover:border-pink-500/50 transition-all group overflow-hidden"
                 >
                   {/* Animated Background */}
@@ -362,7 +361,7 @@ export default function AIMLStackPage() {
       {/* Framework Stack - Grid Layout */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-black">
         <div className="max-w-7xl mx-auto">
-          <div}}}}
+          <div
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
@@ -376,7 +375,7 @@ export default function AIMLStackPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {frameworks.map((framework, index) => (
               <div
-                key={index}}}}}
+                key={index}
                 className="relative rounded-2xl border-2 border-pink-700/30 bg-gradient-to-br from-purple-950/60 to-black/60 backdrop-blur-xl p-6 hover:border-pink-500/50 transition-all"
               >
                 <h3 className="font-heading text-xl font-bold text-white mb-4">{framework.category}</h3>
@@ -397,7 +396,7 @@ export default function AIMLStackPage() {
       {/* ML Pipeline - Flow Visualization */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-purple-950/20 to-black">
         <div className="max-w-7xl mx-auto">
-          <div}}}}
+          <div
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
@@ -424,7 +423,7 @@ export default function AIMLStackPage() {
                 const Icon = stage.icon;
                 return (
                   <div
-                    key={index}}}}}
+                    key={index}
                     className="relative"
                   >
                     {/* Connection Dot */}
@@ -453,10 +452,10 @@ export default function AIMLStackPage() {
           <div className="relative rounded-3xl border-2 border-pink-500/30 bg-gradient-to-br from-purple-950/40 via-pink-950/40 to-black/40 backdrop-blur-xl p-12 md:p-16 text-center overflow-hidden">
             {/* Background Pattern - Neural Network */}
             <div className="absolute inset-0 opacity-10">
-              <div className="absolute inset-0"}></div>
+              <div className="absolute inset-0"></div>
             </div>
 
-            <div}}}}
+            <div
               className="relative z-10"
             >
               <Brain className="w-16 h-16 text-pink-400 mx-auto mb-6" />

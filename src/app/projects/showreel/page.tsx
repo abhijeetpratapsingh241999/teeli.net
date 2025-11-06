@@ -206,13 +206,13 @@ export default function ShowreelPage() {
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-br from-red-900/30 via-rose-900/20 to-orange-900/20"></div>
           <div
-            className="absolute top-0 left-0 w-full h-full"}}}
+            className="absolute top-0 left-0 w-full h-full"
           />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto w-full">
           {/* Header Badge */}
-          <div}}}
+          <div
             className="flex justify-center mb-8"
           >
             <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-red-500/30 bg-red-500/10 backdrop-blur-sm">
@@ -222,7 +222,7 @@ export default function ShowreelPage() {
           </div>
 
           {/* Main Title */}
-          <div}}}
+          <div
             className="text-center mb-12"
           >
             <h1 className="font-heading text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold leading-none mb-4">
@@ -237,7 +237,7 @@ export default function ShowreelPage() {
           </div>
 
           {/* Featured Video Player */}
-          <div}}}
+          <div
             className="relative w-full max-w-6xl mx-auto mb-16 rounded-2xl overflow-hidden border-2 border-red-700/30 bg-gradient-to-br from-red-950/60 to-black/60 backdrop-blur-xl group"
           >
             {/* Video Container */}
@@ -275,7 +275,7 @@ export default function ShowreelPage() {
                       )}
                     </button>
                     <div className="flex-1 h-1 bg-white/20 rounded-full overflow-hidden">
-                      <div className="h-full bg-red-500 rounded-full"}></div>
+                      <div className="h-full bg-red-500 rounded-full"></div>
                     </div>
                     <div className="text-white text-sm font-semibold">{featuredVideo.duration}</div>
                     <button
@@ -330,7 +330,7 @@ export default function ShowreelPage() {
               const isActive = selectedCategory === cat.id;
               return (
                 <button
-                  key={cat.id}}}
+                  key={cat.id}
                   onClick={() => setSelectedCategory(cat.id)}
                   className={`flex items-center gap-2 px-5 py-2.5 rounded-full border-2 transition-all ${
                     isActive
@@ -350,7 +350,7 @@ export default function ShowreelPage() {
       {/* Video Grid */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-black">
         <div className="max-w-7xl mx-auto">
-          <div}}}}
+          <div
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
@@ -367,7 +367,7 @@ export default function ShowreelPage() {
                 const isHovered = hoveredVideo === video.id;
                 return (
                   <div
-                    key={video.id}}}}}
+                    key={video.id}
                     onHoverStart={() => setHoveredVideo(video.id)}
                     onHoverEnd={() => setHoveredVideo(null)}
                     onClick={() => setSelectedVideo(video.id)}
@@ -426,7 +426,7 @@ export default function ShowreelPage() {
                     {isHovered && (
                       <div
                         layoutId="videoHoverGlow"
-                        className="absolute inset-0 rounded-xl border-2 border-red-400/50 pointer-events-none"}}}
+                        className="absolute inset-0 rounded-xl border-2 border-red-400/50 pointer-events-none"
                       />
                     )}
                   </div>
@@ -440,11 +440,11 @@ export default function ShowreelPage() {
       {/* Video Lightbox Modal */}
       
         {selectedVideo !== null && (
-          <div}}}
+          <div
             className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex items-center justify-center p-4"
             onClick={() => setSelectedVideo(null)}
           >
-            <div}}}
+            <div
               onClick={(e) => e.stopPropagation()}
               className="relative w-full max-w-6xl"
             >
@@ -492,7 +492,7 @@ export default function ShowreelPage() {
                         )}
                       </button>
                       <div className="flex-1 h-1 bg-white/20 rounded-full overflow-hidden">
-                        <div className="h-full bg-red-500 rounded-full"}></div>
+                        <div className="h-full bg-red-500 rounded-full"></div>
                       </div>
                       <div className="text-white text-sm font-semibold">
                         {videos.find(v => v.id === selectedVideo)?.duration}
@@ -546,7 +546,7 @@ export default function ShowreelPage() {
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-red-950/20 to-black">
         <div className="max-w-7xl mx-auto">
           <div className="relative rounded-3xl border-2 border-red-500/30 bg-gradient-to-br from-red-950/40 via-rose-950/40 to-black/40 backdrop-blur-xl p-12 md:p-16 text-center overflow-hidden">
-            <div}}}}
+            <div
               className="relative z-10"
             >
               <Film className="w-16 h-16 text-red-400 mx-auto mb-6" />

@@ -37,7 +37,7 @@ export default function CloudGPURenderingPage() {
       {/* Unique Hero - Dashboard Style */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div}}}
+          <div
             className="text-center mb-12"
           >
             <div className="flex items-center justify-center gap-2 mb-6">
@@ -70,7 +70,7 @@ export default function CloudGPURenderingPage() {
           </div>
 
           {/* Infrastructure Dashboard */}
-          <div}}}
+          <div
             className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto"
           >
             {[
@@ -104,7 +104,7 @@ export default function CloudGPURenderingPage() {
               }
             ].map((stat, index) => (
               <div
-                key={index}}}}
+                key={index}
                 className={`relative rounded-2xl border border-cyan-500/20 bg-gradient-to-br ${stat.color} p-6 backdrop-blur-xl`}
               >
                 <stat.icon className="w-6 h-6 text-white/80 mb-2" />
@@ -120,7 +120,7 @@ export default function CloudGPURenderingPage() {
       {/* Infrastructure Overview - Network Diagram Style */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-cyan-950/10 to-black">
         <div className="max-w-7xl mx-auto">
-          <div}}}}
+          <div
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl font-bold mb-4 text-white">
@@ -157,7 +157,7 @@ export default function CloudGPURenderingPage() {
               }
             ].map((item, index) => (
               <div
-                key={index}}}}}
+                key={index}
                 className={`rounded-3xl border-2 ${item.color} p-8 backdrop-blur-xl text-center`}
               >
                 <item.icon className="w-12 h-12 text-cyan-400 mx-auto mb-4" />
@@ -173,7 +173,7 @@ export default function CloudGPURenderingPage() {
       {/* Features - Resource Cards */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div}}}}
+          <div
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl font-bold mb-4 text-white">
@@ -221,7 +221,7 @@ export default function CloudGPURenderingPage() {
               }
             ].map((feature, index) => (
               <div
-                key={index}}}}}
+                key={index}
                 className="rounded-2xl border border-cyan-500/20 bg-gradient-to-br from-black/60 via-cyan-950/20 to-black/60 backdrop-blur-xl p-6 hover:border-cyan-500/50 transition-all"
               >
                 <feature.icon className="w-10 h-10 text-cyan-400 mb-4" />
@@ -244,7 +244,7 @@ export default function CloudGPURenderingPage() {
       {/* Use Cases - Industry Cards */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-cyan-950/10 to-black">
         <div className="max-w-7xl mx-auto">
-          <div}}}}
+          <div
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl font-bold mb-4 text-white">
@@ -308,7 +308,7 @@ export default function CloudGPURenderingPage() {
               }
             ].map((useCase, index) => (
               <div
-                key={index}}}}}
+                key={index}
                 className={`rounded-3xl border-2 ${useCase.borderColor} bg-gradient-to-br ${useCase.gradient} backdrop-blur-xl p-8 hover:scale-[1.02] transition-transform duration-300`}
               >
                 <useCase.icon className="w-12 h-12 text-white mb-6" />
@@ -334,7 +334,7 @@ export default function CloudGPURenderingPage() {
       {/* Workflow - Process Steps */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div}}}}
+          <div
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl font-bold mb-4 text-white">
@@ -370,7 +370,7 @@ export default function CloudGPURenderingPage() {
               }
             ].map((item, index) => (
               <div
-                key={index}}}}}
+                key={index}
                 className="relative"
               >
                 <div className="rounded-2xl border-2 border-cyan-500/30 bg-gradient-to-br from-black/60 via-cyan-950/40 to-black/60 backdrop-blur-xl p-6 text-center h-full">
@@ -393,7 +393,7 @@ export default function CloudGPURenderingPage() {
       {/* Technology Stack - Minimal List */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-cyan-950/10 to-black">
         <div className="max-w-7xl mx-auto">
-          <div}}}}
+          <div
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl font-bold mb-4 text-white">
@@ -411,7 +411,7 @@ export default function CloudGPURenderingPage() {
               { name: "High-Speed Network", description: "Low-latency inter-node communication" }
             ].map((tech, index) => (
               <div
-                key={index}}}}}
+                key={index}
                 className="rounded-2xl border border-cyan-500/20 bg-black/40 backdrop-blur-xl p-6"
               >
                 <Cpu className="w-8 h-8 text-cyan-400 mb-4" />
@@ -427,8 +427,7 @@ export default function CloudGPURenderingPage() {
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div}}}}
-            >
+            <div}>
               <h2 className="font-heading text-4xl md:text-5xl font-bold mb-6 text-white">
                 Why Choose Cloud GPU?
               </h2>
@@ -449,7 +448,7 @@ export default function CloudGPURenderingPage() {
               </div>
             </div>
 
-            <div}}}}
+            <div
               className="relative rounded-3xl border-2 border-cyan-500/30 bg-gradient-to-br from-cyan-950/40 via-blue-950/40 to-cyan-950/40 backdrop-blur-xl p-10 text-center"
             >
               <Cloud className="w-16 h-16 text-cyan-400 mx-auto mb-6" />

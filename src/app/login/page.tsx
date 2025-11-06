@@ -56,10 +56,10 @@ export default function LoginPage() {
         {/* Animated background gradient */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-0 left-1/4 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse"}></div>
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
         </div>
 
-        <div}}}
+        <div
           className="relative z-10 w-full max-w-md md:max-w-xl lg:max-w-2xl"
         >
           {/* Login Card */}
@@ -70,7 +70,7 @@ export default function LoginPage() {
             <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-purple-500/10 to-transparent rounded-tr-full"></div>
 
             {/* Header */}
-            <div}}}
+            <div
               className="relative mb-6 md:mb-8 lg:mb-6 text-center lg:text-left"
             >
               <div className="inline-flex lg:flex items-center justify-center w-14 h-14 lg:w-12 lg:h-12 rounded-full bg-gradient-to-r from-cyan-500/20 to-purple-500/20 mb-3 lg:mb-0 lg:mr-4 lg:inline-flex">
@@ -89,8 +89,7 @@ export default function LoginPage() {
             {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-4 md:space-y-5 lg:space-y-4">
               {/* Email Field */}
-              <div}}}
-              >
+              <div>
                 <label htmlFor="email" className="block text-sm font-medium text-zinc-300 mb-2">
                   Email Address
                 </label>
@@ -122,8 +121,7 @@ export default function LoginPage() {
               </div>
 
               {/* Password Field */}
-              <div}}}
-              >
+              <div>
                 <label htmlFor="password" className="block text-sm font-medium text-zinc-300 mb-2">
                   Password
                 </label>
@@ -162,7 +160,7 @@ export default function LoginPage() {
               </div>
 
               {/* Forgot Password */}
-              <div}}}
+              <div
                 className="flex items-center justify-between text-sm"
               >
                 <label className="flex items-center gap-2 text-zinc-400 cursor-pointer group">
@@ -178,7 +176,7 @@ export default function LoginPage() {
               </div>
 
               {/* Submit Button */}
-              <button}}}
+              <button
                 type="submit"
                 disabled={isLoading}
                 className="w-full py-3 md:py-4 lg:py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-purple-500 text-white font-semibold text-sm md:text-base lg:text-sm shadow-lg shadow-cyan-500/30 hover:shadow-xl hover:shadow-cyan-500/50 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 group"
@@ -198,7 +196,7 @@ export default function LoginPage() {
             </form>
 
             {/* Divider */}
-            <div}}}
+            <div
               className="relative my-6 md:my-8 lg:my-6 flex items-center"
             >
               <div className="flex-1 border-t border-cyan-500/20"></div>
@@ -207,7 +205,7 @@ export default function LoginPage() {
             </div>
 
             {/* Social Login */}
-            <div}}}
+            <div
               className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4"
             >
               <button className="py-2.5 md:py-3 px-3 md:px-4 rounded-xl border-2 border-cyan-500/30 bg-black/50 text-white hover:border-cyan-500/50 hover:bg-cyan-500/10 transition-all flex items-center justify-center gap-2">
@@ -240,7 +238,7 @@ export default function LoginPage() {
             </div>
 
             {/* Sign Up Link */}
-            <div}}}
+            <div
               className="mt-6 md:mt-8 lg:mt-6 text-center text-xs md:text-sm text-zinc-400"
             >
               Don't have an account?{' '}

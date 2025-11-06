@@ -140,11 +140,13 @@ export default function MultiCloudPage() {
           {[...Array(30)].map((_, i) => (
             <div
               key={i}
-              className="absolute rounded-full bg-cyan-500/20 blur-3xl"px`,
-                height: `${100 + Math.random() * 200}px`,
+              className="absolute rounded-full bg-cyan-500/20 blur-3xl"
+              style={{
+                width: `${100 + Math.random() * 200}px",
+                height: `${100 + Math.random() * 200}px",
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
-              }}}}
+              }}
             />
           ))}
         </div>
@@ -165,7 +167,7 @@ export default function MultiCloudPage() {
             y2="50%"
             stroke="url(#lineGradient)"
             strokeWidth="2"
-            strokeDasharray="5,5"}}
+            strokeDasharray="5,5"
           />
           <line
             x1="50%"
@@ -174,7 +176,7 @@ export default function MultiCloudPage() {
             y2="50%"
             stroke="url(#lineGradient)"
             strokeWidth="2"
-            strokeDasharray="5,5"}}
+            strokeDasharray="5,5"
           />
           <line
             x1="50%"
@@ -183,13 +185,13 @@ export default function MultiCloudPage() {
             y2="60%"
             stroke="url(#lineGradient)"
             strokeWidth="2"
-            strokeDasharray="5,5"}}
+            strokeDasharray="5,5"
           />
         </svg>
 
         <div className="relative z-10 max-w-7xl mx-auto w-full">
           {/* Header Badge */}
-          <div}}}
+          <div
             className="flex justify-center mb-8"
           >
             <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-cyan-500/30 bg-cyan-500/10 backdrop-blur-sm">
@@ -215,12 +217,12 @@ export default function MultiCloudPage() {
           </p>
 
           {/* Cloud Network Visualization */}
-          <div}}}
+          <div
             className="relative w-full max-w-5xl mx-auto mb-12"
           >
             <div className="relative h-96 md:h-[500px]">
               {/* Central Hub - Hybrid Cloud */}
-              <div}}}
+              <div
                 onClick={() => setSelectedCloud(3)}
                 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer z-20"
               >
@@ -248,7 +250,7 @@ export default function MultiCloudPage() {
               </div>
 
               {/* AWS Cloud */}
-              <div}}}
+              <div
                 onClick={() => setSelectedCloud(0)}
                 className="absolute top-1/2 left-0 transform -translate-y-1/2 cursor-pointer z-10"
               >
@@ -274,7 +276,7 @@ export default function MultiCloudPage() {
               </div>
 
               {/* Azure Cloud */}
-              <div}}}
+              <div
                 onClick={() => setSelectedCloud(1)}
                 className="absolute top-0 left-1/2 transform -translate-x-1/2 cursor-pointer z-10"
               >
@@ -300,7 +302,7 @@ export default function MultiCloudPage() {
               </div>
 
               {/* GCP Cloud */}
-              <div}}}
+              <div
                 onClick={() => setSelectedCloud(2)}
                 className="absolute top-1/2 right-0 transform -translate-y-1/2 cursor-pointer z-10"
               >
@@ -329,7 +331,7 @@ export default function MultiCloudPage() {
 
           {/* Selected Cloud Details */}
           <div
-            key={selectedCloud}}}
+            key={selectedCloud}
             className="max-w-3xl mx-auto mb-12"
           >
             <div className="relative rounded-2xl border-2 border-cyan-500/30 bg-gradient-to-br from-teal-950/60 to-black/60 backdrop-blur-xl p-8">
@@ -353,7 +355,7 @@ export default function MultiCloudPage() {
           </div>
 
           {/* CTA Buttons */}
-          <div}}}
+          <div
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <Link href="/contact">
@@ -377,7 +379,7 @@ export default function MultiCloudPage() {
       {/* Capabilities - Grid Layout */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-teal-950/20 to-black">
         <div className="max-w-7xl mx-auto">
-          <div}}}}
+          <div
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
@@ -393,7 +395,7 @@ export default function MultiCloudPage() {
               const Icon = capability.icon;
               return (
                 <div
-                  key={index}}}}}
+                  key={index}
                   className="relative rounded-2xl border-2 border-cyan-700/30 bg-gradient-to-br from-teal-950/60 to-black/60 backdrop-blur-xl p-6 hover:border-cyan-500/50 transition-all group overflow-hidden"
                 >
                   {/* Animated Background */}
@@ -417,7 +419,7 @@ export default function MultiCloudPage() {
       {/* Technology Stack - Grid Layout */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-black">
         <div className="max-w-7xl mx-auto">
-          <div}}}}
+          <div
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
@@ -431,7 +433,7 @@ export default function MultiCloudPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {technologies.map((tech, index) => (
               <div
-                key={index}}}}}
+                key={index}
                 className="relative rounded-2xl border-2 border-cyan-700/30 bg-gradient-to-br from-teal-950/60 to-black/60 backdrop-blur-xl p-6 hover:border-cyan-500/50 transition-all"
               >
                 <h3 className="font-heading text-xl font-bold text-white mb-4">{tech.category}</h3>
@@ -452,7 +454,7 @@ export default function MultiCloudPage() {
       {/* Multi-Cloud Architecture - Flow Diagram */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-teal-950/20 to-black">
         <div className="max-w-7xl mx-auto">
-          <div}}}}
+          <div
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
@@ -479,7 +481,7 @@ export default function MultiCloudPage() {
                 const Icon = stage.icon;
                 return (
                   <div
-                    key={index}}}}}
+                    key={index}
                     className="relative"
                   >
                     {/* Connection Dot */}
@@ -508,10 +510,10 @@ export default function MultiCloudPage() {
           <div className="relative rounded-3xl border-2 border-cyan-500/30 bg-gradient-to-br from-teal-950/40 via-cyan-950/40 to-black/40 backdrop-blur-xl p-12 md:p-16 text-center overflow-hidden">
             {/* Background Pattern - Cloud Network */}
             <div className="absolute inset-0 opacity-10">
-              <div className="absolute inset-0"}></div>
+              <div className="absolute inset-0"></div>
             </div>
 
-            <div}}}}
+            <div
               className="relative z-10"
             >
               <Cloud className="w-16 h-16 text-cyan-400 mx-auto mb-6" />
