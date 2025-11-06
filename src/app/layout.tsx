@@ -10,7 +10,8 @@ import AnalyticsTracker from "./AnalyticsTracker";
 const lexend = Lexend({
   subsets: ["latin"],
   variable: "--font-lexend",
-  display: "swap",
+  display: "optional", // Faster render, show fallback immediately
+  weight: ['400', '600'], // Reduced weights for smaller file size
   preload: true,
   fallback: ['-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif'],
   adjustFontFallback: true,
@@ -20,7 +21,7 @@ const lexend = Lexend({
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
-  display: "swap",
+  display: "optional", // Faster render, show fallback immediately
   preload: true,
   fallback: ['-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif'],
   adjustFontFallback: true,
@@ -50,30 +51,18 @@ export default function RootLayout({
         {/* Critical DNS prefetch for faster resource loading */}
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-        
-        {/* ✅ Google Tag Manager Script - Deferred loading */}
-        {GTM_ID && (
-          <>
-            <script
-              dangerouslySetInnerHTML={{
-                __html: `
-                  window.dataLayer = window.dataLayer || [];
-                  function gtag(){dataLayer.push(arguments);}
-                  gtag('js', new Date());
-                `,
-              }}
-            />
-            <Script
-              id="gtm-script"
-              src={`https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`}
-              strategy="afterInteractive"
-              defer
-            />
-          </>
-        )}
       </head>
 
       <body className={`${lexend.variable} ${inter.variable} font-body antialiased bg-black`} suppressHydrationWarning>
+        {/* ✅ Google Tag Manager - Completely deferred */}
+        {GTM_ID && (
+          <Script
+            id="gtm-script"
+            src={`https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`}
+            strategy="lazyOnload"
+          />
+        )}
+        
         {/* ✅ Google Tag Manager Fallback (Noscript) */}
         {GTM_ID && (
           <noscript>

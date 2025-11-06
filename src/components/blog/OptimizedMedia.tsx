@@ -56,10 +56,12 @@ export function OptimizedBlogImage({
         alt={alt}
         width={1200}
         height={675}
-        quality={80}
+        quality={75}
         priority={priority}
         loading={priority ? undefined : 'lazy'}
         decoding="async"
+        placeholder="blur"
+        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAKAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWEREiMxUf/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
         className={`w-full h-auto rounded-xl sm:rounded-2xl border-2 border-cyan-500/30 shadow-2xl transition-opacity duration-300 ${
           isLoading ? 'opacity-0' : 'opacity-100'
         }`}
@@ -92,7 +94,7 @@ export function OptimizedBlogVideo({ src, className = "" }: OptimizedBlogVideoPr
         controls
         preload="metadata"
         className="w-full rounded-xl sm:rounded-2xl border-2 border-cyan-500/30 shadow-2xl"
-        onError={(e) => {
+        onError={() => {
           console.error('Video failed to load:', videoPath);
         }}
       >

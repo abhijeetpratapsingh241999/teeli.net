@@ -4,12 +4,20 @@ import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic'
 import Header from '@/components/Header';
 import AnimatedHeroText from '@/components/AnimatedHeroText';
-import { motion } from 'framer-motion';
 import { Twitter, Linkedin, Instagram, Github } from 'lucide-react';
 import Link from 'next/link';
 import { OrganizationSchema } from '@/components/schema/generateOrganizationSchema';
 
-const Scene = dynamic(() => import('@/components/Scene'), { ssr: false })
+// Lazy load heavy components
+const Scene = dynamic(() => import('@/components/Scene'), { 
+  ssr: false,
+  loading: () => <div className="w-full h-full bg-black" />
+})
+
+// Lazy load framer-motion for non-critical animations
+const motion = dynamic(() => import('framer-motion').then(mod => ({ default: mod.motion })), {
+  ssr: false,
+});
 
 export default function Home() {
   const [scrollProgress, setScrollProgress] = useState(0);
