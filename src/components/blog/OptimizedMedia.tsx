@@ -54,8 +54,8 @@ export function OptimizedBlogImage({
       <Image
         src={imagePath}
         alt={alt}
-        width={1200}
-        height={675}
+        width={950}
+        height={535}
         quality={40}
         priority={priority}
         loading={priority ? undefined : 'lazy'}

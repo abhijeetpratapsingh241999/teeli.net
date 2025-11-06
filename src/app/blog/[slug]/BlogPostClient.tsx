@@ -612,8 +612,8 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
                 <Image 
                   src={post.image} 
                   alt={post.title}
-                  width={1200}
-                  height={675}
+                  width={950}
+                  height={535}
                   quality={40}
                   priority
                   sizes="(max-width: 640px) 85vw, (max-width: 1024px) 75vw, 950px"
