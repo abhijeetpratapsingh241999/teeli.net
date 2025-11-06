@@ -1,24 +1,34 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* Performance Optimizations */
+  /* Aggressive Mobile Performance Optimizations */
   
-  // Image optimization
+  // Image optimization - Mobile First with priority
   images: {
     formats: ['image/avif', 'image/webp'],
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256],
     unoptimized: false,
-    minimumCacheTTL: 31536000, // 1 year cache for optimized images
+    minimumCacheTTL: 31536000,
+    dangerouslyAllowSVG: true,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    remotePatterns: [],
   },
   
-  // Enable Gzip compression
+  // Enable maximum compression
   compress: true,
   
   // Optimize production builds
   productionBrowserSourceMaps: false,
+  poweredByHeader: false,
   
-  // Headers for caching and security
+  // Experimental features for better performance
+  experimental: {
+    optimizePackageImports: ['lucide-react', 'date-fns', 'framer-motion', '@react-three/fiber', '@react-three/drei'],
+    optimizeCss: true,
+  },
+  
+  // Headers for aggressive caching and security
   async headers() {
     return [
       {
@@ -32,6 +42,27 @@ const nextConfig: NextConfig = {
             key: 'X-Frame-Options',
             value: 'SAMEORIGIN'
           },
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff'
+          },
+          {
+            key: 'Referrer-Policy',
+            value: 'strict-origin-when-cross-origin'
+          },
+          {
+            key: 'Permissions-Policy',
+            value: 'camera=(), microphone=(), geolocation=()'
+          },
+        ],
+      },
+      {
+        source: '/',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=1800, stale-while-revalidate=3600',
+          },
         ],
       },
       {
@@ -39,7 +70,34 @@ const nextConfig: NextConfig = {
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=3600, stale-while-revalidate=86400',
+            value: 'public, max-age=7200, stale-while-revalidate=86400',
+          },
+        ],
+      },
+      {
+        source: '/_next/static/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/fonts/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/:path*\\.(jpg|jpeg|png|webp|avif|svg|gif)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
           },
         ],
       },
