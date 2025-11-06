@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Lexend, Inter } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 // Lexend for clean readable body text - CRITICAL PERFORMANCE FIX
 const lexend = Lexend({
@@ -51,6 +52,9 @@ export default function RootLayout({
       <body className={`${lexend.variable} ${inter.variable} font-body antialiased bg-black`} suppressHydrationWarning>
         {/* ✅ Vercel Analytics - Minimal overhead */}
         <Analytics />
+        
+        {/* ✅ Vercel Speed Insights - Core Web Vitals tracking */}
+        <SpeedInsights />
 
         {children}
       </body>
