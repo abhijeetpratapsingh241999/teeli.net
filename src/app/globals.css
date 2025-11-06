@@ -44,6 +44,22 @@ h1, h2, h3, h4, h5, h6 {
   display: none;
 }
 
+/* CSS Animations - Replacing Framer Motion for Better Performance */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInDown {
+  animation: fadeInDown 0.3s ease-in-out;
+}
+
 /* Mobile performance optimization - GPU acceleration */
 img, video, canvas {
   max-width: 100%;
