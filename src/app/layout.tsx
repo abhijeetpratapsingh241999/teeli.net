@@ -48,33 +48,28 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning className="bg-black">
       <head>
         {/* Critical DNS prefetch for faster resource loading */}
-        <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         
-        {/* Preload critical fonts to reduce render blocking */}
-        <link
-          rel="preload"
-          href="/_next/static/media/lexend.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        
-        {/* ✅ Google Tag Manager Script - Completely non-blocking */}
+        {/* ✅ Google Tag Manager Script - Deferred loading */}
         {GTM_ID && (
-          <Script
-            id="gtm-script"
-            strategy="worker"
-            dangerouslySetInnerHTML={{
-              __html: `
-                (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.defer=true;j.src=
-                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-                })(window,document,'script','dataLayer','${GTM_ID}');
-              `,
-            }}
-          />
+          <>
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                `,
+              }}
+            />
+            <Script
+              id="gtm-script"
+              src={`https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`}
+              strategy="afterInteractive"
+              defer
+            />
+          </>
         )}
       </head>
 

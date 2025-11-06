@@ -5,7 +5,7 @@ import BlogThemeToggle from '@/components/BlogThemeToggle';
 import Header from '@/components/Header';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ReactNode, useState, useEffect, Suspense, lazy } from 'react';
+import { ReactNode, useState, useEffect } from 'react';
 import { BlogPost } from '@/lib/blog';
 import { motion, AnimatePresence } from 'framer-motion';
 import FAQAccordion from '@/components/FAQAccordion';
@@ -145,6 +145,7 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
     let scriptContent: string[] = [];
     let foundH1 = false;
     let isFirstParagraphAfterH1 = false;
+    let isFirstImage = true; // Track first image for priority loading
 
     const processLine = (line: string) => {
       const trimmedLine = line.trim();
@@ -199,8 +200,10 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
               src={src}
               alt={alt}
               className="my-6 sm:my-8"
+              priority={isFirstImage} // First image gets priority
             />
           );
+          isFirstImage = false; // Only first image gets priority
         }
         return;
       }
@@ -596,11 +599,12 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
             <div className="mb-8 sm:mb-12 overflow-hidden max-h-[300px] sm:max-h-[400px] md:max-h-[450px] lg:max-h-[500px]">
               {post.image.endsWith('.svg') ? (
                 <div className="relative w-full h-full">
-                  <img 
+                  <Image 
                     src={post.image} 
                     alt={post.title}
-                    loading="eager"
-                    decoding="async"
+                    width={1200}
+                    height={675}
+                    priority
                     className="w-full h-full object-cover rounded-xl sm:rounded-2xl border-2 border-cyan-500/30 shadow-2xl"
                   />
                 </div>
