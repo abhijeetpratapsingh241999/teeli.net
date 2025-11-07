@@ -60,6 +60,8 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
     enableVideos: true,
     enableHighlights: true,
     enableLinks: true,
+    enableCodeBlocks: true,
+    enableBlockquotes: true,
     priorityFirstImage: true
   });
 

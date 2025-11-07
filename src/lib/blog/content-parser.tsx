@@ -4,6 +4,8 @@ import { OptimizedBlogImage, OptimizedBlogVideo } from '@/components/blog/Optimi
 import HighlightBox from '@/components/blog/HighlightBox';
 import BlogTable from '@/components/blog/ui/BlogTable';
 import BlogLink from '@/components/blog/ui/BlogLink';
+import BlogCodeBlock from '@/components/blog/ui/BlogCodeBlock';
+import BlogQuote from '@/components/blog/ui/BlogQuote';
 import { getThemeConfig, BLOG_SPACING, BLOG_TYPOGRAPHY } from '@/lib/blog/theme-config';
 
 export interface ContentParserOptions {
@@ -13,6 +15,8 @@ export interface ContentParserOptions {
   enableVideos?: boolean;
   enableHighlights?: boolean;
   enableLinks?: boolean;
+  enableCodeBlocks?: boolean;
+  enableBlockquotes?: boolean;
   priorityFirstImage?: boolean;
 }
 
@@ -45,6 +49,8 @@ export function parseMarkdownContent(
     enableVideos = true,
     enableHighlights = true,
     enableLinks = true,
+    enableCodeBlocks = true,
+    enableBlockquotes = true,
     priorityFirstImage = true
   } = options;
 
@@ -57,6 +63,11 @@ export function parseMarkdownContent(
   let tableRows: string[] = [];
   let inScript = false;
   let scriptContent: string[] = [];
+  let inCodeBlock = false;
+  let codeBlockContent: string[] = [];
+  let codeBlockLanguage = '';
+  let inBlockquote = false;
+  let blockquoteContent: string[] = [];
   let foundH1 = false;
   let isFirstParagraphAfterH1 = false;
   let isFirstImage = true;
@@ -66,10 +77,78 @@ export function parseMarkdownContent(
     
     // Handle empty lines
     if (!trimmedLine) {
-      if (!inTable && !inScript) {
+      if (!inTable && !inScript && !inCodeBlock && !inBlockquote) {
         elements.push(<br key={key++} />);
       }
       return;
+    }
+
+    // Handle code blocks (```)
+    if (enableCodeBlocks) {
+      if (trimmedLine.startsWith('```')) {
+        if (!inCodeBlock) {
+          // Start code block
+          inCodeBlock = true;
+          codeBlockLanguage = trimmedLine.slice(3).trim() || 'text';
+          codeBlockContent = [];
+        } else {
+          // End code block
+          elements.push(
+            <BlogCodeBlock 
+              key={key++}
+              code={codeBlockContent.join('\n')}
+              language={codeBlockLanguage}
+              theme={theme}
+              showLineNumbers={codeBlockContent.length > 10}
+            />
+          );
+          inCodeBlock = false;
+          codeBlockContent = [];
+          codeBlockLanguage = '';
+        }
+        return;
+      }
+      
+      if (inCodeBlock) {
+        codeBlockContent.push(line); // Keep original line with indentation
+        return;
+      }
+    }
+
+    // Handle blockquotes (>)
+    if (enableBlockquotes) {
+      if (trimmedLine.startsWith('>')) {
+        if (!inBlockquote) {
+          inBlockquote = true;
+          blockquoteContent = [];
+        }
+        // Remove '>' and trim
+        blockquoteContent.push(trimmedLine.slice(1).trim());
+        return;
+      } else if (inBlockquote) {
+        // End of blockquote
+        const quoteText = blockquoteContent.join(' ');
+        // Check for author attribution (-- Author or - Author)
+        const authorMatch = quoteText.match(/^(.+?)(?:--|—)\s*(.+)$/);
+        
+        if (authorMatch) {
+          elements.push(
+            <BlogQuote key={key++} author={authorMatch[2].trim()} theme={theme}>
+              {authorMatch[1].trim()}
+            </BlogQuote>
+          );
+        } else {
+          elements.push(
+            <BlogQuote key={key++} theme={theme}>
+              {quoteText}
+            </BlogQuote>
+          );
+        }
+        
+        inBlockquote = false;
+        blockquoteContent = [];
+        // Don't return, process the current line
+      }
     }
 
     // Handle script tags
@@ -238,6 +317,39 @@ export function parseMarkdownContent(
   // Process all lines
   for (let i = 0; i < lines.length; i++) {
     processLine(lines[i]);
+  }
+
+  // Handle any remaining code block
+  if (enableCodeBlocks && inCodeBlock && codeBlockContent.length > 0) {
+    elements.push(
+      <BlogCodeBlock 
+        key={key++}
+        code={codeBlockContent.join('\n')}
+        language={codeBlockLanguage}
+        theme={theme}
+        showLineNumbers={codeBlockContent.length > 10}
+      />
+    );
+  }
+
+  // Handle any remaining blockquote
+  if (enableBlockquotes && inBlockquote && blockquoteContent.length > 0) {
+    const quoteText = blockquoteContent.join(' ');
+    const authorMatch = quoteText.match(/^(.+?)(?:--|—)\s*(.+)$/);
+    
+    if (authorMatch) {
+      elements.push(
+        <BlogQuote key={key++} author={authorMatch[2].trim()} theme={theme}>
+          {authorMatch[1].trim()}
+        </BlogQuote>
+      );
+    } else {
+      elements.push(
+        <BlogQuote key={key++} theme={theme}>
+          {quoteText}
+        </BlogQuote>
+      );
+    }
   }
 
   // Handle any remaining table
