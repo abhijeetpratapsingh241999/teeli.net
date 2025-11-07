@@ -7,23 +7,39 @@ import Image from 'next/image';
 import { BlogPost } from '@/lib/blog/blog';
 import { getThemeConfig, BLOG_SPACING, BLOG_TYPOGRAPHY, BLOG_RADIUS } from '@/lib/blog/theme-config';
 import { parseMarkdownContent } from '@/lib/blog/content-parser';
-import FAQAccordion from '@/components/FAQAccordion';
-import BlogAuthor from '@/components/blog/ui/BlogAuthor';
-import BlogCTA from '@/components/blog/ui/BlogCTA';
-import BlogLink from '@/components/blog/ui/BlogLink';
-import * as FAQ from '@/data/faq';
-import { ArticleSchema } from '@/components/schema/generateArticleSchema';
-import { FAQSchema } from '@/components/schema/generateFAQSchema';
-import { BreadcrumbSchema } from '@/components/schema/generateBreadcrumbSchema';
 import dynamic from 'next/dynamic';
 
 // Lazy load heavy components for better performance
+const FAQAccordion = dynamic(() => import('@/components/FAQAccordion'), { 
+  ssr: false,
+  loading: () => <div className="animate-pulse bg-gray-800/30 rounded-2xl h-48 my-8"></div>
+});
+
+const BlogAuthor = dynamic(() => import('@/components/blog/ui/BlogAuthor'), {
+  ssr: true,
+  loading: () => <div className="animate-pulse bg-gray-800/30 rounded-xl h-24"></div>
+});
+
+const BlogCTA = dynamic(() => import('@/components/blog/ui/BlogCTA'), {
+  ssr: false,
+  loading: () => <div className="animate-pulse bg-gray-800/30 rounded-xl h-32"></div>
+});
+
+const BlogLink = dynamic(() => import('@/components/blog/ui/BlogLink'), {
+  ssr: true
+});
+
 const RelatedPosts = dynamic(() => import('./RelatedPosts'), { 
   ssr: false,
   loading: () => (
     <div className="animate-pulse bg-gray-800/30 rounded-2xl h-64 my-8"></div>
   )
 });
+
+import * as FAQ from '@/data/faq';
+import { ArticleSchema } from '@/components/schema/generateArticleSchema';
+import { FAQSchema } from '@/components/schema/generateFAQSchema';
+import { BreadcrumbSchema } from '@/components/schema/generateBreadcrumbSchema';
 
 // FAQ Mapping: Blog slug to FAQ data
 const FAQ_MAP: Record<string, FAQ.FAQItem[]> = {

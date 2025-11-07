@@ -6,8 +6,8 @@ const nextConfig: NextConfig = {
   // Image optimization - EXTREME MOBILE FIRST
   images: {
     formats: ['image/avif', 'image/webp'],
-    deviceSizes: [640, 750, 828],
-    imageSizes: [16, 32, 48],
+    deviceSizes: [640, 750, 828, 1080, 1200],
+    imageSizes: [16, 32, 48, 64, 96],
     unoptimized: false,
     minimumCacheTTL: 31536000,
     dangerouslyAllowSVG: true,

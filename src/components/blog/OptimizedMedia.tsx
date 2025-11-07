@@ -54,9 +54,9 @@ export function OptimizedBlogImage({
       <Image
         src={imagePath}
         alt={alt}
-        width={800}
-        height={450}
-        quality={30}
+        width={1200}
+        height={675}
+        quality={85}
         priority={priority}
         loading={priority ? 'eager' : 'lazy'}
         decoding="async"
@@ -66,7 +66,7 @@ export function OptimizedBlogImage({
         className={`w-full h-auto rounded-xl sm:rounded-2xl border-2 border-cyan-500/30 shadow-2xl transition-opacity duration-300 ${
           isLoading ? 'opacity-0' : 'opacity-100'
         }`}
-        sizes="(max-width: 640px) 75vw, (max-width: 1024px) 65vw, 850px"
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 1200px"
         onLoad={() => setIsLoading(false)}
         onError={() => {
           setError(true);

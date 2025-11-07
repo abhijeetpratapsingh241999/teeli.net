@@ -12,22 +12,22 @@ import AnalyticsTracker from "./AnalyticsTracker";
 const lexend = Lexend({
   subsets: ["latin"],
   variable: "--font-lexend",
-  display: "swap", // Immediate render with fallback
-  weight: ['400'], // Only ONE weight - minimum possible
-  preload: false, // Don't preload - let browser decide
-  fallback: ['system-ui', 'sans-serif'],
-  adjustFontFallback: false, // Disable for faster load
+  display: "swap",
+  weight: ['300', '400'],
+  preload: true,
+  fallback: ['system-ui', '-apple-system', 'sans-serif'],
+  adjustFontFallback: true,
 });
 
 // Inter for headings - Ultra optimized
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
-  display: "swap", // Immediate render with fallback
-  weight: ['600'], // Only ONE weight
-  preload: false, // Don't preload
-  fallback: ['system-ui', 'sans-serif'],
-  adjustFontFallback: false, // Disable for faster load
+  display: "swap",
+  weight: ['600', '700'],
+  preload: true,
+  fallback: ['system-ui', '-apple-system', 'sans-serif'],
+  adjustFontFallback: true,
 });
 
 export const metadata: Metadata = {
