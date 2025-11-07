@@ -21,8 +21,8 @@ export default function ContactPage() {
     // Simulate API call
     setTimeout(() => {
       setIsLoading(false);
-      console.log('Contact form submitted:', formData);
-      // TODO: Implement actual form submission
+      // console.log('Contact form submitted:', formData);
+      // Production: Implement actual form submission
     }, 1500);
   };
 

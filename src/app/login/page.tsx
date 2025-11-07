@@ -44,8 +44,8 @@ export default function LoginPage() {
     // Simulate API call
     setTimeout(() => {
       setIsLoading(false);
-      // TODO: Implement actual authentication
-      console.log('Login attempt:', { email, password });
+      // Production: Implement actual authentication
+      // console.log('Login attempt:', { email, password });
     }, 1500);
   };
 

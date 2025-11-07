@@ -73,11 +73,13 @@ export function getAllBlogPosts(): BlogPost[] {
     // Sort by date (newest first)
     const sortedPosts = posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
     
-    // Debug logging
-    console.log('📊 Total blogs loaded:', sortedPosts.length);
-    sortedPosts.slice(0, 3).forEach((post, i) => {
-      console.log(`${i + 1}. ${post.title.substring(0, 50)}... - ${post.date} - Featured: ${post.featured}`);
-    });
+    // Debug logging (development only)
+    if (process.env.NODE_ENV === 'development') {
+      console.log('📊 Total blogs loaded:', sortedPosts.length);
+      sortedPosts.slice(0, 3).forEach((post, i) => {
+        console.log(`${i + 1}. ${post.title.substring(0, 50)}... - ${post.date} - Featured: ${post.featured}`);
+      });
+    }
     
     return sortedPosts;
   } catch (error) {

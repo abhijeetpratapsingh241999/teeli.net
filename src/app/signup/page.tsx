@@ -81,8 +81,8 @@ export default function SignupPage() {
     // Simulate API call
     setTimeout(() => {
       setIsLoading(false);
-      // TODO: Implement actual authentication
-      console.log('Signup attempt:', formData);
+      // Production: Implement actual authentication
+      // console.log('Signup attempt:', formData);
     }, 1500);
   };
 

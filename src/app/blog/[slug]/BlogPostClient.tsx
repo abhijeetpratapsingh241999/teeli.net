@@ -76,65 +76,6 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
-  // Extract intro sections from content
-  const extractIntroSections = (content: string) => {
-    const lines = content.split('\n').filter(line => line.trim());
-    
-    // Extract H1 from content (first line with #)
-    let h1Title = '';
-    let contentStart = 0;
-    
-    for (let i = 0; i < lines.length; i++) {
-      const line = lines[i].trim();
-      if (line.startsWith('# ')) {
-        h1Title = line.substring(2).trim();
-        contentStart = i + 1;
-        break;
-      }
-    }
-    
-    // Find first paragraph (intro sentence)
-    let introSentence = '';
-    let valueSummary = '';
-    let supportingContext = '';
-    const remainingContent: string[] = [];
-    
-    let paragraphCount = 0;
-    
-    for (let i = contentStart; i < lines.length; i++) {
-      const line = lines[i].trim();
-      
-      // Skip empty lines and headings
-      if (!line || line.startsWith('#') || line.startsWith('![') || line.startsWith('*') || line.startsWith('---')) {
-        if (paragraphCount >= 3) {
-          remainingContent.push(lines[i]);
-        }
-        continue;
-      }
-      
-      if (paragraphCount === 0) {
-        introSentence = line;
-        paragraphCount++;
-      } else if (paragraphCount === 1) {
-        valueSummary = line;
-        paragraphCount++;
-      } else if (paragraphCount === 2) {
-        supportingContext = line;
-        paragraphCount++;
-      } else {
-        remainingContent.push(lines[i]);
-      }
-    }
-    
-    return {
-      h1Title,
-      introSentence,
-      valueSummary,
-      supportingContext,
-      remainingContent: remainingContent.join('\n')
-    };
-  };
-
   const renderContent = (content: string) => {
     const lines = content.split('\n');
     const elements: ReactNode[] = [];
@@ -183,7 +124,7 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
         const [, alt, src] = imageMatch;
         const isVideo = src.endsWith('.mp4') || src.endsWith('.webm') || src.endsWith('.mov');
         
-        console.log('Image found:', { alt, src, isVideo }); // Debug log
+        // Debug log removed for production
         
         if (isVideo) {
           elements.push(
