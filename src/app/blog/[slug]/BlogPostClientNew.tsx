@@ -325,7 +325,7 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
         description={post.metaDescription || post.excerpt}
         url={`https://teeli.net/blog/${post.slug}`}
         image={post.image ? `https://teeli.net${post.image}` : undefined}
-        author={post.author}
+        author={typeof post.author === 'string' ? post.author : post.author.name}
         publishedTime={post.date}
         category={post.category}
       />
@@ -370,8 +370,8 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
                 <BlogMeta
                   date={post.date}
                   readTime={post.readTime}
-                  author={post.author}
-                  authorRole={post.authorRole}
+                  author={typeof post.author === 'string' ? post.author : post.author.name}
+                  authorRole={typeof post.author === 'string' ? post.authorRole : post.author.role}
                   className="mb-6"
                 />
 
@@ -402,7 +402,7 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
 
               {/* Blog Content with Prose Styling */}
               <div className="prose-custom">
-                {renderContent(post.content!)}
+                {renderContent(Array.isArray(post.content) ? post.content.join('\n') : (post.content || ''))}
               </div>
 
               {/* FAQ Section */}
@@ -441,7 +441,7 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
             {/* Sidebar - Table of Contents */}
             <aside className="hidden lg:block lg:col-span-4">
               <div className="sticky top-32">
-                <TableOfContents content={post.content || ''} />
+                <TableOfContents content={Array.isArray(post.content) ? post.content.join('\n') : (post.content || '')} />
               </div>
             </aside>
           </div>
