@@ -21,7 +21,7 @@ export default function Footer() {
             ? 'linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px)'
             : 'linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px)',
           backgroundSize: '20px 20px'
-        }}></div>
+        ></div>
       </div>
 
       {/* Footer Content */}

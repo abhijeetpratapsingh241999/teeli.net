@@ -95,7 +95,7 @@ export default function Header() {
                     
                       {openDropdown === item && (
                         <div
-                          className="absolute top-full left-0 mt-2 min-w-[220px] rounded-2xl border border-cyan-500/30 bg-black/95 backdrop-blur-xl p-2 shadow-2xl"
+                          className="absolute top-full left-0 mt-2 min-w-[220px] rounded-2xl border border-cyan-500/30 bg-black/95 backdrop-blur-xl p-2 shadow-2xl"}
                         >
                           {dropdownItems[item]?.map((subItem, index) => (
                             <div
@@ -179,7 +179,7 @@ export default function Header() {
               className="absolute top-24 left-1/2 transform -translate-x-1/2 w-full max-w-2xl mx-4"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="relative rounded-2xl border border-cyan-500/30 bg-black/95 backdrop-blur-xl p-6 shadow-2xl"
+              <div className="relative rounded-2xl border border-cyan-500/30 bg-black/95 backdrop-blur-xl p-6 shadow-2xl"}
               >
                 {/* Close button */}
                 <button
@@ -215,7 +215,7 @@ export default function Header() {
       
         {isMenuOpen && (
           <div
-            className="lg:hidden fixed top-0 left-0 w-full h-screen bg-black/80 backdrop-blur-xl border-b border-cyan-400/30 overflow-y-auto"
+            className="lg:hidden fixed top-0 left-0 w-full h-screen bg-black/80 backdrop-blur-xl border-b border-cyan-400/30 overflow-y-auto"}
           >
             <div className="mx-auto max-w-7xl px-6 py-12 pt-20">
               {/* Close button */}

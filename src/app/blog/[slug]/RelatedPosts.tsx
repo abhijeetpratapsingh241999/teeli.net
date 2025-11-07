@@ -1,6 +1,5 @@
 "use client";
 
-// REMOVED: framer-motion import for performance (-50KB saved)
 import Link from 'next/link';
 import { BlogPost } from '@/lib/blog';
 import { useBlogTheme } from '@/components/BlogThemeProvider';
@@ -26,7 +25,8 @@ export default function RelatedPosts({ posts }: RelatedPostsProps) {
         {posts.map((post, index) => (
           <div
             key={post.slug}
-            className="group"
+            className="group animate-fadeIn"
+            style={{ animationDelay: `${index * 100}ms` }}
           >
             <Link href={`/blog/${post.slug}`}>
               <div className={`relative rounded-3xl border-2 p-6 md:p-8 backdrop-blur-xl transition-all md:hover:scale-105 overflow-hidden h-full ${

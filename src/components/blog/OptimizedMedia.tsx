@@ -22,10 +22,8 @@ export function OptimizedBlogImage({
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  // Construct full image path - check if already starts with /blog/
-  const imagePath = src.startsWith('/blog/') ? src : 
-                    src.startsWith('/') ? src : 
-                    `/blog/${src}`;
+  // Construct full image path
+  const imagePath = src.startsWith('/') ? src : `/blog/${src}`;
 
   if (error) {
     return (
@@ -58,7 +56,7 @@ export function OptimizedBlogImage({
         alt={alt}
         width={800}
         height={450}
-        quality={30} // INCREASE from 25 to 30 - 25 was TOO aggressive
+        quality={30}
         priority={priority}
         loading={priority ? 'eager' : 'lazy'}
         decoding="async"
@@ -68,10 +66,9 @@ export function OptimizedBlogImage({
         className={`w-full h-auto rounded-xl sm:rounded-2xl border-2 border-cyan-500/30 shadow-2xl transition-opacity duration-300 ${
           isLoading ? 'opacity-0' : 'opacity-100'
         }`}
-        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 800px"
+        sizes="(max-width: 640px) 75vw, (max-width: 1024px) 65vw, 850px"
         onLoad={() => setIsLoading(false)}
         onError={() => {
-          console.error('Image failed to load:', imagePath);
           setError(true);
           setIsLoading(false);
         }}

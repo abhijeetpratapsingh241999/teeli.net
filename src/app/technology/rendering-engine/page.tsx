@@ -33,7 +33,10 @@ import Link from 'next/link';
 export default function RenderingEnginePage() {
   const [selectedFeature, setSelectedFeature] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
-  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
 
   const renderingFeatures = [
     {
@@ -136,7 +139,7 @@ export default function RenderingEnginePage() {
     }
   ];
 
-  
+  const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
 
   return (
     <div ref={containerRef} className="relative min-h-screen bg-gradient-to-b from-indigo-950 via-blue-950 to-black text-white overflow-hidden">
@@ -157,13 +160,10 @@ export default function RenderingEnginePage() {
             return (
               <div
                 key={i}
-                className="absolute top-1/2 left-1/2 w-px h-1 bg-gradient-to-t from-blue-500 via-cyan-400 to-transparent"
-                style={{ 
-                  transform: `rotate(${angle}rad)`,
+                style={{ transform: `rotate(${angle}rad)` 
                   height: `${length}px`,
                   left: '50%',
                   top: '50%'
-                }}
               />
             );
           })}
@@ -217,12 +217,12 @@ export default function RenderingEnginePage() {
                       <div
                         className={`absolute inset-0 bg-gradient-to-br ${feature.color} ${
                           isSelected ? 'opacity-100 scale-110' : 'opacity-60'
-                        } transition-all duration-300`}
+                        } transition-all duration-300`
                       />
                       <div
                         className={`absolute inset-[2px] bg-black ${
                           isSelected ? 'border-2 border-blue-400' : 'border border-blue-500/30'
-                        } transition-all duration-300`}
+                        } transition-all duration-300`
                       />
 
                       {/* Content */}

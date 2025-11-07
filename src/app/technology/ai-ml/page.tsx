@@ -169,7 +169,7 @@ export default function AIMLStackPage() {
             if (i % 5 === 4) return null; // Skip connections at row end
             
             return (
-              <svg
+              <motion.svg
                 key={`line-${i}`}
                 className="absolute inset-0 pointer-events-none"
               >
@@ -181,7 +181,7 @@ export default function AIMLStackPage() {
                   stroke="rgba(236, 72, 153, 0.2)"
                   strokeWidth="1"
                 />
-              </svg>
+              </motion.svg>
             );
           })}
         </div>

@@ -35,6 +35,9 @@ import Link from 'next/link';
 
 export default function VirtualProductionPage() {
   const [selectedStage, setSelectedStage] = useState(0);
+  const { scrollYProgress } = useScroll();
+  
+  
 
   const productionStages = [
     {

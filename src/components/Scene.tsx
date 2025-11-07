@@ -3,7 +3,7 @@
 import { Suspense, useRef, useMemo } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Points, PointMaterial } from "@react-three/drei";
-// REMOVED: @react-three/postprocessing for performance (35KB saved)
+import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import * as THREE from "three";
 import AIAtom from "./AIAtom";
 import NeuralLines from "./NeuralLines";
@@ -102,7 +102,9 @@ export default function Scene({ scrollProgress = 0 }: { scrollProgress?: number 
       <NeuralLines />
       <Particles scrollProgress={scrollProgress} />
 
-      {/* REMOVED: EffectComposer & Bloom for performance (-35KB) */}
+      <EffectComposer>
+        <Bloom luminanceThreshold={0.1} luminanceSmoothing={0.025} height={400} intensity={1.5} />
+      </EffectComposer>
     </Canvas>
   );
 }

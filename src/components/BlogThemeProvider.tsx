@@ -45,7 +45,7 @@ export function BlogThemeProvider({ children }: { children: React.ReactNode }) {
   const displayTheme = mounted ? theme : 'dark';
 
   return (
-    <BlogThemeContext.Provider value={{ theme: displayTheme, toggleTheme }}>
+    <BlogThemeContext.Provider value={{ theme: displayTheme, toggleTheme >
       {children}
     </BlogThemeContext.Provider>
   );

@@ -3,17 +3,16 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* Aggressive Mobile Performance Optimizations */
   
-  // Image optimization - CRITICAL FIX FOR LOCAL IMAGES
+  // Image optimization - EXTREME MOBILE FIRST
   images: {
-    formats: ['image/webp'], // Only WebP - AVIF too slow
-    deviceSizes: [640, 750, 828, 1080, 1200], // Mobile-first + desktop
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    formats: ['image/avif', 'image/webp'],
+    deviceSizes: [640, 750, 828],
+    imageSizes: [16, 32, 48],
     unoptimized: false,
-    minimumCacheTTL: 31536000, // Cache 1 year
+    minimumCacheTTL: 31536000,
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-    // REMOVED: remotePatterns not needed for local /public images
-    // Local images in /public are served directly by Next.js
+    remotePatterns: [],
     // Note: quality moved to component level (Next.js 16 requirement)
   },
   
