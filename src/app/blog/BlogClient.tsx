@@ -53,8 +53,8 @@ function BlogContent({ initialPosts, categories }: BlogClientProps) {
         "dateModified": post.date,
         "author": {
           "@type": "Person",
-          "name": post.author,
-          ...(post.authorRole && { "jobTitle": post.authorRole })
+          "name": typeof post.author === 'string' ? post.author : post.author?.name || 'TEELI Team',
+          ...(typeof post.author === 'object' && post.author?.role && { "jobTitle": post.author.role })
         },
         "publisher": {
           "@type": "Organization",
@@ -73,7 +73,7 @@ function BlogContent({ initialPosts, categories }: BlogClientProps) {
         "articleSection": post.category,
         "inLanguage": "en-US",
         "keywords": post.category,
-        "wordCount": post.content ? post.content.split(/\s+/).length : undefined
+        "wordCount": post.content ? (Array.isArray(post.content) ? post.content.join(' ').split(/\s+/).length : post.content.split(/\s+/).length) : undefined
       };
     };
   }, [baseUrl]);
@@ -390,7 +390,7 @@ function BlogContent({ initialPosts, categories }: BlogClientProps) {
                               itemType="https://schema.org/Person"
                               className={`text-xs font-medium ${theme === 'dark' ? 'text-purple-300' : 'text-purple-700'}`}
                             >
-                              <span itemProp="name">{featuredPost.author}</span>
+                              <span itemProp="name">{typeof featuredPost.author === 'string' ? featuredPost.author : featuredPost.author?.name || 'TEELI Team'}</span>
                             </span>
                           </div>
                         </div>

@@ -24,6 +24,14 @@ export function OptimizedBlogImage({
 
   // Construct full image path
   const imagePath = src.startsWith('/') ? src : `/blog/${src}`;
+  
+  // Check if the image is SVG
+  const isSvg = imagePath.endsWith('.svg');
+  
+  // Debug logging for SVG
+  if (isSvg && typeof window !== 'undefined') {
+    console.log('🎨 SVG Image Loading:', { src, imagePath, alt: alt.substring(0, 50) });
+  }
 
   if (error) {
     return (
@@ -42,22 +50,34 @@ export function OptimizedBlogImage({
   }
 
   return (
-    <figure className={`relative w-full overflow-hidden ${className}`}>
+    <figure className={`relative w-full ${isSvg ? '' : 'overflow-hidden'} ${className}`}>
       {/* Blur placeholder while loading */}
-      {isLoading && (
+      {isLoading && !isSvg && (
         <div 
           className="absolute inset-0 bg-gradient-to-br from-gray-900/60 to-gray-800/40 animate-pulse rounded-xl" 
           aria-hidden="true"
         />
       )}
       
-      <Image
-        src={imagePath}
-        alt={alt}
-        width={1200}
-        height={675}
-        quality={85}
-        priority={priority}
+      {isSvg ? (
+        // Use native img tag for SVG to preserve animations
+        <img
+          src={imagePath}
+          alt={alt}
+          loading={priority ? "eager" : "lazy"}
+          className="w-full h-auto rounded-xl my-8"
+          style={{ maxWidth: '100%', height: 'auto' }}
+          onLoad={() => setIsLoading(false)}
+          onError={() => setError(true)}
+        />
+      ) : (
+        <Image
+          src={imagePath}
+          alt={alt}
+          width={1200}
+          height={675}
+          quality={85}
+          priority={priority}
         loading={priority ? 'eager' : 'lazy'}
         decoding="async"
         fetchPriority={priority ? 'high' : 'low'}
@@ -73,6 +93,7 @@ export function OptimizedBlogImage({
           setIsLoading(false);
         }}
       />
+      )}
     </figure>
   );
 }

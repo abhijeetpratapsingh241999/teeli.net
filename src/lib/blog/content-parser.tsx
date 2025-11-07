@@ -6,7 +6,86 @@ import BlogTable from '@/components/blog/ui/BlogTable';
 import BlogLink from '@/components/blog/ui/BlogLink';
 import BlogCodeBlock from '@/components/blog/ui/BlogCodeBlock';
 import BlogQuote from '@/components/blog/ui/BlogQuote';
+import SvgIcon from '@/components/blog/ui/SvgIcon';
 import { getThemeConfig, BLOG_SPACING, BLOG_TYPOGRAPHY } from '@/lib/blog/theme-config';
+
+/**
+ * Emoji to SVG Icon Mapping
+ * Replaces emoji icons with accessible SVG components for better SEO and performance
+ */
+const EMOJI_TO_SVG_MAP: Record<string, { type: Parameters<typeof SvgIcon>[0]['type'], color: string }> = {
+  '🏠': { type: 'home', color: '#06b6d4' }, // cyan-500
+  '🧰': { type: 'tools', color: '#8b5cf6' }, // violet-500
+  '🔹': { type: 'layers', color: '#3b82f6' }, // blue-500
+  '💡': { type: 'lightbulb', color: '#fbbf24' }, // amber-400
+  '📊': { type: 'chart', color: '#10b981' }, // emerald-500
+  '🎨': { type: 'palette', color: '#ec4899' }, // pink-500
+  '⚡': { type: 'bolt', color: '#f59e0b' }, // amber-500
+  '🔍': { type: 'search', color: '#6366f1' }, // indigo-500
+  '✅': { type: 'check', color: '#22c55e' }, // green-500
+  '❌': { type: 'cross', color: '#ef4444' }, // red-500
+  '💰': { type: 'dollar', color: '#14b8a6' }, // teal-500
+  '📷': { type: 'camera', color: '#a855f7' }, // purple-500
+  '⏱️': { type: 'clock', color: '#64748b' }, // slate-500
+  '🏆': { type: 'award', color: '#f59e0b' }, // amber-500
+  '🚀': { type: 'rocket', color: '#8b5cf6' }, // violet-500
+  '⚙️': { type: 'settings', color: '#6b7280' }, // gray-500
+  '🖥️': { type: 'cpu', color: '#3b82f6' }, // blue-500
+  '🌐': { type: 'globe', color: '#06b6d4' }, // cyan-500
+  '🛡️': { type: 'shield', color: '#10b981' }, // emerald-500
+  '⭐': { type: 'star', color: '#fbbf24' }, // amber-400
+};
+
+/**
+ * Replace emoji icons with SVG components in text
+ * Improves SEO, accessibility, and performance
+ */
+function replaceEmojisWithSvg(text: string, theme: 'light' | 'dark' = 'dark', size: number = 20): ReactNode[] {
+  const parts: ReactNode[] = [];
+  let lastIndex = 0;
+  let key = 0;
+
+  // Create regex from all emojis in map
+  const emojiRegex = new RegExp(Object.keys(EMOJI_TO_SVG_MAP).join('|'), 'g');
+  
+  let match;
+  while ((match = emojiRegex.exec(text)) !== null) {
+    // Add text before emoji (process for inline markdown)
+    if (match.index > lastIndex) {
+      const textBeforeEmoji = text.substring(lastIndex, match.index);
+      parts.push(
+        <span key={`text-${key++}`}>{renderInlineMarkdown(textBeforeEmoji)}</span>
+      );
+    }
+    
+    // Add SVG icon with custom size
+    const emojiConfig = EMOJI_TO_SVG_MAP[match[0]];
+    if (emojiConfig) {
+      parts.push(
+        <span key={`emoji-${key++}`} className="inline-flex items-center mx-1" style={{ verticalAlign: 'middle' }}>
+          <SvgIcon 
+            type={emojiConfig.type} 
+            size={size} 
+            color={theme === 'dark' ? emojiConfig.color : emojiConfig.color}
+            className="inline-block"
+          />
+        </span>
+      );
+    }
+    
+    lastIndex = match.index + match[0].length;
+  }
+  
+  // Add remaining text (process for inline markdown)
+  if (lastIndex < text.length) {
+    const remainingText = text.substring(lastIndex);
+    parts.push(
+      <span key={`text-${key++}`}>{renderInlineMarkdown(remainingText)}</span>
+    );
+  }
+  
+  return parts.length > 0 ? parts : [text];
+}
 
 export interface ContentParserOptions {
   theme?: 'light' | 'dark';
@@ -39,7 +118,7 @@ export interface ContentParserOptions {
  * ```
  */
 export function parseMarkdownContent(
-  content: string, 
+  content: string | string[], 
   options: ContentParserOptions = {}
 ): ReactNode[] {
   const {
@@ -55,7 +134,10 @@ export function parseMarkdownContent(
   } = options;
 
   const themeConfig = getThemeConfig(theme);
-  const lines = content.split('\n');
+  
+  // Handle both string and array content formats
+  const contentString = Array.isArray(content) ? content.join('\n') : content;
+  const lines = contentString.split('\n');
   const elements: ReactNode[] = [];
   
   let key = 0;
@@ -232,24 +314,30 @@ export function parseMarkdownContent(
       }
     }
 
-    // Handle headings
+    // Handle headings (with SVG icon replacement)
     if (trimmedLine.startsWith('# ')) {
       foundH1 = true;
+      const headingText = trimmedLine.slice(2);
+      const headingParts = replaceEmojisWithSvg(headingText, theme, 36);
       elements.push(
         <BlogH1 key={key++} theme={theme}>
-          {renderInlineMarkdown(trimmedLine.slice(2))}
+          {headingParts}
         </BlogH1>
       );
     } else if (trimmedLine.startsWith('## ')) {
+      const headingText = trimmedLine.slice(3);
+      const headingParts = replaceEmojisWithSvg(headingText, theme, 30);
       elements.push(
         <BlogH2 key={key++} theme={theme}>
-          {renderInlineMarkdown(trimmedLine.slice(3))}
+          {headingParts}
         </BlogH2>
       );
     } else if (trimmedLine.startsWith('### ')) {
+      const headingText = trimmedLine.slice(4);
+      const headingParts = replaceEmojisWithSvg(headingText, theme, 26);
       elements.push(
         <BlogH3 key={key++} theme={theme}>
-          {renderInlineMarkdown(trimmedLine.slice(4))}
+          {headingParts}
         </BlogH3>
       );
     } 
@@ -287,10 +375,8 @@ export function parseMarkdownContent(
         );
       }
     } 
-    // Skip FAQ sections (handled by FAQAccordion component)
-    else if (trimmedLine.startsWith('## FAQ') || trimmedLine.match(/^\*\*[^*]+\?\*\*$/) || trimmedLine.startsWith('---')) {
-      return;
-    } 
+    // FAQ sections are now rendered as normal content (like rest of blog)
+    // FAQ auto-detection disabled - FAQs will render as H2/H3 + paragraphs
     // Handle paragraphs
     else {
       // Check if this is the first paragraph after H1 (lead paragraph)
@@ -368,6 +454,8 @@ export function parseMarkdownContent(
     );
   }
 
+  // FAQ rendering at end is disabled - FAQs render as normal content
+
   return elements;
 }
 
@@ -386,7 +474,7 @@ export function renderInlineMarkdown(text: string): ReactNode {
   while ((match = boldRegex.exec(text)) !== null) {
     // Add text before bold
     if (match.index > lastIndex) {
-      parts.push(text.substring(lastIndex, match.index));
+      parts.push(<span key={key++}>{text.substring(lastIndex, match.index)}</span>);
     }
     // Add bold text
     parts.push(
@@ -399,9 +487,10 @@ export function renderInlineMarkdown(text: string): ReactNode {
 
   // Add remaining text
   if (lastIndex < text.length) {
-    parts.push(text.substring(lastIndex));
+    parts.push(<span key={key++}>{text.substring(lastIndex)}</span>);
   }
 
+  // Return single fragment with keyed children to avoid key warnings
   return parts.length > 0 ? <>{parts}</> : text;
 }
 

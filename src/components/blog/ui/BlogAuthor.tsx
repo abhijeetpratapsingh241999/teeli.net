@@ -1,8 +1,9 @@
 import React from 'react';
 import { getThemeConfig, BLOG_TYPOGRAPHY } from '@/lib/blog/theme-config';
+import type { BlogAuthor as BlogAuthorType } from '@/lib/blog/blog';
 
 interface BlogAuthorProps {
-  author: string;
+  author: string | BlogAuthorType;
   authorRole?: string;
   date: string;
   readTime: string;
@@ -41,6 +42,10 @@ export default function BlogAuthor({
 }: BlogAuthorProps) {
   const themeConfig = getThemeConfig(theme);
   
+  // Extract author name and role from object or string
+  const authorName = typeof author === 'string' ? author : author.name;
+  const displayRole = typeof author === 'string' ? authorRole : author.role || authorRole;
+  
   // Generate avatar initials from author name
   const getInitials = (name: string): string => {
     return name
@@ -51,8 +56,8 @@ export default function BlogAuthor({
       .slice(0, 2);
   };
 
-  const initials = getInitials(author);
-  const isTeamMember = author.includes('TEELI');
+  const initials = getInitials(authorName);
+  const isTeamMember = authorName.includes('TEELI');
 
   return (
     <div className={`flex items-center gap-2 sm:gap-3 md:gap-4 flex-wrap ${BLOG_TYPOGRAPHY.caption} ${className}`}>
@@ -64,7 +69,7 @@ export default function BlogAuthor({
         <div>
           <div className="flex items-center gap-1.5">
             <div className={`${BLOG_TYPOGRAPHY.caption} font-semibold ${themeConfig.text.heading}`}>
-              {author}
+              {authorName}
             </div>
             {showTeamBadge && isTeamMember && (
               <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-gradient-to-r from-cyan-500 to-purple-600 text-white shadow-md">
@@ -72,9 +77,9 @@ export default function BlogAuthor({
               </span>
             )}
           </div>
-          {authorRole && (
+          {displayRole && (
             <div className={`text-xs ${themeConfig.text.muted}`}>
-              {authorRole}
+              {displayRole}
             </div>
           )}
         </div>

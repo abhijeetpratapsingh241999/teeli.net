@@ -1,6 +1,13 @@
 import fs from 'fs';
 import path from 'path';
 
+export interface BlogAuthor {
+  name: string;
+  role?: string;
+  avatar?: string;
+  bio?: string;
+}
+
 export interface BlogPost {
   id: number;
   slug: string;
@@ -9,13 +16,13 @@ export interface BlogPost {
   metaDescription?: string;
   category: string;
   date: string;
-  author: string;
-  authorRole?: string;
+  author: string | BlogAuthor; // Support both string and object
+  authorRole?: string; // Deprecated, use author.role instead
   excerpt: string;
   readTime: string;
   featured?: boolean;
   image?: string;
-  content?: string;
+  content?: string | string[]; // Support both string and array
 }
 
 // Get all blog posts metadata (without full content for listing)

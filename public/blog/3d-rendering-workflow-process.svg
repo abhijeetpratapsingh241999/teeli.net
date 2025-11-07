@@ -1,0 +1,295 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 800" style="background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="step1Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0891b2;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="step2Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="step3Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d97706;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="step4Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Filters -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <filter id="softGlow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Animations -->
+  <style>
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+    @keyframes flowRight {
+      0% { transform: translateX(-100px); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translateX(100px); opacity: 0; }
+    }
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+    @keyframes scaleIn {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+    
+    .float { animation: float 4s ease-in-out infinite; }
+    .float-delay { animation: float 4s ease-in-out infinite 0.5s; }
+    .pulse { animation: pulse 2s ease-in-out infinite; }
+    .flow { animation: flowRight 3s ease-in-out infinite; }
+    .rotate { animation: rotate 20s linear infinite; }
+    .shimmer { animation: shimmer 3s ease-in-out infinite; }
+    .scale { animation: scaleIn 2s ease-in-out infinite; }
+  </style>
+
+  <!-- Title -->
+  <text x="700" y="60" text-anchor="middle" fill="#fff" font-size="32" font-weight="700" font-family="Arial, sans-serif">
+    CAD to Photorealistic Render — Workflow Process
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="700" y="95" text-anchor="middle" fill="#94a3b8" font-size="16" font-family="Arial, sans-serif">
+    4-Step Professional Product Visualization Pipeline
+  </text>
+
+  <!-- Connection Lines with Flow Animation -->
+  <g opacity="0.3">
+    <line x1="250" y1="400" x2="550" y2="400" stroke="#06b6d4" stroke-width="2" stroke-dasharray="5,5" class="pulse"/>
+    <line x1="550" y1="400" x2="850" y2="400" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="5,5" class="pulse"/>
+    <line x1="850" y1="400" x2="1150" y2="400" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5,5" class="pulse"/>
+  </g>
+
+  <!-- Flow Particles -->
+  <circle cx="250" cy="400" r="4" fill="#06b6d4" class="flow" style="animation-delay: 0s;">
+    <animate attributeName="cx" from="250" to="550" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="250" cy="400" r="4" fill="#8b5cf6" class="flow" style="animation-delay: 1s;">
+    <animate attributeName="cx" from="550" to="850" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="250" cy="400" r="4" fill="#f59e0b" class="flow" style="animation-delay: 2s;">
+    <animate attributeName="cx" from="850" to="1150" dur="3s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Step 1: 3D Modeling (CAD) -->
+  <g class="float">
+    <rect x="50" y="200" width="200" height="280" rx="15" fill="url(#step1Grad)" opacity="0.15"/>
+    <rect x="60" y="210" width="180" height="260" rx="10" fill="none" stroke="url(#step1Grad)" stroke-width="2" filter="url(#glow)"/>
+    
+    <!-- CAD Wireframe Model -->
+    <g transform="translate(150, 300)">
+      <!-- Rotating wireframe cube -->
+      <g class="rotate" style="transform-origin: center;">
+        <!-- Front face -->
+        <path d="M -40,-40 L 40,-40 L 40,40 L -40,40 Z" fill="none" stroke="#06b6d4" stroke-width="2" opacity="0.8"/>
+        <!-- Back face -->
+        <path d="M -30,-50 L 50,-50 L 50,30 L -30,30 Z" fill="none" stroke="#06b6d4" stroke-width="1.5" opacity="0.5"/>
+        <!-- Connecting lines -->
+        <line x1="-40" y1="-40" x2="-30" y2="-50" stroke="#06b6d4" stroke-width="1.5" opacity="0.6"/>
+        <line x1="40" y1="-40" x2="50" y2="-50" stroke="#06b6d4" stroke-width="1.5" opacity="0.6"/>
+        <line x1="40" y1="40" x2="50" y2="30" stroke="#06b6d4" stroke-width="1.5" opacity="0.6"/>
+        <line x1="-40" y1="40" x2="-30" y2="30" stroke="#06b6d4" stroke-width="1.5" opacity="0.6"/>
+      </g>
+      
+      <!-- Grid points -->
+      <circle cx="-40" cy="-40" r="3" fill="#06b6d4" class="pulse"/>
+      <circle cx="40" cy="-40" r="3" fill="#06b6d4" class="pulse"/>
+      <circle cx="40" cy="40" r="3" fill="#06b6d4" class="pulse"/>
+      <circle cx="-40" cy="40" r="3" fill="#06b6d4" class="pulse"/>
+    </g>
+    
+    <!-- Step number -->
+    <circle cx="150" cy="220" r="20" fill="#06b6d4" filter="url(#softGlow)" class="scale"/>
+    <text x="150" y="228" text-anchor="middle" fill="#0f172a" font-size="18" font-weight="700">1</text>
+    
+    <!-- Title -->
+    <text x="150" y="410" text-anchor="middle" fill="#fff" font-size="18" font-weight="700">3D Modeling</text>
+    <text x="150" y="435" text-anchor="middle" fill="#94a3b8" font-size="13">CAD Import</text>
+    <text x="150" y="455" text-anchor="middle" fill="#64748b" font-size="11">Geometry Setup</text>
+  </g>
+
+  <!-- Step 2: Texturing & Materials -->
+  <g class="float-delay">
+    <rect x="350" y="200" width="200" height="280" rx="15" fill="url(#step2Grad)" opacity="0.15"/>
+    <rect x="360" y="210" width="180" height="260" rx="10" fill="none" stroke="url(#step2Grad)" stroke-width="2" filter="url(#glow)"/>
+    
+    <!-- Material Sphere with texture -->
+    <g transform="translate(450, 300)">
+      <circle cx="0" cy="0" r="50" fill="url(#step2Grad)" opacity="0.3"/>
+      <circle cx="0" cy="0" r="45" fill="none" stroke="#8b5cf6" stroke-width="3" filter="url(#glow)" class="pulse"/>
+      
+      <!-- Material swatches -->
+      <rect x="-60" y="-10" width="20" height="20" fill="#c0c0c0" stroke="#8b5cf6" stroke-width="1"/>
+      <rect x="-60" y="15" width="20" height="20" fill="#ffd700" stroke="#8b5cf6" stroke-width="1"/>
+      <rect x="40" y="-10" width="20" height="20" fill="#8b4513" stroke="#8b5cf6" stroke-width="1"/>
+      <rect x="40" y="15" width="20" height="20" fill="#1e90ff" stroke="#8b5cf6" stroke-width="1"/>
+      
+      <!-- Shimmer effect -->
+      <ellipse cx="-15" cy="-15" rx="20" ry="25" fill="#fff" opacity="0.3" class="shimmer"/>
+    </g>
+    
+    <!-- Step number -->
+    <circle cx="450" cy="220" r="20" fill="#8b5cf6" filter="url(#softGlow)" class="scale"/>
+    <text x="450" y="228" text-anchor="middle" fill="#fff" font-size="18" font-weight="700">2</text>
+    
+    <!-- Title -->
+    <text x="450" y="410" text-anchor="middle" fill="#fff" font-size="18" font-weight="700">Texturing</text>
+    <text x="450" y="435" text-anchor="middle" fill="#94a3b8" font-size="13">PBR Materials</text>
+    <text x="450" y="455" text-anchor="middle" fill="#64748b" font-size="11">Surface Properties</text>
+  </g>
+
+  <!-- Step 3: Lighting Setup -->
+  <g class="float">
+    <rect x="650" y="200" width="200" height="280" rx="15" fill="url(#step3Grad)" opacity="0.15"/>
+    <rect x="660" y="210" width="180" height="260" rx="10" fill="none" stroke="url(#step3Grad)" stroke-width="2" filter="url(#glow)"/>
+    
+    <!-- Lighting setup with sun and rays -->
+    <g transform="translate(750, 280)">
+      <!-- Sun/Light source -->
+      <circle cx="0" cy="0" r="25" fill="#f59e0b" filter="url(#glow)" class="pulse"/>
+      <circle cx="0" cy="0" r="30" fill="none" stroke="#f59e0b" stroke-width="2" opacity="0.5" class="scale"/>
+      
+      <!-- Light rays -->
+      <line x1="0" y1="0" x2="0" y2="60" stroke="#f59e0b" stroke-width="3" opacity="0.6" class="pulse"/>
+      <line x1="0" y1="0" x2="42" y2="42" stroke="#f59e0b" stroke-width="2.5" opacity="0.5" class="pulse"/>
+      <line x1="0" y1="0" x2="-42" y2="42" stroke="#f59e0b" stroke-width="2.5" opacity="0.5" class="pulse"/>
+      <line x1="0" y1="0" x2="50" y2="20" stroke="#f59e0b" stroke-width="2" opacity="0.4" class="pulse"/>
+      <line x1="0" y1="0" x2="-50" y2="20" stroke="#f59e0b" stroke-width="2" opacity="0.4" class="pulse"/>
+      
+      <!-- Product silhouette receiving light -->
+      <ellipse cx="0" cy="90" rx="40" ry="15" fill="#f59e0b" opacity="0.2" class="scale"/>
+      <rect x="-25" y="60" width="50" height="30" rx="5" fill="#1e293b" stroke="#f59e0b" stroke-width="2" class="pulse"/>
+    </g>
+    
+    <!-- Step number -->
+    <circle cx="750" cy="220" r="20" fill="#f59e0b" filter="url(#softGlow)" class="scale"/>
+    <text x="750" y="228" text-anchor="middle" fill="#0f172a" font-size="18" font-weight="700">3</text>
+    
+    <!-- Title -->
+    <text x="750" y="410" text-anchor="middle" fill="#fff" font-size="18" font-weight="700">Lighting</text>
+    <text x="750" y="435" text-anchor="middle" fill="#94a3b8" font-size="13">HDRI Setup</text>
+    <text x="750" y="455" text-anchor="middle" fill="#64748b" font-size="11">Studio Environment</text>
+  </g>
+
+  <!-- Step 4: Rendering (Final Output) -->
+  <g class="float-delay">
+    <rect x="950" y="200" width="200" height="280" rx="15" fill="url(#step4Grad)" opacity="0.15"/>
+    <rect x="960" y="210" width="180" height="260" rx="10" fill="none" stroke="url(#step4Grad)" stroke-width="2" filter="url(#glow)"/>
+    
+    <!-- Photorealistic product -->
+    <g transform="translate(1050, 300)">
+      <!-- Main product shape (smartphone/device) -->
+      <rect x="-35" y="-60" width="70" height="120" rx="8" fill="url(#step4Grad)" filter="url(#glow)"/>
+      <rect x="-32" y="-57" width="64" height="114" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="2"/>
+      
+      <!-- Screen glow -->
+      <rect x="-28" y="-50" width="56" height="100" rx="4" fill="#10b981" opacity="0.3" class="pulse"/>
+      
+      <!-- Reflection highlights -->
+      <ellipse cx="-15" cy="-30" rx="12" ry="20" fill="#fff" opacity="0.4"/>
+      <ellipse cx="10" cy="0" rx="8" ry="15" fill="#fff" opacity="0.2"/>
+      
+      <!-- Camera notch -->
+      <rect x="-8" y="-54" width="16" height="4" rx="2" fill="#0f172a"/>
+      
+      <!-- Sparkle effects -->
+      <circle cx="25" cy="-50" r="2" fill="#10b981" class="pulse"/>
+      <circle cx="-25" cy="40" r="2" fill="#10b981" class="pulse" style="animation-delay: 0.5s;"/>
+      <circle cx="30" cy="30" r="2" fill="#10b981" class="pulse" style="animation-delay: 1s;"/>
+    </g>
+    
+    <!-- Step number -->
+    <circle cx="1050" cy="220" r="20" fill="#10b981" filter="url(#softGlow)" class="scale"/>
+    <text x="1050" y="228" text-anchor="middle" fill="#0f172a" font-size="18" font-weight="700">4</text>
+    
+    <!-- Title -->
+    <text x="1050" y="410" text-anchor="middle" fill="#fff" font-size="18" font-weight="700">Rendering</text>
+    <text x="1050" y="435" text-anchor="middle" fill="#94a3b8" font-size="13">Photorealistic</text>
+    <text x="1050" y="455" text-anchor="middle" fill="#64748b" font-size="11">Final Output</text>
+  </g>
+
+  <!-- Progress Arrow -->
+  <g transform="translate(700, 550)">
+    <path d="M -300,0 L 300,0" stroke="#64748b" stroke-width="2" stroke-dasharray="10,5" opacity="0.5"/>
+    <polygon points="300,-10 320,0 300,10" fill="#64748b" opacity="0.5"/>
+    
+    <!-- Progress label -->
+    <text x="0" y="30" text-anchor="middle" fill="#94a3b8" font-size="14" font-style="italic">
+      Complete Workflow Timeline
+    </text>
+  </g>
+
+  <!-- Floating particles -->
+  <circle cx="100" cy="150" r="3" fill="#06b6d4" opacity="0.5" class="float"/>
+  <circle cx="300" cy="120" r="2" fill="#8b5cf6" opacity="0.4" class="float-delay"/>
+  <circle cx="600" cy="140" r="3" fill="#f59e0b" opacity="0.5" class="float"/>
+  <circle cx="900" cy="130" r="2" fill="#10b981" opacity="0.4" class="float-delay"/>
+  <circle cx="1200" cy="150" r="3" fill="#06b6d4" opacity="0.5" class="float"/>
+  
+  <circle cx="150" cy="550" r="2" fill="#8b5cf6" opacity="0.4" class="float"/>
+  <circle cx="450" cy="580" r="3" fill="#f59e0b" opacity="0.5" class="float-delay"/>
+  <circle cx="750" cy="560" r="2" fill="#10b981" opacity="0.4" class="float"/>
+  <circle cx="1050" cy="570" r="3" fill="#06b6d4" opacity="0.5" class="float-delay"/>
+
+  <!-- Bottom info bar -->
+  <rect x="50" y="620" width="1300" height="120" rx="10" fill="#1e293b" opacity="0.5"/>
+  
+  <g transform="translate(200, 660)">
+    <circle cx="0" cy="0" r="8" fill="#06b6d4"/>
+    <text x="20" y="5" fill="#fff" font-size="14" font-weight="600">Step 1:</text>
+    <text x="20" y="25" fill="#94a3b8" font-size="12">Import CAD files (STEP, OBJ, FBX)</text>
+  </g>
+  
+  <g transform="translate(500, 660)">
+    <circle cx="0" cy="0" r="8" fill="#8b5cf6"/>
+    <text x="20" y="5" fill="#fff" font-size="14" font-weight="600">Step 2:</text>
+    <text x="20" y="25" fill="#94a3b8" font-size="12">Apply PBR materials & textures</text>
+  </g>
+  
+  <g transform="translate(800, 660)">
+    <circle cx="0" cy="0" r="8" fill="#f59e0b"/>
+    <text x="20" y="5" fill="#fff" font-size="14" font-weight="600">Step 3:</text>
+    <text x="20" y="25" fill="#94a3b8" font-size="12">Configure HDRI lighting setup</text>
+  </g>
+  
+  <g transform="translate(1100, 660)">
+    <circle cx="0" cy="0" r="8" fill="#10b981"/>
+    <text x="20" y="5" fill="#fff" font-size="14" font-weight="600">Step 4:</text>
+    <text x="20" y="25" fill="#94a3b8" font-size="12">Export photorealistic render</text>
+  </g>
+
+  <!-- Footer note -->
+  <text x="700" y="770" text-anchor="middle" fill="#64748b" font-size="12" font-style="italic">
+    Professional product visualization pipeline used by Tesla, Apple, IKEA and Amazon
+  </text>
+</svg>

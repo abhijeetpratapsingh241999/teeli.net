@@ -40,6 +40,7 @@ import * as FAQ from '@/data/faq';
 import { ArticleSchema } from '@/components/schema/generateArticleSchema';
 import { FAQSchema } from '@/components/schema/generateFAQSchema';
 import { BreadcrumbSchema } from '@/components/schema/generateBreadcrumbSchema';
+import { VideoSchema } from '@/components/schema/generateVideoSchema';
 
 // FAQ Mapping: Blog slug to FAQ data
 const FAQ_MAP: Record<string, FAQ.FAQItem[]> = {
@@ -68,6 +69,9 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
   
   // Get FAQ items for this blog post
   const faqItems = FAQ_MAP[post.slug] || [];
+  
+  // Check if this blog uses video hero (for Video Schema)
+  const hasVideoHero = post.image && (post.image.endsWith('.mp4') || post.image.endsWith('.webm'));
 
   // Parse markdown content using the reusable content parser
   const contentElements = parseMarkdownContent(post.content || '', {
@@ -87,10 +91,10 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
       {/* SEO: Article Schema (JSON-LD) */}
       <ArticleSchema 
         title={post.title}
-        description={post.excerpt || post.content?.substring(0, 160) || ''}
+        description={post.excerpt || (post.content ? (Array.isArray(post.content) ? post.content[0]?.substring(0, 160) : post.content.substring(0, 160)) : '') || ''}
         url={`https://teeli.net/blog/${post.slug}`}
         image={post.image ? `https://teeli.net${post.image}` : undefined}
-        author={post.author}
+        author={typeof post.author === 'string' ? post.author : post.author?.name || 'TEELI Team'}
         publishedTime={post.date}
         category={post.category}
         keywords={[post.category, 'AI rendering', '3D visualization', 'TEELI']}
@@ -98,6 +102,19 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
       
       {/* SEO: FAQ Schema (JSON-LD) - Only if FAQs exist */}
       {faqItems.length > 0 && <FAQSchema faqs={faqItems} />}
+      
+      {/* SEO: Video Schema (JSON-LD) - Only if video hero exists */}
+      {hasVideoHero && post.image && (
+        <VideoSchema 
+          name={`${post.title} - Visual Demo`}
+          description={post.excerpt || `Visual demonstration of ${post.title}`}
+          thumbnailUrl={`https://teeli.net${post.image.replace(/\.(mp4|webm)$/, '-poster.webp')}`}
+          contentUrl={`https://teeli.net${post.image}`}
+          uploadDate={post.date}
+          duration="PT7S"
+          url={`https://teeli.net/blog/${post.slug}`}
+        />
+      )}
       
       {/* SEO: Breadcrumb Schema (JSON-LD) */}
       <BreadcrumbSchema 
@@ -150,10 +167,25 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
           </div>
         </div>
 
-        {/* Featured Image */}
+        {/* Featured Image/Video */}
         {post.image && (
           <div className={`${BLOG_SPACING.section} overflow-hidden max-h-[300px] sm:max-h-[400px] md:max-h-[450px] lg:max-h-[500px]`}>
-            {post.image.endsWith('.svg') ? (
+            {post.image.endsWith('.mp4') || post.image.endsWith('.webm') ? (
+              // Video hero for pillar blogs (auto-play, muted, loop)
+              <video 
+                autoPlay 
+                muted 
+                loop 
+                playsInline
+                preload="auto"
+                poster={post.image.replace(/\.(mp4|webm)$/, '-poster.webp')}
+                className={`w-full h-auto object-cover ${BLOG_RADIUS.medium} ${themeConfig.border.primary} border-2 shadow-2xl`}
+                style={{ maxHeight: '500px' }}
+              >
+                <source src={post.image} type={`video/${post.image.split('.').pop()}`} />
+                Your browser does not support the video tag.
+              </video>
+            ) : post.image.endsWith('.svg') ? (
               // Use native img tag for SVG to preserve animations
               <img 
                 src={post.image} 
@@ -164,6 +196,7 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
                 className={`w-full h-auto object-cover ${BLOG_RADIUS.medium} ${themeConfig.border.primary} border-2 shadow-2xl`}
               />
             ) : (
+              // Regular images (WebP, JPG, PNG)
               <Image 
                 src={post.image} 
                 alt={post.title}
