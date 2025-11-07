@@ -318,7 +318,7 @@ export function parseMarkdownContent(
     if (trimmedLine.startsWith('# ')) {
       foundH1 = true;
       const headingText = trimmedLine.slice(2);
-      const headingParts = replaceEmojisWithSvg(headingText, theme, 36);
+      const headingParts = replaceEmojisWithSvg(headingText, theme, 48);
       elements.push(
         <BlogH1 key={key++} theme={theme}>
           {headingParts}
@@ -326,7 +326,7 @@ export function parseMarkdownContent(
       );
     } else if (trimmedLine.startsWith('## ')) {
       const headingText = trimmedLine.slice(3);
-      const headingParts = replaceEmojisWithSvg(headingText, theme, 30);
+      const headingParts = replaceEmojisWithSvg(headingText, theme, 38);
       elements.push(
         <BlogH2 key={key++} theme={theme}>
           {headingParts}
@@ -334,7 +334,7 @@ export function parseMarkdownContent(
       );
     } else if (trimmedLine.startsWith('### ')) {
       const headingText = trimmedLine.slice(4);
-      const headingParts = replaceEmojisWithSvg(headingText, theme, 26);
+      const headingParts = replaceEmojisWithSvg(headingText, theme, 32);
       elements.push(
         <BlogH3 key={key++} theme={theme}>
           {headingParts}
