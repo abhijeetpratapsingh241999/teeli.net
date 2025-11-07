@@ -13,7 +13,7 @@ import { ArticleSchema } from '@/components/schema/generateArticleSchema';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ReactNode, useState, useEffect } from 'react';
-import { BlogPost } from '@/lib/blog';
+import { BlogPost } from '@/lib/blog/blog';
 import * as FAQ from '@/data/faq';
 
 // FAQ Mapping: Blog slug to FAQ data

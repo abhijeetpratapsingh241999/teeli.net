@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { getBlogPostBySlug, getAllBlogPosts, getRelatedBlogPosts } from '@/lib/blog';
+import { getBlogPostBySlug, getAllBlogPosts, getRelatedBlogPosts } from '@/lib/blog/blog';
 import type { Metadata } from 'next';
 import BlogPostClient from './BlogPostClient';
 

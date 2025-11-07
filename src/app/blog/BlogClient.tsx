@@ -6,7 +6,7 @@ import Footer from '@/components/Footer';
 import { BlogThemeProvider, useBlogTheme } from '@/components/BlogThemeProvider';
 import BlogThemeToggle from '@/components/BlogThemeToggle';
 // import { motion } from 'framer-motion'; // REMOVED for performance
-import { BlogPost } from '@/lib/blog';
+import { BlogPost } from '@/lib/blog/blog';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Calendar, Clock, User, ArrowRight, TrendingUp, Eye } from 'lucide-react';

@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { BlogPost } from '@/lib/blog';
+import { BlogPost } from '@/lib/blog/blog';
 import ImageOptimized from '@/components/ui/ImageOptimized';
 import { ArrowRight, Calendar, Clock } from 'lucide-react';
 

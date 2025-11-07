@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next';
-import { getAllBlogPosts } from '@/lib/blog';
+import { getAllBlogPosts } from '@/lib/blog/blog';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://teeli.net';

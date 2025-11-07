@@ -1,4 +1,4 @@
-import { getAllBlogPosts, getAllCategories } from '@/lib/blog';
+import { getAllBlogPosts, getAllCategories } from '@/lib/blog/blog';
 import BlogClient from './BlogClient';
 
 export default function BlogPage() {

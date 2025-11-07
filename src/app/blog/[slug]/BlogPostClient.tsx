@@ -6,7 +6,7 @@ import Header from '@/components/Header';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ReactNode, useState, useEffect } from 'react';
-import { BlogPost } from '@/lib/blog';
+import { BlogPost } from '@/lib/blog/blog';
 // import { motion, AnimatePresence } from 'framer-motion'; // REMOVED for performance
 import FAQAccordion from '@/components/FAQAccordion';
 import HighlightBox from '@/components/blog/HighlightBox';

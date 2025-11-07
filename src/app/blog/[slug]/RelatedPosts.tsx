@@ -1,7 +1,7 @@
 "use client";
 
 import Link from 'next/link';
-import { BlogPost } from '@/lib/blog';
+import { BlogPost } from '@/lib/blog/blog';
 import { useBlogTheme } from '@/components/BlogThemeProvider';
 
 interface RelatedPostsProps {
