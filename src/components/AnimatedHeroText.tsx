@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-// REMOVED: framer-motion import for performance (-50KB saved)
+
 const features = [
   {
     icon: "⚙️",
@@ -25,40 +25,48 @@ const features = [
   },
 ];
 
-const textVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-  exit: { opacity: 0, y: -20, transition: { duration: 0.5 } },
-};
-
 export default function AnimatedHeroText() {
   const [index, setIndex] = useState(0);
+  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setIndex((prevIndex) => (prevIndex + 1) % features.length);
+      // Fade out
+      setIsVisible(false);
+      
+      // Wait for fade out, then change content and fade in
+      setTimeout(() => {
+        setIndex((prevIndex) => (prevIndex + 1) % features.length);
+        setIsVisible(true);
+      }, 300); // Match fade-out duration
+      
     }, 4000); // Change feature every 4 seconds
+    
     return () => clearInterval(timer);
   }, []);
 
   return (
     <div className="mt-4 flex h-24 flex-col items-center justify-center text-center">
-      
-        <div
-          key={index}
-          className="flex flex-col items-center justify-center"
-        >
-          <div className="animate-pulse-slow mb-2 text-3xl">
-            {features[index].icon}
-          </div>
-          <h3 className="font-heading bg-gradient-to-r from-zinc-200 to-zinc-400 bg-clip-text text-xl font-bold text-transparent md:text-2xl">
-            {features[index].title}
-          </h3>
-          <p className="max-w-xs px-4 text-base text-zinc-400 md:max-w-lg md:px-0">
-            {features[index].description}
-          </p>
+      <div
+        key={index}
+        className={`flex flex-col items-center justify-center transition-opacity duration-300 ${
+          isVisible ? 'opacity-100' : 'opacity-0'
+        }`}
+        style={{
+          transform: 'translate3d(0, 0, 0)', // GPU acceleration
+          willChange: 'opacity'
+        }}
+      >
+        <div className="animate-pulse-slow mb-2 text-3xl">
+          {features[index].icon}
         </div>
-      
+        <h3 className="font-heading bg-gradient-to-r from-zinc-200 to-zinc-400 bg-clip-text text-xl font-bold text-transparent md:text-2xl">
+          {features[index].title}
+        </h3>
+        <p className="max-w-xs px-4 text-base text-zinc-400 md:max-w-lg md:px-0">
+          {features[index].description}
+        </p>
+      </div>
     </div>
   );
 }
