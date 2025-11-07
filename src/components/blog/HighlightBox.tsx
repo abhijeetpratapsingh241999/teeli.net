@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+// import { motion } from 'framer-motion'; // REMOVED for performance
 import { ReactNode } from 'react';
 
 interface HighlightBoxProps {
@@ -38,10 +38,7 @@ export default function HighlightBox({
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
+    <div
       className={`
         relative overflow-hidden rounded-2xl sm:rounded-3xl
         ${variants[variant][theme]}
@@ -105,6 +102,6 @@ export default function HighlightBox({
         bg-gradient-to-r from-transparent via-cyan-500 to-transparent
         opacity-40 group-hover:opacity-70 transition-opacity duration-500
       `} />
-    </motion.div>
+    </div>
   );
 }

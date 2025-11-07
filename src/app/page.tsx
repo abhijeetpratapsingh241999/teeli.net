@@ -59,7 +59,7 @@ export default function Home() {
         </div>
         <div className="pointer-events-none absolute inset-0 z-10 flex flex-col items-center justify-center text-center">
           {/* UI Elements will go here */}
-          <motion.div
+          <div
             style={{ 
               transform: `translateZ(${scrollProgress * 10}px)`,
               transformStyle: 'preserve-3d'
@@ -69,7 +69,7 @@ export default function Home() {
             <h1 className="font-heading bg-gradient-to-b from-white to-zinc-400 bg-clip-text text-5xl font-bold text-transparent sm:text-6xl md:text-8xl">
               TEELI.NET
           </h1>
-          </motion.div>
+          </div>
           <AnimatedHeroText />
           <button className="pointer-events-auto mt-8 rounded-full bg-gradient-to-r from-cyan-400 to-purple-500 px-8 py-3 font-semibold text-white transition-transform hover:scale-105">
             Get Started

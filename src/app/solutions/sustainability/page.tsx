@@ -30,10 +30,11 @@ import Link from 'next/link';
 export default function SustainabilityPage() {
   const [selectedMetric, setSelectedMetric] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
+  // REMOVED: useScroll hook (framer-motion)
+  // const { scrollYProgress } = useScroll({
+  //   target: containerRef,
+  //   offset: ["start start", "end end"]
+  // });
 
   const pipelineSteps = [
     {
@@ -113,7 +114,8 @@ export default function SustainabilityPage() {
     }
   ];
 
-  const circularProgress = useTransform(scrollYProgress, [0, 1], [0, 360]);
+  // REMOVED: useTransform hook (framer-motion)
+  // const circularProgress = useTransform(scrollYProgress, [0, 1], [0, 360]);
 
   return (
     <div ref={containerRef} className="relative min-h-screen bg-gradient-to-b from-emerald-950 via-green-950 to-black text-white overflow-hidden">

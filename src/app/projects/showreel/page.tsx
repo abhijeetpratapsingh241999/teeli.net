@@ -425,7 +425,6 @@ export default function ShowreelPage() {
                     {/* Hover Glow Effect */}
                     {isHovered && (
                       <div
-                        layoutId="videoHoverGlow"
                         className="absolute inset-0 rounded-xl border-2 border-red-400/50 pointer-events-none"
                       />
                     )}

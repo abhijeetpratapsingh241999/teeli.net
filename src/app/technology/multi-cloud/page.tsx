@@ -33,10 +33,7 @@ import Link from 'next/link';
 export default function MultiCloudPage() {
   const [selectedCloud, setSelectedCloud] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
+  // REMOVED: useScroll hook (framer-motion)
 
   const cloudProviders = [
     {
@@ -127,7 +124,7 @@ export default function MultiCloudPage() {
     }
   ];
 
-  const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
+  // REMOVED: useTransform hook
 
   return (
     <div ref={containerRef} className="relative min-h-screen bg-gradient-to-b from-teal-950 via-cyan-950 to-black text-white overflow-hidden">
@@ -140,11 +137,13 @@ export default function MultiCloudPage() {
           {[...Array(30)].map((_, i) => (
             <div
               key={i}
-              className="absolute rounded-full bg-cyan-500/20 blur-3xl"px`,
+              className="absolute rounded-full bg-cyan-500/20 blur-3xl"
+              style={{
+                width: `${150 + Math.random() * 250}px`,
                 height: `${100 + Math.random() * 200}px`,
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
-              }}}}
+              }}
             />
           ))}
         </div>
@@ -165,7 +164,7 @@ export default function MultiCloudPage() {
             y2="50%"
             stroke="url(#lineGradient)"
             strokeWidth="2"
-            strokeDasharray="5,5"}}
+            strokeDasharray="5,5"
           />
           <line
             x1="50%"
@@ -174,7 +173,7 @@ export default function MultiCloudPage() {
             y2="50%"
             stroke="url(#lineGradient)"
             strokeWidth="2"
-            strokeDasharray="5,5"}}
+            strokeDasharray="5,5"
           />
           <line
             x1="50%"
@@ -183,13 +182,13 @@ export default function MultiCloudPage() {
             y2="60%"
             stroke="url(#lineGradient)"
             strokeWidth="2"
-            strokeDasharray="5,5"}}
+            strokeDasharray="5,5"
           />
         </svg>
 
         <div className="relative z-10 max-w-7xl mx-auto w-full">
           {/* Header Badge */}
-          <div}}}
+          <div
             className="flex justify-center mb-8"
           >
             <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-cyan-500/30 bg-cyan-500/10 backdrop-blur-sm">
@@ -199,7 +198,7 @@ export default function MultiCloudPage() {
           </div>
 
           {/* Main Title */}
-          <h1}}}
+          <h1
             className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 text-center leading-tight"
           >
             <span className="block bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-teal-400 to-blue-400">
@@ -208,23 +207,23 @@ export default function MultiCloudPage() {
             <span className="block text-white mt-2">Multi-Cloud Platform</span>
           </h1>
 
-          <p}}}
+          <p
             className="text-xl md:text-2xl text-cyan-200/80 mb-12 text-center max-w-3xl mx-auto leading-relaxed"
           >
             Seamlessly orchestrate workloads across AWS, Azure, GCP, and hybrid environments with unified management and automation.
           </p>
 
           {/* Cloud Network Visualization */}
-          <div}}}
+          <div
             className="relative w-full max-w-5xl mx-auto mb-12"
           >
             <div className="relative h-96 md:h-[500px]">
               {/* Central Hub - Hybrid Cloud */}
-              <div}}}
+              <div
                 onClick={() => setSelectedCloud(3)}
                 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer z-20"
               >
-                <div}
+                <div
                   className={`relative w-32 h-32 md:w-40 md:h-40 rounded-full bg-gradient-to-br ${cloudProviders[3].color} ${
                     selectedCloud === 3 ? 'ring-4 ring-cyan-400 ring-offset-4 ring-offset-black' : ''
                   } flex items-center justify-center transition-all duration-300 shadow-2xl`}
@@ -233,7 +232,7 @@ export default function MultiCloudPage() {
                   
                   {/* Pulse Effect */}
                   {selectedCloud === 3 && (
-                    <div}}
+                    <div
                       className="absolute inset-0 rounded-full bg-cyan-400"
                     />
                   )}
@@ -248,18 +247,18 @@ export default function MultiCloudPage() {
               </div>
 
               {/* AWS Cloud */}
-              <div}}}
+              <div
                 onClick={() => setSelectedCloud(0)}
                 className="absolute top-1/2 left-0 transform -translate-y-1/2 cursor-pointer z-10"
               >
-                <div}
+                <div
                   className={`relative w-28 h-28 md:w-36 md:h-36 rounded-full bg-gradient-to-br ${cloudProviders[0].color} ${
                     selectedCloud === 0 ? 'ring-4 ring-orange-400 ring-offset-4 ring-offset-black' : ''
                   } flex items-center justify-center transition-all duration-300 shadow-xl`}
                 >
                   <Cloud className="w-14 h-14 md:w-18 md:h-18 text-white" />
                   {selectedCloud === 0 && (
-                    <div}}
+                    <div
                       className="absolute inset-0 rounded-full bg-orange-400"
                     />
                   )}
@@ -274,18 +273,18 @@ export default function MultiCloudPage() {
               </div>
 
               {/* Azure Cloud */}
-              <div}}}
+              <div
                 onClick={() => setSelectedCloud(1)}
                 className="absolute top-0 left-1/2 transform -translate-x-1/2 cursor-pointer z-10"
               >
-                <div}
+                <div
                   className={`relative w-28 h-28 md:w-36 md:h-36 rounded-full bg-gradient-to-br ${cloudProviders[1].color} ${
                     selectedCloud === 1 ? 'ring-4 ring-blue-400 ring-offset-4 ring-offset-black' : ''
                   } flex items-center justify-center transition-all duration-300 shadow-xl`}
                 >
                   <Cloud className="w-14 h-14 md:w-18 md:h-18 text-white" />
                   {selectedCloud === 1 && (
-                    <div}}
+                    <div
                       className="absolute inset-0 rounded-full bg-blue-400"
                     />
                   )}
@@ -300,18 +299,18 @@ export default function MultiCloudPage() {
               </div>
 
               {/* GCP Cloud */}
-              <div}}}
+              <div
                 onClick={() => setSelectedCloud(2)}
                 className="absolute top-1/2 right-0 transform -translate-y-1/2 cursor-pointer z-10"
               >
-                <div}
+                <div
                   className={`relative w-28 h-28 md:w-36 md:h-36 rounded-full bg-gradient-to-br ${cloudProviders[2].color} ${
                     selectedCloud === 2 ? 'ring-4 ring-teal-400 ring-offset-4 ring-offset-black' : ''
                   } flex items-center justify-center transition-all duration-300 shadow-xl`}
                 >
                   <Cloud className="w-14 h-14 md:w-18 md:h-18 text-white" />
                   {selectedCloud === 2 && (
-                    <div}}
+                    <div
                       className="absolute inset-0 rounded-full bg-teal-400"
                     />
                   )}
@@ -329,7 +328,7 @@ export default function MultiCloudPage() {
 
           {/* Selected Cloud Details */}
           <div
-            key={selectedCloud}}}
+            key={selectedCloud}
             className="max-w-3xl mx-auto mb-12"
           >
             <div className="relative rounded-2xl border-2 border-cyan-500/30 bg-gradient-to-br from-teal-950/60 to-black/60 backdrop-blur-xl p-8">
@@ -353,11 +352,11 @@ export default function MultiCloudPage() {
           </div>
 
           {/* CTA Buttons */}
-          <div}}}
+          <div
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <Link href="/contact">
-              <button}}
+              <button
                 className="px-8 py-4 rounded-xl bg-gradient-to-r from-cyan-600 to-teal-600 text-white font-bold text-lg shadow-lg shadow-cyan-500/30 hover:shadow-xl transition-all flex items-center gap-2"
               >
                 Explore Platform
@@ -377,7 +376,7 @@ export default function MultiCloudPage() {
       {/* Capabilities - Grid Layout */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-teal-950/20 to-black">
         <div className="max-w-7xl mx-auto">
-          <div}}}}
+          <div
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
@@ -393,7 +392,7 @@ export default function MultiCloudPage() {
               const Icon = capability.icon;
               return (
                 <div
-                  key={index}}}}}
+                  key={index}
                   className="relative rounded-2xl border-2 border-cyan-700/30 bg-gradient-to-br from-teal-950/60 to-black/60 backdrop-blur-xl p-6 hover:border-cyan-500/50 transition-all group overflow-hidden"
                 >
                   {/* Animated Background */}
@@ -417,7 +416,7 @@ export default function MultiCloudPage() {
       {/* Technology Stack - Grid Layout */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-black">
         <div className="max-w-7xl mx-auto">
-          <div}}}}
+          <div
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
@@ -431,7 +430,7 @@ export default function MultiCloudPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {technologies.map((tech, index) => (
               <div
-                key={index}}}}}
+                key={index}
                 className="relative rounded-2xl border-2 border-cyan-700/30 bg-gradient-to-br from-teal-950/60 to-black/60 backdrop-blur-xl p-6 hover:border-cyan-500/50 transition-all"
               >
                 <h3 className="font-heading text-xl font-bold text-white mb-4">{tech.category}</h3>
@@ -452,7 +451,7 @@ export default function MultiCloudPage() {
       {/* Multi-Cloud Architecture - Flow Diagram */}
       <section className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-teal-950/20 to-black">
         <div className="max-w-7xl mx-auto">
-          <div}}}}
+          <div
             className="text-center mb-16"
           >
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
@@ -479,7 +478,7 @@ export default function MultiCloudPage() {
                 const Icon = stage.icon;
                 return (
                   <div
-                    key={index}}}}}
+                    key={index}
                     className="relative"
                   >
                     {/* Connection Dot */}
@@ -511,7 +510,7 @@ export default function MultiCloudPage() {
               <div className="absolute inset-0"></div>
             </div>
 
-            <div}}}}
+            <div
               className="relative z-10"
             >
               <Cloud className="w-16 h-16 text-cyan-400 mx-auto mb-6" />
@@ -523,7 +522,7 @@ export default function MultiCloudPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/contact">
-                  <button}}
+                  <button
                     className="px-8 py-4 rounded-xl bg-gradient-to-r from-cyan-600 to-teal-600 text-white font-bold text-lg shadow-lg shadow-cyan-500/30 hover:shadow-xl transition-all flex items-center gap-2"
                   >
                     Get Started

@@ -36,26 +36,24 @@ export default function ResearchPage() {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
+  // REMOVED: useScroll hook (framer-motion)
 
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
+  // REMOVED: useMotionValue hook
+  // REMOVED: useMotionValue hook
   const springConfig = { damping: 25, stiffness: 200 };
-  const x = useSpring(mouseX, springConfig);
-  const y = useSpring(mouseY, springConfig);
+  // REMOVED: useSpring hook
+  // REMOVED: useSpring hook
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      const { clientX, clientY } = e;
-      mouseX.set(clientX);
-      mouseY.set(clientY);
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, [mouseX, mouseY]);
+  // REMOVED: Mouse tracking effect (framer-motion)
+  // useEffect(() => {
+  //   const handleMouseMove = (e: MouseEvent) => {
+  //     const { clientX, clientY } = e;
+  //     mouseX.set(clientX);
+  //     mouseY.set(clientY);
+  //   };
+  //   window.addEventListener('mousemove', handleMouseMove);
+  //   return () => window.removeEventListener('mousemove', handleMouseMove);
+  // }, [mouseX, mouseY]);
 
   const researchAreas = [
     {
@@ -261,8 +259,6 @@ export default function ResearchPage() {
                 return (
                   <div
                     key={area.id}
-                    onHoverStart={() => setHoveredCard(area.id)}
-                    onHoverEnd={() => setHoveredCard(null)}
                     className="relative group cursor-pointer"
                   >
                     {/* Card */}

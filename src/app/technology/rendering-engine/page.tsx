@@ -33,10 +33,7 @@ import Link from 'next/link';
 export default function RenderingEnginePage() {
   const [selectedFeature, setSelectedFeature] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
+  // REMOVED: useScroll hook (framer-motion)
 
   const renderingFeatures = [
     {
@@ -139,7 +136,7 @@ export default function RenderingEnginePage() {
     }
   ];
 
-  const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
+  // REMOVED: useTransform hook
 
   return (
     <div ref={containerRef} className="relative min-h-screen bg-gradient-to-b from-indigo-950 via-blue-950 to-black text-white overflow-hidden">
@@ -160,10 +157,14 @@ export default function RenderingEnginePage() {
             return (
               <div
                 key={i}
-                style={{ transform: `rotate(${angle}rad)` 
+                style={{ 
+                  transform: `rotate(${angle}rad)`,
+                  width: '2px',
                   height: `${length}px`,
                   left: '50%',
                   top: '50%'
+                }}
+                className="absolute bg-gradient-to-b from-cyan-500/50 to-transparent origin-top"
               />
             );
           })}
@@ -217,13 +218,13 @@ export default function RenderingEnginePage() {
                       <div
                         className={`absolute inset-0 bg-gradient-to-br ${feature.color} ${
                           isSelected ? 'opacity-100 scale-110' : 'opacity-60'
-                        } transition-all duration-300`
-                      />
+                        } transition-all duration-300`}
+                      ></div>
                       <div
                         className={`absolute inset-[2px] bg-black ${
                           isSelected ? 'border-2 border-blue-400' : 'border border-blue-500/30'
-                        } transition-all duration-300`
-                      />
+                        } transition-all duration-300`}
+                      ></div>
 
                       {/* Content */}
                       <div className="absolute inset-0 flex flex-col items-center justify-center p-4 z-10">
