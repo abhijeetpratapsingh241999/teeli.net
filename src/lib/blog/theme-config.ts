@@ -185,25 +185,64 @@ export function themeClass(theme: BlogTheme, darkClass: string, lightClass: stri
 
 /**
  * Common responsive spacing utilities for blog posts
+ * Industry-standard vertical rhythm for optimal readability
+ * Based on Medium, Substack, and typographic best practices
  */
 export const BLOG_SPACING = {
-  section: 'mb-8 sm:mb-10 md:mb-12',
-  paragraph: 'mb-3 sm:mb-4 md:mb-5',
-  heading: 'mb-4 sm:mb-5 md:mb-6',
-  media: 'my-6 sm:my-8',
-  largeSection: 'my-8 sm:my-10 md:my-12',
+  // Vertical spacing (margin-bottom for stacking)
+  section: 'mb-12 sm:mb-16 md:mb-20',           // Large sections (48-80px)
+  subsection: 'mb-8 sm:mb-10 md:mb-12',         // Subsections (32-48px)
+  paragraph: 'mb-5 sm:mb-6 md:mb-7',            // Paragraphs (20-28px)
+  list: 'mb-4 sm:mb-5 md:mb-6',                 // List items (16-24px)
+  
+  // Heading spacing (margin-top + margin-bottom)
+  h1: 'mt-0 mb-6 sm:mb-8 md:mb-10',             // H1: 0 top, 24-40px bottom
+  h2: 'mt-12 sm:mt-14 md:mt-16 mb-5 sm:mb-6 md:mb-7',  // H2: 48-64px top, 20-28px bottom
+  h3: 'mt-8 sm:mt-10 md:mt-12 mb-4 sm:mb-5 md:mb-6',   // H3: 32-48px top, 16-24px bottom
+  h4: 'mt-6 sm:mt-7 md:mt-8 mb-3 sm:mb-4 md:mb-5',     // H4: 24-32px top, 12-20px bottom
+  
+  // Media spacing
+  image: 'my-8 sm:my-10 md:my-12',              // Images: 32-48px vertical
+  video: 'my-8 sm:my-10 md:my-12',              // Videos: 32-48px vertical
+  table: 'my-8 sm:my-10 md:my-12',              // Tables: 32-48px vertical
+  codeBlock: 'my-6 sm:my-7 md:my-8',            // Code: 24-32px vertical
+  quote: 'my-6 sm:my-7 md:my-8',                // Quotes: 24-32px vertical
+  
+  // Horizontal spacing (for inline elements)
+  inline: 'mx-1',                                // Inline elements: 4px
+  inlineBlock: 'mx-2',                           // Inline blocks: 8px
+  
+  // Special cases
+  firstElement: 'mt-0',                          // First element: no top margin
+  lastElement: 'mb-0',                           // Last element: no bottom margin
 };
 
 /**
  * Typography scale for consistent font sizes
+ * Based on 1.25 ratio (Major Third) - industry standard
  */
 export const BLOG_TYPOGRAPHY = {
-  h1: 'text-2xl sm:text-3xl md:text-4xl lg:text-6xl',
-  h2: 'text-xl sm:text-2xl md:text-3xl lg:text-4xl',
-  h3: 'text-lg sm:text-xl md:text-2xl lg:text-3xl',
-  body: 'text-base sm:text-lg md:text-xl',
-  small: 'text-sm sm:text-base',
-  tiny: 'text-xs sm:text-sm',
+  // Headings with optimal line-height
+  h1: 'text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight',
+  h2: 'text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight tracking-tight',
+  h3: 'text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold leading-snug',
+  h4: 'text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium leading-snug',
+  h5: 'text-base sm:text-lg md:text-xl lg:text-2xl font-medium leading-normal',
+  h6: 'text-sm sm:text-base md:text-lg lg:text-xl font-medium leading-normal',
+  
+  // Body text with optimal line-height for readability
+  body: 'text-base sm:text-lg md:text-xl leading-relaxed',      // 1.65 line-height
+  bodyLarge: 'text-lg sm:text-xl md:text-2xl leading-relaxed',
+  bodySmall: 'text-sm sm:text-base md:text-lg leading-relaxed',
+  
+  // Special text styles
+  lead: 'text-xl sm:text-2xl md:text-3xl leading-relaxed font-light',  // Intro paragraphs
+  caption: 'text-xs sm:text-sm md:text-base leading-normal',            // Image captions
+  quote: 'text-lg sm:text-xl md:text-2xl leading-relaxed font-light italic',
+  
+  // Code text
+  code: 'text-sm sm:text-base md:text-lg font-mono leading-normal',
+  codeInline: 'text-sm font-mono',
 };
 
 /**

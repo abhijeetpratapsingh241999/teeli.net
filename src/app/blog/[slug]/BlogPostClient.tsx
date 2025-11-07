@@ -122,13 +122,13 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
           <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-500 to-transparent opacity-50"></div>
           
           <div className="relative z-10">
-            <div className={`${BLOG_TYPOGRAPHY.tiny} font-semibold ${BLOG_SPACING.paragraph} ${themeConfig.text.accent}`}>
+            <div className={`${BLOG_TYPOGRAPHY.caption} font-semibold ${BLOG_SPACING.paragraph} ${themeConfig.text.accent}`}>
               {post.category}
             </div>
-            <h1 className={`font-heading ${BLOG_TYPOGRAPHY.h1} font-bold ${BLOG_SPACING.paragraph} leading-tight ${themeConfig.text.heading}`}>
+            <h1 className={`font-heading ${BLOG_TYPOGRAPHY.h1} ${BLOG_SPACING.h1} ${themeConfig.text.heading}`}>
               {post.title}
             </h1>
-            <p className={`${BLOG_TYPOGRAPHY.small} md:text-lg ${BLOG_SPACING.heading} leading-relaxed ${themeConfig.text.secondary}`}>
+            <p className={`${BLOG_TYPOGRAPHY.bodySmall} ${BLOG_SPACING.paragraph} ${themeConfig.text.secondary}`}>
               {post.excerpt}
             </p>
             

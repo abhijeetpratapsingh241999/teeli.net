@@ -71,7 +71,7 @@ export default function BlogCodeBlock({
   const lines = code.split('\n');
 
   return (
-    <div className={`${BLOG_SPACING.largeSection} ${className}`}>
+    <div className={`${BLOG_SPACING.codeBlock} ${className}`}>
       <div 
         className={`relative ${BLOG_RADIUS.medium} overflow-hidden backdrop-blur-md border-2 ${
           theme === 'dark'

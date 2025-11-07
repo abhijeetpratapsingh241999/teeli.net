@@ -44,9 +44,9 @@ export default function BlogBreadcrumbs({
   }
 
   return (
-    <nav 
-      aria-label="Breadcrumb" 
-      className={`${BLOG_TYPOGRAPHY.tiny} mb-6 sm:mb-8 ${className}`}
+    <nav
+      aria-label="Breadcrumb"
+      className={`${BLOG_TYPOGRAPHY.caption} mb-6 sm:mb-8 ${className}`}
     >
       <ol className="flex flex-wrap items-center gap-2">
         {items.map((item, index) => {

@@ -39,7 +39,7 @@ export default function BlogTable({
   }
 
   return (
-    <div className={`${BLOG_SPACING.largeSection} ${className}`}>
+    <div className={`${BLOG_SPACING.table} ${className}`}>
       <div 
         className={`${BLOG_RADIUS.medium} overflow-hidden backdrop-blur-md transition-all duration-300 hover:shadow-2xl ${themeConfig.table.card}`}
       >

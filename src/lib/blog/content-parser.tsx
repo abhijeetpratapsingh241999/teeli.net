@@ -183,7 +183,7 @@ export function parseMarkdownContent(
             <OptimizedBlogVideo 
               key={key++}
               src={src}
-              className="my-6 sm:my-8"
+              className={BLOG_SPACING.video}
             />
           );
         } else if (enableImages) {
@@ -192,7 +192,7 @@ export function parseMarkdownContent(
               key={key++}
               src={src}
               alt={alt}
-              className="my-6 sm:my-8"
+              className={BLOG_SPACING.image}
               priority={priorityFirstImage && isFirstImage}
             />
           );
@@ -280,7 +280,7 @@ export function parseMarkdownContent(
       const urlMatch = trimmedLine.match(/\(([^)]+)\)/);
       if (urlMatch) {
         elements.push(
-          <p key={key++} className={`mb-3 sm:mb-4 md:mb-5 leading-relaxed text-base sm:text-lg md:text-xl`}>
+          <p key={key++} className={`${BLOG_SPACING.paragraph} ${BLOG_TYPOGRAPHY.body}`}>
             <BlogLink href={urlMatch[1]} variant="reference" theme={theme} external>
               {trimmedLine}
             </BlogLink>

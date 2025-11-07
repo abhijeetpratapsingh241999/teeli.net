@@ -86,7 +86,7 @@ export default function BlogQuote({
   };
 
   return (
-    <blockquote className={`${getVariantStyles()} ${BLOG_SPACING.largeSection} ${className}`}>
+    <blockquote className={`${getVariantStyles()} ${BLOG_SPACING.quote} ${className}`}>
       {/* Quote Icon */}
       <div className={`absolute top-4 left-4 opacity-20 ${themeConfig.text.accent}`}>
         <svg className="w-8 h-8 sm:w-10 sm:h-10" fill="currentColor" viewBox="0 0 24 24">
@@ -119,7 +119,7 @@ export default function BlogQuote({
               
               <div>
                 {author && (
-                  <cite className={`not-italic font-bold ${BLOG_TYPOGRAPHY.small} ${themeConfig.text.heading} block`}>
+                  <cite className={`not-italic font-bold ${BLOG_TYPOGRAPHY.bodySmall} ${themeConfig.text.heading} block`}>
                     — {author}
                   </cite>
                 )}
