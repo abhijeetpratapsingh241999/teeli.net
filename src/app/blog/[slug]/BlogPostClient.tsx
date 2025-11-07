@@ -43,6 +43,7 @@ import { BreadcrumbSchema } from '@/components/schema/generateBreadcrumbSchema';
 
 // FAQ Mapping: Blog slug to FAQ data
 const FAQ_MAP: Record<string, FAQ.FAQItem[]> = {
+  '3d-product-rendering-process-tools-visualization-modern-industries-2025': FAQ.faq_product_rendering,
   '3d-rendering-house-process-benefits-costs-future-trends-2025': FAQ.faq_house_rendering,
   'cloud-gpu-complete-guide-2025': FAQ.faq_cloud_gpu,
   'cloud-computing-complete-guide-2025': FAQ.faq_cloud_computing,
@@ -107,6 +108,11 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
         ]}
       />
 
+      {/* SEO: FAQ Schema (JSON-LD) */}
+      {faqItems.length > 0 && (
+        <FAQSchema faqs={faqItems} />
+      )}
+
       <BlogLayout theme={theme}>
         {/* Theme Toggle Button */}
         <div className="fixed bottom-4 sm:bottom-8 right-2 sm:right-4 md:right-8 z-40">
@@ -148,17 +154,15 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
         {post.image && (
           <div className={`${BLOG_SPACING.section} overflow-hidden max-h-[300px] sm:max-h-[400px] md:max-h-[450px] lg:max-h-[500px]`}>
             {post.image.endsWith('.svg') ? (
-              <div className="relative w-full h-full">
-                <Image 
-                  src={post.image} 
-                  alt={post.title}
-                  width={1200}
-                  height={675}
-                  priority
-                  fetchPriority="high"
-                  className={`w-full h-full object-cover ${BLOG_RADIUS.medium} ${themeConfig.border.primary} border-2 shadow-2xl`}
-                />
-              </div>
+              // Use native img tag for SVG to preserve animations
+              <img 
+                src={post.image} 
+                alt={post.title}
+                width="1200"
+                height="630"
+                loading="eager"
+                className={`w-full h-auto object-cover ${BLOG_RADIUS.medium} ${themeConfig.border.primary} border-2 shadow-2xl`}
+              />
             ) : (
               <Image 
                 src={post.image} 

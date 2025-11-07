@@ -150,7 +150,6 @@ export function parseMarkdownContent(
         // Don't return, process the current line
       }
     }
-
     // Handle script tags
     if (trimmedLine.startsWith('<script')) {
       inScript = true;

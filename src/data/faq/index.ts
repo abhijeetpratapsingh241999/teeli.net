@@ -247,3 +247,31 @@ export const faq_quantum_design: FAQItem[] = [
 ];
 
 // Add more FAQ lists as needed for other blog topics
+
+// 3D Product Rendering Blog
+export const faq_product_rendering: FAQItem[] = [
+  {
+    question: "What is 3D product rendering?",
+    answer: "It's the process of converting digital models into lifelike product visuals for marketing, design, or eCommerce."
+  },
+  {
+    question: "Which software is best for 3D rendering?",
+    answer: "KeyShot, Blender, and Adobe Substance 3D are the most widely used tools for realistic visualization."
+  },
+  {
+    question: "How much does product rendering cost?",
+    answer: "Freelance projects start around $100–$500 per render; enterprise campaigns can exceed $10,000."
+  },
+  {
+    question: "How does 3D rendering help eCommerce?",
+    answer: "It increases engagement, reduces returns, and provides immersive shopping experiences."
+  },
+  {
+    question: "Can AI improve rendering?",
+    answer: "Yes — AI tools optimize materials, lighting, and denoising to accelerate output by up to 60%."
+  },
+  {
+    question: "What is the difference between 3D rendering and 3D visualization?",
+    answer: "Rendering is the process of creating photorealistic images, while visualization is the broader process including interaction and animation."
+  }
+];

@@ -197,9 +197,9 @@ export const BLOG_SPACING = {
   
   // Heading spacing (margin-top + margin-bottom)
   h1: 'mt-0 mb-6 sm:mb-8 md:mb-10',             // H1: 0 top, 24-40px bottom
-  h2: 'mt-12 sm:mt-14 md:mt-16 mb-5 sm:mb-6 md:mb-7',  // H2: 48-64px top, 20-28px bottom
-  h3: 'mt-8 sm:mt-10 md:mt-12 mb-4 sm:mb-5 md:mb-6',   // H3: 32-48px top, 16-24px bottom
-  h4: 'mt-6 sm:mt-7 md:mt-8 mb-3 sm:mb-4 md:mb-5',     // H4: 24-32px top, 12-20px bottom
+  h2: 'mt-10 sm:mt-12 md:mt-14 mb-4 sm:mb-5 md:mb-6',  // H2: 40-56px top, 16-24px bottom (reduced for better flow)
+  h3: 'mt-6 sm:mt-7 md:mt-8 mb-3 sm:mb-4 md:mb-5',     // H3: 24-32px top, 12-20px bottom (reduced for continuity)
+  h4: 'mt-5 sm:mt-6 md:mt-7 mb-3 sm:mb-3 md:mb-4',     // H4: 20-28px top, 12-16px bottom
   
   // Media spacing
   image: 'my-8 sm:my-10 md:my-12',              // Images: 32-48px vertical

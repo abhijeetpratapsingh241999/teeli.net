@@ -67,7 +67,7 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 left-0 z-30 w-full px-3 py-3 sm:px-4 sm:py-4 md:px-6 md:py-6">
-      <div className="mx-auto flex max-w-7xl items-center justify-between rounded-full bg-black/70 backdrop-blur-md border border-white/10 p-2 px-4 sm:px-5 md:px-6 shadow-lg shadow-black/20">
+      <div className="mx-auto flex max-w-7xl items-center justify-between rounded-full bg-black/70 backdrop-blur-md border border-white/10 p-2 px-4 sm:px-5 md:px-6 shadow-2xl shadow-black/40">
         {/* Logo */}
         <div className="flex items-center gap-1.5 sm:gap-2">
           <AnimatedGlobe />

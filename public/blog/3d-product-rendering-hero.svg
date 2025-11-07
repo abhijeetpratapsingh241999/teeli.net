@@ -1,0 +1,343 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <!-- Background Gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e293b;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Animated Gradient -->
+    <linearGradient id="animatedGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:0.4">
+        <animate attributeName="stop-opacity" values="0.4;0.8;0.4" dur="3s" repeatCount="indefinite"/>
+      </stop>
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:0.3">
+        <animate attributeName="stop-opacity" values="0.3;0.6;0.3" dur="3s" repeatCount="indefinite"/>
+      </stop>
+    </linearGradient>
+    
+    <!-- Glow Effects -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <filter id="strongGlow">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <radialGradient id="productGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:0.6" />
+      <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:0" />
+    </radialGradient>
+    
+    <linearGradient id="metalGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#94a3b8;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#e2e8f0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#64748b;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Particle animations -->
+    <style>
+      @keyframes float {
+        0%, 100% { transform: translateY(0px); opacity: 0.6; }
+        50% { transform: translateY(-20px); opacity: 1; }
+      }
+      @keyframes floatSlow {
+        0%, 100% { transform: translate(0, 0); opacity: 0.4; }
+        50% { transform: translate(10px, -30px); opacity: 0.8; }
+      }
+      @keyframes pulse {
+        0%, 100% { opacity: 0.6; }
+        50% { opacity: 1; }
+      }
+      @keyframes rotate {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+      @keyframes rotateReverse {
+        from { transform: rotate(360deg); }
+        to { transform: rotate(0deg); }
+      }
+      .float-1 { animation: float 4s ease-in-out infinite; }
+      .float-2 { animation: float 5s ease-in-out infinite 0.5s; }
+      .float-3 { animation: float 6s ease-in-out infinite 1s; }
+      .float-slow { animation: floatSlow 8s ease-in-out infinite; }
+      .pulse { animation: pulse 2s ease-in-out infinite; }
+      .rotate { animation: rotate 20s linear infinite; transform-origin: center; }
+      .rotate-reverse { animation: rotateReverse 15s linear infinite; transform-origin: center; }
+    </style>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+  
+  <!-- Animated background overlay -->
+  <rect width="1200" height="630" fill="url(#animatedGlow)" opacity="0.3"/>
+  
+  <!-- Grid Pattern with pulse -->
+  <g opacity="0.1" class="pulse">
+    <path d="M0 100 L1200 100 M0 200 L1200 200 M0 300 L1200 300 M0 400 L1200 400 M0 500 L1200 500" stroke="#94a3b8" stroke-width="1"/>
+    <path d="M200 0 L200 630 M400 0 L400 630 M600 0 L600 630 M800 0 L800 630 M1000 0 L1000 630" stroke="#94a3b8" stroke-width="1"/>
+  </g>
+  
+  <!-- Floating Particles Background -->
+  <g opacity="0.6">
+    <!-- Large particles -->
+    <circle cx="150" cy="100" r="3" fill="#06b6d4" class="float-1"/>
+    <circle cx="1050" cy="150" r="2" fill="#22d3ee" class="float-2"/>
+    <circle cx="200" cy="500" r="2.5" fill="#8b5cf6" class="float-3"/>
+    <circle cx="1100" cy="450" r="2" fill="#06b6d4" class="float-1"/>
+    <circle cx="100" cy="300" r="2" fill="#0ea5e9" class="float-2"/>
+    <circle cx="1000" cy="550" r="3" fill="#22d3ee" class="float-3"/>
+    
+    <!-- Small particles -->
+    <circle cx="300" cy="150" r="1.5" fill="#06b6d4" class="float-slow"/>
+    <circle cx="900" cy="200" r="1" fill="#22d3ee" class="float-1"/>
+    <circle cx="250" cy="400" r="1.5" fill="#8b5cf6" class="float-2"/>
+    <circle cx="1150" cy="300" r="1" fill="#06b6d4" class="float-3"/>
+    <circle cx="50" cy="450" r="1.5" fill="#0ea5e9" class="float-slow"/>
+    <circle cx="1050" cy="100" r="1" fill="#22d3ee" class="float-1"/>
+  </g>
+  
+  <!-- Rotating wireframe rings -->
+  <g transform="translate(600, 315)">
+    <circle cx="0" cy="0" r="280" stroke="#06b6d4" stroke-width="1" fill="none" opacity="0.2" class="rotate"/>
+    <circle cx="0" cy="0" r="320" stroke="#8b5cf6" stroke-width="1" fill="none" opacity="0.15" class="rotate-reverse"/>
+  </g>
+  
+  <!-- Main 3D Product (Smartphone) with subtle animation -->
+  <g transform="translate(650, 315)">
+    <animateTransform
+      attributeName="transform"
+      type="translate"
+      values="650,315; 650,310; 650,315"
+      dur="6s"
+      repeatCount="indefinite"
+    />
+    
+    <!-- Product Glow (animated) -->
+    <ellipse cx="0" cy="50" rx="180" ry="120" fill="url(#productGlow)" opacity="0.8">
+      <animate attributeName="opacity" values="0.6;1;0.6" dur="4s" repeatCount="indefinite"/>
+      <animate attributeName="rx" values="180;200;180" dur="4s" repeatCount="indefinite"/>
+      <animate attributeName="ry" values="120;140;120" dur="4s" repeatCount="indefinite"/>
+    </ellipse>
+    
+    <!-- Phone Back Face (3D depth) -->
+    <rect x="-115" y="-205" width="230" height="400" rx="30" fill="#1e293b" opacity="0.6"/>
+    
+    <!-- Phone Main Face -->
+    <rect x="-120" y="-210" width="240" height="410" rx="32" fill="url(#metalGradient)" filter="url(#glow)"/>
+    
+    <!-- Screen -->
+    <rect x="-110" y="-195" width="220" height="380" rx="26" fill="#0f172a"/>
+    
+    <!-- Screen Glow -->
+    <rect x="-110" y="-195" width="220" height="380" rx="26" fill="url(#productGlow)" opacity="0.3"/>
+    
+    <!-- App Icons/UI Elements -->
+    <g opacity="0.8">
+      <!-- Top Bar -->
+      <rect x="-90" y="-175" width="180" height="30" rx="8" fill="#06b6d4" opacity="0.6"/>
+      
+      <!-- Content Blocks -->
+      <rect x="-90" y="-130" width="80" height="80" rx="12" fill="#22d3ee" opacity="0.4"/>
+      <rect x="-90" y="-35" width="80" height="60" rx="12" fill="#0ea5e9" opacity="0.4"/>
+      <rect x="10" y="-130" width="80" height="140" rx="12" fill="#06b6d4" opacity="0.5"/>
+      <rect x="-90" y="35" width="180" height="40" rx="12" fill="#0284c7" opacity="0.4"/>
+    </g>
+    
+    <!-- Camera -->
+    <circle cx="60" cy="-175" r="8" fill="#1e293b"/>
+    <circle cx="60" cy="-175" r="5" fill="#0f172a"/>
+    
+    <!-- Reflection Highlight -->
+    <path d="M -100 -180 Q -50 -170, -80 -140 L -95 -165 Z" fill="white" opacity="0.15"/>
+  </g>
+  
+  <!-- Wireframe Grid Overlay (3D Visualization) with animation -->
+  <g opacity="0.4" stroke="#06b6d4" stroke-width="1.5" fill="none">
+    <!-- Left perspective lines -->
+    <path d="M 300 200 L 500 315 L 300 430" class="pulse">
+      <animate attributeName="stroke-opacity" values="0.3;0.8;0.3" dur="3s" repeatCount="indefinite"/>
+    </path>
+    <path d="M 320 250 L 500 315">
+      <animate attributeName="stroke-opacity" values="0.3;0.8;0.3" dur="3s" begin="0.5s" repeatCount="indefinite"/>
+    </path>
+    <path d="M 320 380 L 500 315">
+      <animate attributeName="stroke-opacity" values="0.3;0.8;0.3" dur="3s" begin="1s" repeatCount="indefinite"/>
+    </path>
+    
+    <!-- Right perspective lines -->
+    <path d="M 900 200 L 800 315 L 900 430">
+      <animate attributeName="stroke-opacity" values="0.3;0.8;0.3" dur="3s" begin="0.3s" repeatCount="indefinite"/>
+    </path>
+    <path d="M 880 250 L 800 315">
+      <animate attributeName="stroke-opacity" values="0.3;0.8;0.3" dur="3s" begin="0.8s" repeatCount="indefinite"/>
+    </path>
+    <path d="M 880 380 L 800 315">
+      <animate attributeName="stroke-opacity" values="0.3;0.8;0.3" dur="3s" begin="1.3s" repeatCount="indefinite"/>
+    </path>
+  </g>
+  
+  <!-- Floating UI Elements (Rendering Tools) with animation -->
+  <!-- Render Settings Panel -->
+  <g transform="translate(200, 150)">
+    <animateTransform
+      attributeName="transform"
+      type="translate"
+      values="200,150; 200,145; 200,150"
+      dur="5s"
+      repeatCount="indefinite"
+    />
+    <rect width="180" height="120" rx="12" fill="#1e293b" opacity="0.9" filter="url(#glow)"/>
+    <rect x="10" y="15" width="160" height="8" rx="4" fill="#06b6d4" opacity="0.7">
+      <animate attributeName="width" values="160;170;160" dur="3s" repeatCount="indefinite"/>
+    </rect>
+    <rect x="10" y="35" width="120" height="8" rx="4" fill="#0ea5e9" opacity="0.6">
+      <animate attributeName="width" values="120;135;120" dur="3.5s" repeatCount="indefinite"/>
+    </rect>
+    <rect x="10" y="55" width="140" height="8" rx="4" fill="#22d3ee" opacity="0.5">
+      <animate attributeName="width" values="140;150;140" dur="4s" repeatCount="indefinite"/>
+    </rect>
+    <rect x="10" y="75" width="100" height="8" rx="4" fill="#0284c7" opacity="0.6">
+      <animate attributeName="width" values="100;115;100" dur="3.2s" repeatCount="indefinite"/>
+    </rect>
+    <rect x="10" y="95" width="130" height="8" rx="4" fill="#06b6d4" opacity="0.5">
+      <animate attributeName="width" values="130;145;130" dur="3.8s" repeatCount="indefinite"/>
+    </rect>
+    <text x="15" y="10" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8" opacity="0.8">RENDER SETTINGS</text>
+  </g>
+  
+  <!-- Material Editor -->
+  <g transform="translate(850, 450)">
+    <animateTransform
+      attributeName="transform"
+      type="translate"
+      values="850,450; 850,445; 850,450"
+      dur="6s"
+      repeatCount="indefinite"
+    />
+    <rect width="160" height="100" rx="12" fill="#1e293b" opacity="0.9" filter="url(#glow)"/>
+    <circle cx="30" cy="40" r="18" fill="#94a3b8" opacity="0.7" class="pulse"/>
+    <circle cx="70" cy="40" r="18" fill="#06b6d4" opacity="0.7" class="pulse"/>
+    <circle cx="110" cy="40" r="18" fill="#22d3ee" opacity="0.7" class="pulse"/>
+    <rect x="20" y="70" width="120" height="6" rx="3" fill="#0ea5e9" opacity="0.6">
+      <animate attributeName="width" values="120;130;120" dur="4s" repeatCount="indefinite"/>
+    </rect>
+    <text x="15" y="15" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8" opacity="0.8">MATERIALS</text>
+  </g>
+  
+  <!-- Light Source Indicator with animated rays -->
+  <g transform="translate(950, 100)">
+    <circle cx="0" cy="0" r="40" fill="#fbbf24" opacity="0.3" class="pulse"/>
+    <circle cx="0" cy="0" r="25" fill="#fbbf24" opacity="0.5" class="pulse"/>
+    <circle cx="0" cy="0" r="15" fill="#fde047" opacity="0.8" filter="url(#strongGlow)">
+      <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    
+    <!-- Animated light rays -->
+    <g opacity="0.7">
+      <line x1="0" y1="-50" x2="0" y2="-70" stroke="#fde047" stroke-width="2">
+        <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite"/>
+      </line>
+      <line x1="35" y1="-35" x2="50" y2="-50" stroke="#fde047" stroke-width="2">
+        <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" begin="0.3s" repeatCount="indefinite"/>
+      </line>
+      <line x1="50" y1="0" x2="70" y2="0" stroke="#fde047" stroke-width="2">
+        <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" begin="0.6s" repeatCount="indefinite"/>
+      </line>
+      <line x1="35" y1="35" x2="50" y2="50" stroke="#fde047" stroke-width="2">
+        <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" begin="0.9s" repeatCount="indefinite"/>
+      </line>
+      <line x1="0" y1="50" x2="0" y2="70" stroke="#fde047" stroke-width="2">
+        <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" begin="1.2s" repeatCount="indefinite"/>
+      </line>
+      <line x1="-35" y1="35" x2="-50" y2="50" stroke="#fde047" stroke-width="2">
+        <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" begin="1.5s" repeatCount="indefinite"/>
+      </line>
+      <line x1="-50" y1="0" x2="-70" y2="0" stroke="#fde047" stroke-width="2">
+        <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" begin="0.2s" repeatCount="indefinite"/>
+      </line>
+      <line x1="-35" y1="-35" x2="-50" y2="-50" stroke="#fde047" stroke-width="2">
+        <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" begin="0.5s" repeatCount="indefinite"/>
+      </line>
+    </g>
+  </g>
+  
+  <!-- CAD Import Icon with animation -->
+  <g transform="translate(100, 400)">
+    <animateTransform
+      attributeName="transform"
+      type="translate"
+      values="100,400; 100,395; 100,400"
+      dur="7s"
+      repeatCount="indefinite"
+    />
+    <rect width="120" height="90" rx="10" fill="#1e293b" opacity="0.9" filter="url(#glow)"/>
+    <path d="M 30 30 L 60 20 L 90 30 L 90 60 L 60 70 L 30 60 Z" fill="none" stroke="#06b6d4" stroke-width="2" opacity="0.7">
+      <animate attributeName="stroke-opacity" values="0.5;1;0.5" dur="4s" repeatCount="indefinite"/>
+    </path>
+    <line x1="60" y1="20" x2="60" y2="70" stroke="#06b6d4" stroke-width="1.5" opacity="0.5" class="pulse"/>
+    <line x1="30" y1="30" x2="90" y2="60" stroke="#0ea5e9" stroke-width="1.5" opacity="0.4" class="pulse"/>
+    <line x1="90" y1="30" x2="30" y2="60" stroke="#0ea5e9" stroke-width="1.5" opacity="0.4" class="pulse"/>
+    <text x="15" y="15" font-family="Arial, sans-serif" font-size="9" fill="#94a3b8" opacity="0.8">CAD MODEL</text>
+  </g>
+  
+  <!-- Particles/Sparkles with floating animation -->
+  <g>
+    <circle cx="450" cy="150" r="2" fill="#06b6d4" class="float-1"/>
+    <circle cx="850" cy="250" r="2" fill="#22d3ee" class="float-2"/>
+    <circle cx="350" cy="350" r="2" fill="#0ea5e9" class="float-3"/>
+    <circle cx="950" cy="400" r="2" fill="#06b6d4" class="float-1"/>
+    <circle cx="250" cy="500" r="2" fill="#0284c7" class="float-2"/>
+    <circle cx="1050" cy="300" r="2" fill="#22d3ee" class="float-3"/>
+    
+    <!-- Additional flowing particles -->
+    <circle cx="500" cy="200" r="1.5" fill="#8b5cf6" class="float-slow"/>
+    <circle cx="800" cy="180" r="1.5" fill="#06b6d4" class="float-1"/>
+    <circle cx="400" cy="450" r="1.5" fill="#22d3ee" class="float-2"/>
+    <circle cx="1000" cy="500" r="1.5" fill="#8b5cf6" class="float-3"/>
+  </g>
+  
+  <!-- Floating data streams/particles -->
+  <g opacity="0.4">
+    <!-- Left stream -->
+    <g class="float-1">
+      <circle cx="320" cy="220" r="1" fill="#06b6d4"/>
+      <circle cx="325" cy="235" r="1.5" fill="#06b6d4"/>
+      <circle cx="330" cy="250" r="1" fill="#06b6d4"/>
+    </g>
+    
+    <!-- Right stream -->
+    <g class="float-2">
+      <circle cx="880" cy="380" r="1" fill="#22d3ee"/>
+      <circle cx="875" cy="395" r="1.5" fill="#22d3ee"/>
+      <circle cx="870" cy="410" r="1" fill="#22d3ee"/>
+    </g>
+    
+    <!-- Center top stream -->
+    <g class="float-3">
+      <circle cx="620" cy="120" r="1" fill="#8b5cf6"/>
+      <circle cx="630" cy="130" r="1.5" fill="#8b5cf6"/>
+      <circle cx="640" cy="140" r="1" fill="#8b5cf6"/>
+    </g>
+  </g>
+  
+  <!-- Bottom Title Area -->
+  <g transform="translate(600, 580)">
+    <text x="0" y="0" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="600" fill="#e2e8f0">
+      3D Product Rendering
+    </text>
+    <text x="0" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#94a3b8" opacity="0.8">
+      Photorealistic Visualization • Real-Time Preview • AI-Powered
+    </text>
+  </g>
+</svg>
