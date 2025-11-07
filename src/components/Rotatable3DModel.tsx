@@ -112,7 +112,7 @@ export default function Rotatable3DModel({ className = "" }: Rotatable3DModelPro
       <div
         className="relative w-full h-full preserve-3d flex items-center justify-center"
         style={{
-          transform: `rotateZ(${rotation.z}deg) rotateY(${rotation.y}deg) rotateX(${rotation.x}deg)`,
+          transform: `rotateY(${rotation.y}deg) rotateX(${rotation.x}deg)`,
           transformStyle: 'preserve-3d',
           transition: isDragging ? 'none' : 'transform 0.1s ease-out'
         }}

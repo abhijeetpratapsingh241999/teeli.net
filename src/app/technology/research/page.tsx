@@ -276,7 +276,7 @@ export default function ResearchPage() {
                       <div className="relative w-full h-1 bg-purple-900/50 rounded-full mb-4 overflow-hidden">
                         <div
                           className={`h-full bg-gradient-to-r ${area.color}`}
-                          style={{ width: `${area.percentage}%` }}
+                          style={{ width: `${area.progress}%` }}
                         />
                       </div>
 
@@ -301,7 +301,6 @@ export default function ResearchPage() {
                       {/* Hover Glow Effect */}
                       {isHovered && (
                         <div
-                          layoutId="hoverGlow"
                           className="absolute inset-0 rounded-2xl border-2 border-purple-400/50"
                         />
                       )}

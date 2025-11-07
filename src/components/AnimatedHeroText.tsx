@@ -46,9 +46,6 @@ export default function AnimatedHeroText() {
       
         <div
           key={index}
-          initial="hidden"
-          animate="visible"
-          exit="exit"
           className="flex flex-col items-center justify-center"
         >
           <div className="animate-pulse-slow mb-2 text-3xl">
