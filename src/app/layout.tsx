@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Lexend, Inter } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 // ✅ यह import add किया गया है
 import AnalyticsTracker from "./AnalyticsTracker";
@@ -104,6 +106,12 @@ export default function RootLayout({
 
         {/* ✅ Page View Tracking - Enabled with delay */}
         <AnalyticsTracker />
+        
+        {/* ✅ Vercel Analytics - Real-time analytics */}
+        <Analytics />
+        
+        {/* ✅ Vercel Speed Insights - Performance monitoring */}
+        <SpeedInsights />
 
         {children}
       </body>
