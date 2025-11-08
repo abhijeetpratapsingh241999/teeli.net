@@ -6,7 +6,7 @@ import { Search, User, Menu, X, ChevronDown } from 'lucide-react';
 import Link from 'next/link';
 import AnimatedGlobe from './AnimatedGlobe';
 
-const navItems = ["Home", "Solutions", "Technology", "Projects", "Insights", "Company"];
+const navItems = ["Home", "Solutions", "Technology", "Projects", "Insights", "Weather", "Company"];
 
 const getNavLink = (item: string) => {
   switch(item) {
@@ -15,6 +15,7 @@ const getNavLink = (item: string) => {
     case "Technology": return "/technology";
     case "Projects": return "/projects";
     case "Insights": return "/blog";
+    case "Weather": return "/weather";
     case "Company": return "/company";
     default: return "#";
   }

@@ -1,8 +1,48 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Features
+
+### Weather Dashboard
+Experience real-time weather data from around the world with our interactive Weather Dashboard:
+- 🌍 Search weather by city/location
+- 📊 Current weather with temperature, humidity, wind speed, visibility, and pressure
+- 📅 5-day weather forecast
+- ⭐ Save favorite cities for quick access
+- 🌓 Dark mode / Light mode toggle
+- 📱 Fully responsive design for desktop and mobile
+- 🎨 Beautiful UI with weather icons
+
+**Access the Weather Dashboard:** Visit `/weather` after starting the development server.
+
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+1. **OpenWeatherMap API Key** (for Weather Dashboard)
+   - Sign up for a free account at [OpenWeatherMap](https://openweathermap.org/api)
+   - Generate an API key from your account dashboard
+   - Copy `.env.example` to `.env.local`:
+     ```bash
+     cp .env.example .env.local
+     ```
+   - Add your API key to `.env.local`:
+     ```
+     NEXT_PUBLIC_OPENWEATHER_API_KEY=your_actual_api_key_here
+     ```
+
+### Installation
+
+First, install dependencies:
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
