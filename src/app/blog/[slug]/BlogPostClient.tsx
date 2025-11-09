@@ -74,6 +74,7 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
     let inFAQContainer = false;
     let inCallout = false;
     let calloutContent: string[] = [];
+    let currentHeadingLevel: 'h2' | 'h3' | null = null;
 
     const processLine = (line: string) => {
       const trimmedLine = line.trim();
@@ -198,6 +199,7 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
           );
           isFirstH2 = false;
         }
+        currentHeadingLevel = 'h2';
         const headingText = trimmedLine.slice(3);
         const headingId = headingText
           .toLowerCase()
@@ -210,6 +212,7 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
           </Heading>
         );
       } else if (trimmedLine.startsWith('### ')) {
+        currentHeadingLevel = 'h3';
         const headingText = trimmedLine.slice(4);
         const headingId = headingText
           .toLowerCase()
@@ -222,23 +225,25 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
           </Heading>
         );
       } else if (trimmedLine.startsWith("- ") || trimmedLine.startsWith("* ")) {
+        // H2 ke neeche red icon (large), H3 ke neeche blue icon (default)
+        const iconColor = currentHeadingLevel === 'h2' ? 'red' : 'blue';
+        const iconSize = currentHeadingLevel === 'h2' ? 'large' : 'default';
         elements.push(
-          <IconListItem key={key++} index={key}>
+          <IconListItem key={key++} color={iconColor} size={iconSize}>
             {renderInlineMarkdown(trimmedLine.slice(2))}
           </IconListItem>
         );
       } else if (trimmedLine.match(/^\d+\./)) {
         const match = trimmedLine.match(/^(\d+)\.\s*(.+)$/);
         if (match) {
+          // H2 ke neeche red numbered icon (large), H3 ke neeche blue numbered icon (default)
+          const iconColor = currentHeadingLevel === 'h2' ? 'red' : 'blue';
+          const iconSize = currentHeadingLevel === 'h2' ? 'large' : 'default';
+          const numberValue = parseInt(match[1], 10);
           elements.push(
-            <li
-              key={key++}
-              className={`ml-5 mb-[10px] list-decimal text-[17px] md:text-[19px] leading-relaxed ${
-                theme === "dark" ? "text-neutral-200" : "text-neutral-800"
-              }`}
-            >
+            <IconListItem key={key++} color={iconColor} size={iconSize} numbered={true} number={numberValue}>
               {renderInlineMarkdown(match[2])}
-            </li>
+            </IconListItem>
           );
         }
       } else if (trimmedLine.match(/^\[\d+\]/)) {
