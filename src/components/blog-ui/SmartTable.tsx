@@ -22,23 +22,23 @@ export default function SmartTable({ rows }: SmartTableProps) {
   const dataRows = rows.slice(2).map(parseRow); // Skip separator row
 
   return (
-    <div className="my-6 sm:my-8 overflow-x-auto">
-      <table className={`w-full border-collapse rounded-lg overflow-hidden ${
-        theme === 'dark' 
-          ? 'border-2 border-cyan-500/30' 
-          : 'border-2 border-cyan-200'
-      }`}>
-        <thead className={
-          theme === 'dark'
-            ? 'bg-gradient-to-r from-cyan-950 to-purple-950'
-            : 'bg-gradient-to-r from-cyan-50 to-purple-50'
-        }>
+    <div className={`overflow-x-auto my-8 rounded-xl sm:rounded-2xl transition-all ${
+      theme === "dark"
+        ? "bg-gray-900/60 border border-cyan-500/30 shadow-lg shadow-cyan-500/10"
+        : "bg-white border border-gray-300 shadow-lg shadow-blue-500/10"
+    }`}>
+      <table className="w-full border-collapse text-base md:text-[18px]">
+        <thead className={`${
+          theme === "dark" 
+            ? "bg-cyan-500/10 border-b-2 border-cyan-500/30" 
+            : "bg-blue-50 border-b-2 border-gray-300"
+        }`}>
           <tr>
             {headerRow.map((header, index) => (
               <th
                 key={index}
-                className={`px-3 sm:px-4 md:px-6 py-3 sm:py-4 text-left text-xs sm:text-sm md:text-base font-semibold ${
-                  theme === 'dark' ? 'text-cyan-300' : 'text-cyan-700'
+                className={`px-4 sm:px-5 md:px-6 py-3 sm:py-4 text-left font-semibold ${
+                  theme === 'dark' ? 'text-cyan-300' : 'text-blue-900'
                 }`}
               >
                 {header}
@@ -50,17 +50,16 @@ export default function SmartTable({ rows }: SmartTableProps) {
           {dataRows.map((row, rowIndex) => (
             <tr
               key={rowIndex}
-              className={`border-t ${
-                theme === 'dark'
-                  ? 'border-cyan-500/20 hover:bg-cyan-950/30'
-                  : 'border-cyan-100 hover:bg-cyan-50/50'
-              } transition-colors`}
+              className={rowIndex % 2 === 0 
+                ? "bg-transparent" 
+                : theme === "dark" ? "bg-cyan-500/5" : "bg-gray-50"
+              }
             >
               {row.map((cell, cellIndex) => (
                 <td
                   key={cellIndex}
-                  className={`px-3 sm:px-4 md:px-6 py-3 sm:py-4 text-xs sm:text-sm md:text-base ${
-                    theme === 'dark' ? 'text-zinc-300' : 'text-gray-700'
+                  className={`px-4 sm:px-5 md:px-6 py-3 sm:py-4 ${
+                    theme === 'dark' ? 'text-neutral-200' : 'text-neutral-800'
                   }`}
                 >
                   {cell}

@@ -95,7 +95,7 @@ export default function TOC({ contentRef }: TOCProps) {
         }`}>
           {/* Clear Header with Icon */}
           <div className={`px-6 py-4 ${
-            theme === 'dark' ? 'bg-linear-to-r from-gray-800/50 to-gray-900/50' : 'bg-linear-to-r from-gray-100 to-gray-50'
+            theme === 'dark' ? 'bg-gradient-to-r from-gray-800/50 to-gray-900/50' : 'bg-gradient-to-r from-gray-100 to-gray-50'
           }`}>
             <div className="flex items-center gap-3">
               <div className={`p-2 rounded-lg ${
@@ -188,8 +188,8 @@ export default function TOC({ contentRef }: TOCProps) {
           onClick={() => setIsOpen(true)}
           className={`fixed right-4 bottom-20 z-40 px-4 py-3 rounded-lg shadow-lg font-semibold text-sm transition-transform hover:scale-105 flex items-center gap-2 ${
             theme === 'dark'
-              ? 'bg-linear-to-r from-cyan-600 to-purple-600 text-white border-2 border-cyan-400/30'
-              : 'bg-linear-to-r from-cyan-500 to-purple-500 text-white border-2 border-white/50'
+              ? 'bg-gradient-to-r from-cyan-600 to-purple-600 text-white border-2 border-cyan-400/30'
+              : 'bg-gradient-to-r from-cyan-500 to-purple-500 text-white border-2 border-white/50'
           }`}
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

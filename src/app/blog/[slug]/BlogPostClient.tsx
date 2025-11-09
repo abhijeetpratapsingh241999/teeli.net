@@ -8,25 +8,37 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ReactNode, useState, useEffect, useRef } from 'react';
 import { BlogPost } from '@/lib/blog';
-import ContinueReading from './RelatedPosts';
-import { motion, AnimatePresence } from 'framer-motion';
 import IntroBox from '@/components/blog-ui/IntroBox';
 import Callout from '@/components/blog-ui/Callout';
 import SmartTable from '@/components/blog-ui/SmartTable';
 import TOC from '@/components/blog-ui/TOC';
 import ReadingProgressBar from '@/components/blog-ui/ReadingProgressBar';
 import FAQAccordion from '@/components/blog-ui/FAQAccordion';
+import CTASection from '@/components/blog-ui/CTASection';
+import ContinueReadingCards from '@/components/blog-ui/ContinueReadingCards';
+import { generateAllSchemas } from '@/lib/seo-schema';
+import Heading from '@/components/blog-ui/Heading';
+import IconListItem from '@/components/blog-ui/IconListItem';
 
 interface BlogPostClientProps {
   post: BlogPost;
   relatedPosts: BlogPost[];
 }
 
+type SchemaObject = Record<string, unknown>;
+
 function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
   const { theme } = useBlogTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const contentRef = useRef<HTMLDivElement>(null);
+  const [schemas, setSchemas] = useState<SchemaObject[]>([]);
+
+  // Generate structured data schemas on client-side only
+  useEffect(() => {
+    const generatedSchemas = generateAllSchemas(post);
+    setSchemas(generatedSchemas);
+  }, [post]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -171,14 +183,13 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
 
       if (trimmedLine.startsWith('# ')) {
         elements.push(
-          <h1 key={key++} className={`font-heading text-[32px] sm:text-[38px] md:text-[44px] font-bold tracking-tight mb-4 sm:mb-6 mt-8 sm:mt-12 text-center md:text-left ${
+          <h1 key={key++} className={`font-heading text-[36px] sm:text-[42px] md:text-[48px] font-bold tracking-tight mb-5 sm:mb-7 mt-8 sm:mt-12 text-center md:text-left ${
             theme === 'dark' ? 'text-white' : 'text-gray-900'
           }`}>
             {renderInlineMarkdown(trimmedLine.slice(2))}
           </h1>
         );
       } else if (trimmedLine.startsWith('## ')) {
-        // Insert TOC before first H2
         if (isFirstH2) {
           elements.push(
             <div key={`toc-${key++}`}>
@@ -187,57 +198,52 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
           );
           isFirstH2 = false;
         }
-        
         const headingText = trimmedLine.slice(3);
-        const headingId = headingText.toLowerCase().trim().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-');
+        const headingId = headingText
+          .toLowerCase()
+          .trim()
+          .replace(/[^\w\s-]/g, "")
+          .replace(/\s+/g, "-");
         elements.push(
-          <h2 
-            key={key++} 
-            id={headingId}
-            className={`font-heading text-[26px] sm:text-[30px] md:text-[34px] font-semibold mb-3 sm:mb-4 mt-[32px] sm:mt-[40px] text-center md:text-left scroll-mt-24 ${
-              theme === 'dark' ? 'text-cyan-500' : 'text-cyan-700'
-            }`}
-          >
+          <Heading key={key++} id={headingId} level="h2">
             {renderInlineMarkdown(headingText)}
-          </h2>
+          </Heading>
         );
       } else if (trimmedLine.startsWith('### ')) {
         const headingText = trimmedLine.slice(4);
-        const headingId = headingText.toLowerCase().trim().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-');
+        const headingId = headingText
+          .toLowerCase()
+          .trim()
+          .replace(/[^\w\s-]/g, "")
+          .replace(/\s+/g, "-");
         elements.push(
-          <h3 
-            key={key++} 
-            id={headingId}
-            className={`font-heading text-[20px] sm:text-[23px] md:text-[26px] font-semibold mb-2 sm:mb-3 mt-[28px] scroll-mt-24 ${
-              theme === 'dark' ? 'text-purple-400' : 'text-purple-600'
-            }`}
-          >
+          <Heading key={key++} id={headingId} level="h3">
             {renderInlineMarkdown(headingText)}
-          </h3>
+          </Heading>
         );
-      } else if (trimmedLine.startsWith('- ') || trimmedLine.startsWith('* ')) {
+      } else if (trimmedLine.startsWith("- ") || trimmedLine.startsWith("* ")) {
         elements.push(
-          <li key={key++} className={`ml-5 mb-[10px] list-disc text-base md:text-[18px] leading-relaxed marker:${
-            theme === 'dark' ? 'text-neutral-300' : 'text-neutral-700'
-          } ${theme === 'dark' ? 'text-neutral-200' : 'text-neutral-800'}`}>
+          <IconListItem key={key++} index={key}>
             {renderInlineMarkdown(trimmedLine.slice(2))}
-          </li>
+          </IconListItem>
         );
       } else if (trimmedLine.match(/^\d+\./)) {
-        // Numbered list
         const match = trimmedLine.match(/^(\d+)\.\s*(.+)$/);
         if (match) {
           elements.push(
-            <li key={key++} className={`ml-5 mb-[10px] list-decimal text-base md:text-[18px] leading-relaxed marker:${
-              theme === 'dark' ? 'text-neutral-300' : 'text-neutral-700'
-            } ${theme === 'dark' ? 'text-neutral-200' : 'text-neutral-800'}`}>
+            <li
+              key={key++}
+              className={`ml-5 mb-[10px] list-decimal text-[17px] md:text-[19px] leading-relaxed ${
+                theme === "dark" ? "text-neutral-200" : "text-neutral-800"
+              }`}
+            >
               {renderInlineMarkdown(match[2])}
             </li>
           );
         }
       } else if (trimmedLine.match(/^\[\d+\]/)) {
         elements.push(
-          <p key={key++} className={`mb-[24px] leading-relaxed text-base md:text-[18px] ${
+          <p key={key++} className={`mb-6 leading-relaxed text-[17px] md:text-[19px] ${
             theme === 'dark' ? 'text-neutral-200' : 'text-neutral-800'
           }`}>
             <a href={trimmedLine.match(/\(([^)]+)\)/)?.[1]} target="_blank" rel="noopener noreferrer" 
@@ -248,7 +254,7 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
         );
       } else if (trimmedLine.startsWith('(') && trimmedLine.includes('utm_source')) {
         elements.push(
-          <p key={key++} className={`mb-[24px] leading-relaxed text-base md:text-[18px] ${
+          <p key={key++} className={`mb-6 leading-relaxed text-[17px] md:text-[19px] ${
             theme === 'dark' ? 'text-neutral-200' : 'text-neutral-800'
           }`}>
             <a href={trimmedLine.match(/\(([^)]+)\)/)?.[1]} target="_blank" rel="noopener noreferrer" 
@@ -256,41 +262,6 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
               {trimmedLine}
             </a>
           </p>
-        );
-      } else if (trimmedLine.startsWith('## FAQ')) {
-        // FAQ Section Header - Start scrollable container
-        const faqContainerId = `faq-container-${key++}`;
-        const faqHeaderKey = `faq-header-${key++}`;
-        elements.push(
-          <div key={faqHeaderKey} className="my-8 sm:my-12">
-            <h2 className={`font-heading text-2xl sm:text-3xl md:text-4xl font-bold mb-6 ${
-              theme === 'dark' ? 'text-cyan-300' : 'text-cyan-600'
-            }`}>
-              {trimmedLine.replace(/^##\s*/, '')}
-            </h2>
-            <div id={faqContainerId} className={`max-h-[500px] overflow-y-auto pr-4 space-y-6 rounded-lg border-2 p-6 ${
-              theme === 'dark' 
-                ? 'border-cyan-500/30 bg-gray-900/50 scrollbar-thin scrollbar-thumb-cyan-500/50 scrollbar-track-gray-800' 
-                : 'border-cyan-200 bg-gray-50 scrollbar-thin scrollbar-thumb-cyan-400 scrollbar-track-gray-200'
-            }`}>
-            </div>
-          </div>
-        );
-        // Mark that we're in FAQ section
-        inFAQContainer = true;
-      } else if (trimmedLine.match(/^\*\*[^*]+\?\*\*$/) || (trimmedLine.startsWith('**') && trimmedLine.includes('?'))) {
-        // FAQ Question - Bold text ending with ?
-        const questionText = trimmedLine.replace(/\*\*/g, '');
-        elements.push(
-          <div key={key++} className={`mb-3 mt-6 first:mt-0 pb-3 border-b ${
-            theme === 'dark' ? 'border-cyan-500/20' : 'border-cyan-200'
-          }`}>
-            <h4 className={`font-bold text-base sm:text-lg md:text-xl mb-2 ${
-              theme === 'dark' ? 'text-cyan-300' : 'text-cyan-600'
-            }`}>
-              {questionText}
-            </h4>
-          </div>
         );
       } else {
         // First general paragraph becomes IntroBox
@@ -303,7 +274,7 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
           isFirstParagraph = false;
         } else {
           elements.push(
-            <p key={key++} className={`mb-[24px] leading-relaxed text-base md:text-[18px] ${
+            <p key={key++} className={`mb-6 leading-relaxed text-[17px] md:text-[19px] ${
               theme === 'dark' ? 'text-neutral-200' : 'text-neutral-800'
             }`}>
               {renderInlineMarkdown(trimmedLine)}
@@ -421,34 +392,26 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
         theme === 'dark' ? 'bg-black' : 'bg-gradient-to-br from-gray-50 to-gray-100'
       }`}>
         <ReadingProgressBar />
-        <AnimatePresence>
-          {!isScrolled && (
-            <motion.div
-              initial={{ y: -100 }}
-              animate={{ y: 0 }}
-              exit={{ y: -100 }}
-              transition={{ duration: 0.3, ease: 'easeInOut' }}
-              className="fixed top-0 left-0 right-0 z-50"
-            >
-              <Header />
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <div 
+          className={`fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ease-in-out ${
+            isScrolled ? '-translate-y-full' : 'translate-y-0'
+          }`}
+        >
+          <Header />
+        </div>
         
         {/* Back to Blog Button */}
         <div className="fixed bottom-4 sm:bottom-8 left-2 sm:left-4 md:left-8 z-40">
           <Link href="/blog">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-3 py-2 sm:px-4 sm:py-2 md:px-6 md:py-3 rounded-full bg-gradient-to-r from-cyan-600 to-purple-600 text-white font-semibold text-xs sm:text-sm shadow-lg shadow-cyan-500/30 hover:shadow-xl transition-all flex items-center gap-1 sm:gap-2"
+            <button
+              className="px-3 py-2 sm:px-4 sm:py-2 md:px-6 md:py-3 rounded-full bg-gradient-to-r from-cyan-600 to-purple-600 text-white font-semibold text-xs sm:text-sm shadow-lg shadow-cyan-500/30 hover:shadow-xl transition-all duration-300 ease-in-out hover:scale-105 active:scale-95 flex items-center gap-1 sm:gap-2"
             >
               <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
               </svg>
               <span className="hidden sm:inline">Back to Blog</span>
               <span className="sm:hidden">Back</span>
-            </motion.button>
+            </button>
           </Link>
         </div>
 
@@ -456,149 +419,6 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
         <div className="fixed bottom-4 sm:bottom-8 right-2 sm:right-4 md:right-8 z-40">
           <BlogThemeToggle />
         </div>
-
-        {/* Structured Data Schemas */}
-        {typeof window !== 'undefined' && (
-          <>
-            {/* Article Schema */}
-            <script
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{
-                __html: JSON.stringify({
-                  '@context': 'https://schema.org',
-                  '@type': 'Article',
-                  headline: post.title,
-                  description: post.excerpt,
-                  image: post.image ? `https://teeli.net${post.image}` : '',
-                  datePublished: post.date,
-                  mainEntityOfPage: {
-                    '@type': 'WebPage',
-                    '@id': `https://teeli.net/blog/${post.slug}`
-                  },
-                  url: `https://teeli.net/blog/${post.slug}`,
-                  author: {
-                    '@type': 'Person',
-                    name: post.author,
-                    jobTitle: post.authorRole,
-                  },
-                  publisher: {
-                    '@type': 'Organization',
-                    name: 'TEELI.NET',
-                    logo: {
-                      '@type': 'ImageObject',
-                      url: 'https://teeli.net/logos/teeli-logo.png'
-                    }
-                  },
-                  articleSection: post.category,
-                  keywords: post.content 
-                    ? [...new Set(
-                        post.content
-                          .split('\n')
-                          .filter(line => line.startsWith('##') || line.startsWith('###'))
-                          .map(h => h.replace(/^#{2,3}\s*/, '').trim())
-                          .filter(Boolean)
-                      )].join(', ')
-                    : '',
-                  wordCount: post.content 
-                    ? post.content.split(/\s+/).filter(word => word.length > 0).length 
-                    : 0
-                }),
-              }}
-            />
-
-            {/* FAQPage Schema */}
-            {post.faq && post.faq.length > 0 && (
-              <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{
-                  __html: JSON.stringify({
-                    '@context': 'https://schema.org',
-                    '@type': 'FAQPage',
-                    mainEntity: post.faq.map(item => ({
-                      '@type': 'Question',
-                      name: item.question,
-                      acceptedAnswer: {
-                        '@type': 'Answer',
-                        text: item.answer
-                      }
-                    }))
-                  }),
-                }}
-              />
-            )}
-
-            {/* Table-based Schema (HowTo or Dataset) */}
-            {post.content && (() => {
-              const tableMatches = post.content.match(/\|[^\n]+\|/g);
-              if (!tableMatches || tableMatches.length < 3) return null;
-
-              // Extract table content
-              const tableRows = tableMatches.slice(0, -1); // Remove separator row
-              const headers = tableRows[0].split('|').map(h => h.trim()).filter(Boolean);
-              const dataRows = tableRows.slice(2).map(row => 
-                row.split('|').map(c => c.trim()).filter(Boolean)
-              );
-
-              // Check if table describes steps/process
-              const tableText = tableRows.join(' ').toLowerCase();
-              const isHowTo = /step|process|workflow|procedure|guide|tutorial/i.test(tableText);
-
-              if (isHowTo && dataRows.length > 0) {
-                // HowTo Schema
-                return (
-                  <script
-                    key="howto-schema"
-                    type="application/ld+json"
-                    dangerouslySetInnerHTML={{
-                      __html: JSON.stringify({
-                        '@context': 'https://schema.org',
-                        '@type': 'HowTo',
-                        name: post.title,
-                        description: post.excerpt,
-                        step: dataRows.map((row, idx) => ({
-                          '@type': 'HowToStep',
-                          position: idx + 1,
-                          name: row[0] || `Step ${idx + 1}`,
-                          text: row.slice(1).join(' ')
-                        }))
-                      }),
-                    }}
-                  />
-                );
-              } else if (dataRows.length > 0) {
-                // Dataset Schema
-                return (
-                  <script
-                    key="dataset-schema"
-                    type="application/ld+json"
-                    dangerouslySetInnerHTML={{
-                      __html: JSON.stringify({
-                        '@context': 'https://schema.org',
-                        '@type': 'Dataset',
-                        name: `${post.title} - Data Table`,
-                        description: `Structured data from ${post.title}`,
-                        creator: {
-                          '@type': 'Organization',
-                          name: 'TEELI.NET'
-                        },
-                        distribution: {
-                          '@type': 'DataDownload',
-                          encodingFormat: 'text/html',
-                          contentUrl: `https://teeli.net/blog/${post.slug}`
-                        },
-                        variableMeasured: headers.map(header => ({
-                          '@type': 'PropertyValue',
-                          name: header
-                        }))
-                      }),
-                    }}
-                  />
-                );
-              }
-              return null;
-            })()}
-          </>
-        )}
 
         <article className="max-w-4xl mx-auto px-3 sm:px-4 md:px-6 pt-32 pb-16 sm:pb-24 md:pb-32">
           <div className={`relative rounded-2xl sm:rounded-3xl border-2 p-4 sm:p-6 md:p-8 lg:p-12 backdrop-blur-xl mb-8 sm:mb-12 overflow-hidden ${
@@ -673,31 +493,20 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
           )}
 
           {/* CTA Section */}
-          <div className={`mt-8 sm:mt-12 md:mt-16 pt-8 sm:pt-10 md:pt-12 border-t ${
-            theme === 'dark' ? 'border-white/20' : 'border-gray-300'
-          }`}>
-            <div className="text-center">
-              <h2 className={`font-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 ${
-                theme === 'dark' ? 'text-white' : 'text-gray-900'
-              }`}>
-                Ready to Transform Your Workflow?
-              </h2>
-              <p className={`text-sm sm:text-base md:text-lg mb-6 sm:mb-8 ${
-                theme === 'dark' ? 'text-zinc-300' : 'text-gray-700'
-              }`}>
-                Discover how TEELI can accelerate your projects
-              </p>
-              <Link href="/">
-                <button className="px-6 py-3 sm:px-8 sm:py-4 rounded-full bg-gradient-to-r from-cyan-600 to-purple-600 font-bold text-white text-sm sm:text-base hover:from-cyan-700 hover:to-purple-700 transition-all shadow-lg shadow-cyan-500/30">
-                  Explore TEELI →
-                </button>
-              </Link>
-            </div>
-          </div>
+          <CTASection />
 
           {/* Continue Reading Section */}
-          <ContinueReading posts={relatedPosts} />
+          <ContinueReadingCards posts={relatedPosts} />
         </article>
+
+        {/* Structured Data Schemas - Injected on client-side only */}
+        {schemas.map((schema, index) => (
+          <script
+            key={`schema-${index}`}
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+          />
+        ))}
       </main>
 
       {/* Footer */}

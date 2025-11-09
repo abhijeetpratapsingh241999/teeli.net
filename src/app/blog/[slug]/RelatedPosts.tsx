@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { BlogPost } from '@/lib/blog';
 import { useBlogTheme } from '@/components/BlogThemeProvider';
@@ -24,13 +23,10 @@ export default function RelatedPosts({ posts }: RelatedPostsProps) {
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
         {posts.map((post, index) => (
-          <motion.div
+          <div
             key={post.slug}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: index * 0.1 }}
-            className="group"
+            className="group opacity-0 translate-y-5 animate-[fadeInUp_0.6s_ease-out_forwards]"
+            style={{ animationDelay: `${index * 0.1}s` }}
           >
             <Link href={`/blog/${post.slug}`}>
               <div className={`relative rounded-3xl border-2 p-6 md:p-8 backdrop-blur-xl transition-all md:hover:scale-105 overflow-hidden h-full ${
@@ -64,9 +60,21 @@ export default function RelatedPosts({ posts }: RelatedPostsProps) {
                 </div>
               </div>
             </Link>
-          </motion.div>
+          </div>
         ))}
       </div>
+      <style jsx>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
     </div>
   );
 }

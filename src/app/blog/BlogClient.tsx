@@ -5,7 +5,6 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { BlogThemeProvider, useBlogTheme } from '@/components/BlogThemeProvider';
 import BlogThemeToggle from '@/components/BlogThemeToggle';
-import { motion } from 'framer-motion';
 import { BlogPost } from '@/lib/blog';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -168,11 +167,8 @@ function BlogContent({ initialPosts, categories }: BlogClientProps) {
               </ol>
             </nav>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-16"
+            <div
+              className="text-center mb-16 opacity-0 translate-y-5 animate-[fadeInUp_0.6s_ease-out_forwards]"
             >
               <h1 className={`font-heading bg-clip-text text-5xl md:text-7xl font-bold text-transparent mb-6 leading-none pb-2 ${
                 theme === 'dark' 
@@ -196,7 +192,19 @@ function BlogContent({ initialPosts, categories }: BlogClientProps) {
                   <span>{categories.length - 1} Categories</span>
                 </div>
               </div>
-            </motion.div>
+              <style jsx>{`
+                @keyframes fadeInUp {
+                  from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                  }
+                  to {
+                    opacity: 1;
+                    transform: translateY(0);
+                  }
+                }
+              `}</style>
+            </div>
 
                           {/* Category Filter */}
               <div 
@@ -250,13 +258,10 @@ function BlogContent({ initialPosts, categories }: BlogClientProps) {
                 className="block focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 rounded-2xl overflow-hidden mb-8"
                 aria-label={`Read featured article: ${featuredPost.title}`}
               >
-                <motion.article
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
+                <article
                   itemScope
                   itemType="https://schema.org/BlogPosting"
-                  className={`relative rounded-2xl overflow-hidden backdrop-blur-xl group transition-all duration-300 hover:scale-[1.01] focus-within:ring-2 focus-within:ring-purple-400 ${
+                  className={`relative rounded-2xl overflow-hidden backdrop-blur-xl group transition-all duration-300 hover:scale-[1.01] focus-within:ring-2 focus-within:ring-purple-400 opacity-0 translate-y-5 animate-[fadeInUp_0.6s_ease-out_0.2s_forwards] ${
                     theme === 'dark'
                       ? 'bg-gradient-to-br from-purple-950/40 via-black/60 to-purple-950/40 border border-purple-500/20 hover:border-purple-400/40 hover:shadow-[0_20px_60px_rgba(147,51,234,0.25)]'
                       : 'bg-white border border-purple-100 shadow-lg hover:border-purple-300 hover:shadow-2xl'
@@ -414,7 +419,7 @@ function BlogContent({ initialPosts, categories }: BlogClientProps) {
                       </div>
                     </div>
                   </div>
-                </motion.article>
+                </article>
               </Link>
             )}
 
@@ -440,14 +445,12 @@ function BlogContent({ initialPosts, categories }: BlogClientProps) {
                       href={`/blog/${post.slug}`}
                       className="block h-full focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 rounded-2xl sm:rounded-3xl"
                       aria-label={`Read article: ${post.title} in ${post.category} category`}
+                      style={{ animationDelay: `${0.1 * index}s` }}
                     >
-                      <motion.article
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.1 * index }}
+                      <article
                         itemScope
                         itemType="https://schema.org/BlogPosting"
-                        className={`group relative rounded-2xl sm:rounded-3xl border overflow-hidden backdrop-blur-xl transition-all duration-300 md:hover:scale-[1.02] h-full flex flex-col focus-within:ring-2 focus-within:ring-cyan-400 ${
+                        className={`group relative rounded-2xl sm:rounded-3xl border overflow-hidden backdrop-blur-xl transition-all duration-300 md:hover:scale-[1.02] h-full flex flex-col focus-within:ring-2 focus-within:ring-cyan-400 opacity-0 translate-y-5 animate-[fadeInUp_0.6s_ease-out_forwards] ${
                           theme === 'dark'
                             ? 'border-cyan-500/20 bg-gradient-to-br from-black/80 via-cyan-950/30 to-black/80 hover:border-cyan-500/50 hover:shadow-[0_8px_30px_rgba(6,182,212,0.2)]'
                             : 'border-gray-200 bg-white shadow-md hover:border-cyan-300 hover:shadow-xl'
@@ -576,7 +579,19 @@ function BlogContent({ initialPosts, categories }: BlogClientProps) {
                             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                           </div>
                         </div>
-                      </motion.article>
+                        <style jsx>{`
+                          @keyframes fadeInUp {
+                            from {
+                              opacity: 0;
+                              transform: translateY(20px);
+                            }
+                            to {
+                              opacity: 1;
+                              transform: translateY(0);
+                            }
+                          }
+                        `}</style>
+                      </article>
                     </Link>
                   </div>
                 );

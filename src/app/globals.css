@@ -1,8 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap');
 @import "tailwindcss";
 
-body {
+html { -webkit-text-size-adjust: 100%; }
+body { 
   background-color: #000000;
   color: #ffffff;
+  font-feature-settings: "kern"; 
+  text-rendering: optimizeLegibility;
 }
 
 /* 3D Transform Utilities */
