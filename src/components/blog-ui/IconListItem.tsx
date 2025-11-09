@@ -1,41 +1,81 @@
 "use client";
 import { ReactNode, memo } from "react";
 import { useBlogTheme } from "@/components/BlogThemeProvider";
+import { blogTypography } from "@/styles/blog-typography";
 import clsx from "clsx";
 
 interface IconListItemProps {
   children: ReactNode;
   className?: string;
+  /** Icon color based on heading context: 'red' for H2, 'blue' for H3 */
   color?: "blue" | "red";
+  /** Icon size: 'large' for H2 lists, 'default' for H3 lists */
   size?: "default" | "large";
+  /** Whether this is a numbered list item */
   numbered?: boolean;
+  /** The number to display (for ordered lists) */
   number?: number;
 }
 
-function IconListItem({ children, className, color = "blue", size = "default", numbered = false, number }: IconListItemProps) {
+/**
+ * IconListItem Component
+ * 
+ * Reusable list item with SVG bullet icon or numbered circle.
+ * Automatically adapts to theme and heading context.
+ * 
+ * Usage:
+ * - Under H2: red icon, large size (w-6 h-6)
+ * - Under H3: blue icon, default size (w-5 h-5)
+ */
+function IconListItem({ 
+  children, 
+  className, 
+  color = "blue", 
+  size = "default", 
+  numbered = false, 
+  number 
+}: IconListItemProps) {
   const { theme } = useBlogTheme();
   
-  const iconColor = color === "red" ? "text-red-500" : "text-blue-500";
-  const iconSize = size === "large" ? "w-6 h-6" : "w-5 h-5";
+  // Get icon configuration from typography
+  const iconConfig = color === "red" 
+    ? blogTypography.body.list.icons.h2 
+    : blogTypography.body.list.icons.h3;
+  
+  const iconColor = iconConfig.color;
+  const iconSize = size === "large" ? iconConfig.size : "w-5 h-5";
+  
+  // Get text color from typography
+  const textColor = theme === "dark" 
+    ? blogTypography.body.list.colors.dark 
+    : blogTypography.body.list.colors.light;
 
   return (
     <li
       className={clsx(
-        "flex items-start gap-2 mb-2.5",
-        theme === "dark" ? "text-neutral-200" : "text-neutral-800",
+        "flex items-start gap-2",
+        blogTypography.body.list.spacing,
+        textColor,
         className
       )}
     >
       {numbered && number !== undefined ? (
-        <div className={`${iconSize} mt-1 shrink-0 ${iconColor} flex items-center justify-center font-bold rounded-full border-2 ${
-          color === "red" ? "border-red-500" : "border-blue-500"
-        }`}>
+        // Numbered list icon - circular badge with number
+        <div 
+          className={clsx(
+            iconSize,
+            "mt-1 shrink-0 flex items-center justify-center font-bold rounded-full border-2",
+            iconColor,
+            color === "red" ? "border-red-500" : "border-blue-500"
+          )}
+        >
           {number}
         </div>
       ) : (
+        // Bullet list icon - checkmark in circle
         <svg
           aria-hidden="true"
-          className={`${iconSize} mt-1 shrink-0 ${iconColor}`}
+          className={clsx(iconSize, "mt-1 shrink-0", iconColor)}
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -45,7 +85,9 @@ function IconListItem({ children, className, color = "blue", size = "default", n
           <path d="M9 12l2 2l4-4" />
         </svg>
       )}
-      <span className="text-[17px] md:text-[19px] leading-relaxed">{children}</span>
+      <span className={blogTypography.body.list.sizes}>
+        {children}
+      </span>
     </li>
   );
 }

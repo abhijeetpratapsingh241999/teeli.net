@@ -25,26 +25,26 @@ export const blogTypography = {
       },
     },
     h2: {
-      // Section headings - Dark Blue
+      // Section headings - Darker Blue for light mode, Cyan for dark mode
       sizes: 'text-[28px] sm:text-[32px] md:text-[36px]',
-      weight: 'font-semibold',
-      spacing: 'mb-3 sm:mb-4 mt-[32px] sm:mt-[40px]',
+      weight: 'font-bold',
+      spacing: 'mb-4 sm:mb-5 mt-[32px] sm:mt-[40px]',
       alignment: 'text-center md:text-left',
       scroll: 'scroll-mt-24',
       colors: {
-        light: 'text-blue-800',    // Dark blue for light mode
-        dark: 'text-blue-400',      // Bright blue for dark mode
+        light: 'text-blue-700',    // Darker blue for light mode
+        dark: 'text-cyan-300',     // Cyan for dark mode
       },
     },
     h3: {
-      // Subsection headings - Dark Blue (lighter than H2)
+      // Subsection headings - Slightly lighter blue, softer cyan
       sizes: 'text-[22px] sm:text-[25px] md:text-[28px]',
       weight: 'font-semibold',
-      spacing: 'mb-2 sm:mb-3 mt-[28px]',
+      spacing: 'mb-3 sm:mb-4 mt-[28px]',
       scroll: 'scroll-mt-24',
       colors: {
-        light: 'text-blue-700',    // Medium blue for light mode
-        dark: 'text-blue-300',      // Light blue for dark mode
+        light: 'text-blue-600',    // Slightly lighter blue for light mode
+        dark: 'text-cyan-400',     // Softer cyan for dark mode
       },
     },
   },
@@ -60,8 +60,8 @@ export const blogTypography = {
       },
     },
     list: {
-      sizes: 'text-base md:text-[18px]',
-      spacing: 'ml-5 mb-[10px] leading-relaxed',
+      sizes: 'text-[17px] md:text-[19px]',
+      spacing: 'mb-2.5 leading-relaxed',
       marker: {
         light: 'marker:text-neutral-700',
         dark: 'marker:text-neutral-300',
@@ -69,6 +69,17 @@ export const blogTypography = {
       colors: {
         light: 'text-neutral-800',
         dark: 'text-neutral-200',
+      },
+      // Icon styles for H2 and H3 list items
+      icons: {
+        h2: {
+          color: 'text-red-500',
+          size: 'w-6 h-6',
+        },
+        h3: {
+          color: 'text-blue-500',
+          size: 'w-5 h-5',
+        },
       },
     },
   },
