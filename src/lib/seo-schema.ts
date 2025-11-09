@@ -222,6 +222,50 @@ export function generateBreadcrumbSchema(post: BlogPost) {
   };
 }
 
+// Generate VideoObject schema for hero videos
+export function generateVideoObjectSchema(post: BlogPost, canonicalUrl: string) {
+  if (!post.videoMetadata) return null;
+  
+  const video = post.videoMetadata;
+  const videoUrl = video.url.startsWith('http') 
+    ? video.url 
+    : `https://teeli.net${video.url}`;
+  
+  return {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": video.title || post.title,
+    "description": video.description || post.excerpt,
+    "thumbnailUrl": video.thumbnailUrl 
+      ? (video.thumbnailUrl.startsWith('http') 
+          ? video.thumbnailUrl 
+          : `https://teeli.net${video.thumbnailUrl}`)
+      : post.image 
+        ? `https://teeli.net${post.image}` 
+        : undefined,
+    "uploadDate": video.uploadDate || post.date,
+    "duration": video.duration || "PT7S", // Default 7 seconds
+    "contentUrl": videoUrl,
+    "embedUrl": videoUrl,
+    "publisher": {
+      "@type": "Organization",
+      "name": "TEELI",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://teeli.net/logos/teeli-logo.svg"
+      }
+    },
+    "author": {
+      "@type": "Person",
+      "name": post.author
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": canonicalUrl
+    }
+  };
+}
+
 // Schema type for JSON-LD
 type SchemaObject = Record<string, unknown>;
 
@@ -236,12 +280,20 @@ export function generateAllSchemas(post: BlogPost) {
   // 2. Breadcrumb schema (always)
   schemas.push(generateBreadcrumbSchema(post));
   
-  // 3. FAQ schema (if FAQ exists)
+  // 3. VideoObject schema (if hero video exists)
+  if (post.heroVideo && post.videoMetadata) {
+    const videoSchema = generateVideoObjectSchema(post, canonicalUrl);
+    if (videoSchema) {
+      schemas.push(videoSchema);
+    }
+  }
+  
+  // 4. FAQ schema (if FAQ exists)
   if (post.faq && post.faq.length > 0) {
     schemas.push(generateFAQSchema(post.faq));
   }
   
-  // 4. Table schemas (HowTo or Dataset)
+  // 5. Table schemas (HowTo or Dataset)
   if (post.content) {
     const tables = extractTables(post.content);
     tables.forEach(table => {

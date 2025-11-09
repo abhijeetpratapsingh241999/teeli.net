@@ -32,6 +32,7 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const contentRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const [schemas, setSchemas] = useState<SchemaObject[]>([]);
 
   // Generate structured data schemas on client-side only
@@ -39,6 +40,20 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
     const generatedSchemas = generateAllSchemas(post);
     setSchemas(generatedSchemas);
   }, [post]);
+
+  // Ensure hero video plays
+  useEffect(() => {
+    if (videoRef.current && post.heroVideo) {
+      const playVideo = async () => {
+        try {
+          await videoRef.current?.play();
+        } catch (error) {
+          console.log('Video autoplay prevented:', error);
+        }
+      };
+      playVideo();
+    }
+  }, [post.heroVideo]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -475,15 +490,23 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
 
           {/* Featured Image or Video */}
           {post.heroVideo ? (
-            <div className="mb-8 sm:mb-12 overflow-hidden rounded-xl sm:rounded-2xl border-2 border-cyan-500/30 shadow-2xl">
+            <div className="mb-8 sm:mb-12 overflow-hidden rounded-xl sm:rounded-2xl border-2 border-cyan-500/30 shadow-2xl bg-black">
               <video 
+                ref={videoRef}
                 autoPlay
                 loop
                 muted
                 playsInline
+                preload="auto"
+                controls={false}
+                disablePictureInPicture
                 className="w-full h-auto"
+                title={post.videoMetadata?.title || `${post.title} - Video Preview`}
+                aria-label={post.videoMetadata?.description || post.excerpt}
+                poster={post.videoMetadata?.thumbnailUrl || post.image}
               >
                 <source src={post.heroVideo} type="video/mp4" />
+                <track kind="captions" srcLang="en" label="English" />
                 Your browser does not support the video tag.
               </video>
             </div>

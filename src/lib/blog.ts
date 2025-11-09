@@ -6,6 +6,15 @@ export interface FAQItem {
   answer: string;
 }
 
+export interface VideoMetadata {
+  url: string;
+  title?: string;
+  description?: string;
+  thumbnailUrl?: string;
+  duration?: string; // ISO 8601 duration format (e.g., "PT7S" for 7 seconds)
+  uploadDate?: string;
+}
+
 export interface BlogPost {
   id: number;
   slug: string;
@@ -19,6 +28,7 @@ export interface BlogPost {
   featured?: boolean;
   image?: string;
   heroVideo?: string;
+  videoMetadata?: VideoMetadata;
   content?: string;
   faq?: FAQItem[];
 }
