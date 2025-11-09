@@ -5,7 +5,17 @@
  * Tree-shakeable and only runs on client-side.
  */
 
-// Type definitions are in src/components/Analytics.tsx to avoid duplicate declarations
+// Type declarations for Google Analytics
+declare global {
+  interface Window {
+    gtag?: (
+      command: 'config' | 'event' | 'js',
+      targetId: string | Date,
+      config?: Record<string, unknown>
+    ) => void;
+    dataLayer?: unknown[];
+  }
+}
 
 /**
  * Check if GA4 is initialized and available
