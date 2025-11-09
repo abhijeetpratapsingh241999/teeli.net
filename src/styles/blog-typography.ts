@@ -25,26 +25,26 @@ export const blogTypography = {
       },
     },
     h2: {
-      // Section headings - Darker Blue for light mode, Cyan for dark mode
+      // Section headings - Blue for light mode, White for dark mode
       sizes: 'text-[28px] sm:text-[32px] md:text-[36px]',
       weight: 'font-bold',
       spacing: 'mb-4 sm:mb-5 mt-[32px] sm:mt-[40px]',
       alignment: 'text-center md:text-left',
       scroll: 'scroll-mt-24',
       colors: {
-        light: 'text-blue-700',    // Darker blue for light mode
-        dark: 'text-cyan-300',     // Cyan for dark mode
+        light: 'text-blue-700',    // Blue for light mode
+        dark: 'text-white',        // White for dark mode
       },
     },
     h3: {
-      // Subsection headings - Slightly lighter blue, softer cyan
+      // Subsection headings - Blue for light mode, White for dark mode
       sizes: 'text-[22px] sm:text-[25px] md:text-[28px]',
       weight: 'font-semibold',
       spacing: 'mb-3 sm:mb-4 mt-[28px]',
       scroll: 'scroll-mt-24',
       colors: {
-        light: 'text-blue-600',    // Slightly lighter blue for light mode
-        dark: 'text-cyan-400',     // Softer cyan for dark mode
+        light: 'text-blue-600',    // Blue for light mode
+        dark: 'text-white',        // White for dark mode
       },
     },
   },
