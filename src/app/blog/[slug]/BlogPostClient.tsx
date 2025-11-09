@@ -473,8 +473,21 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
             </div>
           </div>
 
-          {/* Featured Image */}
-          {post.image && (
+          {/* Featured Image or Video */}
+          {post.heroVideo ? (
+            <div className="mb-8 sm:mb-12 overflow-hidden rounded-xl sm:rounded-2xl border-2 border-cyan-500/30 shadow-2xl">
+              <video 
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-auto"
+              >
+                <source src={post.heroVideo} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          ) : post.image ? (
             <div className="mb-8 sm:mb-12 overflow-hidden">
               <Image 
                 src={post.image} 
@@ -485,7 +498,7 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
                 className="w-full h-auto rounded-xl sm:rounded-2xl border-2 border-cyan-500/30 shadow-2xl"
               />
             </div>
-          )}
+          ) : null}
 
           {/* Table of Contents - Now rendered inside content before first H2 */}
 

@@ -18,6 +18,7 @@ export interface BlogPost {
   readTime: string;
   featured?: boolean;
   image?: string;
+  heroVideo?: string;
   content?: string;
   faq?: FAQItem[];
 }
