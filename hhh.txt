@@ -1,0 +1,26 @@
+# Project Structure
+
+```
+components/
+├── blog
+│   ├── IntroHighlight.tsx
+│   └── Typography.css
+├── blog-ui
+│   ├── AuthorCard.tsx
+│   ├── Callout.tsx
+│   ├── FAQAccordion.tsx
+│   ├── HeadingStyles.tsx
+│   ├── IntroBox.tsx
+│   └── SmartTable.tsx
+├── AIAtom.tsx
+├── AnimatedGlobe.tsx
+├── AnimatedHeroText.tsx
+├── BlogThemeProvider.tsx
+├── BlogThemeToggle.tsx
+├── Footer.tsx
+├── FuturisticHouse.tsx
+├── Header.tsx
+├── NeuralLines.tsx
+├── Rotatable3DModel.tsx
+└── Scene.tsx
+```

@@ -1,6 +1,11 @@
 import fs from 'fs';
 import path from 'path';
 
+export interface FAQItem {
+  question: string;
+  answer: string;
+}
+
 export interface BlogPost {
   id: number;
   slug: string;
@@ -14,6 +19,7 @@ export interface BlogPost {
   featured?: boolean;
   image?: string;
   content?: string;
+  faq?: FAQItem[];
 }
 
 // Get all blog posts metadata (without full content for listing)
@@ -30,12 +36,22 @@ export function getAllBlogPosts(): BlogPost[] {
 
     files.forEach((file) => {
       if (file.endsWith('.json') && !file.includes('template')) {
-        const filePath = path.join(blogDir, file);
-        const fileContent = fs.readFileSync(filePath, 'utf-8');
-        const post = JSON.parse(fileContent);
-        // Remove content for listing pages
-        const { content, ...metadata } = post;
-        posts.push(metadata);
+        try {
+          const filePath = path.join(blogDir, file);
+          let fileContent = fs.readFileSync(filePath, 'utf-8');
+          // Remove BOM if present (check if file has content first)
+          if (fileContent.length > 0 && fileContent.charCodeAt(0) === 0xFEFF) {
+            fileContent = fileContent.slice(1);
+          }
+          // Trim whitespace that might cause issues
+          fileContent = fileContent.trim();
+          const post = JSON.parse(fileContent);
+          // Remove content for listing pages
+          const { content, ...metadata } = post;
+          posts.push(metadata);
+        } catch (error) {
+          console.error(`Error parsing blog file ${file}:`, error);
+        }
       }
     });
 
@@ -44,6 +60,33 @@ export function getAllBlogPosts(): BlogPost[] {
     console.error('Error loading blog posts:', error);
     return [];
   }
+}
+
+// Extract FAQ from markdown content and return both FAQ items and cleaned content
+function extractFAQFromContent(content: string): { faqItems: FAQItem[], cleanedContent: string } {
+  const faqItems: FAQItem[] = [];
+  
+  // Look for FAQ section in content
+  const faqMatch = content.match(/##\s*FAQ[^#]*/i);
+  if (!faqMatch) return { faqItems, cleanedContent: content };
+  
+  const faqSection = faqMatch[0];
+  
+  // Match Q&A patterns like "**Q1: question?**" followed by answer
+  const qaPattern = /\*\*Q\d+:\s*([^*]+)\*\*\s*\n\n([^\n]+(?:\n(?!\*\*Q\d+:)[^\n]+)*)/g;
+  let match;
+  
+  while ((match = qaPattern.exec(faqSection)) !== null) {
+    faqItems.push({
+      question: match[1].trim(),
+      answer: match[2].trim()
+    });
+  }
+  
+  // Remove FAQ section from content
+  const cleanedContent = content.replace(/##\s*FAQ[^#]*$/i, '').trim();
+  
+  return { faqItems, cleanedContent };
 }
 
 // Get a single blog post by slug (with full content)
@@ -55,8 +98,23 @@ export function getBlogPostBySlug(slug: string): BlogPost | null {
       return null;
     }
 
-    const fileContent = fs.readFileSync(filePath, 'utf-8');
-    return JSON.parse(fileContent);
+    let fileContent = fs.readFileSync(filePath, 'utf-8');
+    // Remove BOM if present (check if file has content first)
+    if (fileContent.length > 0 && fileContent.charCodeAt(0) === 0xFEFF) {
+      fileContent = fileContent.slice(1);
+    }
+    // Trim whitespace that might cause issues
+    fileContent = fileContent.trim();
+    const post = JSON.parse(fileContent);
+    
+    // Extract FAQ from content if not already provided and remove FAQ section from content
+    if (!post.faq && post.content) {
+      const { faqItems, cleanedContent } = extractFAQFromContent(post.content);
+      post.faq = faqItems;
+      post.content = cleanedContent;
+    }
+    
+    return post;
   } catch (error) {
     console.error('Error loading blog post:', error);
     return null;
@@ -113,4 +171,3 @@ export function getLatestBlogPosts(limit: number = 3): BlogPost[] {
   const allPosts = getAllBlogPosts();
   return allPosts.slice(0, limit);
 }
-

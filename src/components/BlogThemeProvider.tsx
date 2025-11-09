@@ -15,7 +15,7 @@ export function BlogThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>('dark');
   const [mounted, setMounted] = useState(false);
 
-  // Initialize theme on mount
+  // Initialize theme on mount - only on client to avoid hydration mismatch
   useEffect(() => {
     setMounted(true);
     // Load theme from localStorage
@@ -25,7 +25,7 @@ export function BlogThemeProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
-  // Apply theme to document when it changes
+  // Apply theme to document when it changes - only after mount
   useEffect(() => {
     if (!mounted) return;
     
@@ -41,8 +41,11 @@ export function BlogThemeProvider({ children }: { children: React.ReactNode }) {
     setTheme(prevTheme => prevTheme === 'dark' ? 'light' : 'dark');
   };
 
+  // Use default theme during SSR to prevent hydration mismatch
+  const displayTheme = mounted ? theme : 'dark';
+
   return (
-    <BlogThemeContext.Provider value={{ theme, toggleTheme }}>
+    <BlogThemeContext.Provider value={{ theme: displayTheme, toggleTheme }}>
       {children}
     </BlogThemeContext.Provider>
   );

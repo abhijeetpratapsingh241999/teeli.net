@@ -1,0 +1,146 @@
+/* Theme Variables */
+:root {
+  --text-normal: #262626;
+  --text-light: #525252;
+  --accent: #0891b2;
+}
+.dark {
+  --text-normal: #e5e5e5;
+  --text-light: #d4d4d4;
+  --accent: #06b6d4;
+}
+
+/* Base readable body */
+.prose-blog p {
+  font-size: 1rem;
+  line-height: 1.625;
+  margin-bottom: 1.5rem;
+  color: #262626;
+}
+
+@media (min-width: 768px) {
+  .prose-blog p {
+    font-size: 1.125rem;
+  }
+}
+
+.dark .prose-blog p {
+  color: #e5e5e5;
+}
+
+/* Headings Scale */
+.prose-blog h1 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 768px) {
+  .prose-blog h1 {
+    font-size: 2.75rem;
+  }
+}
+
+.prose-blog h2 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.625rem;
+  line-height: 1.3;
+  margin-top: 2rem;
+  margin-bottom: 0.9rem;
+  color: #0891b2;
+}
+
+@media (min-width: 768px) {
+  .prose-blog h2 {
+    font-size: 2.125rem;
+    margin-top: 2.5rem;
+  }
+}
+
+.dark .prose-blog h2 {
+  color: #06b6d4;
+}
+
+.prose-blog h3 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 1.35;
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+  color: #9333ea;
+}
+
+@media (min-width: 768px) {
+  .prose-blog h3 {
+    font-size: 1.625rem;
+  }
+}
+
+.dark .prose-blog h3 {
+  color: #c084fc;
+}
+
+/* Lists */
+.prose-blog ul,
+.prose-blog ol {
+  margin: 1rem 0 1.5rem 1.25rem;
+  line-height: 1.65;
+}
+
+.prose-blog li {
+  margin-bottom: 0.625rem;
+  margin-left: 1.25rem;
+  color: #404040;
+}
+
+.dark .prose-blog li {
+  color: #d4d4d4;
+}
+
+.prose-blog ul li {
+  list-style-type: disc;
+}
+
+.prose-blog ol li {
+  list-style-type: decimal;
+}
+
+.prose-blog ul li::marker,
+.prose-blog ol li::marker {
+  color: #404040;
+}
+
+.dark .prose-blog ul li::marker,
+.dark .prose-blog ol li::marker {
+  color: #d4d4d4;
+}
+
+/* Blockquotes (Quote Box) */
+.prose-blog blockquote {
+  border-left: 4px solid var(--accent);
+  padding-left: 1rem;
+  margin: 1.8rem 0;
+  font-style: italic;
+  opacity: 0.85;
+}
+
+/* IntroBox component contrast */
+.intro-box p,
+.intro-box li,
+.intro-box span,
+.intro-box strong {
+  color: #262626;
+}
+
+.dark .intro-box p,
+.dark .intro-box li,
+.dark .intro-box span,
+.dark .intro-box strong {
+  color: #e5e5e5;
+}
