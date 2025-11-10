@@ -1,4 +1,5 @@
 import { BlogPost, FAQItem } from './blog';
+import { extractVideosFromContent, VideoInfo } from './extract-video';
 
 // Extract keywords from content headings
 export function extractKeywords(content: string): string[] {
@@ -249,10 +250,10 @@ export function generateVideoObjectSchema(post: BlogPost, canonicalUrl: string) 
     "embedUrl": videoUrl,
     "publisher": {
       "@type": "Organization",
-      "name": "TEELI",
+      "name": "TEELI.NET",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://teeli.net/logos/teeli-logo.svg"
+        "url": "https://teeli.net/logos/teeli-logo.png"
       }
     },
     "author": {
@@ -264,6 +265,65 @@ export function generateVideoObjectSchema(post: BlogPost, canonicalUrl: string) 
       "@id": canonicalUrl
     }
   };
+}
+
+// Generate VideoObject schema for content videos (auto-detected)
+export function generateContentVideoSchemas(post: BlogPost, canonicalUrl: string): SchemaObject[] {
+  if (!post.content) return [];
+  
+  const videos = extractVideosFromContent(post.content);
+  
+  if (videos.length === 0) return [];
+  
+  const schemas: SchemaObject[] = [];
+  
+  videos.forEach((video: VideoInfo) => {
+    const videoUrl = video.url.startsWith('http') 
+      ? video.url 
+      : `https://teeli.net${video.url}`;
+    
+    const embedUrl = video.embedUrl.startsWith('http')
+      ? video.embedUrl
+      : `https://teeli.net${video.embedUrl}`;
+    
+    // Extract first 160 chars from content for description
+    const contentText = post.content!.replace(/#+ /g, '').replace(/[*_`]/g, '');
+    const first160Chars = contentText.substring(0, 160).trim() + '...';
+    
+    schemas.push({
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      "name": post.title,
+      "description": post.metaDescription || first160Chars,
+      "thumbnailUrl": video.thumbnailUrl 
+        ? (video.thumbnailUrl.startsWith('http') 
+            ? video.thumbnailUrl 
+            : `https://teeli.net${video.thumbnailUrl}`)
+        : "https://teeli.net/blog/video-thumbnail-default.webp",
+      "uploadDate": post.date,
+      "duration": video.duration || "PT3M",
+      "contentUrl": videoUrl,
+      "embedUrl": embedUrl,
+      "publisher": {
+        "@type": "Organization",
+        "name": "TEELI.NET",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://teeli.net/logos/teeli-logo.png"
+        }
+      },
+      "author": {
+        "@type": "Person",
+        "name": post.author
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": canonicalUrl
+      }
+    });
+  });
+  
+  return schemas;
 }
 
 // Schema type for JSON-LD
@@ -288,12 +348,18 @@ export function generateAllSchemas(post: BlogPost) {
     }
   }
   
-  // 4. FAQ schema (if FAQ exists)
+  // 4. Content video schemas (auto-detected from markdown)
+  if (post.content) {
+    const contentVideoSchemas = generateContentVideoSchemas(post, canonicalUrl);
+    schemas.push(...contentVideoSchemas);
+  }
+  
+  // 5. FAQ schema (if FAQ exists)
   if (post.faq && post.faq.length > 0) {
     schemas.push(generateFAQSchema(post.faq));
   }
   
-  // 5. Table schemas (HowTo or Dataset)
+  // 6. Table schemas (HowTo or Dataset)
   if (post.content) {
     const tables = extractTables(post.content);
     tables.forEach(table => {

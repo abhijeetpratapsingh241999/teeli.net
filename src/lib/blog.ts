@@ -19,6 +19,8 @@ export interface BlogPost {
   id: number;
   slug: string;
   title: string;
+  metaTitle?: string;
+  metaDescription?: string;
   category: string;
   date: string;
   author: string;

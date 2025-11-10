@@ -104,6 +104,29 @@ export const blogTypography = {
       font: 'font-mono text-sm',
     },
   },
+
+  // Spacing Tokens - Consistent vertical rhythm
+  spacing: {
+    // Section spacing
+    section: {
+      small: 'my-6 sm:my-8',      // For images, videos, callouts
+      medium: 'my-8 sm:my-12',    // For major sections
+      large: 'my-12 sm:my-16',    // For article boundaries
+    },
+    // Content container
+    container: {
+      padding: 'px-4 sm:px-6 lg:px-8',
+      maxWidth: 'max-w-3xl',      // Optimal reading width (700-750px)
+    },
+  },
+
+  // Line Heights - Optimal readability
+  lineHeights: {
+    tight: 'leading-tight',       // 1.25 - for headings
+    normal: 'leading-normal',     // 1.5 - for body text
+    relaxed: 'leading-relaxed',   // 1.625 - for long-form content
+    loose: 'leading-loose',       // 2 - for emphasis
+  },
 };
 
 /**

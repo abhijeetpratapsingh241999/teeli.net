@@ -5,20 +5,27 @@ import BlogThemeToggle from '@/components/BlogThemeToggle';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
-import Image from 'next/image';
 import { ReactNode, useState, useEffect, useRef } from 'react';
 import { BlogPost } from '@/lib/blog';
 import IntroBox from '@/components/blog-ui/IntroBox';
 import Callout from '@/components/blog-ui/Callout';
-import SmartTable from '@/components/blog-ui/SmartTable';
-import TOC from '@/components/blog-ui/TOC';
 import ReadingProgressBar from '@/components/blog-ui/ReadingProgressBar';
-import FAQAccordion from '@/components/blog-ui/FAQAccordion';
 import CTASection from '@/components/blog-ui/CTASection';
 import ContinueReadingCards from '@/components/blog-ui/ContinueReadingCards';
 import { generateAllSchemas } from '@/lib/seo-schema';
 import Heading from '@/components/blog-ui/Heading';
 import IconListItem from '@/components/blog-ui/IconListItem';
+import TitleBox from '@/components/blog-ui/TitleBox';
+import VideoPlayer from '@/components/blog-ui/VideoPlayer';
+import ResponsiveImage from '@/components/blog-ui/ResponsiveImage';
+import ResponsiveVideo from '@/components/blog-ui/ResponsiveVideo';
+import LazyHydrate from '@/components/blog-ui/LazyHydrate';
+import dynamic from 'next/dynamic';
+
+// Dynamic imports for code splitting
+const TOC = dynamic(() => import('@/components/blog-ui/TOC'), { ssr: false });
+const SmartTable = dynamic(() => import('@/components/blog-ui/SmartTable'), { ssr: false });
+const FAQAccordion = dynamic(() => import('@/components/blog-ui/FAQAccordion'), { ssr: false });
 
 interface BlogPostClientProps {
   post: BlogPost;
@@ -32,7 +39,6 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const contentRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
   const [schemas, setSchemas] = useState<SchemaObject[]>([]);
 
   // Generate structured data schemas on client-side only
@@ -40,20 +46,6 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
     const generatedSchemas = generateAllSchemas(post);
     setSchemas(generatedSchemas);
   }, [post]);
-
-  // Ensure hero video plays
-  useEffect(() => {
-    if (videoRef.current && post.heroVideo) {
-      const playVideo = async () => {
-        try {
-          await videoRef.current?.play();
-        } catch (error) {
-          console.log('Video autoplay prevented:', error);
-        }
-      };
-      playVideo();
-    }
-  }, [post.heroVideo]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -152,29 +144,36 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
         if (isVideo) {
           elements.push(
             <div key={key++} className="my-6 sm:my-8">
-              <video 
+              <VideoPlayer 
                 src={`/blog/${src}`}
-                controls
-                className="w-full rounded-xl sm:rounded-2xl border-2 border-cyan-500/30 shadow-2xl"
-              >
-                Your browser does not support the video tag.
-              </video>
+                poster={post.image}
+                title={alt || post.title}
+              />
             </div>
           );
         } else {
           elements.push(
             <div key={key++} className="my-6 sm:my-8">
-              <Image 
+              <ResponsiveImage 
                 src={`/blog/${src}`}
                 alt={alt}
-                width={1200}
-                height={675}
-                className="w-full h-auto rounded-xl sm:rounded-2xl border-2 border-cyan-500/30 shadow-2xl"
-                loading="lazy"
               />
             </div>
           );
         }
+        return;
+      }
+
+      // Handle YouTube/Vimeo/standalone video URLs
+      if (trimmedLine.match(/^https?:\/\/(www\.)?(youtube\.com|youtu\.be|vimeo\.com)/)) {
+        elements.push(
+          <div key={key++} className="my-6 sm:my-8">
+            <VideoPlayer 
+              src={trimmedLine}
+              title={post.title}
+            />
+          </div>
+        );
         return;
       }
 
@@ -190,7 +189,9 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
         // End of table, render it using SmartTable component
         if (tableRows.length > 0) {
           elements.push(
-            <SmartTable key={key++} rows={tableRows} />
+            <LazyHydrate key={key++} mode="onVisible">
+              <SmartTable rows={tableRows} />
+            </LazyHydrate>
           );
         }
         inTable = false;
@@ -208,9 +209,9 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
       } else if (trimmedLine.startsWith('## ')) {
         if (isFirstH2) {
           elements.push(
-            <div key={`toc-${key++}`}>
+            <LazyHydrate key={`toc-${key++}`} mode="onVisible">
               <TOC contentRef={contentRef} />
-            </div>
+            </LazyHydrate>
           );
           isFirstH2 = false;
         }
@@ -441,84 +442,34 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
         </div>
 
         <article className="max-w-4xl mx-auto px-3 sm:px-4 md:px-6 pt-32 pb-16 sm:pb-24 md:pb-32">
-          <div className={`relative rounded-2xl sm:rounded-3xl border-2 p-4 sm:p-6 md:p-8 lg:p-12 backdrop-blur-xl mb-8 sm:mb-12 overflow-hidden ${
-            theme === 'dark'
-              ? 'border-cyan-500/30 bg-gradient-to-br from-black/60 via-cyan-950/40 to-black/60'
-              : 'border-cyan-500/50 bg-white shadow-lg'
-          }`}>
-            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-500 to-transparent opacity-50"></div>
-            
-            <div className="relative z-10">
-              <div className="text-cyan-400 text-xs font-semibold mb-3 sm:mb-4">{post.category}</div>
-              <h1 className={`font-heading text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold mb-3 sm:mb-4 leading-tight ${
-                theme === 'dark' ? 'text-white' : 'text-gray-900'
-              }`}>
-                {post.title}
-              </h1>
-              <p className={`text-sm sm:text-base md:text-lg mb-4 sm:mb-6 leading-relaxed ${
-                theme === 'dark' ? 'text-zinc-300' : 'text-gray-700'
-              }`}>
-                {post.excerpt}
-              </p>
-              <div className="flex items-center gap-2 sm:gap-3 md:gap-4 flex-wrap text-xs sm:text-sm">
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-cyan-500 to-purple-500 flex items-center justify-center text-white font-bold text-xs sm:text-sm">
-                    {post.author.split(' ').map(n => n[0]).join('')}
-                  </div>
-                  <div>
-                    <div className={`text-xs sm:text-sm font-semibold ${
-                      theme === 'dark' ? 'text-white' : 'text-gray-900'
-                    }`}>{post.author}</div>
-                    {post.authorRole && (
-                      <div className={`text-xs ${
-                        theme === 'dark' ? 'text-zinc-400' : 'text-gray-600'
-                      }`}>{post.authorRole}</div>
-                    )}
-                  </div>
-                </div>
-                <span className={theme === 'dark' ? 'text-zinc-500' : 'text-gray-400'}>•</span>
-                <div className={`text-xs sm:text-sm ${
-                  theme === 'dark' ? 'text-zinc-400' : 'text-gray-600'
-                }`}>{post.date}</div>
-                <span className={theme === 'dark' ? 'text-zinc-500' : 'text-gray-400'}>•</span>
-                <div className={`text-xs sm:text-sm ${
-                  theme === 'dark' ? 'text-zinc-400' : 'text-gray-600'
-                }`}>{post.readTime}</div>
-              </div>
-            </div>
-          </div>
+          {/* Title Box with Like Button */}
+          <TitleBox
+            slug={post.slug}
+            category={post.category}
+            title={post.title}
+            excerpt={post.excerpt}
+            author={post.author}
+            authorRole={post.authorRole}
+            date={post.date}
+            readTime={post.readTime}
+          />
 
           {/* Featured Image or Video */}
           {post.heroVideo ? (
-            <div className="mb-8 sm:mb-12 overflow-hidden rounded-xl sm:rounded-2xl border-2 border-cyan-500/30 shadow-2xl bg-black">
-              <video 
-                ref={videoRef}
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="auto"
-                controls={false}
-                disablePictureInPicture
-                className="w-full h-auto"
-                title={post.videoMetadata?.title || `${post.title} - Video Preview`}
-                aria-label={post.videoMetadata?.description || post.excerpt}
-                poster={post.videoMetadata?.thumbnailUrl || post.image}
-              >
-                <source src={post.heroVideo} type="video/mp4" />
-                <track kind="captions" srcLang="en" label="English" />
-                Your browser does not support the video tag.
-              </video>
+            <div className="mb-8 sm:mb-12">
+              <ResponsiveVideo
+                videoSrc={post.heroVideo}
+                posterSrc={post.videoMetadata?.thumbnailUrl || post.image || ''}
+                alt={post.videoMetadata?.title || `${post.title} - Video Preview`}
+                priority={false}
+              />
             </div>
           ) : post.image ? (
             <div className="mb-8 sm:mb-12 overflow-hidden">
-              <Image 
+              <ResponsiveImage 
                 src={post.image} 
                 alt={post.title}
-                width={1200}
-                height={675}
                 priority
-                className="w-full h-auto rounded-xl sm:rounded-2xl border-2 border-cyan-500/30 shadow-2xl"
               />
             </div>
           ) : null}
@@ -530,7 +481,9 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
           </div>
 
           {post.faq && post.faq.length > 0 && (
-            <FAQAccordion faq={post.faq} />
+            <LazyHydrate mode="onVisible">
+              <FAQAccordion faq={post.faq} />
+            </LazyHydrate>
           )}
 
           {/* CTA Section */}
