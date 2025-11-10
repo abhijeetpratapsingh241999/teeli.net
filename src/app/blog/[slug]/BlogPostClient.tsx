@@ -19,10 +19,10 @@ import TitleBox from '@/components/blog-ui/TitleBox';
 import VideoPlayer from '@/components/blog-ui/VideoPlayer';
 import ResponsiveImage from '@/components/blog-ui/ResponsiveImage';
 import ResponsiveVideo from '@/components/blog-ui/ResponsiveVideo';
-import LazyHydrate from '@/components/blog-ui/LazyHydrate';
+import MobileOnlyDefer from '@/components/performance/MobileOnlyDefer';
 import dynamic from 'next/dynamic';
 
-// Dynamic imports for code splitting
+// Dynamic imports for code splitting (ssr:false for client-only heavy components)
 const TOC = dynamic(() => import('@/components/blog-ui/TOC'), { ssr: false });
 const SmartTable = dynamic(() => import('@/components/blog-ui/SmartTable'), { ssr: false });
 const FAQAccordion = dynamic(() => import('@/components/blog-ui/FAQAccordion'), { ssr: false });
@@ -189,9 +189,9 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
         // End of table, render it using SmartTable component
         if (tableRows.length > 0) {
           elements.push(
-            <LazyHydrate key={key++} mode="onVisible">
+            <MobileOnlyDefer key={key++} mode="onVisible">
               <SmartTable rows={tableRows} />
-            </LazyHydrate>
+            </MobileOnlyDefer>
           );
         }
         inTable = false;
@@ -209,9 +209,9 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
       } else if (trimmedLine.startsWith('## ')) {
         if (isFirstH2) {
           elements.push(
-            <LazyHydrate key={`toc-${key++}`} mode="onVisible">
+            <MobileOnlyDefer key={`toc-${key++}`} mode="onVisible">
               <TOC contentRef={contentRef} />
-            </LazyHydrate>
+            </MobileOnlyDefer>
           );
           isFirstH2 = false;
         }
@@ -481,16 +481,20 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
           </div>
 
           {post.faq && post.faq.length > 0 && (
-            <LazyHydrate mode="onVisible">
+            <MobileOnlyDefer mode="onVisible">
               <FAQAccordion faq={post.faq} />
-            </LazyHydrate>
+            </MobileOnlyDefer>
           )}
 
-          {/* CTA Section */}
-          <CTASection />
+          {/* CTA Section - Defer on mobile only */}
+          <MobileOnlyDefer mode="onVisible">
+            <CTASection />
+          </MobileOnlyDefer>
 
-          {/* Continue Reading Section */}
-          <ContinueReadingCards posts={relatedPosts} />
+          {/* Continue Reading Section - Defer on mobile only */}
+          <MobileOnlyDefer mode="onVisible">
+            <ContinueReadingCards posts={relatedPosts} />
+          </MobileOnlyDefer>
         </article>
 
         {/* Structured Data Schemas - Injected on client-side only */}
