@@ -36,6 +36,11 @@ export default function ResponsiveImage({
 }: ResponsiveImageProps) {
   const [isLoading, setIsLoading] = useState(true);
 
+  // Development logging
+  if (process.env.NODE_ENV === 'development' && typeof window !== 'undefined') {
+    console.log(`[ResponsiveImage] ${priority ? 'Priority (hero)' : 'Lazy'} - ${src.split('/').pop()}`);
+  }
+
   return (
     <div className="relative overflow-hidden">
       <Image
@@ -52,7 +57,12 @@ export default function ResponsiveImage({
         className={`${className} transition-opacity duration-300 ${
           isLoading ? 'opacity-0' : 'opacity-100'
         }`}
-        onLoad={() => setIsLoading(false)}
+        onLoad={() => {
+          setIsLoading(false);
+          if (process.env.NODE_ENV === 'development') {
+            console.log(`[ResponsiveImage] Loaded - ${src.split('/').pop()}`);
+          }
+        }}
         quality={75}
         style={{
           objectFit: 'cover',

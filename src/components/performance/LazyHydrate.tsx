@@ -35,9 +35,17 @@ export default function LazyHydrate({
     if (mode === 'onVisible') {
       if (!ref.current) return;
 
+      // Development-only logging
+      if (process.env.NODE_ENV === 'development') {
+        console.log('[LazyHydrate] Observing component for visibility-based hydration');
+      }
+
       const observer = new IntersectionObserver(
         (entries) => {
           if (entries[0].isIntersecting) {
+            if (process.env.NODE_ENV === 'development') {
+              console.log('[LazyHydrate] Component visible - hydrating now');
+            }
             setShouldHydrate(true);
             observer.disconnect();
           }
@@ -50,20 +58,43 @@ export default function LazyHydrate({
     } 
     
     if (mode === 'onIdle') {
+      if (process.env.NODE_ENV === 'development') {
+        console.log('[LazyHydrate] Scheduling idle hydration');
+      }
+      
       if ('requestIdleCallback' in window) {
         const id = requestIdleCallback(
-          () => setShouldHydrate(true),
+          () => {
+            if (process.env.NODE_ENV === 'development') {
+              console.log('[LazyHydrate] Browser idle - hydrating now');
+            }
+            setShouldHydrate(true);
+          },
           { timeout: 2000 }
         );
         return () => cancelIdleCallback(id);
       } else {
-        const timeout = setTimeout(() => setShouldHydrate(true), 2000);
+        const timeout = setTimeout(() => {
+          if (process.env.NODE_ENV === 'development') {
+            console.log('[LazyHydrate] Fallback delay complete - hydrating now');
+          }
+          setShouldHydrate(true);
+        }, 2000);
         return () => clearTimeout(timeout);
       }
     } 
     
     if (mode === 'afterDelay') {
-      const timeout = setTimeout(() => setShouldHydrate(true), delay);
+      if (process.env.NODE_ENV === 'development') {
+        console.log(`[LazyHydrate] Scheduling delayed hydration (${delay}ms)`);
+      }
+      
+      const timeout = setTimeout(() => {
+        if (process.env.NODE_ENV === 'development') {
+          console.log('[LazyHydrate] Delay complete - hydrating now');
+        }
+        setShouldHydrate(true);
+      }, delay);
       return () => clearTimeout(timeout);
     }
   }, [mode, delay, rootMargin]);

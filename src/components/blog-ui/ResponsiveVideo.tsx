@@ -41,9 +41,16 @@ export default function ResponsiveVideo({
   useEffect(() => {
     if (priority || shouldLoadVideo) return;
 
+    if (process.env.NODE_ENV === 'development') {
+      console.log('[ResponsiveVideo] Observing for visibility - preload="none" active');
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
+          if (process.env.NODE_ENV === 'development') {
+            console.log('[ResponsiveVideo] Video visible - starting load now');
+          }
           setShouldLoadVideo(true);
           observer.disconnect();
         }
@@ -118,7 +125,12 @@ export default function ResponsiveVideo({
           className={`w-full h-full object-cover transition-opacity duration-500 ${
             isVideoLoaded ? 'opacity-100' : 'opacity-0'
           }`}
-          onLoadedData={() => setIsVideoLoaded(true)}
+          onLoadedData={() => {
+            setIsVideoLoaded(true);
+            if (process.env.NODE_ENV === 'development') {
+              console.log('[ResponsiveVideo] Video data loaded and ready to play');
+            }
+          }}
           style={{
             aspectRatio: '16 / 9',
           }}
