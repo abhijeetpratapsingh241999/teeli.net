@@ -8,13 +8,7 @@ export default function FAQAccordion({ faq }: { faq: { question: string; answer:
   if (!faq || faq.length === 0) return null;
 
   return (
-    <div className="mt-12 sm:mt-16 md:mt-20">
-      <h2 className={`font-heading text-[26px] sm:text-[30px] md:text-[34px] font-semibold mb-6 ${
-        theme === 'dark' ? 'text-cyan-500' : 'text-cyan-700'
-      }`}>
-        Frequently Asked Questions
-      </h2>
-
+    <div className="mt-6 sm:mt-8">
       <div className="space-y-4">
         {faq.map((item, index) => (
           <FAQItem key={index} q={item.question} a={item.answer} theme={theme} />

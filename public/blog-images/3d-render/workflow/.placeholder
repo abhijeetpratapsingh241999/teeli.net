@@ -1,0 +1,15 @@
+# Workflow Images for 3D Render Keyword
+
+Place workflow, process, and step-by-step images in this folder.
+
+Example filenames:
+- lighting-setup-hdri.webp
+- material-pbr-wood-texture.webp
+- camera-positioning-diagram.webp
+- rendering-settings-vray.webp
+
+Image specs:
+- Format: WebP
+- Size: 1200x800px minimum
+- Quality: 85%
+- Naming: descriptive-kebab-case.webp

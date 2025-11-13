@@ -1,0 +1,218 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600">
+  <defs>
+    <!-- Modern Gradients -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e293b;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="glowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:0.8" />
+    </linearGradient>
+    
+    <radialGradient id="spotLight" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#000000;stop-opacity:0" />
+    </radialGradient>
+    
+    <!-- Blur Effect -->
+    <filter id="blur">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
+    </filter>
+    
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="600" fill="url(#bgGrad)"/>
+  
+  <!-- Spotlight Effects -->
+  <ellipse cx="300" cy="300" rx="400" ry="300" fill="url(#spotLight)" opacity="0.5"/>
+  <ellipse cx="900" cy="300" rx="400" ry="300" fill="url(#spotLight)" opacity="0.5"/>
+  
+  <!-- Main Title -->
+  <text x="600" y="80" text-anchor="middle" fill="#f1f5f9" font-size="48" font-weight="bold" font-family="system-ui, -apple-system, sans-serif" opacity="0.95">
+    3D Product Rendering
+  </text>
+  <text x="600" y="120" text-anchor="middle" fill="url(#accentGrad)" font-size="20" font-family="system-ui, -apple-system, sans-serif" opacity="0.8">
+    From Concept to Photorealistic Visualization
+  </text>
+  
+  <!-- Center Product: Modern Headphone -->
+  <g transform="translate(600, 350)">
+    <!-- Headband -->
+    <path d="M -80 -60 Q -90 -100 0 -110 Q 90 -100 80 -60" 
+          fill="none" 
+          stroke="url(#accentGrad)" 
+          stroke-width="12" 
+          stroke-linecap="round"
+          filter="url(#glow)">
+      <animate attributeName="stroke-width" values="12;14;12" dur="3s" repeatCount="indefinite"/>
+    </path>
+    
+    <!-- Left Ear Cup -->
+    <g transform="translate(-70, 0)">
+      <ellipse cx="0" cy="0" rx="45" ry="55" fill="#1e293b" stroke="url(#accentGrad)" stroke-width="3" filter="url(#glow)"/>
+      <ellipse cx="0" cy="0" rx="35" ry="45" fill="#0f172a" opacity="0.8"/>
+      <ellipse cx="0" cy="0" rx="28" ry="38" fill="url(#accentGrad)" opacity="0.3">
+        <animate attributeName="opacity" values="0.3;0.5;0.3" dur="2s" repeatCount="indefinite"/>
+      </ellipse>
+      <!-- Speaker Detail -->
+      <circle cx="0" cy="0" r="20" fill="none" stroke="#06b6d4" stroke-width="1" opacity="0.5"/>
+      <circle cx="0" cy="0" r="15" fill="none" stroke="#3b82f6" stroke-width="1" opacity="0.5"/>
+      <circle cx="0" cy="0" r="10" fill="none" stroke="#8b5cf6" stroke-width="1" opacity="0.5"/>
+    </g>
+    
+    <!-- Right Ear Cup -->
+    <g transform="translate(70, 0)">
+      <ellipse cx="0" cy="0" rx="45" ry="55" fill="#1e293b" stroke="url(#accentGrad)" stroke-width="3" filter="url(#glow)"/>
+      <ellipse cx="0" cy="0" rx="35" ry="45" fill="#0f172a" opacity="0.8"/>
+      <ellipse cx="0" cy="0" rx="28" ry="38" fill="url(#accentGrad)" opacity="0.3">
+        <animate attributeName="opacity" values="0.3;0.5;0.3" dur="2s" repeatCount="indefinite" begin="1s"/>
+      </ellipse>
+      <!-- Speaker Detail -->
+      <circle cx="0" cy="0" r="20" fill="none" stroke="#06b6d4" stroke-width="1" opacity="0.5"/>
+      <circle cx="0" cy="0" r="15" fill="none" stroke="#3b82f6" stroke-width="1" opacity="0.5"/>
+      <circle cx="0" cy="0" r="10" fill="none" stroke="#8b5cf6" stroke-width="1" opacity="0.5"/>
+    </g>
+    
+    <!-- Connecting Arms -->
+    <line x1="-70" y1="-50" x2="-70" y2="-55" stroke="url(#accentGrad)" stroke-width="8" stroke-linecap="round"/>
+    <line x1="70" y1="-50" x2="70" y2="-55" stroke="url(#accentGrad)" stroke-width="8" stroke-linecap="round"/>
+    
+    <!-- Glow Effect Under Product -->
+    <ellipse cx="0" cy="60" rx="120" ry="20" fill="url(#glowGrad)" opacity="0.3" filter="url(#blur)">
+      <animate attributeName="opacity" values="0.3;0.5;0.3" dur="3s" repeatCount="indefinite"/>
+    </ellipse>
+    
+    <!-- Floating Animation -->
+    <animateTransform
+      attributeName="transform"
+      type="translate"
+      values="600,350; 600,340; 600,350"
+      dur="4s"
+      repeatCount="indefinite"/>
+  </g>
+  
+  <!-- Left Side: Technical Icons -->
+  <g transform="translate(200, 300)" opacity="0.7">
+    <!-- 3D Model Icon -->
+    <g transform="translate(0, -80)">
+      <rect x="-25" y="-25" width="50" height="50" rx="8" fill="none" stroke="#06b6d4" stroke-width="2"/>
+      <path d="M -10 -10 L 10 -10 L 10 10 L -10 10 Z M -15 -15 L 5 -15 M 5 -15 L 5 5 M -15 -15 L -15 5 M -15 5 L 5 5" 
+            stroke="#06b6d4" stroke-width="1.5" fill="none"/>
+      <text x="0" y="45" text-anchor="middle" fill="#94a3b8" font-size="14" font-family="system-ui">CAD Model</text>
+    </g>
+    
+    <!-- Materials Icon -->
+    <g transform="translate(0, 0)">
+      <rect x="-25" y="-25" width="50" height="50" rx="8" fill="none" stroke="#3b82f6" stroke-width="2"/>
+      <circle cx="-8" cy="-8" r="6" fill="#3b82f6" opacity="0.6"/>
+      <circle cx="8" cy="-8" r="6" fill="#06b6d4" opacity="0.6"/>
+      <circle cx="-8" cy="8" r="6" fill="#8b5cf6" opacity="0.6"/>
+      <circle cx="8" cy="8" r="6" fill="#06b6d4" opacity="0.8"/>
+      <text x="0" y="45" text-anchor="middle" fill="#94a3b8" font-size="14" font-family="system-ui">Materials</text>
+    </g>
+    
+    <!-- Lighting Icon -->
+    <g transform="translate(0, 80)">
+      <rect x="-25" y="-25" width="50" height="50" rx="8" fill="none" stroke="#8b5cf6" stroke-width="2"/>
+      <circle cx="0" cy="0" r="8" fill="#fbbf24" opacity="0.8">
+        <animate attributeName="opacity" values="0.8;0.4;0.8" dur="2s" repeatCount="indefinite"/>
+      </circle>
+      <line x1="0" y1="-18" x2="0" y2="-12" stroke="#fbbf24" stroke-width="2"/>
+      <line x1="0" y1="12" x2="0" y2="18" stroke="#fbbf24" stroke-width="2"/>
+      <line x1="-18" y1="0" x2="-12" y2="0" stroke="#fbbf24" stroke-width="2"/>
+      <line x1="12" y1="0" x2="18" y2="0" stroke="#fbbf24" stroke-width="2"/>
+      <text x="0" y="45" text-anchor="middle" fill="#94a3b8" font-size="14" font-family="system-ui">Lighting</text>
+    </g>
+  </g>
+  
+  <!-- Right Side: Output Formats -->
+  <g transform="translate(1000, 300)" opacity="0.7">
+    <!-- High-Res Image -->
+    <g transform="translate(0, -80)">
+      <rect x="-25" y="-25" width="50" height="50" rx="8" fill="none" stroke="#06b6d4" stroke-width="2"/>
+      <rect x="-15" y="-15" width="30" height="25" rx="2" fill="none" stroke="#06b6d4" stroke-width="1.5"/>
+      <circle cx="-8" cy="-8" r="3" fill="#06b6d4" opacity="0.6"/>
+      <path d="M -15 5 L -5 -5 L 5 5 L 15 -10" stroke="#06b6d4" stroke-width="1.5" fill="none"/>
+      <text x="0" y="45" text-anchor="middle" fill="#94a3b8" font-size="14" font-family="system-ui">4K Render</text>
+    </g>
+    
+    <!-- 360° View -->
+    <g transform="translate(0, 0)">
+      <rect x="-25" y="-25" width="50" height="50" rx="8" fill="none" stroke="#3b82f6" stroke-width="2"/>
+      <circle cx="0" cy="0" r="12" fill="none" stroke="#3b82f6" stroke-width="1.5"/>
+      <path d="M -12 0 Q -12 -12 0 -12 Q 12 -12 12 0" stroke="#3b82f6" stroke-width="1.5" fill="none">
+        <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="4s" repeatCount="indefinite"/>
+      </path>
+      <text x="0" y="45" text-anchor="middle" fill="#94a3b8" font-size="14" font-family="system-ui">360° View</text>
+    </g>
+    
+    <!-- AR Ready -->
+    <g transform="translate(0, 80)">
+      <rect x="-25" y="-25" width="50" height="50" rx="8" fill="none" stroke="#8b5cf6" stroke-width="2"/>
+      <path d="M -15 -15 L -15 -8 M -15 -15 L -8 -15 M 15 -15 L 15 -8 M 15 -15 L 8 -15 M -15 15 L -15 8 M -15 15 L -8 15 M 15 15 L 15 8 M 15 15 L 8 15" 
+            stroke="#8b5cf6" stroke-width="2" stroke-linecap="round"/>
+      <rect x="-8" y="-8" width="16" height="16" rx="2" fill="none" stroke="#8b5cf6" stroke-width="1.5">
+        <animate attributeName="opacity" values="1;0.5;1" dur="2s" repeatCount="indefinite"/>
+      </rect>
+      <text x="0" y="45" text-anchor="middle" fill="#94a3b8" font-size="14" font-family="system-ui">AR Ready</text>
+    </g>
+  </g>
+  
+  <!-- Connecting Lines with Animation -->
+  <g opacity="0.3">
+    <line x1="250" y1="300" x2="520" y2="350" stroke="url(#accentGrad)" stroke-width="2" stroke-dasharray="5,5">
+      <animate attributeName="stroke-dashoffset" from="0" to="10" dur="1s" repeatCount="indefinite"/>
+    </line>
+    <line x1="680" y1="350" x2="950" y2="300" stroke="url(#accentGrad)" stroke-width="2" stroke-dasharray="5,5">
+      <animate attributeName="stroke-dashoffset" from="0" to="10" dur="1s" repeatCount="indefinite"/>
+    </line>
+  </g>
+  
+  <!-- Floating Particles -->
+  <g opacity="0.4">
+    <circle cx="150" cy="150" r="3" fill="#06b6d4">
+      <animate attributeName="cy" values="150;450;150" dur="10s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.4;0;0.4" dur="10s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="1050" cy="450" r="3" fill="#8b5cf6">
+      <animate attributeName="cy" values="450;150;450" dur="12s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.4;0;0.4" dur="12s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="400" cy="100" r="2" fill="#3b82f6">
+      <animate attributeName="cy" values="100;500;100" dur="15s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.4;0;0.4" dur="15s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="800" cy="500" r="2" fill="#06b6d4">
+      <animate attributeName="cy" values="500;100;500" dur="13s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.4;0;0.4" dur="13s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  
+  <!-- Bottom Info Bar -->
+  <g transform="translate(600, 550)">
+    <text x="-200" y="0" text-anchor="middle" fill="#64748b" font-size="12" font-family="system-ui">
+      ⚡ GPU Accelerated
+    </text>
+    <text x="0" y="0" text-anchor="middle" fill="#64748b" font-size="12" font-family="system-ui">
+      🤖 AI Enhanced
+    </text>
+    <text x="200" y="0" text-anchor="middle" fill="#64748b" font-size="12" font-family="system-ui">
+      ☁️ Cloud Ready
+    </text>
+  </g>
+</svg>

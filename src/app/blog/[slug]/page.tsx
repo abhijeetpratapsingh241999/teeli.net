@@ -25,6 +25,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   const description = post.excerpt || (post.content ? post.content.substring(0, 160) + '...' : 'Read the full article on TEELI.NET Blog');
   
+  // Use thumbnail for OG/Twitter (optimized for social media)
+  // Falls back to main image if thumbnail not available
+  const ogImage = post.thumbnail || post.image;
+  
   return {
     title: `${post.title} | TEELI.NET Blog`,
     description,
@@ -46,13 +50,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       type: 'article',
       publishedTime: post.date,
       authors: [post.author],
-      images: post.image ? [`https://teeli.net${post.image}`] : [],
+      images: ogImage ? [`https://teeli.net${ogImage}`] : [],
     },
     twitter: {
       card: 'summary_large_image',
       title: post.title,
       description,
-      images: post.image ? [`https://teeli.net${post.image}`] : [],
+      images: ogImage ? [`https://teeli.net${ogImage}`] : [],
     },
     alternates: {
       canonical: `https://teeli.net/blog/${slug}`,

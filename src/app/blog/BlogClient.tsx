@@ -7,7 +7,7 @@ import { BlogThemeProvider, useBlogTheme } from '@/components/BlogThemeProvider'
 import BlogThemeToggle from '@/components/BlogThemeToggle';
 import { BlogPost } from '@/lib/blog';
 import Link from 'next/link';
-import Image from 'next/image';
+import ResponsiveImage from '@/components/blog-ui/ResponsiveImage';
 import { Calendar, Clock, User, ArrowRight, TrendingUp, Eye } from 'lucide-react';
 
 interface BlogClientProps {
@@ -17,11 +17,30 @@ interface BlogClientProps {
 
 function BlogContent({ initialPosts, categories }: BlogClientProps) {
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [searchQuery, setSearchQuery] = useState("");
   const { theme } = useBlogTheme();
   
-  const filteredPosts = selectedCategory === "All" 
-    ? initialPosts 
-    : initialPosts.filter(post => post.category === selectedCategory);
+  const filteredPosts = useMemo(() => {
+    let posts = initialPosts;
+    
+    // Filter by category
+    if (selectedCategory !== "All") {
+      posts = posts.filter(post => post.category === selectedCategory);
+    }
+    
+    // Filter by search query
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase().trim();
+      posts = posts.filter(post => 
+        post.title.toLowerCase().includes(query) ||
+        post.excerpt.toLowerCase().includes(query) ||
+        post.category.toLowerCase().includes(query) ||
+        post.content?.toLowerCase().includes(query)
+      );
+    }
+    
+    return posts;
+  }, [initialPosts, selectedCategory, searchQuery]);
 
   const featuredPost = initialPosts.find(post => post.featured);
 
@@ -34,7 +53,11 @@ function BlogContent({ initialPosts, categories }: BlogClientProps) {
   // Generate enhanced structured data for SEO
   const generateStructuredData = useMemo(() => {
     return (post: BlogPost) => {
-      const imageUrl = post.image ? `${baseUrl}${post.image}` : `${baseUrl}/og-default.png`;
+      // Use thumbnail for structured data (better for search engines)
+      // Falls back to main image if thumbnail not available
+      const imageUrl = (post.thumbnail || post.image) 
+        ? `${baseUrl}${post.thumbnail || post.image}` 
+        : `${baseUrl}/og-default.png`;
       
       return {
         "@context": "https://schema.org",
@@ -181,8 +204,42 @@ function BlogContent({ initialPosts, categories }: BlogClientProps) {
                 Stay ahead with the latest trends in AI rendering, quantum computing, and sustainable technology
               </p>
               
+              {/* Search Bar */}
+              <div className="max-w-2xl mx-auto mt-8 mb-4">
+                <div className="relative">
+                  <input
+                    type="search"
+                    placeholder="Search articles..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className={`w-full px-6 py-4 pr-12 rounded-full border-2 transition-all duration-200 focus:outline-none focus:ring-2 ${
+                      theme === 'dark'
+                        ? 'bg-zinc-900 border-zinc-700 text-white placeholder-zinc-500 focus:border-cyan-500 focus:ring-cyan-500/20'
+                        : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:ring-blue-500/20'
+                    }`}
+                    aria-label="Search blog posts"
+                  />
+                  <svg 
+                    className={`absolute right-5 top-1/2 -translate-y-1/2 w-5 h-5 ${
+                      theme === 'dark' ? 'text-zinc-500' : 'text-gray-400'
+                    }`}
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
+                </div>
+                {searchQuery && (
+                  <p className={`text-sm mt-2 ${theme === 'dark' ? 'text-zinc-400' : 'text-gray-600'}`}>
+                    Found {filteredPosts.length} article{filteredPosts.length !== 1 ? 's' : ''}
+                  </p>
+                )}
+              </div>
+              
               {/* Stats Bar */}
-              <div className="flex flex-wrap items-center justify-center gap-6 mt-8 text-sm">
+              <div className="flex flex-wrap items-center justify-center gap-6 mt-4 text-sm">
                 <div className={`flex items-center gap-2 ${theme === 'dark' ? 'text-zinc-400' : 'text-gray-600'}`}>
                   <TrendingUp className="w-4 h-4" aria-hidden="true" />
                   <span>{initialPosts.length} Articles</span>
@@ -272,17 +329,13 @@ function BlogContent({ initialPosts, categories }: BlogClientProps) {
                     {/* Featured Image - Compact */}
                     {featuredPost.image && (
                       <div className="relative w-full h-[300px] md:h-auto md:min-h-[400px] overflow-hidden bg-gradient-to-br from-purple-900/20 to-pink-900/20">
-                        <Image
+                        <ResponsiveImage
                           src={featuredPost.image}
                           alt={`${featuredPost.title} - Featured ${featuredPost.category} article cover image`}
-                          fill
-                          className="object-cover group-hover:scale-110 transition-transform duration-700 z-0"
-                          priority
-                          sizes="(max-width: 768px) 100vw, 50vw"
-                          itemProp="image"
-                          quality={90}
-                          placeholder="blur"
-                          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                          width={800}
+                          height={600}
+                          priority={true}
+                          className="object-cover group-hover:scale-110 transition-transform duration-700 z-0 w-full h-full"
                         />
                         {/* Subtle Gradient Overlay - Reduced opacity */}
                         <div className={`absolute inset-0 bg-gradient-to-br z-[1] ${
@@ -459,17 +512,13 @@ function BlogContent({ initialPosts, categories }: BlogClientProps) {
                         {/* Blog Image with better optimization */}
                         {post.image ? (
                           <div className="relative overflow-hidden bg-gradient-to-br from-cyan-900/20 to-purple-900/20 aspect-[4/3]">
-                            <Image
+                            <ResponsiveImage
                               src={post.image}
                               alt={`${post.title} - ${post.category} article cover image`}
-                              fill
-                              className="object-cover group-hover:scale-110 transition-transform duration-500"
-                              loading={isAboveFold ? "eager" : "lazy"}
-                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                              itemProp="image"
-                              quality={85}
-                              placeholder="blur"
-                              blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                              width={600}
+                              height={450}
+                              priority={isAboveFold}
+                              className="object-cover group-hover:scale-110 transition-transform duration-500 w-full h-full"
                             />
                             <div 
                               className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"

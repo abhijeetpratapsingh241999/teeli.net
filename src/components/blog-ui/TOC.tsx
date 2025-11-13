@@ -142,40 +142,42 @@ export default function TOC({ contentRef }: TOCProps) {
             style={{ transitionProperty: 'max-height, opacity' }}
           >
             <nav className="px-5 py-4">
-              <ul className="space-y-1">
-                {tocItems.map((item) => (
-                  <li
-                    key={item.id}
-                    className={item.level === 3 ? 'ml-6' : ''}
-                  >
-                    <button
-                      onClick={() => handleClick(item.id)}
-                      className={`text-left w-full text-sm transition-all duration-200 py-2.5 px-3 rounded-lg flex items-start gap-2 ${
-                        activeId === item.id
-                          ? theme === 'dark'
-                            ? 'bg-cyan-900/40 text-cyan-300 font-semibold shadow-sm'
-                            : 'bg-gray-200 text-gray-900 font-semibold shadow-sm'
-                          : theme === 'dark'
-                          ? 'text-zinc-200 hover:text-cyan-300 hover:bg-gray-800/50'
-                          : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100'
-                      } ${
-                        item.level === 2
-                          ? 'font-medium'
-                          : 'font-normal text-xs opacity-90'
-                      }`}
+              <div className="overflow-y-auto max-h-[400px] pr-2 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-transparent hover:scrollbar-thumb-gray-500">
+                <ul className="space-y-1">
+                  {tocItems.map((item, index) => (
+                    <li
+                      key={`toc-desktop-${item.id}-${index}`}
+                      className={item.level === 3 ? 'ml-6' : ''}
                     >
-                      <span className={`mt-0.5 ${
-                        activeId === item.id
-                          ? theme === 'dark' ? 'text-cyan-400' : 'text-gray-900'
-                          : theme === 'dark' ? 'text-gray-500' : 'text-gray-400'
-                      }`}>
-                        {item.level === 2 ? '•' : '◦'}
-                      </span>
-                      <span className="flex-1">{item.text}</span>
-                    </button>
-                  </li>
-                ))}
-              </ul>
+                      <button
+                        onClick={() => handleClick(item.id)}
+                        className={`text-left w-full text-sm transition-all duration-200 py-2.5 px-3 rounded-lg flex items-start gap-2 ${
+                          activeId === item.id
+                            ? theme === 'dark'
+                              ? 'bg-cyan-900/40 text-cyan-300 font-semibold shadow-sm'
+                              : 'bg-gray-200 text-gray-900 font-semibold shadow-sm'
+                            : theme === 'dark'
+                            ? 'text-zinc-200 hover:text-cyan-300 hover:bg-gray-800/50'
+                            : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100'
+                        } ${
+                          item.level === 2
+                            ? 'font-medium'
+                            : 'font-normal text-xs opacity-90'
+                        }`}
+                      >
+                        <span className={`mt-0.5 ${
+                          activeId === item.id
+                            ? theme === 'dark' ? 'text-cyan-400' : 'text-gray-900'
+                            : theme === 'dark' ? 'text-gray-500' : 'text-gray-400'
+                        }`}>
+                          {item.level === 2 ? '•' : '◦'}
+                        </span>
+                        <span className="flex-1">{item.text}</span>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </nav>
           </div>
         </div>
@@ -246,37 +248,39 @@ export default function TOC({ contentRef }: TOCProps) {
           </div>
 
           {/* Drawer Content */}
-          <nav className="px-5 py-4 overflow-y-auto h-[calc(100%-64px)]">
-            <ul className="space-y-2">
-              {tocItems.map((item) => (
-                <li
-                  key={item.id}
-                  className={item.level === 3 ? 'ml-6' : ''}
-                >
-                  <button
-                    onClick={() => {
-                      handleClick(item.id);
-                      setIsOpen(false);
-                    }}
-                    className={`text-left w-full text-sm transition-all duration-200 py-2 px-3 rounded ${
-                      activeId === item.id
-                        ? theme === 'dark'
-                          ? 'bg-cyan-900/40 text-cyan-300 font-semibold'
-                          : 'bg-gray-200 text-gray-900 font-semibold'
-                        : theme === 'dark'
-                        ? 'text-zinc-200 hover:text-cyan-400 hover:bg-gray-800/50'
-                        : 'text-gray-800 hover:text-gray-900 hover:bg-gray-100'
-                    } ${
-                      item.level === 2
-                        ? 'font-medium'
-                        : 'font-normal text-xs opacity-90'
-                    }`}
+          <nav className="px-5 py-4">
+            <div className="overflow-y-auto max-h-[calc(100vh-80px)] pr-2 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-transparent hover:scrollbar-thumb-gray-500">
+              <ul className="space-y-2">
+                {tocItems.map((item, index) => (
+                  <li
+                    key={`toc-mobile-${item.id}-${index}`}
+                    className={item.level === 3 ? 'ml-6' : ''}
                   >
-                    {item.text}
-                  </button>
-                </li>
-              ))}
-            </ul>
+                    <button
+                      onClick={() => {
+                        handleClick(item.id);
+                        setIsOpen(false);
+                      }}
+                      className={`text-left w-full text-sm transition-all duration-200 py-2 px-3 rounded ${
+                        activeId === item.id
+                          ? theme === 'dark'
+                            ? 'bg-cyan-900/40 text-cyan-300 font-semibold'
+                            : 'bg-gray-200 text-gray-900 font-semibold'
+                          : theme === 'dark'
+                          ? 'text-zinc-200 hover:text-cyan-400 hover:bg-gray-800/50'
+                          : 'text-gray-800 hover:text-gray-900 hover:bg-gray-100'
+                      } ${
+                        item.level === 2
+                          ? 'font-medium'
+                          : 'font-normal text-xs opacity-90'
+                      }`}
+                    >
+                      {item.text}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </nav>
         </div>
       </div>

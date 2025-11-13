@@ -5,6 +5,7 @@ import BlogThemeToggle from '@/components/BlogThemeToggle';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ReactNode, useState, useEffect, useRef } from 'react';
 import { BlogPost } from '@/lib/blog';
 import IntroBox from '@/components/blog-ui/IntroBox';
@@ -15,17 +16,48 @@ import ContinueReadingCards from '@/components/blog-ui/ContinueReadingCards';
 import { generateAllSchemas } from '@/lib/seo-schema';
 import Heading from '@/components/blog-ui/Heading';
 import IconListItem from '@/components/blog-ui/IconListItem';
+import IconBullet from '@/components/blog-ui/IconBullet';
 import TitleBox from '@/components/blog-ui/TitleBox';
 import VideoPlayer from '@/components/blog-ui/VideoPlayer';
 import ResponsiveImage from '@/components/blog-ui/ResponsiveImage';
 import ResponsiveVideo from '@/components/blog-ui/ResponsiveVideo';
 import MobileOnlyDefer from '@/components/performance/MobileOnlyDefer';
+import IndustryUseCasesIllustration from '@/components/blog-ui/IndustryUseCasesIllustration';
 import dynamic from 'next/dynamic';
 
 // Dynamic imports for code splitting (ssr:false for client-only heavy components)
 const TOC = dynamic(() => import('@/components/blog-ui/TOC'), { ssr: false });
 const SmartTable = dynamic(() => import('@/components/blog-ui/SmartTable'), { ssr: false });
 const FAQAccordion = dynamic(() => import('@/components/blog-ui/FAQAccordion'), { ssr: false });
+
+/**
+ * IconBullet Component Usage Examples:
+ * 
+ * Example 1 (manual use inside JSX):
+ * <ul className="my-4 space-y-2">
+ *   <IconBullet as="li">Use PBR materials accurately</IconBullet>
+ *   <IconBullet as="li">Match real-world scale</IconBullet>
+ *   <IconBullet as="li">Avoid over-sharpening textures</IconBullet>
+ * </ul>
+ * 
+ * Example 2 (inside H3 "Common Mistakes and How to Avoid Them" section):
+ * <h3>Common Mistakes and How to Avoid Them</h3>
+ * <ul>
+ *   <IconBullet as="li"><strong>Incorrect scale</strong> — Always set units to mm/cm.</IconBullet>
+ *   <IconBullet as="li"><strong>Flat lighting</strong> — Use HDRI + rim light.</IconBullet>
+ *   <IconBullet as="li"><strong>Over-saturation</strong> — Calibrate color profile.</IconBullet>
+ * </ul>
+ * 
+ * Example 3 (best practices section):
+ * <ul className="space-y-3">
+ *   <IconBullet as="li">Organize assets into clearly named folders</IconBullet>
+ *   <IconBullet as="li">Save incremental versions (scene_v01, scene_v02)</IconBullet>
+ *   <IconBullet as="li">Document render settings in project notes</IconBullet>
+ * </ul>
+ * 
+ * Note: To use IconBullet, import it via:
+ * import { IconBullet } from '@/components/blog-ui';
+ */
 
 interface BlogPostClientProps {
   post: BlogPost;
@@ -69,7 +101,14 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
   }, [lastScrollY]);
 
   const renderContent = (content: string) => {
-    const lines = content.split('\n');
+    // DISABLED: Auto-resolve image paths - now using /blog/ folder directly
+    // const keywordCategory = post.keywordCategory || '3d-render';
+    // const resolvedContent = resolveImagePaths(content, keywordCategory);
+    
+    // Use content directly without transformation
+    const resolvedContent = content;
+    
+    const lines = resolvedContent.split('\n');
     const elements: ReactNode[] = [];
     let key = 0;
     let isFirstParagraph = true;
@@ -141,6 +180,7 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
       if (imageMatch) {
         const [, alt, src] = imageMatch;
         const isVideo = src.endsWith('.mp4') || src.endsWith('.webm') || src.endsWith('.mov');
+        
         if (isVideo) {
           elements.push(
             <div key={key++} className="my-6 sm:my-8">
@@ -150,6 +190,11 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
                 title={alt || post.title}
               />
             </div>
+          );
+        } else if (src === '3d-rendering-use-cases-infographic.svg') {
+          // Render custom SVG illustration component for industry use cases
+          elements.push(
+            <IndustryUseCasesIllustration key={key++} />
           );
         } else {
           elements.push(
@@ -241,14 +286,31 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
           </Heading>
         );
       } else if (trimmedLine.startsWith("- ") || trimmedLine.startsWith("* ")) {
-        // H2 ke neeche red icon (large), H3 ke neeche blue icon (default)
-        const iconColor = currentHeadingLevel === 'h2' ? 'red' : 'blue';
-        const iconSize = currentHeadingLevel === 'h2' ? 'large' : 'default';
-        elements.push(
-          <IconListItem key={key++} color={iconColor} size={iconSize}>
-            {renderInlineMarkdown(trimmedLine.slice(2))}
-          </IconListItem>
-        );
+        const listContent = trimmedLine.slice(2);
+        
+        // Detect ANY bold text starting pattern: **Text**: or **Text** at the beginning
+        const hasBoldStart = listContent.trim().startsWith('**');
+        
+        // Check if it's under H3 heading and has bold text at start
+        const isH3BoldPoint = currentHeadingLevel === 'h3' && hasBoldStart;
+        
+        if (isH3BoldPoint) {
+          // Green checkmark icon with IconBullet for all H3 bold points
+          elements.push(
+            <IconBullet key={key++} as="li">
+              {renderInlineMarkdown(listContent)}
+            </IconBullet>
+          );
+        } else {
+          // H2 ke neeche red icon (large), H3 ke neeche blue icon (default)
+          const iconColor = currentHeadingLevel === 'h2' ? 'red' : 'blue';
+          const iconSize = currentHeadingLevel === 'h2' ? 'large' : 'default';
+          elements.push(
+            <IconListItem key={key++} color={iconColor} size={iconSize}>
+              {renderInlineMarkdown(listContent)}
+            </IconListItem>
+          );
+        }
       } else if (trimmedLine.match(/^\d+\./)) {
         const match = trimmedLine.match(/^(\d+)\.\s*(.+)$/);
         if (match) {
@@ -284,9 +346,60 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
             </a>
           </p>
         );
+      } else if (trimmedLine.startsWith('![')) {
+        // Image markdown: ![alt](src)
+        const imageMatch = trimmedLine.match(/!\[([^\]]*)\]\(([^)]+)\)/);
+        if (imageMatch) {
+          const [, alt, src] = imageMatch;
+          
+          // Proper path resolution for blog images - DIRECT FILE ACCESS
+          let imageSrc: string;
+          if (src.startsWith('http://') || src.startsWith('https://')) {
+            // External URL - use as is
+            imageSrc = src;
+          } else if (src.startsWith('/')) {
+            // Already absolute path - use as is
+            imageSrc = src;
+          } else {
+            // Relative path - resolve to /blog/ folder 
+            imageSrc = `/blog/${src}`;
+          }
+          
+          elements.push(
+            <div key={key++} className="my-8 sm:my-10 flex justify-center">
+              <div className="w-full max-w-4xl">
+                {/* Use regular img tag for all blog content images */}
+                <img
+                  src={imageSrc}
+                  alt={alt || 'Blog image'}
+                  className="w-full h-auto rounded-lg shadow-lg"
+                  style={{ maxHeight: '600px', objectFit: 'contain' }}
+                  loading="lazy"
+                />
+                {alt && (
+                  <p className={`text-center text-sm mt-3 italic ${
+                    theme === 'dark' ? 'text-neutral-400' : 'text-neutral-600'
+                  }`}>
+                    {alt}
+                  </p>
+                )}
+              </div>
+            </div>
+          );
+        }
       } else {
-        // First general paragraph becomes IntroBox
-        if (isFirstParagraph) {
+        // Check if paragraph starts with bold text under H3 (any **Text**: pattern)
+        const isBoldParagraph = trimmedLine.trim().startsWith('**') && currentHeadingLevel === 'h3';
+        
+        if (isBoldParagraph) {
+          // Render as IconBullet with green checkmark for H3 bold paragraphs
+          elements.push(
+            <IconBullet key={key++}>
+              {renderInlineMarkdown(trimmedLine)}
+            </IconBullet>
+          );
+        } else if (isFirstParagraph) {
+          // First general paragraph becomes IntroBox
           elements.push(
             <IntroBox key={key++}>
               {renderInlineMarkdown(trimmedLine)}
@@ -377,25 +490,51 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
 
   const renderInlineMarkdown = (text: string) => {
     const parts: ReactNode[] = [];
-
     let key = 0;
 
-    // Handle **bold** text
-    const boldRegex = /\*\*([^*]+)\*\*/g;
+    // Combined regex to handle both **bold** and [links](url)
+    const combinedRegex = /(\*\*[^*]+\*\*|\[[^\]]+\]\([^)]+\))/g;
     let lastIndex = 0;
     let match;
 
-    while ((match = boldRegex.exec(text)) !== null) {
-      // Add text before bold
+    while ((match = combinedRegex.exec(text)) !== null) {
+      // Add text before match
       if (match.index > lastIndex) {
         parts.push(text.substring(lastIndex, match.index));
       }
-      // Add bold text
-      parts.push(
-        <strong key={key++} className="font-bold">
-          {match[1]}
-        </strong>
-      );
+
+      const matchedText = match[0];
+
+      // Handle **bold** text
+      if (matchedText.startsWith('**') && matchedText.endsWith('**')) {
+        const boldText = matchedText.slice(2, -2);
+        parts.push(
+          <strong key={key++} className="font-bold">
+            {boldText}
+          </strong>
+        );
+      }
+      // Handle [link text](url)
+      else if (matchedText.startsWith('[') && matchedText.includes('](')) {
+        const linkMatch = matchedText.match(/\[([^\]]+)\]\(([^)]+)\)/);
+        if (linkMatch) {
+          const [, linkText, url] = linkMatch;
+          parts.push(
+            <Link 
+              key={key++} 
+              href={url}
+              className={`font-semibold underline decoration-2 hover:decoration-4 transition-all duration-200 ${
+                theme === 'dark' 
+                  ? 'text-cyan-400 hover:text-cyan-300 decoration-cyan-500/50 hover:decoration-cyan-400' 
+                  : 'text-blue-600 hover:text-blue-700 decoration-blue-400/50 hover:decoration-blue-500'
+              }`}
+            >
+              {linkText}
+            </Link>
+          );
+        }
+      }
+
       lastIndex = match.index + match[0].length;
     }
 
@@ -442,6 +581,61 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
         </div>
 
         <article className="max-w-4xl mx-auto px-3 sm:px-4 md:px-6 pt-32 pb-16 sm:pb-24 md:pb-32">
+          {/* Breadcrumb Navigation */}
+          <nav aria-label="Breadcrumb" className="mb-6 sm:mb-8">
+            <ol className="flex items-center space-x-2 text-sm" itemScope itemType="https://schema.org/BreadcrumbList">
+              <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+                <Link 
+                  href="/" 
+                  itemProp="item"
+                  className={`transition-colors duration-200 ${
+                    theme === 'dark' 
+                      ? 'text-gray-400 hover:text-cyan-400' 
+                      : 'text-gray-600 hover:text-blue-600'
+                  }`}
+                >
+                  <span itemProp="name">Home</span>
+                </Link>
+                <meta itemProp="position" content="1" />
+              </li>
+              <li className={theme === 'dark' ? 'text-gray-600' : 'text-gray-400'}>
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                </svg>
+              </li>
+              <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+                <Link 
+                  href="/blog" 
+                  itemProp="item"
+                  className={`transition-colors duration-200 ${
+                    theme === 'dark' 
+                      ? 'text-gray-400 hover:text-cyan-400' 
+                      : 'text-gray-600 hover:text-blue-600'
+                  }`}
+                >
+                  <span itemProp="name">Blog</span>
+                </Link>
+                <meta itemProp="position" content="2" />
+              </li>
+              <li className={theme === 'dark' ? 'text-gray-600' : 'text-gray-400'}>
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                </svg>
+              </li>
+              <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+                <span 
+                  itemProp="name"
+                  className={`font-medium ${
+                    theme === 'dark' ? 'text-cyan-400' : 'text-blue-600'
+                  }`}
+                >
+                  {post.category}
+                </span>
+                <meta itemProp="position" content="3" />
+              </li>
+            </ol>
+          </nav>
+
           {/* Title Box with Like Button */}
           <TitleBox
             slug={post.slug}

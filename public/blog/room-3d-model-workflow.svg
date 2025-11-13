@@ -1,0 +1,331 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" role="img" aria-labelledby="workflowTitle">
+  <title id="workflowTitle">Complete Room 3D Modeling Workflow - 5 Stage Pipeline</title>
+  
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e293b;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Card Gradient -->
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e293b;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#334155;stop-opacity:0.9" />
+    </linearGradient>
+    
+    <!-- Accent Gradient (Cyan to Purple) -->
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#8b5cf6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#a855f7;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Glow Filter -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <!-- Glassmorphism -->
+    <filter id="glass">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="10"/>
+      <feComponentTransfer>
+        <feFuncA type="discrete" tableValues="0.6"/>
+      </feComponentTransfer>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="600" fill="url(#bgGradient)"/>
+  
+  <!-- Grid Pattern -->
+  <g opacity="0.1">
+    <line x1="0" y1="150" x2="1200" y2="150" stroke="#64748b" stroke-width="1"/>
+    <line x1="0" y1="300" x2="1200" y2="300" stroke="#64748b" stroke-width="1"/>
+    <line x1="0" y1="450" x2="1200" y2="450" stroke="#64748b" stroke-width="1"/>
+    <line x1="240" y1="0" x2="240" y2="600" stroke="#64748b" stroke-width="1"/>
+    <line x1="480" y1="0" x2="480" y2="600" stroke="#64748b" stroke-width="1"/>
+    <line x1="720" y1="0" x2="720" y2="600" stroke="#64748b" stroke-width="1"/>
+    <line x1="960" y1="0" x2="960" y2="600" stroke="#64748b" stroke-width="1"/>
+  </g>
+  
+  <!-- Title -->
+  <text x="600" y="60" fill="#f1f5f9" font-size="28" font-weight="700" font-family="system-ui, sans-serif" text-anchor="middle">
+    Room 3D Modeling Workflow
+  </text>
+  <text x="600" y="90" fill="#94a3b8" font-size="16" font-weight="400" font-family="system-ui, sans-serif" text-anchor="middle">
+    Professional Pipeline — Blueprint to Export
+  </text>
+  
+  <!-- Stage 1: Blueprint Import -->
+  <g transform="translate(50, 180)">
+    <!-- Card -->
+    <rect x="0" y="0" width="180" height="280" rx="12" fill="url(#cardGrad)" stroke="#06b6d4" stroke-width="2"/>
+    
+    <!-- Icon: Document with lines -->
+    <g transform="translate(90, 60)">
+      <rect x="-30" y="-35" width="60" height="70" rx="4" fill="none" stroke="#06b6d4" stroke-width="2.5"/>
+      <line x1="-20" y1="-20" x2="20" y2="-20" stroke="#06b6d4" stroke-width="2" opacity="0.8"/>
+      <line x1="-20" y1="-5" x2="20" y2="-5" stroke="#06b6d4" stroke-width="2" opacity="0.8"/>
+      <line x1="-20" y1="10" x2="20" y2="10" stroke="#06b6d4" stroke-width="2" opacity="0.8"/>
+      <line x1="-20" y1="25" x2="10" y2="25" stroke="#06b6d4" stroke-width="2" opacity="0.8"/>
+      <path d="M30,-35 L30,-15 L10,-15 Z" fill="#06b6d4" opacity="0.6"/>
+    </g>
+    
+    <!-- Stage Number -->
+    <circle cx="25" cy="25" r="18" fill="#06b6d4" opacity="0.2"/>
+    <text x="25" y="32" fill="#06b6d4" font-size="20" font-weight="700" font-family="system-ui, sans-serif" text-anchor="middle">1</text>
+    
+    <!-- Title -->
+    <text x="90" y="140" fill="#f1f5f9" font-size="16" font-weight="700" font-family="system-ui, sans-serif" text-anchor="middle">
+      Blueprint Import
+    </text>
+    
+    <!-- Description -->
+    <text x="90" y="170" fill="#cbd5e1" font-size="11" font-weight="400" font-family="system-ui, sans-serif" text-anchor="middle">
+      <tspan x="90" dy="0">Import floor plans</tspan>
+      <tspan x="90" dy="16">and reference images</tspan>
+    </text>
+    
+    <!-- Tools -->
+    <text x="90" y="215" fill="#64748b" font-size="10" font-weight="600" font-family="system-ui, sans-serif" text-anchor="middle">TOOLS</text>
+    <text x="90" y="235" fill="#94a3b8" font-size="10" font-family="system-ui, sans-serif" text-anchor="middle">
+      <tspan x="90" dy="0">AutoCAD</tspan>
+      <tspan x="90" dy="14">Blender</tspan>
+      <tspan x="90" dy="14">SketchUp</tspan>
+    </text>
+  </g>
+  
+  <!-- Arrow 1 -->
+  <g transform="translate(230, 320)">
+    <path d="M0,0 L40,0" stroke="url(#accentGrad)" stroke-width="3" stroke-dasharray="5,5">
+      <animate attributeName="stroke-dashoffset" from="10" to="0" dur="1.5s" repeatCount="indefinite"/>
+    </path>
+    <path d="M35,-6 L45,0 L35,6" fill="#06b6d4"/>
+  </g>
+  
+  <!-- Stage 2: Geometry Modeling -->
+  <g transform="translate(275, 180)">
+    <!-- Card -->
+    <rect x="0" y="0" width="180" height="280" rx="12" fill="url(#cardGrad)" stroke="#8b5cf6" stroke-width="2"/>
+    
+    <!-- Icon: Wireframe Cube -->
+    <g transform="translate(90, 60)">
+      <!-- Front face -->
+      <path d="M-25,-15 L25,-15 L25,35 L-25,35 Z" fill="none" stroke="#8b5cf6" stroke-width="2.5"/>
+      <!-- Back face offset -->
+      <path d="M-15,-25 L35,-25 L35,25 L-15,25 Z" fill="none" stroke="#8b5cf6" stroke-width="2.5" opacity="0.5"/>
+      <!-- Connecting lines -->
+      <line x1="-25" y1="-15" x2="-15" y2="-25" stroke="#8b5cf6" stroke-width="2"/>
+      <line x1="25" y1="-15" x2="35" y2="-25" stroke="#8b5cf6" stroke-width="2"/>
+      <line x1="25" y1="35" x2="35" y2="25" stroke="#8b5cf6" stroke-width="2"/>
+      <line x1="-25" y1="35" x2="-15" y2="25" stroke="#8b5cf6" stroke-width="2"/>
+      <!-- Vertex dots -->
+      <circle cx="-25" cy="-15" r="3" fill="#8b5cf6"/>
+      <circle cx="25" cy="35" r="3" fill="#8b5cf6"/>
+    </g>
+    
+    <!-- Stage Number -->
+    <circle cx="25" cy="25" r="18" fill="#8b5cf6" opacity="0.2"/>
+    <text x="25" y="32" fill="#8b5cf6" font-size="20" font-weight="700" font-family="system-ui, sans-serif" text-anchor="middle">2</text>
+    
+    <!-- Title -->
+    <text x="90" y="140" fill="#f1f5f9" font-size="16" font-weight="700" font-family="system-ui, sans-serif" text-anchor="middle">
+      Geometry Modeling
+    </text>
+    
+    <!-- Description -->
+    <text x="90" y="170" fill="#cbd5e1" font-size="11" font-weight="400" font-family="system-ui, sans-serif" text-anchor="middle">
+      <tspan x="90" dy="0">Create walls, floors</tspan>
+      <tspan x="90" dy="16">and furniture meshes</tspan>
+    </text>
+    
+    <!-- Tools -->
+    <text x="90" y="215" fill="#64748b" font-size="10" font-weight="600" font-family="system-ui, sans-serif" text-anchor="middle">TOOLS</text>
+    <text x="90" y="235" fill="#94a3b8" font-size="10" font-family="system-ui, sans-serif" text-anchor="middle">
+      <tspan x="90" dy="0">Blender</tspan>
+      <tspan x="90" dy="14">3ds Max</tspan>
+      <tspan x="90" dy="14">Maya</tspan>
+    </text>
+  </g>
+  
+  <!-- Arrow 2 -->
+  <g transform="translate(455, 320)">
+    <path d="M0,0 L40,0" stroke="url(#accentGrad)" stroke-width="3" stroke-dasharray="5,5">
+      <animate attributeName="stroke-dashoffset" from="10" to="0" dur="1.5s" begin="0.3s" repeatCount="indefinite"/>
+    </path>
+    <path d="M35,-6 L45,0 L35,6" fill="#8b5cf6"/>
+  </g>
+  
+  <!-- Stage 3: Texturing & UV -->
+  <g transform="translate(500, 180)">
+    <!-- Card -->
+    <rect x="0" y="0" width="180" height="280" rx="12" fill="url(#cardGrad)" stroke="#a855f7" stroke-width="2"/>
+    
+    <!-- Icon: Texture Map -->
+    <g transform="translate(90, 60)">
+      <!-- Sphere with texture grid -->
+      <circle cx="0" cy="0" r="30" fill="none" stroke="#a855f7" stroke-width="2.5"/>
+      <ellipse cx="0" cy="0" rx="30" ry="15" fill="none" stroke="#a855f7" stroke-width="2" opacity="0.6"/>
+      <ellipse cx="0" cy="0" rx="15" ry="30" fill="none" stroke="#a855f7" stroke-width="2" opacity="0.6"/>
+      <line x1="-30" y1="0" x2="30" y2="0" stroke="#a855f7" stroke-width="1.5" opacity="0.5"/>
+      <line x1="0" y1="-30" x2="0" y2="30" stroke="#a855f7" stroke-width="1.5" opacity="0.5"/>
+      <!-- Texture sample -->
+      <rect x="15" y="15" width="20" height="20" fill="#a855f7" opacity="0.3"/>
+      <path d="M15,15 L35,35" stroke="#a855f7" stroke-width="1"/>
+      <path d="M35,15 L15,35" stroke="#a855f7" stroke-width="1"/>
+    </g>
+    
+    <!-- Stage Number -->
+    <circle cx="25" cy="25" r="18" fill="#a855f7" opacity="0.2"/>
+    <text x="25" y="32" fill="#a855f7" font-size="20" font-weight="700" font-family="system-ui, sans-serif" text-anchor="middle">3</text>
+    
+    <!-- Title -->
+    <text x="90" y="140" fill="#f1f5f9" font-size="16" font-weight="700" font-family="system-ui, sans-serif" text-anchor="middle">
+      Texturing &amp; UV
+    </text>
+    
+    <!-- Description -->
+    <text x="90" y="170" fill="#cbd5e1" font-size="11" font-weight="400" font-family="system-ui, sans-serif" text-anchor="middle">
+      <tspan x="90" dy="0">Apply PBR materials</tspan>
+      <tspan x="90" dy="16">and unwrap UVs</tspan>
+    </text>
+    
+    <!-- Tools -->
+    <text x="90" y="215" fill="#64748b" font-size="10" font-weight="600" font-family="system-ui, sans-serif" text-anchor="middle">TOOLS</text>
+    <text x="90" y="235" fill="#94a3b8" font-size="10" font-family="system-ui, sans-serif" text-anchor="middle">
+      <tspan x="90" dy="0">Substance 3D</tspan>
+      <tspan x="90" dy="14">Quixel Mixer</tspan>
+      <tspan x="90" dy="14">Blender Shader</tspan>
+    </text>
+  </g>
+  
+  <!-- Arrow 3 -->
+  <g transform="translate(680, 320)">
+    <path d="M0,0 L40,0" stroke="url(#accentGrad)" stroke-width="3" stroke-dasharray="5,5">
+      <animate attributeName="stroke-dashoffset" from="10" to="0" dur="1.5s" begin="0.6s" repeatCount="indefinite"/>
+    </path>
+    <path d="M35,-6 L45,0 L35,6" fill="#a855f7"/>
+  </g>
+  
+  <!-- Stage 4: Lighting & Camera -->
+  <g transform="translate(725, 180)">
+    <!-- Card -->
+    <rect x="0" y="0" width="180" height="280" rx="12" fill="url(#cardGrad)" stroke="#06b6d4" stroke-width="2"/>
+    
+    <!-- Icon: Light bulb + Camera -->
+    <g transform="translate(90, 60)">
+      <!-- Light bulb -->
+      <circle cx="-15" cy="-5" r="12" fill="none" stroke="#06b6d4" stroke-width="2.5"/>
+      <path d="M-15,7 L-15,15" stroke="#06b6d4" stroke-width="2.5"/>
+      <path d="M-20,17 L-10,17" stroke="#06b6d4" stroke-width="2"/>
+      <!-- Light rays -->
+      <line x1="-15" y1="-20" x2="-15" y2="-25" stroke="#06b6d4" stroke-width="2" opacity="0.6"/>
+      <line x1="-28" y1="-12" x2="-32" y2="-15" stroke="#06b6d4" stroke-width="2" opacity="0.6"/>
+      <line x1="-2" y1="-12" x2="2" y2="-15" stroke="#06b6d4" stroke-width="2" opacity="0.6"/>
+      
+      <!-- Camera -->
+      <rect x="8" y="5" width="30" height="22" rx="3" fill="none" stroke="#06b6d4" stroke-width="2.5"/>
+      <circle cx="23" cy="16" r="8" fill="none" stroke="#06b6d4" stroke-width="2.5"/>
+      <circle cx="23" cy="16" r="4" fill="#06b6d4" opacity="0.5"/>
+      <rect x="35" y="10" width="8" height="4" fill="#06b6d4" opacity="0.6"/>
+    </g>
+    
+    <!-- Stage Number -->
+    <circle cx="25" cy="25" r="18" fill="#06b6d4" opacity="0.2"/>
+    <text x="25" y="32" fill="#06b6d4" font-size="20" font-weight="700" font-family="system-ui, sans-serif" text-anchor="middle">4</text>
+    
+    <!-- Title -->
+    <text x="90" y="140" fill="#f1f5f9" font-size="16" font-weight="700" font-family="system-ui, sans-serif" text-anchor="middle">
+      Lighting &amp; Camera
+    </text>
+    
+    <!-- Description -->
+    <text x="90" y="170" fill="#cbd5e1" font-size="11" font-weight="400" font-family="system-ui, sans-serif" text-anchor="middle">
+      <tspan x="90" dy="0">Set up scene lighting</tspan>
+      <tspan x="90" dy="16">and camera angles</tspan>
+    </text>
+    
+    <!-- Tools -->
+    <text x="90" y="215" fill="#64748b" font-size="10" font-weight="600" font-family="system-ui, sans-serif" text-anchor="middle">TOOLS</text>
+    <text x="90" y="235" fill="#94a3b8" font-size="10" font-family="system-ui, sans-serif" text-anchor="middle">
+      <tspan x="90" dy="0">V-Ray</tspan>
+      <tspan x="90" dy="14">Cycles</tspan>
+      <tspan x="90" dy="14">Eevee</tspan>
+    </text>
+  </g>
+  
+  <!-- Arrow 4 -->
+  <g transform="translate(905, 320)">
+    <path d="M0,0 L40,0" stroke="url(#accentGrad)" stroke-width="3" stroke-dasharray="5,5">
+      <animate attributeName="stroke-dashoffset" from="10" to="0" dur="1.5s" begin="0.9s" repeatCount="indefinite"/>
+    </path>
+    <path d="M35,-6 L45,0 L35,6" fill="#06b6d4"/>
+  </g>
+  
+  <!-- Stage 5: Export & Optimize -->
+  <g transform="translate(950, 180)">
+    <!-- Card -->
+    <rect x="0" y="0" width="180" height="280" rx="12" fill="url(#cardGrad)" stroke="#8b5cf6" stroke-width="2"/>
+    
+    <!-- Icon: Files -->
+    <g transform="translate(90, 60)">
+      <!-- GLB file -->
+      <rect x="-35" y="-20" width="25" height="32" rx="2" fill="none" stroke="#06b6d4" stroke-width="2"/>
+      <text x="-22.5" y="2" fill="#06b6d4" font-size="8" font-weight="700" font-family="monospace" text-anchor="middle">GLB</text>
+      
+      <!-- USDZ file -->
+      <rect x="-5" y="-20" width="25" height="32" rx="2" fill="none" stroke="#8b5cf6" stroke-width="2"/>
+      <text x="7.5" y="2" fill="#8b5cf6" font-size="8" font-weight="700" font-family="monospace" text-anchor="middle">USD</text>
+      
+      <!-- FBX file -->
+      <rect x="25" y="-20" width="25" height="32" rx="2" fill="none" stroke="#a855f7" stroke-width="2"/>
+      <text x="37.5" y="2" fill="#a855f7" font-size="8" font-weight="700" font-family="monospace" text-anchor="middle">FBX</text>
+      
+      <!-- Download arrow -->
+      <path d="M0,25 L0,35" stroke="#64748b" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M-6,30 L0,36 L6,30" fill="none" stroke="#64748b" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+    
+    <!-- Stage Number -->
+    <circle cx="25" cy="25" r="18" fill="#8b5cf6" opacity="0.2"/>
+    <text x="25" y="32" fill="#8b5cf6" font-size="20" font-weight="700" font-family="system-ui, sans-serif" text-anchor="middle">5</text>
+    
+    <!-- Title -->
+    <text x="90" y="140" fill="#f1f5f9" font-size="16" font-weight="700" font-family="system-ui, sans-serif" text-anchor="middle">
+      Export &amp; Optimize
+    </text>
+    
+    <!-- Description -->
+    <text x="90" y="170" fill="#cbd5e1" font-size="11" font-weight="400" font-family="system-ui, sans-serif" text-anchor="middle">
+      <tspan x="90" dy="0">Export for web, AR</tspan>
+      <tspan x="90" dy="16">and game engines</tspan>
+    </text>
+    
+    <!-- Tools -->
+    <text x="90" y="215" fill="#64748b" font-size="10" font-weight="600" font-family="system-ui, sans-serif" text-anchor="middle">FORMATS</text>
+    <text x="90" y="235" fill="#94a3b8" font-size="10" font-family="system-ui, sans-serif" text-anchor="middle">
+      <tspan x="90" dy="0">GLB / GLTF</tspan>
+      <tspan x="90" dy="14">USDZ</tspan>
+      <tspan x="90" dy="14">FBX</tspan>
+    </text>
+  </g>
+  
+  <!-- Bottom Timeline Bar -->
+  <g transform="translate(0, 520)">
+    <line x1="140" y1="0" x2="1040" y2="0" stroke="url(#accentGrad)" stroke-width="4" opacity="0.5"/>
+    <circle cx="140" cy="0" r="8" fill="#06b6d4" filter="url(#glow)"/>
+    <circle cx="365" cy="0" r="8" fill="#8b5cf6" filter="url(#glow)"/>
+    <circle cx="590" cy="0" r="8" fill="#a855f7" filter="url(#glow)"/>
+    <circle cx="815" cy="0" r="8" fill="#06b6d4" filter="url(#glow)"/>
+    <circle cx="1040" cy="0" r="8" fill="#8b5cf6" filter="url(#glow)"/>
+    
+    <text x="600" y="40" fill="#94a3b8" font-size="12" font-family="system-ui, sans-serif" text-anchor="middle">
+      Average Timeline: 4-6 hours (manual) • 30 min (LiDAR scan + cleanup)
+    </text>
+  </g>
+</svg>

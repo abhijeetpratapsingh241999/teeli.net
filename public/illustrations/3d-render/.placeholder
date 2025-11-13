@@ -1,0 +1,15 @@
+# SVG Illustrations for 3D Render Keyword
+
+Place reusable SVG diagrams and infographics in this folder.
+
+Example filenames:
+- workflow-pipeline.svg
+- rendering-process-steps.svg
+- use-cases-infographic.svg
+- tools-comparison-chart.svg
+
+Image specs:
+- Format: SVG
+- Optimized: Run through SVGO
+- Naming: descriptive-kebab-case.svg
+- Reusable: Can be used across multiple blogs

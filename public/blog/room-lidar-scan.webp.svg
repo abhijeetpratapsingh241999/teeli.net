@@ -1,0 +1,221 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="lidarTitle">
+  <title id="lidarTitle">Professional using iPhone LiDAR scanner to capture room dimensions for 3D model reconstruction</title>
+  
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e293b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0f172a;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="scanGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:0.8" />
+      <stop offset="50%" style="stop-color:#8b5cf6;stop-opacity:0.6" />
+      <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:0.8" />
+    </linearGradient>
+    
+    <radialGradient id="pointCloud">
+      <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0891b2;stop-opacity:0" />
+    </radialGradient>
+    
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <rect width="1200" height="675" fill="url(#bgGrad)"/>
+  
+  <!-- Left Side: Person with iPhone -->
+  <g transform="translate(200, 200)">
+    <!-- Person silhouette -->
+    <g opacity="0.9">
+      <!-- Head -->
+      <circle cx="0" cy="0" r="35" fill="#cbd5e1"/>
+      <!-- Neck -->
+      <rect x="-15" y="30" width="30" height="25" fill="#cbd5e1"/>
+      <!-- Body -->
+      <path d="M-50,55 L-40,55 L-35,150 L35,150 L40,55 L50,55 L50,170 L-50,170 Z" fill="#94a3b8"/>
+      <!-- Left arm (holding phone) -->
+      <path d="M-40,60 L-80,100 L-95,95 L-85,130 L-70,140 L-35,100 Z" fill="#cbd5e1"/>
+      <!-- Right arm -->
+      <path d="M40,60 L70,120 L65,135 L50,130 L35,100 Z" fill="#cbd5e1"/>
+      <!-- Legs -->
+      <path d="M-50,170 L-30,290 L-10,290 L-20,170 Z" fill="#94a3b8"/>
+      <path d="M50,170 L30,290 L10,290 L20,170 Z" fill="#94a3b8"/>
+    </g>
+    
+    <!-- iPhone with LiDAR (in hand) -->
+    <g transform="translate(-95, 110) rotate(-15)">
+      <!-- Phone body -->
+      <rect x="-20" y="-40" width="40" height="80" rx="6" fill="#1e293b" stroke="#06b6d4" stroke-width="2"/>
+      <!-- Screen -->
+      <rect x="-17" y="-35" width="34" height="65" rx="3" fill="#0f172a"/>
+      
+      <!-- AR view on screen showing room -->
+      <g transform="translate(0, -10)">
+        <!-- Room outline on screen -->
+        <path d="M-10,-15 L10,-15 L10,15 L-10,15 Z" fill="none" stroke="#06b6d4" stroke-width="1" opacity="0.6"/>
+        <line x1="-10" y1="-15" x2="0" y2="-20" stroke="#06b6d4" stroke-width="1" opacity="0.4"/>
+        <line x1="10" y1="-15" x2="0" y2="-20" stroke="#06b6d4" stroke-width="1" opacity="0.4"/>
+        <!-- Point cloud dots -->
+        <circle cx="-8" cy="-10" r="1" fill="#06b6d4"/>
+        <circle cx="0" cy="-12" r="1" fill="#8b5cf6"/>
+        <circle cx="8" cy="-8" r="1" fill="#06b6d4"/>
+        <circle cx="-5" cy="0" r="1" fill="#06b6d4"/>
+        <circle cx="5" cy="2" r="1" fill="#8b5cf6"/>
+        <circle cx="0" cy="10" r="1" fill="#06b6d4"/>
+      </g>
+      
+      <!-- LiDAR sensor (top camera module) -->
+      <g transform="translate(8, -32)">
+        <circle cx="0" cy="0" r="3" fill="#06b6d4" opacity="0.8">
+          <animate attributeName="opacity" values="0.8;1;0.8" dur="1.5s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="0" cy="0" r="5" fill="none" stroke="#06b6d4" stroke-width="0.5" opacity="0.5">
+          <animate attributeName="r" values="5;8;5" dur="1.5s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.5;0;0.5" dur="1.5s" repeatCount="indefinite"/>
+        </circle>
+      </g>
+      
+      <!-- Progress indicator -->
+      <text x="0" y="35" fill="#06b6d4" font-size="6" font-weight="600" font-family="system-ui, sans-serif" text-anchor="middle">Scanning...</text>
+      <rect x="-15" y="38" width="30" height="2" rx="1" fill="#334155"/>
+      <rect x="-15" y="38" width="20" height="2" rx="1" fill="#06b6d4">
+        <animate attributeName="width" values="0;30;0" dur="3s" repeatCount="indefinite"/>
+      </rect>
+    </g>
+    
+    <!-- LiDAR scanning rays -->
+    <g transform="translate(-95, 110)" opacity="0.6">
+      <line x1="0" y1="0" x2="150" y2="-50" stroke="url(#scanGrad)" stroke-width="2">
+        <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" repeatCount="indefinite"/>
+      </line>
+      <line x1="0" y1="0" x2="180" y2="20" stroke="url(#scanGrad)" stroke-width="2">
+        <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="0.3s" repeatCount="indefinite"/>
+      </line>
+      <line x1="0" y1="0" x2="160" y2="80" stroke="url(#scanGrad)" stroke-width="2">
+        <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="0.6s" repeatCount="indefinite"/>
+      </line>
+      <line x1="0" y1="0" x2="120" y2="120" stroke="url(#scanGrad)" stroke-width="2">
+        <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="0.9s" repeatCount="indefinite"/>
+      </line>
+    </g>
+  </g>
+  
+  <!-- Divider Line -->
+  <line x1="600" y1="100" x2="600" y2="580" stroke="#475569" stroke-width="2" stroke-dasharray="10,5" opacity="0.5"/>
+  
+  <!-- Right Side: 3D Mesh Visualization -->
+  <g transform="translate(850, 150)">
+    <!-- Title -->
+    <text x="0" y="-30" fill="#cbd5e1" font-size="16" font-weight="600" font-family="system-ui, sans-serif" text-anchor="middle">
+      Real-time 3D Mesh Generation
+    </text>
+    
+    <!-- 3D Room Mesh -->
+    <g transform="translate(0, 100)">
+      <!-- Back wall -->
+      <path d="M-120,-60 L120,-60 L120,80 L-120,80 Z" fill="#1e293b" stroke="#06b6d4" stroke-width="1.5" opacity="0.8"/>
+      
+      <!-- Floor -->
+      <path d="M-120,80 L120,80 L150,120 L-150,120 Z" fill="#0f172a" stroke="#8b5cf6" stroke-width="1.5" opacity="0.8"/>
+      
+      <!-- Left wall -->
+      <path d="M-120,-60 L-150,0 L-150,120 L-120,80 Z" fill="#1a2332" stroke="#06b6d4" stroke-width="1.5" opacity="0.7"/>
+      
+      <!-- Right wall -->
+      <path d="M120,-60 L150,0 L150,120 L120,80 Z" fill="#1a2332" stroke="#06b6d4" stroke-width="1.5" opacity="0.7"/>
+      
+      <!-- Ceiling -->
+      <path d="M-120,-60 L120,-60 L150,0 L-150,0 Z" fill="#262f3f" stroke="#8b5cf6" stroke-width="1.5" opacity="0.6"/>
+      
+      <!-- Window frame -->
+      <rect x="-40" y="-40" width="80" height="60" fill="none" stroke="#06b6d4" stroke-width="2"/>
+      <line x1="0" y1="-40" x2="0" y2="20" stroke="#06b6d4" stroke-width="1.5"/>
+      <line x1="-40" y1="-10" x2="40" y2="-10" stroke="#06b6d4" stroke-width="1.5"/>
+      
+      <!-- Wireframe overlay -->
+      <line x1="-120" y1="-60" x2="120" y2="-60" stroke="#06b6d4" stroke-width="1" opacity="0.5"/>
+      <line x1="-120" y1="20" x2="120" y2="20" stroke="#06b6d4" stroke-width="1" opacity="0.4"/>
+      <line x1="-60" y1="-60" x2="-75" y2="120" stroke="#8b5cf6" stroke-width="1" opacity="0.4"/>
+      <line x1="0" y1="-60" x2="0" y2="120" stroke="#8b5cf6" stroke-width="1" opacity="0.4"/>
+      <line x1="60" y1="-60" x2="75" y2="120" stroke="#8b5cf6" stroke-width="1" opacity="0.4"/>
+      
+      <!-- Point cloud scattered -->
+      <circle cx="-100" cy="-40" r="2" fill="#06b6d4" opacity="0.8"/>
+      <circle cx="-50" cy="-30" r="2" fill="#8b5cf6" opacity="0.8"/>
+      <circle cx="0" cy="-50" r="2" fill="#06b6d4" opacity="0.8"/>
+      <circle cx="80" cy="-35" r="2" fill="#8b5cf6" opacity="0.8"/>
+      <circle cx="-80" cy="0" r="2" fill="#06b6d4" opacity="0.8"/>
+      <circle cx="60" cy="10" r="2" fill="#8b5cf6" opacity="0.8"/>
+      <circle cx="-40" cy="50" r="2" fill="#06b6d4" opacity="0.8"/>
+      <circle cx="40" cy="60" r="2" fill="#8b5cf6" opacity="0.8"/>
+      <circle cx="0" cy="90" r="2" fill="#06b6d4" opacity="0.8"/>
+      
+      <!-- Animated scanning line -->
+      <line x1="-150" y1="-80" x2="150" y2="-80" stroke="#06b6d4" stroke-width="2" opacity="0.6" filter="url(#glow)">
+        <animate attributeName="y1" values="-80;140;-80" dur="4s" repeatCount="indefinite"/>
+        <animate attributeName="y2" values="-80;140;-80" dur="4s" repeatCount="indefinite"/>
+      </line>
+    </g>
+  </g>
+  
+  <!-- Measurement Overlays -->
+  <g transform="translate(650, 300)">
+    <!-- Distance measurement 1 -->
+    <g>
+      <line x1="0" y1="0" x2="150" y2="0" stroke="#06b6d4" stroke-width="1.5"/>
+      <line x1="0" y1="-5" x2="0" y2="5" stroke="#06b6d4" stroke-width="1.5"/>
+      <line x1="150" y1="-5" x2="150" y2="5" stroke="#06b6d4" stroke-width="1.5"/>
+      <rect x="60" y="-15" width="30" height="15" rx="3" fill="#06b6d4"/>
+      <text x="75" y="-5" fill="#0f172a" font-size="9" font-weight="700" font-family="system-ui, sans-serif" text-anchor="middle">4.2m</text>
+    </g>
+    
+    <!-- Distance measurement 2 -->
+    <g transform="translate(0, 80)">
+      <line x1="0" y1="0" x2="0" y2="-80" stroke="#8b5cf6" stroke-width="1.5"/>
+      <line x1="-5" y1="0" x2="5" y2="0" stroke="#8b5cf6" stroke-width="1.5"/>
+      <line x1="-5" y1="-80" x2="5" y2="-80" stroke="#8b5cf6" stroke-width="1.5"/>
+      <rect x="-15" y="-50" width="30" height="15" rx="3" fill="#8b5cf6"/>
+      <text x="0" y="-40" fill="#0f172a" font-size="9" font-weight="700" font-family="system-ui, sans-serif" text-anchor="middle">2.8m</text>
+    </g>
+  </g>
+  
+  <!-- Info Panel - Bottom -->
+  <g transform="translate(0, 590)">
+    <rect x="50" y="0" width="1100" height="70" rx="12" fill="#1e293b" opacity="0.9" stroke="#475569" stroke-width="1"/>
+    
+    <g transform="translate(150, 25)">
+      <circle cx="0" cy="0" r="8" fill="#06b6d4"/>
+      <text x="20" y="-8" fill="#cbd5e1" font-size="11" font-weight="600" font-family="system-ui, sans-serif">SCAN PROGRESS</text>
+      <text x="20" y="6" fill="#94a3b8" font-size="10" font-family="system-ui, sans-serif">67% Complete</text>
+    </g>
+    
+    <g transform="translate(420, 25)">
+      <circle cx="0" cy="0" r="8" fill="#8b5cf6"/>
+      <text x="20" y="-8" fill="#cbd5e1" font-size="11" font-weight="600" font-family="system-ui, sans-serif">POINTS CAPTURED</text>
+      <text x="20" y="6" fill="#94a3b8" font-size="10" font-family="system-ui, sans-serif">12,847 vertices</text>
+    </g>
+    
+    <g transform="translate(720, 25)">
+      <circle cx="0" cy="0" r="8" fill="#06b6d4"/>
+      <text x="20" y="-8" fill="#cbd5e1" font-size="11" font-weight="600" font-family="system-ui, sans-serif">ACCURACY</text>
+      <text x="20" y="6" fill="#94a3b8" font-size="10" font-family="system-ui, sans-serif">±2cm precision</text>
+    </g>
+    
+    <g transform="translate(970, 25)">
+      <circle cx="0" cy="0" r="8" fill="#8b5cf6"/>
+      <text x="20" y="-8" fill="#cbd5e1" font-size="11" font-weight="600" font-family="system-ui, sans-serif">TIME SAVED</text>
+      <text x="20" y="6" fill="#94a3b8" font-size="10" font-family="system-ui, sans-serif">70% faster</text>
+    </g>
+  </g>
+  
+  <!-- Title -->
+  <text x="600" y="50" fill="#f1f5f9" font-size="24" font-weight="700" font-family="system-ui, sans-serif" text-anchor="middle">
+    LiDAR Room Scanning — Real-time 3D Capture
+  </text>
+</svg>

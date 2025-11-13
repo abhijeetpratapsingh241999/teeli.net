@@ -18,6 +18,7 @@ export interface VideoMetadata {
 export interface BlogPost {
   id: number;
   slug: string;
+  keywordCategory?: string; // Keyword-based folder for images (e.g., "3d-render")
   title: string;
   metaTitle?: string;
   metaDescription?: string;
@@ -28,7 +29,9 @@ export interface BlogPost {
   excerpt: string;
   readTime: string;
   featured?: boolean;
-  image?: string;
+  image?: string; // Hero image for full blog post (1920×1080)
+  thumbnail?: string; // Card thumbnail for blog listing (800×600, 4:3 ratio)
+  thumbnailAlt?: string; // SEO alt text for thumbnail (Google Image Search)
   heroVideo?: string;
   videoMetadata?: VideoMetadata;
   content?: string;

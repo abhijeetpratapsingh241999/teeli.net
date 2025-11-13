@@ -1,0 +1,247 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" style="background: linear-gradient(135deg, #0f0c29 0%, #302b63 100%)">
+  <defs>
+    <linearGradient id="cardGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea"/>
+      <stop offset="100%" style="stop-color:#764ba2"/>
+    </linearGradient>
+    <linearGradient id="cardGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f093fb"/>
+      <stop offset="100%" style="stop-color:#f5576c"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Title -->
+  <text x="600" y="40" font-family="Arial" font-size="24" fill="#667eea" text-anchor="middle" font-weight="bold">
+    PROFESSIONAL 3D VISUALIZER WORKFLOW
+  </text>
+
+  <!-- Step 1: INTAKE -->
+  <g id="step1">
+    <rect x="20" y="80" width="130" height="140" rx="10" fill="#1a1a2e" stroke="#667eea" stroke-width="2"/>
+    <circle cx="85" cy="110" r="20" fill="url(#cardGrad1)"/>
+    <text x="85" y="117" font-family="Arial" font-size="18" fill="#fff" text-anchor="middle" font-weight="bold">1</text>
+    
+    <!-- Icon: Document -->
+    <rect x="65" y="145" width="40" height="50" fill="none" stroke="#667eea" stroke-width="2" rx="3"/>
+    <line x1="73" y1="155" x2="97" y2="155" stroke="#667eea" stroke-width="2"/>
+    <line x1="73" y1="165" x2="97" y2="165" stroke="#667eea" stroke-width="2"/>
+    <line x1="73" y1="175" x2="97" y2="175" stroke="#667eea" stroke-width="2"/>
+    
+    <text x="85" y="212" font-family="Arial" font-size="14" fill="#fff" text-anchor="middle" font-weight="bold">INTAKE</text>
+    <text x="85" y="228" font-family="Arial" font-size="10" fill="#9ca3af" text-anchor="middle">CAD Files</text>
+    <text x="85" y="242" font-family="Arial" font-size="10" fill="#9ca3af" text-anchor="middle">References</text>
+  </g>
+
+  <!-- Arrow 1 -->
+  <path d="M 155 150 L 175 150" stroke="#667eea" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#667eea"/>
+    </marker>
+  </defs>
+
+  <!-- Step 2: MODELING -->
+  <g id="step2">
+    <rect x="180" y="80" width="130" height="140" rx="10" fill="#1a1a2e" stroke="#764ba2" stroke-width="2"/>
+    <circle cx="245" cy="110" r="20" fill="url(#cardGrad1)"/>
+    <text x="245" y="117" font-family="Arial" font-size="18" fill="#fff" text-anchor="middle" font-weight="bold">2</text>
+    
+    <!-- Icon: 3D Cube -->
+    <g transform="translate(245, 170)">
+      <polygon points="0,-20 -15,-10 -15,10 0,20" fill="none" stroke="#764ba2" stroke-width="2"/>
+      <polygon points="0,-20 15,-10 15,10 0,20" fill="none" stroke="#764ba2" stroke-width="2"/>
+      <polygon points="0,20 -15,10 0,0 15,10" fill="none" stroke="#764ba2" stroke-width="2"/>
+    </g>
+    
+    <text x="245" y="212" font-family="Arial" font-size="14" fill="#fff" text-anchor="middle" font-weight="bold">MODELING</text>
+    <text x="245" y="228" font-family="Arial" font-size="10" fill="#9ca3af" text-anchor="middle">3D Geometry</text>
+    <text x="245" y="242" font-family="Arial" font-size="10" fill="#9ca3af" text-anchor="middle">Clean Mesh</text>
+  </g>
+
+  <!-- Arrow 2 -->
+  <path d="M 315 150 L 335 150" stroke="#764ba2" stroke-width="3" fill="none" marker-end="url(#arrowhead2)"/>
+  <defs>
+    <marker id="arrowhead2" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#764ba2"/>
+    </marker>
+  </defs>
+
+  <!-- Step 3: ASSETS -->
+  <g id="step3">
+    <rect x="340" y="80" width="130" height="140" rx="10" fill="#1a1a2e" stroke="#f093fb" stroke-width="2"/>
+    <circle cx="405" cy="110" r="20" fill="url(#cardGrad2)"/>
+    <text x="405" y="117" font-family="Arial" font-size="18" fill="#fff" text-anchor="middle" font-weight="bold">3</text>
+    
+    <!-- Icon: Furniture -->
+    <rect x="385" y="145" width="40" height="30" fill="none" stroke="#f093fb" stroke-width="2" rx="2"/>
+    <line x1="385" y1="175" x2="385" y2="190" stroke="#f093fb" stroke-width="2"/>
+    <line x1="425" y1="175" x2="425" y2="190" stroke="#f093fb" stroke-width="2"/>
+    <circle cx="385" cy="192" r="3" fill="#f093fb"/>
+    <circle cx="425" cy="192" r="3" fill="#f093fb"/>
+    
+    <text x="405" y="212" font-family="Arial" font-size="14" fill="#fff" text-anchor="middle" font-weight="bold">ASSETS</text>
+    <text x="405" y="228" font-family="Arial" font-size="10" fill="#9ca3af" text-anchor="middle">Furniture</text>
+    <text x="405" y="242" font-family="Arial" font-size="10" fill="#9ca3af" text-anchor="middle">UV Maps</text>
+  </g>
+
+  <!-- Arrow 3 -->
+  <path d="M 475 150 L 495 150" stroke="#f093fb" stroke-width="3" fill="none" marker-end="url(#arrowhead3)"/>
+  <defs>
+    <marker id="arrowhead3" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#f093fb"/>
+    </marker>
+  </defs>
+
+  <!-- Step 4: LIGHTING -->
+  <g id="step4">
+    <rect x="500" y="80" width="130" height="140" rx="10" fill="#1a1a2e" stroke="#ffc107" stroke-width="2"/>
+    <circle cx="565" cy="110" r="20" fill="#ffc107"/>
+    <text x="565" y="117" font-family="Arial" font-size="18" fill="#000" text-anchor="middle" font-weight="bold">4</text>
+    
+    <!-- Icon: Light bulb -->
+    <circle cx="565" cy="165" r="15" fill="none" stroke="#ffc107" stroke-width="2"/>
+    <path d="M 555 180 L 555 185 L 575 185 L 575 180" fill="none" stroke="#ffc107" stroke-width="2"/>
+    <line x1="565" y1="145" x2="565" y2="135" stroke="#ffc107" stroke-width="2"/>
+    <line x1="545" y1="150" x2="537" y2="142" stroke="#ffc107" stroke-width="2"/>
+    <line x1="585" y1="150" x2="593" y2="142" stroke="#ffc107" stroke-width="2"/>
+    
+    <text x="565" y="212" font-family="Arial" font-size="14" fill="#fff" text-anchor="middle" font-weight="bold">LIGHTING</text>
+    <text x="565" y="228" font-family="Arial" font-size="10" fill="#9ca3af" text-anchor="middle">HDRI Setup</text>
+    <text x="565" y="242" font-family="Arial" font-size="10" fill="#9ca3af" text-anchor="middle">Area Lights</text>
+  </g>
+
+  <!-- Arrow down to second row -->
+  <path d="M 630 150 L 670 150 L 670 280 L 1150 280" stroke="#ffc107" stroke-width="3" fill="none" marker-end="url(#arrowhead4)"/>
+  <defs>
+    <marker id="arrowhead4" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#4caf50"/>
+    </marker>
+  </defs>
+
+  <!-- Step 5: MATERIALS -->
+  <g id="step5" transform="translate(0, 170)">
+    <rect x="1020" y="80" width="130" height="140" rx="10" fill="#1a1a2e" stroke="#4caf50" stroke-width="2"/>
+    <circle cx="1085" cy="110" r="20" fill="#4caf50"/>
+    <text x="1085" y="117" font-family="Arial" font-size="18" fill="#000" text-anchor="middle" font-weight="bold">5</text>
+    
+    <!-- Icon: Material palette -->
+    <circle cx="1070" cy="160" r="8" fill="#e91e63"/>
+    <circle cx="1085" cy="160" r="8" fill="#2196f3"/>
+    <circle cx="1100" cy="160" r="8" fill="#ffc107"/>
+    <rect x="1065" y="172" width="40" height="15" fill="none" stroke="#4caf50" stroke-width="2" rx="2"/>
+    
+    <text x="1085" y="212" font-family="Arial" font-size="14" fill="#fff" text-anchor="middle" font-weight="bold">MATERIALS</text>
+    <text x="1085" y="228" font-family="Arial" font-size="10" fill="#9ca3af" text-anchor="middle">PBR Maps</text>
+    <text x="1085" y="242" font-family="Arial" font-size="10" fill="#9ca3af" text-anchor="middle">Textures</text>
+  </g>
+
+  <!-- Arrow 5 -->
+  <path d="M 1015 280 L 995 280" stroke="#4caf50" stroke-width="3" fill="none" marker-end="url(#arrowhead5)"/>
+  <defs>
+    <marker id="arrowhead5" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#2196f3"/>
+    </marker>
+  </defs>
+
+  <!-- Step 6: TEST RENDER -->
+  <g id="step6" transform="translate(0, 170)">
+    <rect x="860" y="80" width="130" height="140" rx="10" fill="#1a1a2e" stroke="#2196f3" stroke-width="2"/>
+    <circle cx="925" cy="110" r="20" fill="#2196f3"/>
+    <text x="925" y="117" font-family="Arial" font-size="18" fill="#fff" text-anchor="middle" font-weight="bold">6</text>
+    
+    <!-- Icon: Test screen -->
+    <rect x="905" y="145" width="40" height="40" fill="none" stroke="#2196f3" stroke-width="2" rx="3"/>
+    <line x1="910" y1="155" x2="940" y2="175" stroke="#2196f3" stroke-width="2"/>
+    <line x1="910" y1="165" x2="935" y2="175" stroke="#2196f3" stroke-width="2"/>
+    
+    <text x="925" y="212" font-family="Arial" font-size="14" fill="#fff" text-anchor="middle" font-weight="bold">TEST</text>
+    <text x="925" y="228" font-family="Arial" font-size="10" fill="#9ca3af" text-anchor="middle">Low Samples</text>
+    <text x="925" y="242" font-family="Arial" font-size="10" fill="#9ca3af" text-anchor="middle">Preview</text>
+  </g>
+
+  <!-- Arrow 6 -->
+  <path d="M 855 280 L 835 280" stroke="#2196f3" stroke-width="3" fill="none" marker-end="url(#arrowhead6)"/>
+  <defs>
+    <marker id="arrowhead6" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#9c27b0"/>
+    </marker>
+  </defs>
+
+  <!-- Step 7: FINAL RENDER -->
+  <g id="step7" transform="translate(0, 170)">
+    <rect x="700" y="80" width="130" height="140" rx="10" fill="#1a1a2e" stroke="#9c27b0" stroke-width="2"/>
+    <circle cx="765" cy="110" r="20" fill="#9c27b0"/>
+    <text x="765" y="117" font-family="Arial" font-size="18" fill="#fff" text-anchor="middle" font-weight="bold">7</text>
+    
+    <!-- Icon: Rendering -->
+    <circle cx="765" cy="165" r="20" fill="none" stroke="#9c27b0" stroke-width="2" stroke-dasharray="5,5">
+      <animateTransform attributeName="transform" type="rotate" from="0 765 165" to="360 765 165" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <text x="765" y="170" font-family="Arial" font-size="12" fill="#9c27b0" text-anchor="middle">GPU</text>
+    
+    <text x="765" y="212" font-family="Arial" font-size="14" fill="#fff" text-anchor="middle" font-weight="bold">RENDER</text>
+    <text x="765" y="228" font-family="Arial" font-size="10" fill="#9ca3af" text-anchor="middle">Full Samples</text>
+    <text x="765" y="242" font-family="Arial" font-size="10" fill="#9ca3af" text-anchor="middle">Denoise</text>
+  </g>
+
+  <!-- Arrow 7 -->
+  <path d="M 695 280 L 675 280" stroke="#9c27b0" stroke-width="3" fill="none" marker-end="url(#arrowhead7)"/>
+  <defs>
+    <marker id="arrowhead7" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#ff5722"/>
+    </marker>
+  </defs>
+
+  <!-- Step 8: POST-PRODUCTION -->
+  <g id="step8" transform="translate(0, 170)">
+    <rect x="540" y="80" width="130" height="140" rx="10" fill="#1a1a2e" stroke="#ff5722" stroke-width="2"/>
+    <circle cx="605" cy="110" r="20" fill="#ff5722"/>
+    <text x="605" y="117" font-family="Arial" font-size="18" fill="#fff" text-anchor="middle" font-weight="bold">8</text>
+    
+    <!-- Icon: Color adjustment -->
+    <rect x="585" y="145" width="40" height="30" fill="none" stroke="#ff5722" stroke-width="2" rx="3"/>
+    <circle cx="595" cy="160" r="5" fill="#e91e63"/>
+    <circle cx="605" cy="160" r="5" fill="#ffc107"/>
+    <circle cx="615" cy="160" r="5" fill="#2196f3"/>
+    
+    <text x="605" y="212" font-family="Arial" font-size="14" fill="#fff" text-anchor="middle" font-weight="bold">POST</text>
+    <text x="605" y="228" font-family="Arial" font-size="10" fill="#9ca3af" text-anchor="middle">Color Grade</text>
+    <text x="605" y="242" font-family="Arial" font-size="10" fill="#9ca3af" text-anchor="middle">Composite</text>
+  </g>
+
+  <!-- Final delivery arrow -->
+  <path d="M 535 280 L 480 280 L 480 150 L 460 150" stroke="#ff5722" stroke-width="3" fill="none" marker-end="url(#arrowhead8)" stroke-dasharray="5,5"/>
+  <defs>
+    <marker id="arrowhead8" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#4caf50"/>
+    </marker>
+  </defs>
+
+  <!-- DELIVERY badge -->
+  <rect x="350" y="310" width="140" height="60" rx="10" fill="#1a1a2e" stroke="#4caf50" stroke-width="3"/>
+  <text x="420" y="335" font-family="Arial" font-size="16" fill="#4caf50" text-anchor="middle" font-weight="bold">✓ DELIVERY</text>
+  <text x="420" y="355" font-family="Arial" font-size="11" fill="#9ca3af" text-anchor="middle">WebP • 4K • GLB</text>
+
+  <!-- Animated flow particles -->
+  <g opacity="0.6">
+    <circle cx="100" cy="150" r="3" fill="#667eea">
+      <animate attributeName="cx" from="100" to="1100" dur="8s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;1;0" dur="8s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="50" cy="150" r="3" fill="#764ba2">
+      <animate attributeName="cx" from="50" to="1050" dur="10s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;1;0" dur="10s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="0" cy="150" r="3" fill="#f093fb">
+      <animate attributeName="cx" from="0" to="1000" dur="12s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;1;0" dur="12s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+</svg>

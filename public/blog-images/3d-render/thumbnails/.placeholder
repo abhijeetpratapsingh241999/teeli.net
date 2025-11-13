@@ -1,0 +1,152 @@
+# Blog Card Thumbnails (4:3 Ratio)
+
+Place thumbnail images for blog cards in this folder.
+
+## Image Specifications
+
+**Aspect Ratio:** 4:3 (Standard Blog Cards)
+**Dimensions:** 800×600px
+**Format:** WebP
+**Quality:** 80-85%
+**Target File Size:** 50-70KB
+**Optimization:** Automatic via Vercel CDN (free)
+
+## SEO Requirements (CRITICAL)
+
+### 1. Filename Naming Convention
+```
+✅ Good Examples:
+- 3d-rendering-house-complete-guide-2025.webp
+- interior-rendering-photoreal-process.webp
+- 3d-product-visualization-tools.webp
+- architectural-design-workflow-tips.webp
+
+❌ Bad Examples:
+- img1.webp
+- thumbnail.webp
+- DSC_1234.webp
+- untitled.webp
+```
+
+**Rules:**
+- Use descriptive, keyword-rich names
+- Include main topic + year (if relevant)
+- Use hyphens (kebab-case), not underscores or spaces
+- Keep it under 60 characters
+- No special characters or numbers only
+
+### 2. Alt Text (Add to JSON)
+```json
+{
+  "thumbnail": "/blog-images/3d-render/thumbnails/3d-house-rendering-guide.webp",
+  "thumbnailAlt": "Photorealistic 3D house rendering showing modern architectural visualization workflow with lighting and materials"
+}
+```
+
+**Alt Text Best Practices:**
+- 125-155 characters (ideal length)
+- Describe what's IN the image
+- Include primary keyword naturally
+- Be specific and descriptive
+- Don't start with "Image of..." or "Picture of..."
+
+### 3. Structured Data Support
+Thumbnails are automatically included in BlogPosting schema for:
+- Google Search rich snippets
+- Social media preview cards (Open Graph)
+- Google Discover feed
+- Image Search SEO
+
+## Vercel CDN Auto-Optimization
+
+**No extra setup needed!** Vercel automatically:
+✅ Serves via global CDN (175+ edge locations)
+✅ Converts to WebP format (if not already)
+✅ Generates responsive sizes (srcset)
+✅ Adds lazy loading
+✅ Caches globally for fast delivery
+✅ 100% FREE on all Vercel plans
+
+**Example Auto-Generated URL:**
+```
+Your code: <img src="/blog-images/3d-render/thumbnails/thumb.webp" />
+         ↓
+Vercel serves:
+https://teeli.net/_next/image?url=/blog-images/3d-render/thumbnails/thumb.webp&w=800&q=80
+```
+
+## Image Creation Tips
+
+### Content Guidelines:
+1. **Hero shot** - Main visual from the blog (cropped to 4:3)
+2. **Text overlay** (optional) - Blog title or key phrase
+3. **Branding** (optional) - Small logo in corner
+4. **High contrast** - Ensure text/elements pop on card backgrounds
+
+### Design Tools:
+- Figma (recommended)
+- Canva Pro
+- Photoshop
+- Affinity Photo
+
+### Export Settings:
+- Width: 800px
+- Height: 600px
+- Format: WebP
+- Quality: 80-85%
+- Color Space: sRGB
+- Remove metadata (EXIF)
+
+## Current Thumbnails
+
+### 3D Render Keyword (11 blogs):
+1. 3d-rendering-house-complete-guide.webp
+2. 3d-product-rendering-process.webp
+3. interior-rendering-complete-guide.webp
+4. agentic-ai-architecture-2025.webp
+5. realistic-rooms-photoreal-renders.webp
+6. room-3d-model-workflow.webp
+7. 3d-building-designer-career.webp
+8. rendered-floor-plan-workflow.webp
+9. rendering-drawing-architectural-viz.webp
+10. architect-sketch-types-skills.webp
+11. 3d-visualizer-career-tools.webp
+
+## Example Usage in JSON
+
+```json
+{
+  "id": 1,
+  "slug": "3d-rendering-house-complete-guide",
+  "keywordCategory": "3d-render",
+  "title": "3D Rendering of a House — Complete Guide",
+  "thumbnail": "/blog-images/3d-render/thumbnails/3d-rendering-house-complete-guide.webp",
+  "thumbnailAlt": "Modern 3D house rendering showcasing photorealistic exterior visualization with realistic lighting and materials",
+  "image": "/blog-images/3d-render/hero/house-rendering-hero.webp"
+}
+```
+
+## Google Image Search Optimization
+
+To rank thumbnails in Google Image Search:
+
+1. ✅ **Descriptive filename** (keywords)
+2. ✅ **Detailed alt text** (125-155 chars)
+3. ✅ **High quality** (clear, professional)
+4. ✅ **Proper dimensions** (800×600 exactly)
+5. ✅ **Fast loading** (under 70KB)
+6. ✅ **Structured data** (BlogPosting schema)
+7. ✅ **Context** (relevant to blog content)
+8. ✅ **Unique** (not stock/duplicate images)
+
+## Quality Checklist
+
+Before uploading, ensure:
+- [ ] 800×600px exactly (4:3 ratio)
+- [ ] WebP format, 80-85% quality
+- [ ] File size under 70KB
+- [ ] SEO-friendly filename
+- [ ] Alt text prepared (125-155 chars)
+- [ ] Image is unique and relevant
+- [ ] High visual quality (sharp, clear)
+- [ ] Proper contrast for card backgrounds

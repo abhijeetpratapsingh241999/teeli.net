@@ -1,0 +1,15 @@
+# Hero Images for 3D Render Keyword
+
+Place hero images for blog posts in this folder.
+
+Example filenames:
+- house-exterior-modern.webp
+- interior-living-room-photoreal.webp
+- product-watch-studio-render.webp
+- realistic-bedroom-daylight.webp
+
+Image specs:
+- Format: WebP
+- Size: 1920x1080px minimum
+- Quality: 85%
+- Naming: descriptive-kebab-case.webp

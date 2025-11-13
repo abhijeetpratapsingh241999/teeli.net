@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 300" role="img" aria-label="Interior Rendering Workflow">
+  <title>Interior Rendering 5-Step Workflow Diagram</title>
+  <defs>
+    <linearGradient id="stepGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3b82f6"/>
+      <stop offset="100%" style="stop-color:#06b6d4"/>
+    </linearGradient>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#06b6d4"/>
+    </marker>
+  </defs>
+  
+  <rect width="1000" height="300" fill="#f8fafc"/>
+  
+  <!-- Step 1: Model -->
+  <g transform="translate(80, 150)">
+    <circle cx="0" cy="0" r="45" fill="#3b82f6" stroke="#1e40af" stroke-width="3"/>
+    <path d="M -15 -15 L 15 -15 L 15 15 L -15 15 Z M -20 -20 L 10 -20 M 10 -20 L 10 10 M -20 -20 L -20 10 M -20 10 L 10 10" 
+          stroke="#fff" stroke-width="2.5" fill="none"/>
+    <text x="0" y="70" text-anchor="middle" fill="#1e293b" font-size="16" font-weight="600" font-family="system-ui">
+      1. Model
+    </text>
+    <text x="0" y="90" text-anchor="middle" fill="#64748b" font-size="13" font-family="system-ui">
+      3D Geometry
+    </text>
+  </g>
+  
+  <!-- Arrow 1 -->
+  <path d="M 155 150 L 215 150" stroke="url(#stepGrad)" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Step 2: Materials -->
+  <g transform="translate(260, 150)">
+    <circle cx="0" cy="0" r="45" fill="#8b5cf6" stroke="#6d28d9" stroke-width="3"/>
+    <circle cx="-12" cy="-12" r="8" fill="#fbbf24"/>
+    <circle cx="12" cy="-12" r="8" fill="#ef4444"/>
+    <circle cx="-12" cy="12" r="8" fill="#10b981"/>
+    <circle cx="12" cy="12" r="8" fill="#06b6d4"/>
+    <text x="0" y="70" text-anchor="middle" fill="#1e293b" font-size="16" font-weight="600" font-family="system-ui">
+      2. Materials
+    </text>
+    <text x="0" y="90" text-anchor="middle" fill="#64748b" font-size="13" font-family="system-ui">
+      PBR Textures
+    </text>
+  </g>
+  
+  <!-- Arrow 2 -->
+  <path d="M 335 150 L 395 150" stroke="url(#stepGrad)" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Step 3: Lighting -->
+  <g transform="translate(440, 150)">
+    <circle cx="0" cy="0" r="45" fill="#f59e0b" stroke="#d97706" stroke-width="3"/>
+    <circle cx="0" cy="0" r="12" fill="#fef3c7"/>
+    <line x1="0" y1="-25" x2="0" y2="-18" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+    <line x1="0" y1="18" x2="0" y2="25" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+    <line x1="-25" y1="0" x2="-18" y2="0" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+    <line x1="18" y1="0" x2="25" y2="0" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+    <line x1="-18" y1="-18" x2="-13" y2="-13" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+    <line x1="13" y1="13" x2="18" y2="18" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+    <text x="0" y="70" text-anchor="middle" fill="#1e293b" font-size="16" font-weight="600" font-family="system-ui">
+      3. Lighting
+    </text>
+    <text x="0" y="90" text-anchor="middle" fill="#64748b" font-size="13" font-family="system-ui">
+      HDRI + IES
+    </text>
+  </g>
+  
+  <!-- Arrow 3 -->
+  <path d="M 515 150 L 575 150" stroke="url(#stepGrad)" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Step 4: Render -->
+  <g transform="translate(620, 150)">
+    <circle cx="0" cy="0" r="45" fill="#10b981" stroke="#059669" stroke-width="3"/>
+    <rect x="-18" y="-18" width="36" height="30" rx="2" fill="#fff" stroke="#d1fae5" stroke-width="2"/>
+    <circle cx="-8" cy="-8" r="4" fill="#10b981"/>
+    <path d="M -18 8 L -8 -2 L 2 8 L 12 -8 L 18 0" stroke="#10b981" stroke-width="2" fill="none"/>
+    <text x="0" y="70" text-anchor="middle" fill="#1e293b" font-size="16" font-weight="600" font-family="system-ui">
+      4. Render
+    </text>
+    <text x="0" y="90" text-anchor="middle" fill="#64748b" font-size="13" font-family="system-ui">
+      GPU/CPU
+    </text>
+  </g>
+  
+  <!-- Arrow 4 -->
+  <path d="M 695 150 L 755 150" stroke="url(#stepGrad)" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Step 5: Post -->
+  <g transform="translate(800, 150)">
+    <circle cx="0" cy="0" r="45" fill="#ec4899" stroke="#db2777" stroke-width="3"/>
+    <rect x="-15" y="-15" width="30" height="30" rx="3" fill="#fff"/>
+    <line x1="-10" y1="-8" x2="10" y2="-8" stroke="#ec4899" stroke-width="2"/>
+    <line x1="-10" y1="0" x2="10" y2="0" stroke="#ec4899" stroke-width="2"/>
+    <line x1="-10" y1="8" x2="5" y2="8" stroke="#ec4899" stroke-width="2"/>
+    <text x="0" y="70" text-anchor="middle" fill="#1e293b" font-size="16" font-weight="600" font-family="system-ui">
+      5. Post
+    </text>
+    <text x="0" y="90" text-anchor="middle" fill="#64748b" font-size="13" font-family="system-ui">
+      Adjust & Export
+    </text>
+  </g>
+  
+  <!-- Title -->
+  <text x="500" y="35" text-anchor="middle" fill="#0f172a" font-size="22" font-weight="700" font-family="system-ui">
+    Interior Rendering Workflow
+  </text>
+  
+</svg>

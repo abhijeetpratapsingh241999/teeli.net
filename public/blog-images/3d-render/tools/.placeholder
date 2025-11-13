@@ -1,0 +1,15 @@
+# Tools & Software Images for 3D Render Keyword
+
+Place software screenshots, UI demos, and tool interface images in this folder.
+
+Example filenames:
+- blender-interface-2025.webp
+- vray-render-settings.webp
+- d5-render-realtime-ui.webp
+- corona-material-editor.webp
+
+Image specs:
+- Format: WebP
+- Size: 1400x900px minimum
+- Quality: 85%
+- Naming: descriptive-kebab-case.webp

@@ -1,0 +1,271 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0f;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a1a2e;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="cardGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e293b;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#0f172a;stop-opacity:0.8" />
+    </linearGradient>
+    
+    <!-- Glow filter -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <!-- Animations -->
+    <style>
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      
+      @keyframes pulse {
+        0%, 100% { opacity: 0.6; }
+        50% { opacity: 1; }
+      }
+      
+      @keyframes slideRight {
+        from { transform: translateX(-50px); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+      }
+      
+      @keyframes rotate {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+      
+      .card {
+        animation: fadeIn 0.8s ease-out forwards;
+        opacity: 0;
+      }
+      
+      .card:nth-child(1) { animation-delay: 0.2s; }
+      .card:nth-child(2) { animation-delay: 0.4s; }
+      .card:nth-child(3) { animation-delay: 0.6s; }
+      .card:nth-child(4) { animation-delay: 0.8s; }
+      .card:nth-child(5) { animation-delay: 1s; }
+      
+      .icon-pulse {
+        animation: pulse 2s ease-in-out infinite;
+      }
+      
+      .line-anim {
+        stroke-dasharray: 100;
+        stroke-dashoffset: 100;
+        animation: drawLine 1.5s ease-out forwards;
+      }
+      
+      @keyframes drawLine {
+        to { stroke-dashoffset: 0; }
+      }
+      
+      .title-text {
+        animation: slideRight 1s ease-out;
+      }
+      
+      .rotate-slow {
+        transform-origin: center;
+        animation: rotate 20s linear infinite;
+      }
+    </style>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="600" fill="url(#bgGradient)"/>
+  
+  <!-- Grid pattern overlay -->
+  <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#334155" stroke-width="0.5" opacity="0.1"/>
+  </pattern>
+  <rect width="800" height="600" fill="url(#grid)"/>
+  
+  <!-- Decorative circles background -->
+  <circle cx="100" cy="100" r="150" fill="#06b6d4" opacity="0.03" class="rotate-slow"/>
+  <circle cx="700" cy="500" r="120" fill="#3b82f6" opacity="0.03" class="rotate-slow"/>
+  
+  <!-- Title Section -->
+  <g class="title-text">
+    <text x="400" y="45" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="url(#accentGrad)" text-anchor="middle">
+      Popular 3D Rendering Tools
+    </text>
+    <line x1="250" y1="60" x2="550" y2="60" stroke="url(#accentGrad)" stroke-width="2" class="line-anim"/>
+  </g>
+  
+  <!-- Tool Cards Grid (5 cards: 3 top, 2 bottom) -->
+  
+  <!-- Card 1: KeyShot (Top Left) -->
+  <g class="card" transform="translate(50, 100)">
+    <rect width="220" height="180" rx="12" fill="url(#cardGrad1)" stroke="#06b6d4" stroke-width="2" opacity="0.9"/>
+    
+    <!-- Icon: Lightning bolt (speed) -->
+    <g transform="translate(110, 35)">
+      <path d="M-15,-20 L5,-5 L-5,-5 L15,20 L-5,5 L5,5 Z" fill="#06b6d4" filter="url(#glow)" class="icon-pulse"/>
+    </g>
+    
+    <!-- Tool Name -->
+    <text x="110" y="85" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#ffffff" text-anchor="middle">
+      KeyShot
+    </text>
+    
+    <!-- Strength -->
+    <text x="110" y="110" font-family="Arial, sans-serif" font-size="12" fill="#06b6d4" text-anchor="middle">
+      Fast photoreal output
+    </text>
+    
+    <!-- Use Case -->
+    <text x="110" y="135" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">
+      Manufacturing,
+    </text>
+    <text x="110" y="152" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">
+      hardware, automotive
+    </text>
+    
+    <!-- Decorative corner -->
+    <circle cx="210" cy="10" r="4" fill="#06b6d4" opacity="0.5"/>
+  </g>
+  
+  <!-- Card 2: Blender Cycles (Top Center) -->
+  <g class="card" transform="translate(290, 100)">
+    <rect width="220" height="180" rx="12" fill="url(#cardGrad1)" stroke="#3b82f6" stroke-width="2" opacity="0.9"/>
+    
+    <!-- Icon: Cube (3D modeling) -->
+    <g transform="translate(110, 40)">
+      <path d="M0,-15 L15,0 L0,15 L-15,0 Z" fill="none" stroke="#3b82f6" stroke-width="2" filter="url(#glow)" class="icon-pulse"/>
+      <path d="M0,-15 L0,15 M-15,0 L15,0" stroke="#3b82f6" stroke-width="1.5" opacity="0.6"/>
+    </g>
+    
+    <text x="110" y="85" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#ffffff" text-anchor="middle">
+      Blender Cycles
+    </text>
+    
+    <text x="110" y="110" font-family="Arial, sans-serif" font-size="12" fill="#3b82f6" text-anchor="middle">
+      Free, powerful
+    </text>
+    
+    <text x="110" y="135" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">
+      Freelancers &amp;
+    </text>
+    <text x="110" y="152" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">
+      designers
+    </text>
+    
+    <circle cx="210" cy="10" r="4" fill="#3b82f6" opacity="0.5"/>
+  </g>
+  
+  <!-- Card 3: Adobe Substance 3D (Top Right) -->
+  <g class="card" transform="translate(530, 100)">
+    <rect width="220" height="180" rx="12" fill="url(#cardGrad1)" stroke="#8b5cf6" stroke-width="2" opacity="0.9"/>
+    
+    <!-- Icon: Layers (materials/textures) -->
+    <g transform="translate(110, 40)">
+      <rect x="-18" y="-12" width="36" height="8" rx="2" fill="none" stroke="#8b5cf6" stroke-width="2" filter="url(#glow)" class="icon-pulse"/>
+      <rect x="-15" y="-4" width="30" height="8" rx="2" fill="none" stroke="#8b5cf6" stroke-width="2" opacity="0.7"/>
+      <rect x="-12" y="4" width="24" height="8" rx="2" fill="none" stroke="#8b5cf6" stroke-width="2" opacity="0.5"/>
+    </g>
+    
+    <text x="110" y="85" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">
+      Adobe Substance
+    </text>
+    
+    <text x="110" y="110" font-family="Arial, sans-serif" font-size="12" fill="#8b5cf6" text-anchor="middle">
+      Texturing accuracy
+    </text>
+    
+    <text x="110" y="135" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">
+      Product &amp; fashion
+    </text>
+    <text x="110" y="152" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">
+      visualization
+    </text>
+    
+    <circle cx="210" cy="10" r="4" fill="#8b5cf6" opacity="0.5"/>
+  </g>
+  
+  <!-- Card 4: NVIDIA Omniverse (Bottom Left) -->
+  <g class="card" transform="translate(110, 310)">
+    <rect width="260" height="180" rx="12" fill="url(#cardGrad1)" stroke="#10b981" stroke-width="2" opacity="0.9"/>
+    
+    <!-- Icon: Network nodes (AI/collaboration) -->
+    <g transform="translate(130, 40)">
+      <circle cx="0" cy="-12" r="5" fill="#10b981" filter="url(#glow)" class="icon-pulse"/>
+      <circle cx="-12" cy="8" r="5" fill="#10b981" opacity="0.8"/>
+      <circle cx="12" cy="8" r="5" fill="#10b981" opacity="0.8"/>
+      <line x1="0" y1="-12" x2="-12" y2="8" stroke="#10b981" stroke-width="2"/>
+      <line x1="0" y1="-12" x2="12" y2="8" stroke="#10b981" stroke-width="2"/>
+    </g>
+    
+    <text x="130" y="85" font-family="Arial, sans-serif" font-size="17" font-weight="bold" fill="#ffffff" text-anchor="middle">
+      NVIDIA Omniverse
+    </text>
+    
+    <text x="130" y="110" font-family="Arial, sans-serif" font-size="12" fill="#10b981" text-anchor="middle">
+      AI + real-time collab
+    </text>
+    
+    <text x="130" y="135" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">
+      Enterprise visualization
+    </text>
+    <text x="130" y="152" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">
+      pipelines
+    </text>
+    
+    <circle cx="250" cy="10" r="4" fill="#10b981" opacity="0.5"/>
+  </g>
+  
+  <!-- Card 5: V-Ray / Corona (Bottom Right) -->
+  <g class="card" transform="translate(430, 310)">
+    <rect width="260" height="180" rx="12" fill="url(#cardGrad1)" stroke="#f59e0b" stroke-width="2" opacity="0.9"/>
+    
+    <!-- Icon: Sun rays (rendering quality) -->
+    <g transform="translate(130, 40)">
+      <circle cx="0" cy="0" r="8" fill="#f59e0b" filter="url(#glow)" class="icon-pulse"/>
+      <line x1="0" y1="-18" x2="0" y2="-12" stroke="#f59e0b" stroke-width="2"/>
+      <line x1="0" y1="18" x2="0" y2="12" stroke="#f59e0b" stroke-width="2"/>
+      <line x1="-18" y1="0" x2="-12" y2="0" stroke="#f59e0b" stroke-width="2"/>
+      <line x1="18" y1="0" x2="12" y2="0" stroke="#f59e0b" stroke-width="2"/>
+      <line x1="-13" y1="-13" x2="-9" y2="-9" stroke="#f59e0b" stroke-width="2"/>
+      <line x1="13" y1="13" x2="9" y2="9" stroke="#f59e0b" stroke-width="2"/>
+      <line x1="13" y1="-13" x2="9" y2="-9" stroke="#f59e0b" stroke-width="2"/>
+      <line x1="-13" y1="13" x2="-9" y2="9" stroke="#f59e0b" stroke-width="2"/>
+    </g>
+    
+    <text x="130" y="85" font-family="Arial, sans-serif" font-size="17" font-weight="bold" fill="#ffffff" text-anchor="middle">
+      V-Ray / Corona
+    </text>
+    
+    <text x="130" y="110" font-family="Arial, sans-serif" font-size="12" fill="#f59e0b" text-anchor="middle">
+      Architectural realism
+    </text>
+    
+    <text x="130" y="135" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">
+      Studio-grade
+    </text>
+    <text x="130" y="152" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">
+      renders
+    </text>
+    
+    <circle cx="250" cy="10" r="4" fill="#f59e0b" opacity="0.5"/>
+  </g>
+  
+  <!-- Bottom connecting line decoration -->
+  <path d="M 180 520 Q 400 560 620 520" stroke="url(#accentGrad)" stroke-width="2" fill="none" opacity="0.3" class="line-anim" style="animation-delay: 1.2s"/>
+  
+  <!-- Small decorative dots -->
+  <circle cx="180" cy="520" r="3" fill="#06b6d4" opacity="0.6"/>
+  <circle cx="400" cy="560" r="3" fill="#3b82f6" opacity="0.6"/>
+  <circle cx="620" cy="520" r="3" fill="#8b5cf6" opacity="0.6"/>
+  
+</svg>

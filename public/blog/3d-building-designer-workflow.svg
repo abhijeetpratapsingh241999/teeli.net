@@ -1,0 +1,356 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" style="background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);">
+  <defs>
+    <!-- Gradient Definitions -->
+    <linearGradient id="boxGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="boxGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f093fb;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f5576c;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="boxGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4facfe;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00f2fe;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="boxGrad4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#43e97b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#38f9d7;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="boxGrad5" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fa709a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fee140;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="boxGrad6" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#30cfd0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#330867;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="boxGrad7" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#a8edea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fed6e3;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Glow Filter -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <!-- Arrow Marker -->
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#64ffda" />
+    </marker>
+  </defs>
+  
+  <!-- Title -->
+  <text x="600" y="50" font-family="'Segoe UI', Arial, sans-serif" font-size="32" font-weight="bold" fill="#ffffff" text-anchor="middle">
+    3D Building Designer Workflow Pipeline
+    <animate attributeName="opacity" values="0;1" dur="1s" fill="freeze" />
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="600" y="80" font-family="'Segoe UI', Arial, sans-serif" font-size="16" fill="#64ffda" text-anchor="middle">
+    From Concept to Photorealistic Render
+    <animate attributeName="opacity" values="0;1" dur="1s" begin="0.5s" fill="freeze" />
+  </text>
+  
+  <!-- Step 1: Receive Inputs -->
+  <g id="step1">
+    <rect x="50" y="130" width="150" height="90" rx="10" fill="url(#boxGrad1)" opacity="0.9" filter="url(#glow)">
+      <animate attributeName="opacity" values="0;0.9" dur="0.5s" begin="1s" fill="freeze" />
+      <animate attributeName="y" values="100;130" dur="0.5s" begin="1s" fill="freeze" />
+    </rect>
+    <text x="125" y="160" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">
+      <tspan x="125" dy="0">📋 Receive</tspan>
+      <tspan x="125" dy="20">Inputs</tspan>
+      <animate attributeName="opacity" values="0;1" dur="0.5s" begin="1.2s" fill="freeze" />
+    </text>
+    <text x="125" y="200" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#e0e0e0" text-anchor="middle">
+      CAD/Revit Files
+      <animate attributeName="opacity" values="0;1" dur="0.5s" begin="1.4s" fill="freeze" />
+    </text>
+  </g>
+  
+  <!-- Arrow 1 -->
+  <line x1="200" y1="175" x2="280" y2="175" stroke="#64ffda" stroke-width="3" marker-end="url(#arrowhead)" opacity="0">
+    <animate attributeName="opacity" values="0;1" dur="0.3s" begin="1.6s" fill="freeze" />
+    <animate attributeName="x2" values="200;280" dur="0.3s" begin="1.6s" fill="freeze" />
+  </line>
+  
+  <!-- Step 2: 3D Modeling -->
+  <g id="step2">
+    <rect x="280" y="130" width="150" height="90" rx="10" fill="url(#boxGrad2)" opacity="0.9" filter="url(#glow)">
+      <animate attributeName="opacity" values="0;0.9" dur="0.5s" begin="1.9s" fill="freeze" />
+      <animate attributeName="y" values="100;130" dur="0.5s" begin="1.9s" fill="freeze" />
+    </rect>
+    <text x="355" y="160" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">
+      <tspan x="355" dy="0">🏗️ 3D</tspan>
+      <tspan x="355" dy="20">Modeling</tspan>
+      <animate attributeName="opacity" values="0;1" dur="0.5s" begin="2.1s" fill="freeze" />
+    </text>
+    <text x="355" y="200" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#e0e0e0" text-anchor="middle">
+      Geometry Build
+      <animate attributeName="opacity" values="0;1" dur="0.5s" begin="2.3s" fill="freeze" />
+    </text>
+  </g>
+  
+  <!-- Arrow 2 -->
+  <line x1="430" y1="175" x2="510" y2="175" stroke="#64ffda" stroke-width="3" marker-end="url(#arrowhead)" opacity="0">
+    <animate attributeName="opacity" values="0;1" dur="0.3s" begin="2.5s" fill="freeze" />
+    <animate attributeName="x2" values="430;510" dur="0.3s" begin="2.5s" fill="freeze" />
+  </line>
+  
+  <!-- Step 3: Material Setup -->
+  <g id="step3">
+    <rect x="510" y="130" width="150" height="90" rx="10" fill="url(#boxGrad3)" opacity="0.9" filter="url(#glow)">
+      <animate attributeName="opacity" values="0;0.9" dur="0.5s" begin="2.8s" fill="freeze" />
+      <animate attributeName="y" values="100;130" dur="0.5s" begin="2.8s" fill="freeze" />
+    </rect>
+    <text x="585" y="160" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">
+      <tspan x="585" dy="0">🎨 Material</tspan>
+      <tspan x="585" dy="20">Setup</tspan>
+      <animate attributeName="opacity" values="0;1" dur="0.5s" begin="3s" fill="freeze" />
+    </text>
+    <text x="585" y="200" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#e0e0e0" text-anchor="middle">
+      PBR Textures
+      <animate attributeName="opacity" values="0;1" dur="0.5s" begin="3.2s" fill="freeze" />
+    </text>
+  </g>
+  
+  <!-- Arrow 3 -->
+  <line x1="660" y1="175" x2="740" y2="175" stroke="#64ffda" stroke-width="3" marker-end="url(#arrowhead)" opacity="0">
+    <animate attributeName="opacity" values="0;1" dur="0.3s" begin="3.4s" fill="freeze" />
+    <animate attributeName="x2" values="660;740" dur="0.3s" begin="3.4s" fill="freeze" />
+  </line>
+  
+  <!-- Step 4: Lighting Design -->
+  <g id="step4">
+    <rect x="740" y="130" width="150" height="90" rx="10" fill="url(#boxGrad4)" opacity="0.9" filter="url(#glow)">
+      <animate attributeName="opacity" values="0;0.9" dur="0.5s" begin="3.7s" fill="freeze" />
+      <animate attributeName="y" values="100;130" dur="0.5s" begin="3.7s" fill="freeze" />
+    </rect>
+    <text x="815" y="160" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">
+      <tspan x="815" dy="0">💡 Lighting</tspan>
+      <tspan x="815" dy="20">Design</tspan>
+      <animate attributeName="opacity" values="0;1" dur="0.5s" begin="3.9s" fill="freeze" />
+    </text>
+    <text x="815" y="200" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#e0e0e0" text-anchor="middle">
+      HDRI + Lights
+      <animate attributeName="opacity" values="0;1" dur="0.5s" begin="4.1s" fill="freeze" />
+    </text>
+  </g>
+  
+  <!-- Arrow 4 -->
+  <line x1="890" y1="175" x2="970" y2="175" stroke="#64ffda" stroke-width="3" marker-end="url(#arrowhead)" opacity="0">
+    <animate attributeName="opacity" values="0;1" dur="0.3s" begin="4.3s" fill="freeze" />
+    <animate attributeName="x2" values="890;970" dur="0.3s" begin="4.3s" fill="freeze" />
+  </line>
+  
+  <!-- Step 5: Camera Setup -->
+  <g id="step5">
+    <rect x="970" y="130" width="150" height="90" rx="10" fill="url(#boxGrad5)" opacity="0.9" filter="url(#glow)">
+      <animate attributeName="opacity" values="0;0.9" dur="0.5s" begin="4.6s" fill="freeze" />
+      <animate attributeName="y" values="100;130" dur="0.5s" begin="4.6s" fill="freeze" />
+    </rect>
+    <text x="1045" y="160" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">
+      <tspan x="1045" dy="0">📷 Camera</tspan>
+      <tspan x="1045" dy="20">Setup</tspan>
+      <animate attributeName="opacity" values="0;1" dur="0.5s" begin="4.8s" fill="freeze" />
+    </text>
+    <text x="1045" y="200" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#e0e0e0" text-anchor="middle">
+      Composition
+      <animate attributeName="opacity" values="0;1" dur="0.5s" begin="5s" fill="freeze" />
+    </text>
+  </g>
+  
+  <!-- Arrow Down from Step 5 -->
+  <line x1="1045" y1="220" x2="1045" y2="300" stroke="#64ffda" stroke-width="3" marker-end="url(#arrowhead)" opacity="0">
+    <animate attributeName="opacity" values="0;1" dur="0.3s" begin="5.2s" fill="freeze" />
+    <animate attributeName="y2" values="220;300" dur="0.3s" begin="5.2s" fill="freeze" />
+  </line>
+  
+  <!-- Step 6: GPU Rendering -->
+  <g id="step6">
+    <rect x="970" y="300" width="150" height="90" rx="10" fill="url(#boxGrad6)" opacity="0.9" filter="url(#glow)">
+      <animate attributeName="opacity" values="0;0.9" dur="0.5s" begin="5.5s" fill="freeze" />
+      <animate attributeName="y" values="270;300" dur="0.5s" begin="5.5s" fill="freeze" />
+    </rect>
+    <text x="1045" y="330" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">
+      <tspan x="1045" dy="0">⚡ GPU</tspan>
+      <tspan x="1045" dy="20">Rendering</tspan>
+      <animate attributeName="opacity" values="0;1" dur="0.5s" begin="5.7s" fill="freeze" />
+    </text>
+    <text x="1045" y="370" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#e0e0e0" text-anchor="middle">
+      RTX Acceleration
+      <animate attributeName="opacity" values="0;1" dur="0.5s" begin="5.9s" fill="freeze" />
+    </text>
+  </g>
+  
+  <!-- Arrow Left from Step 6 -->
+  <line x1="970" y1="345" x2="890" y2="345" stroke="#64ffda" stroke-width="3" marker-end="url(#arrowhead)" opacity="0">
+    <animate attributeName="opacity" values="0;1" dur="0.3s" begin="6.1s" fill="freeze" />
+    <animate attributeName="x2" values="970;890" dur="0.3s" begin="6.1s" fill="freeze" />
+  </line>
+  
+  <!-- Step 7: Post-Processing -->
+  <g id="step7">
+    <rect x="740" y="300" width="150" height="90" rx="10" fill="url(#boxGrad7)" opacity="0.9" filter="url(#glow)">
+      <animate attributeName="opacity" values="0;0.9" dur="0.5s" begin="6.4s" fill="freeze" />
+      <animate attributeName="y" values="270;300" dur="0.5s" begin="6.4s" fill="freeze" />
+    </rect>
+    <text x="815" y="330" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="bold" fill="#1a1f3a" text-anchor="middle">
+      <tspan x="815" dy="0">✨ Post</tspan>
+      <tspan x="815" dy="20">Process</tspan>
+      <animate attributeName="opacity" values="0;1" dur="0.5s" begin="6.6s" fill="freeze" />
+    </text>
+    <text x="815" y="370" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#1a1f3a" text-anchor="middle">
+      Color Grading
+      <animate attributeName="opacity" values="0;1" dur="0.5s" begin="6.8s" fill="freeze" />
+    </text>
+  </g>
+  
+  <!-- Arrow Left from Step 7 -->
+  <line x1="740" y1="345" x2="660" y2="345" stroke="#64ffda" stroke-width="3" marker-end="url(#arrowhead)" opacity="0">
+    <animate attributeName="opacity" values="0;1" dur="0.3s" begin="7s" fill="freeze" />
+    <animate attributeName="x2" values="740;660" dur="0.3s" begin="7s" fill="freeze" />
+  </line>
+  
+  <!-- Step 8: Final Delivery -->
+  <g id="step8">
+    <rect x="510" y="300" width="150" height="90" rx="10" fill="url(#boxGrad1)" opacity="0.9" filter="url(#glow)">
+      <animate attributeName="opacity" values="0;0.9" dur="0.5s" begin="7.3s" fill="freeze" />
+      <animate attributeName="y" values="270;300" dur="0.5s" begin="7.3s" fill="freeze" />
+    </rect>
+    <text x="585" y="330" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">
+      <tspan x="585" dy="0">🎯 Final</tspan>
+      <tspan x="585" dy="20">Delivery</tspan>
+      <animate attributeName="opacity" values="0;1" dur="0.5s" begin="7.5s" fill="freeze" />
+    </text>
+    <text x="585" y="370" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#e0e0e0" text-anchor="middle">
+      WebP/PNG/MP4
+      <animate attributeName="opacity" values="0;1" dur="0.5s" begin="7.7s" fill="freeze" />
+    </text>
+  </g>
+  
+  <!-- Bottom Info Section -->
+  <g id="info">
+    <rect x="50" y="450" width="340" height="320" rx="10" fill="#1e2336" opacity="0.8">
+      <animate attributeName="opacity" values="0;0.8" dur="0.5s" begin="8s" fill="freeze" />
+    </rect>
+    <text x="220" y="485" font-family="'Segoe UI', Arial, sans-serif" font-size="18" font-weight="bold" fill="#64ffda" text-anchor="middle">
+      Key Tools & Software
+      <animate attributeName="opacity" values="0;1" dur="0.5s" begin="8.2s" fill="freeze" />
+    </text>
+    
+    <!-- Software List -->
+    <text x="70" y="520" font-family="'Segoe UI', Arial, sans-serif" font-size="14" fill="#ffffff">
+      <tspan x="70" dy="0">🔷 Blender (Cycles)</tspan>
+      <tspan x="70" dy="25">🔷 3ds Max + V-Ray</tspan>
+      <tspan x="70" dy="25">🔷 Revit + Enscape</tspan>
+      <tspan x="70" dy="25">🔷 Rhino + Grasshopper</tspan>
+      <tspan x="70" dy="25">🔷 Unreal Engine 5</tspan>
+      <tspan x="70" dy="25">🔷 D5 Render</tspan>
+      <tspan x="70" dy="25">🔷 Adobe Substance 3D</tspan>
+      <tspan x="70" dy="25">🔷 Photoshop / DaVinci</tspan>
+      <animate attributeName="opacity" values="0;1" dur="0.5s" begin="8.4s" fill="freeze" />
+    </text>
+  </g>
+  
+  <!-- Timeline Info -->
+  <g id="timeline">
+    <rect x="430" y="450" width="340" height="150" rx="10" fill="#1e2336" opacity="0.8">
+      <animate attributeName="opacity" values="0;0.8" dur="0.5s" begin="8.6s" fill="freeze" />
+    </rect>
+    <text x="600" y="485" font-family="'Segoe UI', Arial, sans-serif" font-size="18" font-weight="bold" fill="#64ffda" text-anchor="middle">
+      Average Timeline
+      <animate attributeName="opacity" values="0;1" dur="0.5s" begin="8.8s" fill="freeze" />
+    </text>
+    <text x="450" y="520" font-family="'Segoe UI', Arial, sans-serif" font-size="14" fill="#ffffff">
+      <tspan x="450" dy="0">⏱️ Modeling: 2-4 hours</tspan>
+      <tspan x="450" dy="25">⏱️ Materials: 1-2 hours</tspan>
+      <tspan x="450" dy="25">⏱️ Lighting: 1-3 hours</tspan>
+      <tspan x="450" dy="25">⏱️ Rendering: 30 min - 4 hours</tspan>
+      <animate attributeName="opacity" values="0;1" dur="0.5s" begin="9s" fill="freeze" />
+    </text>
+  </g>
+  
+  <!-- Output Quality -->
+  <g id="quality">
+    <rect x="430" y="620" width="340" height="150" rx="10" fill="#1e2336" opacity="0.8">
+      <animate attributeName="opacity" values="0;0.8" dur="0.5s" begin="9.2s" fill="freeze" />
+    </rect>
+    <text x="600" y="655" font-family="'Segoe UI', Arial, sans-serif" font-size="18" font-weight="bold" fill="#64ffda" text-anchor="middle">
+      Output Formats
+      <animate attributeName="opacity" values="0;1" dur="0.5s" begin="9.4s" fill="freeze" />
+    </text>
+    <text x="450" y="690" font-family="'Segoe UI', Arial, sans-serif" font-size="14" fill="#ffffff">
+      <tspan x="450" dy="0">📸 Still Images: 4K-8K WebP/PNG</tspan>
+      <tspan x="450" dy="25">🎬 Animations: MP4/WebM</tspan>
+      <tspan x="450" dy="25">🥽 VR Tours: 360° Panoramas</tspan>
+      <animate attributeName="opacity" values="0;1" dur="0.5s" begin="9.6s" fill="freeze" />
+    </text>
+  </g>
+  
+  <!-- Industry Stats -->
+  <g id="stats">
+    <rect x="810" y="450" width="340" height="320" rx="10" fill="#1e2336" opacity="0.8">
+      <animate attributeName="opacity" values="0;0.8" dur="0.5s" begin="9.8s" fill="freeze" />
+    </rect>
+    <text x="980" y="485" font-family="'Segoe UI', Arial, sans-serif" font-size="18" font-weight="bold" fill="#64ffda" text-anchor="middle">
+      Industry Impact
+      <animate attributeName="opacity" values="0;1" dur="0.5s" begin="10s" fill="freeze" />
+    </text>
+    <text x="830" y="520" font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="#ffffff">
+      <tspan x="830" dy="0">📊 Market Growth:</tspan>
+      <tspan x="850" dy="22" fill="#64ffda">18.7% CAGR (2025-2030)</tspan>
+      
+      <tspan x="830" dy="35">💼 Salary Range:</tspan>
+      <tspan x="850" dy="22" fill="#64ffda">$40K - $85K/year</tspan>
+      
+      <tspan x="830" dy="35">🎯 Project Win Rate:</tspan>
+      <tspan x="850" dy="22" fill="#64ffda">2.3× higher with viz</tspan>
+      
+      <tspan x="830" dy="35">⚡ Cost Savings:</tspan>
+      <tspan x="850" dy="22" fill="#64ffda">15-20% rework reduction</tspan>
+      
+      <tspan x="830" dy="35">🌍 Top Markets:</tspan>
+      <tspan x="850" dy="22" fill="#64ffda">USA, India, UAE</tspan>
+      <animate attributeName="opacity" values="0;1" dur="0.5s" begin="10.2s" fill="freeze" />
+    </text>
+  </g>
+  
+  <!-- Pulsing Glow Effects on Boxes -->
+  <circle cx="125" cy="175" r="80" fill="none" stroke="#667eea" stroke-width="2" opacity="0.3">
+    <animate attributeName="r" values="80;90;80" dur="2s" repeatCount="indefinite" begin="1s" />
+    <animate attributeName="opacity" values="0.3;0.6;0.3" dur="2s" repeatCount="indefinite" begin="1s" />
+  </circle>
+  
+  <circle cx="355" cy="175" r="80" fill="none" stroke="#f093fb" stroke-width="2" opacity="0.3">
+    <animate attributeName="r" values="80;90;80" dur="2s" repeatCount="indefinite" begin="2s" />
+    <animate attributeName="opacity" values="0.3;0.6;0.3" dur="2s" repeatCount="indefinite" begin="2s" />
+  </circle>
+  
+  <circle cx="585" cy="175" r="80" fill="none" stroke="#4facfe" stroke-width="2" opacity="0.3">
+    <animate attributeName="r" values="80;90;80" dur="2s" repeatCount="indefinite" begin="3s" />
+    <animate attributeName="opacity" values="0.3;0.6;0.3" dur="2s" repeatCount="indefinite" begin="3s" />
+  </circle>
+  
+  <circle cx="815" cy="175" r="80" fill="none" stroke="#43e97b" stroke-width="2" opacity="0.3">
+    <animate attributeName="r" values="80;90;80" dur="2s" repeatCount="indefinite" begin="4s" />
+    <animate attributeName="opacity" values="0.3;0.6;0.3" dur="2s" repeatCount="indefinite" begin="4s" />
+  </circle>
+  
+  <circle cx="1045" cy="175" r="80" fill="none" stroke="#fa709a" stroke-width="2" opacity="0.3">
+    <animate attributeName="r" values="80;90;80" dur="2s" repeatCount="indefinite" begin="5s" />
+    <animate attributeName="opacity" values="0.3;0.6;0.3" dur="2s" repeatCount="indefinite" begin="5s" />
+  </circle>
+  
+  <!-- Powered by TEELI -->
+  <text x="600" y="795" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="#64ffda" text-anchor="middle" opacity="0.6">
+    Powered by TEELI.net — AI-Accelerated 3D Visualization Platform
+    <animate attributeName="opacity" values="0;0.6" dur="0.5s" begin="10.5s" fill="freeze" />
+  </text>
+</svg>
