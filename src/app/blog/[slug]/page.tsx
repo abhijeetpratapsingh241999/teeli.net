@@ -75,8 +75,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   // Get related blog posts
   const relatedPosts = getRelatedBlogPosts(slug, 3);
 
-  // Preload hero image for Room 3D Model blog ONLY (server-side for LCP optimization)
-  const preloadHeroImage = slug === 'room-3d-model-step-by-step-workflow-formats-tools-2025' && post.image;
+  // Preload hero images for performance-critical blogs (server-side for LCP optimization)
+  const preloadHeroImage = (
+    slug === 'room-3d-model-step-by-step-workflow-formats-tools-2025' ||
+    slug === 'realistic-rooms-techniques-lighting-composition-photoreal-renders-2025'
+  ) && post.image;
 
   return (
     <>

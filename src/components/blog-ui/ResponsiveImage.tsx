@@ -43,10 +43,12 @@ export default function ResponsiveImage({
   // Check if current blog needs 4:3 ratio
   const is43RatioBlog = pathname?.includes('rendering-drawing-definition-purpose-workflow-architectural-visualisation-2025');
   
-  // PERFORMANCE: Priority loading for Room 3D Model hero image only
+  // PERFORMANCE: Priority loading for hero images
   const isRoomModelHero = pathname?.includes('room-3d-model-step-by-step-workflow-formats-tools-2025') && 
-                          src.includes('room-3d-model-hero.svg');
-  const optimizedPriority = isRoomModelHero ? true : priority;
+                          src.includes('room-3d-model-hero');
+  const isRealisticRoomsHero = pathname?.includes('realistic-rooms-techniques-lighting-composition-photoreal-renders-2025') && 
+                               src.includes('realistic-room-hero');
+  const optimizedPriority = (isRoomModelHero || isRealisticRoomsHero) ? true : priority;
   
   // Apply 4:3 ratio for specific blog (1200x900), default 16:9 (1200x675)
   if (is43RatioBlog && width === 1200 && height === 675) {
@@ -117,7 +119,7 @@ export default function ResponsiveImage({
             console.log(`[ResponsiveImage] Loaded - ${src.split('/').pop()}`);
           }
         }}
-        quality={75}
+        quality={70}
         style={{
           objectFit: 'cover',
           maxWidth: '100%',
