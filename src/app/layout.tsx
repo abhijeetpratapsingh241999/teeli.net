@@ -8,11 +8,15 @@ import "./globals.css";
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-space-grotesk",
+  display: "swap",
+  preload: true,
 });
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: "swap",
+  preload: true,
 });
 
 export const metadata: Metadata = {
@@ -31,6 +35,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Performance: Resource Hints for Critical Assets */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://static.cloudflareinsights.com" />
+        
         {/* Google Analytics 4 */}
         {GA4_ID && (
           <>
@@ -59,7 +69,7 @@ export default function RootLayout({
         {GTM_ID && (
           <Script
             id="google-tag-manager"
-            strategy="afterInteractive"
+            strategy="lazyOnload"
             dangerouslySetInnerHTML={{
               __html: `
                 (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -74,7 +84,7 @@ export default function RootLayout({
 
         {/* Cloudflare Web Analytics */}
         <Script
-          defer
+          strategy="lazyOnload"
           src="https://static.cloudflareinsights.com/beacon.min.js"
           data-cf-beacon='{"token": "GENERATE_YOUR_TOKEN"}'
         />

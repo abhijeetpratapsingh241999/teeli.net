@@ -43,6 +43,11 @@ export default function ResponsiveImage({
   // Check if current blog needs 4:3 ratio
   const is43RatioBlog = pathname?.includes('rendering-drawing-definition-purpose-workflow-architectural-visualisation-2025');
   
+  // PERFORMANCE: Priority loading for Room 3D Model hero image only
+  const isRoomModelHero = pathname?.includes('room-3d-model-step-by-step-workflow-formats-tools-2025') && 
+                          src.includes('room-3d-model-hero.svg');
+  const optimizedPriority = isRoomModelHero ? true : priority;
+  
   // Apply 4:3 ratio for specific blog (1200x900), default 16:9 (1200x675)
   if (is43RatioBlog && width === 1200 && height === 675) {
     height = 900; // 4:3 ratio
@@ -53,7 +58,7 @@ export default function ResponsiveImage({
 
   // Development logging
   if (process.env.NODE_ENV === 'development' && typeof window !== 'undefined') {
-    console.log(`[ResponsiveImage] ${priority ? 'Priority' : 'Lazy'} ${isSVG ? 'SVG' : 'Image'} - ${src.split('/').pop()}`);
+    console.log(`[ResponsiveImage] ${optimizedPriority ? 'Priority' : 'Lazy'} ${isSVG ? 'SVG' : 'Image'} - ${src.split('/').pop()}`);
   }
 
   // SVG files: Use native <img> tag for animations & compatibility
@@ -65,8 +70,9 @@ export default function ResponsiveImage({
           alt={alt}
           width={width}
           height={height}
-          loading={priority ? "eager" : "lazy"}
+          loading={optimizedPriority ? "eager" : "lazy"}
           decoding="async"
+          fetchPriority={optimizedPriority ? "high" : "auto"}
           className={className}
           onLoad={() => {
             setIsLoading(false);
