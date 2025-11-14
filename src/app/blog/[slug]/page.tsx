@@ -75,20 +75,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   // Get related blog posts
   const relatedPosts = getRelatedBlogPosts(slug, 3);
 
-  // Preload hero images for performance-critical blogs (server-side for LCP optimization)
-  const preloadHeroImage = (
-    slug === 'room-3d-model-step-by-step-workflow-formats-tools-2025' ||
-    slug === 'realistic-rooms-techniques-lighting-composition-photoreal-renders-2025'
-  ) && post.image;
-
   return (
-    <>
-      {preloadHeroImage && (
-        <head>
-          <link rel="preload" as="image" href={post.image} fetchPriority="high" />
-        </head>
-      )}
-      <BlogPostClient post={post} relatedPosts={relatedPosts} />
-    </>
+    <BlogPostClient post={post} relatedPosts={relatedPosts} />
   );
 }
