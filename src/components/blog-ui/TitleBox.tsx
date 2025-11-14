@@ -2,6 +2,7 @@
 
 import { useBlogTheme } from '@/components/BlogThemeProvider';
 import LikeButton from './LikeButton';
+import SocialShare from './SocialShare';
 
 interface TitleBoxProps {
   slug: string;
@@ -17,7 +18,7 @@ interface TitleBoxProps {
 /**
  * TitleBox Component
  * 
- * Displays blog post title, metadata, and like button.
+ * Displays blog post title, metadata, like button, and social share buttons.
  * Reusable across all blog posts with consistent styling.
  */
 export default function TitleBox({
@@ -31,6 +32,9 @@ export default function TitleBox({
   readTime,
 }: TitleBoxProps) {
   const { theme } = useBlogTheme();
+  
+  // Build canonical URL for sharing
+  const canonicalUrl = `https://teeli.net/blog/${slug}`;
 
   return (
     <div className={`relative rounded-2xl sm:rounded-3xl border-2 p-4 sm:p-6 md:p-8 lg:p-12 backdrop-blur-xl mb-8 sm:mb-12 overflow-hidden ${
@@ -131,6 +135,25 @@ export default function TitleBox({
           <div className={`text-xs sm:text-sm ${
             theme === 'dark' ? 'text-zinc-400' : 'text-gray-600'
           }`}>{readTime}</div>
+        </div>
+        
+        {/* Divider */}
+        <div className={`my-4 sm:my-6 h-px ${
+          theme === 'dark' ? 'bg-cyan-500/20' : 'bg-gray-200'
+        }`} />
+        
+        {/* Social Share Buttons */}
+        <div>
+          <div className={`text-xs sm:text-sm font-semibold mb-3 ${
+            theme === 'dark' ? 'text-zinc-300' : 'text-gray-700'
+          }`}>
+            Share this article:
+          </div>
+          <SocialShare
+            url={canonicalUrl}
+            title={title}
+            description={excerpt}
+          />
         </div>
       </div>
     </div>

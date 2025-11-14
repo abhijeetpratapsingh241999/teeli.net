@@ -9,32 +9,66 @@ Allow: /
 Disallow: /api/
 Disallow: /_next/
 Disallow: /.next/
+Disallow: /admin/
 
-# Allow crawling of static assets
-Allow: /blog/
+# Allow crawling of static assets and images (SEO critical)
+Allow: /blog/*.webp$
+Allow: /blog/*.avif$
+Allow: /blog/*.jpg$
+Allow: /blog/*.png$
 Allow: /blog-images/
 Allow: /fonts/
 Allow: /logos/
+Allow: /illustrations/
 
-# Crawl delay (optional, reduces server load)
-# Crawl-delay: 1
-
-# Sitemap location
+# Sitemap location (helps search engines discover content)
 Sitemap: https://teeli.net/sitemap.xml
 
-# Specific rules for common bots
+# Google-specific rules (optimize image indexing)
 User-agent: Googlebot
 Allow: /
+User-agent: Googlebot-Image
+Allow: /blog/
+Allow: /blog-images/
+Allow: /illustrations/
 
+# Bing-specific rules
 User-agent: Bingbot
 Allow: /
 
+# Yahoo-specific rules
 User-agent: Slurp
 Allow: /
 
-# Block bad bots (optional)
+# Social media crawlers (OpenGraph, Twitter Card preview)
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+User-agent: TelegramBot
+Allow: /
+
+# SEO tools (rate limit but allow)
 User-agent: AhrefsBot
-Crawl-delay: 5
+Crawl-delay: 10
 
 User-agent: SemrushBot
-Crawl-delay: 5
+Crawl-delay: 10
+
+User-agent: DotBot
+Crawl-delay: 10
+
+# Block aggressive scrapers
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: SeznamBot
+Crawl-delay: 15

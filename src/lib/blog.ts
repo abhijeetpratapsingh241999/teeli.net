@@ -29,9 +29,10 @@ export interface BlogPost {
   excerpt: string;
   readTime: string;
   featured?: boolean;
-  image?: string; // Hero image for full blog post (1920×1080)
-  thumbnail?: string; // Card thumbnail for blog listing (800×600, 4:3 ratio)
-  thumbnailAlt?: string; // SEO alt text for thumbnail (Google Image Search)
+  image?: string; // Hero image for full blog post (1200×900, 4:3 ratio for cluster blogs)
+  imageAlt?: string; // SEO alt text for hero image (Google Image Search, accessibility)
+  thumbnail?: string; // Social share image (1200×630, 1.91:1 ratio for OpenGraph/Twitter)
+  thumbnailAlt?: string; // SEO alt text for social thumbnail (Facebook, LinkedIn, Twitter)
   heroVideo?: string;
   videoMetadata?: VideoMetadata;
   content?: string;

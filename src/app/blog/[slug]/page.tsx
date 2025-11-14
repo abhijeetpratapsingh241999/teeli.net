@@ -23,44 +23,131 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     };
   }
 
-  const description = post.excerpt || (post.content ? post.content.substring(0, 160) + '...' : 'Read the full article on TEELI.NET Blog');
+  const description = post.excerpt || post.metaDescription || (post.content ? post.content.substring(0, 160) + '...' : 'Read the full article on TEELI.NET Blog');
   
-  // Use thumbnail for OG/Twitter (optimized for social media)
+  // Use thumbnail for OG/Twitter (optimized for social media 1200x630)
   // Falls back to main image if thumbnail not available
-  const ogImage = post.thumbnail || post.image;
-  const heroImage = post.image; // Hero image for preload
+  const socialImage = post.thumbnail || post.image;
+  const socialImageUrl = socialImage ? `https://teeli.net${socialImage}` : 'https://teeli.net/logos/teeli-og-default.png';
+  
+  // Use thumbnailAlt or imageAlt for social image alt text (SEO critical)
+  const socialImageAlt = post.thumbnailAlt || post.imageAlt || `${post.title} - TEELI.NET Blog`;
+  
+  // Format publish date to ISO 8601 (required for Google)
+  const publishDate = new Date(post.date).toISOString();
+  
+  // Extract first H2 heading as additional keyword context
+  const firstHeading = post.content?.match(/## (.*)/)?.[1] || '';
+  
+  // Generate comprehensive keywords from category, title, and content
+  const categoryKeywords = post.category.toLowerCase().split(' ');
+  const titleKeywords = post.title.toLowerCase().split(' ').filter(w => w.length > 3);
+  const contentKeywords = firstHeading.toLowerCase().split(' ').filter(w => w.length > 3);
+  
+  const keywords = [
+    // Core platform keywords
+    'TEELI',
+    'AI rendering',
+    '3D visualization',
+    'cloud rendering',
+    'architectural visualization',
+    'image to 3D',
+    'digital twins',
+    'AEC industry',
+    // Category-specific
+    ...categoryKeywords,
+    // Title-derived
+    ...titleKeywords.slice(0, 3),
+    // Content-derived
+    ...contentKeywords.slice(0, 2),
+    // Post-specific
+    post.keywordCategory || '3d-render',
+    '2025'
+  ];
+  
+  // Remove duplicates and filter empty strings
+  const uniqueKeywords = [...new Set(keywords)].filter(k => k && k.length > 2).slice(0, 15);
   
   return {
-    title: `${post.title} | TEELI.NET Blog`,
+    // Primary SEO tags
+    title: post.metaTitle || `${post.title} | TEELI.NET Blog`,
     description,
-    keywords: [
-      'AI rendering',
-      '3D visualization',
-      'cloud rendering',
-      'architectural visualization',
-      'image to 3D',
-      'digital twins',
-      'AEC industry',
-      'TEELI',
-      post.category.toLowerCase(),
-    ].join(', '),
-    authors: [{ name: post.author }],
-    openGraph: {
-      title: post.title,
-      description,
-      type: 'article',
-      publishedTime: post.date,
-      authors: [post.author],
-      images: ogImage ? [`https://teeli.net${ogImage}`] : [],
+    keywords: uniqueKeywords.join(', '),
+    
+    // Author metadata
+    authors: [{ name: post.author, url: 'https://teeli.net/company/about' }],
+    creator: post.author,
+    publisher: 'TEELI.NET',
+    
+    // Robots directives (SEO critical)
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
     },
+    
+    // OpenGraph (Facebook, LinkedIn, WhatsApp, Telegram)
+    openGraph: {
+      type: 'article',
+      locale: 'en_US',
+      url: `https://teeli.net/blog/${slug}`,
+      title: post.metaTitle || post.title,
+      description,
+      siteName: 'TEELI.NET',
+      publishedTime: publishDate,
+      modifiedTime: publishDate, // Can be updated with lastModified field later
+      authors: [post.author],
+      section: post.category,
+      tags: uniqueKeywords,
+      
+      // Image metadata (critical for social sharing)
+      images: [
+        {
+          url: socialImageUrl,
+          width: 1200,
+          height: 630,
+          alt: socialImageAlt,
+          type: 'image/webp',
+        },
+      ],
+    },
+    
+    // Twitter Card (optimized for X/Twitter)
     twitter: {
       card: 'summary_large_image',
-      title: post.title,
+      site: '@teeli_net', // Add your Twitter handle
+      creator: '@teeli_net',
+      title: post.metaTitle || post.title,
       description,
-      images: ogImage ? [`https://teeli.net${ogImage}`] : [],
+      images: {
+        url: socialImageUrl,
+        alt: socialImageAlt,
+      },
     },
+    
+    // Canonical URL (prevent duplicate content)
     alternates: {
       canonical: `https://teeli.net/blog/${slug}`,
+      languages: {
+        'en-US': `https://teeli.net/blog/${slug}`,
+      },
+    },
+    
+    // Additional metadata
+    category: post.category,
+    
+    // Verification and additional tags
+    other: {
+      'article:published_time': publishDate,
+      'article:author': post.author,
+      'article:section': post.category,
+      'article:tag': uniqueKeywords.join(', '),
     },
   };
 }

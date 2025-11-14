@@ -101,26 +101,66 @@ export function generateArticleSchema(post: BlogPost, canonicalUrl: string) {
   const keywords = extractKeywords(post.content || '');
   const wordCount = countWords(post.content || '');
   
+  // Primary image (hero image for article)
+  const primaryImage = post.image ? `https://teeli.net${post.image}` : undefined;
+  
+  // Thumbnail/social image (optimized for sharing)
+  const thumbnailImage = post.thumbnail ? `https://teeli.net${post.thumbnail}` : primaryImage;
+  
+  // Build comprehensive image array for schema
+  const images = [];
+  if (primaryImage) {
+    images.push({
+      "@type": "ImageObject",
+      "url": primaryImage,
+      "width": 1200,
+      "height": 900,
+      "caption": post.imageAlt || post.title,
+      "encodingFormat": "image/webp",
+    });
+  }
+  if (thumbnailImage && thumbnailImage !== primaryImage) {
+    images.push({
+      "@type": "ImageObject",
+      "url": thumbnailImage,
+      "width": 1200,
+      "height": 630,
+      "caption": post.thumbnailAlt || `${post.title} - Social Share Image`,
+      "encodingFormat": "image/webp",
+      "thumbnail": thumbnailImage,
+    });
+  }
+  
   return {
     "@context": "https://schema.org",
     "@type": "Article",
     "headline": post.title,
-    "description": post.excerpt,
-    "image": post.image ? `https://teeli.net${post.image}` : undefined,
+    "alternativeHeadline": post.metaTitle || post.title,
+    "description": post.excerpt || post.metaDescription,
+    "image": images.length > 0 ? images : undefined,
     "datePublished": post.date,
     "dateModified": post.date,
     "author": {
       "@type": "Person",
       "name": post.author,
-      "jobTitle": post.authorRole || "Technical Writer"
+      "jobTitle": post.authorRole || "Technical Writer",
+      "url": "https://teeli.net/company/about"
     },
     "publisher": {
       "@type": "Organization",
-      "name": "TEELI",
+      "name": "TEELI.NET",
+      "url": "https://teeli.net",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://teeli.net/logos/teeli-logo.png"
-      }
+        "url": "https://teeli.net/logos/teeli-logo.png",
+        "width": 512,
+        "height": 512
+      },
+      "sameAs": [
+        "https://twitter.com/teeli_net",
+        "https://linkedin.com/company/teeli",
+        "https://github.com/teeli-net"
+      ]
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
@@ -131,7 +171,12 @@ export function generateArticleSchema(post: BlogPost, canonicalUrl: string) {
     "keywords": keywords.join(', '),
     "wordCount": wordCount,
     "inLanguage": "en-US",
-    "isAccessibleForFree": true
+    "isAccessibleForFree": true,
+    "backstory": post.excerpt,
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".blog-post-container h1", ".blog-post-container h2"]
+    }
   };
 }
 
@@ -329,6 +374,91 @@ export function generateContentVideoSchemas(post: BlogPost, canonicalUrl: string
 // Schema type for JSON-LD
 type SchemaObject = Record<string, unknown>;
 
+// Generate ImageObject schema for hero image (Google Image Search optimization)
+export function generateImageObjectSchema(post: BlogPost, canonicalUrl: string): SchemaObject | null {
+  if (!post.image) return null;
+  
+  const imageUrl = post.image.startsWith('http') 
+    ? post.image 
+    : `https://teeli.net${post.image}`;
+  
+  return {
+    "@context": "https://schema.org",
+    "@type": "ImageObject",
+    "contentUrl": imageUrl,
+    "url": imageUrl,
+    "width": 1200,
+    "height": 900,
+    "caption": post.imageAlt || post.title,
+    "description": post.imageAlt || `${post.title} - Visual representation`,
+    "encodingFormat": "image/webp",
+    "author": {
+      "@type": "Person",
+      "name": post.author
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "TEELI.NET"
+    },
+    "datePublished": post.date,
+    "inLanguage": "en-US",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": canonicalUrl
+    },
+    "isPartOf": {
+      "@type": "WebPage",
+      "@id": canonicalUrl
+    },
+    "representativeOfPage": true,
+    "license": "https://creativecommons.org/licenses/by-nc-nd/4.0/",
+    "acquireLicensePage": "https://teeli.net/terms"
+  };
+}
+
+// Generate ImageObject schema for social thumbnail (OpenGraph/Twitter optimization)
+export function generateThumbnailImageSchema(post: BlogPost, canonicalUrl: string): SchemaObject | null {
+  if (!post.thumbnail) return null;
+  
+  const thumbnailUrl = post.thumbnail.startsWith('http')
+    ? post.thumbnail
+    : `https://teeli.net${post.thumbnail}`;
+  
+  return {
+    "@context": "https://schema.org",
+    "@type": "ImageObject",
+    "contentUrl": thumbnailUrl,
+    "url": thumbnailUrl,
+    "width": 1200,
+    "height": 630,
+    "caption": post.thumbnailAlt || `${post.title} - Social Share Image`,
+    "description": post.thumbnailAlt || `Share image for ${post.title}`,
+    "encodingFormat": "image/webp",
+    "thumbnail": thumbnailUrl,
+    "author": {
+      "@type": "Person",
+      "name": post.author
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "TEELI.NET"
+    },
+    "datePublished": post.date,
+    "inLanguage": "en-US",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": canonicalUrl
+    },
+    "isPartOf": {
+      "@type": "WebPage",
+      "@id": canonicalUrl
+    },
+    "representativeOfPage": true,
+    "license": "https://creativecommons.org/licenses/by-nc-nd/4.0/",
+    "acquireLicensePage": "https://teeli.net/terms"
+  };
+}
+
 // Generate all schemas for a blog post
 export function generateAllSchemas(post: BlogPost) {
   const canonicalUrl = `https://teeli.net/blog/${post.slug}`;
@@ -369,6 +499,22 @@ export function generateAllSchemas(post: BlogPost) {
         schemas.push(generateDatasetSchema(table, post.title));
       }
     });
+  }
+  
+  // 7. ImageObject schema for hero image (Google Image Search)
+  if (post.image) {
+    const imageSchema = generateImageObjectSchema(post, canonicalUrl);
+    if (imageSchema) {
+      schemas.push(imageSchema);
+    }
+  }
+  
+  // 8. ImageObject schema for social thumbnail (OpenGraph optimization)
+  if (post.thumbnail && post.thumbnail !== post.image) {
+    const thumbnailSchema = generateThumbnailImageSchema(post, canonicalUrl);
+    if (thumbnailSchema) {
+      schemas.push(thumbnailSchema);
+    }
   }
   
   return schemas;

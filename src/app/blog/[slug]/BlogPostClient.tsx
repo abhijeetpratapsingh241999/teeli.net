@@ -711,6 +711,17 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
                 alt={post.videoMetadata?.title || `${post.title} - Video Preview`}
               />
             </div>
+          ) : post.image ? (
+            <div className="mb-8 sm:mb-12">
+              <ResponsiveImage
+                src={post.image}
+                alt={post.imageAlt || post.title}
+                width={1200}
+                height={900}
+                priority={true}
+                className="rounded-lg"
+              />
+            </div>
           ) : null}
 
           {/* Table of Contents - Now rendered inside content before first H2 */}

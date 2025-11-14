@@ -137,7 +137,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
   
-  // Blog post URLs
+  // Blog post URLs with image metadata (Google Image Search SEO)
   const blogPages: MetadataRoute.Sitemap = blogs.map((post) => {
     // Parse date string (e.g., "Jan 20, 2025" to Date object)
     const dateStr = post.date;
@@ -154,11 +154,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified = new Date();
     }
     
+    // Build images array for sitemap (helps Google discover images faster)
+    const images: string[] = [];
+    if (post.image) {
+      images.push(`https://teeli.net${post.image}`);
+    }
+    if (post.thumbnail && post.thumbnail !== post.image) {
+      images.push(`https://teeli.net${post.thumbnail}`);
+    }
+    
     return {
       url: `${baseUrl}/blog/${post.slug}`,
       lastModified,
       changeFrequency: 'weekly' as const,
-      priority: 0.8,
+      priority: post.featured ? 0.9 : 0.8, // Featured posts get higher priority
+      images: images.length > 0 ? images : undefined,
     };
   });
   
