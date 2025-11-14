@@ -13,12 +13,12 @@
   "image": "/blog/3d-product-renders-gallery.webp",
   "thumbnail": "/blog/3d-product-render-detail.webp",
   "thumbnailAlt": "Professional 3D product rendering example showing photorealistic furniture visualization with studio lighting and material detail 2025",
-  "heroVideo": "",
+  "heroVideo": "/blog/3d-product-rendering-hero.mp4",
   "videoMetadata": {
     "url": "/blog/3d-product-rendering-hero.mp4",
     "title": "3D Product Rendering Workflow — From CAD Model to Photorealistic Product Visualization",
     "description": "Watch a time-lapse demonstration of the complete 3D product rendering workflow, from CAD model import to final photorealistic product visualization with materials, lighting, and post-processing.",
-    "thumbnailUrl": "/blog/3d-product-rendering-hero.webp",
+    "thumbnailUrl": "/blog/3d-product-render-detail.webp",
     "duration": "PT12S",
     "uploadDate": "2025-01-20"
   },

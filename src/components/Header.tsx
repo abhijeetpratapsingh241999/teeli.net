@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Search, User, Menu, X, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
-import AnimatedGlobe from './AnimatedGlobe';
+import TeeliLogo from './AnimatedGlobe';
 
 const navItems = ["Home", "Solutions", "Technology", "Projects", "Insights", "Company"];
 
@@ -70,7 +70,7 @@ export default function Header() {
       <div className="mx-auto flex max-w-7xl items-center justify-between rounded-full bg-black/30 p-2 px-6 backdrop-blur-sm" style={{ boxShadow: '0 0 20px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 255, 255, 0.1), inset 0 0 20px rgba(0, 0, 0, 0.3)' }}>
         {/* Logo */}
         <div className="flex items-center gap-2">
-          <AnimatedGlobe />
+          <TeeliLogo />
           <span className="font-heading text-lg font-bold text-white">TEELI.NET</span>
         </div>
 

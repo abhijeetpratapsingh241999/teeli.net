@@ -53,6 +53,7 @@ import TitleBox from '@/components/blog-ui/TitleBox';
 import VideoPlayer from '@/components/blog-ui/VideoPlayer';
 import ResponsiveImage from '@/components/blog-ui/ResponsiveImage';
 import ResponsiveVideo from '@/components/blog-ui/ResponsiveVideo';
+import LazyHeroVideo from '@/components/blog-ui/LazyHeroVideo';
 import MobileOnlyDefer from '@/components/performance/MobileOnlyDefer';
 import IndustryUseCasesIllustration from '@/components/blog-ui/IndustryUseCasesIllustration';
 import Footer from '@/components/Footer';
@@ -702,22 +703,12 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
             readTime={post.readTime}
           />
 
-          {/* Featured Image or Video */}
+          {/* Hero Video Section - SEO Optimized, Lazy Loaded */}
           {post.heroVideo ? (
             <div className="mb-8 sm:mb-12">
-              <ResponsiveVideo
+              <LazyHeroVideo
                 videoSrc={post.heroVideo}
-                posterSrc={post.videoMetadata?.thumbnailUrl || post.image || ''}
                 alt={post.videoMetadata?.title || `${post.title} - Video Preview`}
-                priority={false}
-              />
-            </div>
-          ) : post.image ? (
-            <div className="mb-8 sm:mb-12 overflow-hidden">
-              <ResponsiveImage 
-                src={post.image} 
-                alt={post.title}
-                priority
               />
             </div>
           ) : null}
