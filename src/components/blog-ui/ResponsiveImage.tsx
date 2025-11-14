@@ -64,12 +64,39 @@ export default function ResponsiveImage({
   // Auto-detect SVG files
   const isSVG = src.toLowerCase().endsWith('.svg');
 
+  // CRITICAL: SVG hero images should use object tag with proper sizing to prevent blocking
+  // For hero images, we want to ensure SVG loads asynchronously
+  const isHeroSVG = isSVG && isHeroImage;
+
   // Development logging
   if (process.env.NODE_ENV === 'development' && typeof window !== 'undefined') {
     console.log(`[ResponsiveImage] ${optimizedPriority ? 'Priority' : 'Lazy'} ${isSVG ? 'SVG' : 'Image'} - ${src.split('/').pop()}`);
   }
 
-  // SVG files: Use native <img> tag for animations & compatibility
+  // SVG files: Use object tag for hero SVGs to prevent LCP blocking
+  if (isHeroSVG) {
+    return (
+      <div className="relative overflow-hidden bg-gray-900/50" style={{ aspectRatio: `${width}/${height}` }}>
+        <object
+          data={src}
+          type="image/svg+xml"
+          aria-label={alt}
+          className={className}
+          style={{
+            width: '100%',
+            height: '100%',
+            display: 'block',
+            objectFit: 'cover'
+          }}
+        >
+          {/* Fallback for browsers that don't support object tag */}
+          <img src={src} alt={alt} className={className} loading="eager" />
+        </object>
+      </div>
+    );
+  }
+
+  // Regular SVG files: Use native <img> tag for animations & compatibility
   if (isSVG) {
     return (
       <div className="relative overflow-hidden">
