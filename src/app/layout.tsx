@@ -1,23 +1,24 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
+import { AnalyticsProvider } from "@/components/AnalyticsProvider";
 import Script from "next/script";
 import "./globals.css";
 
-// GOOGLE FONTS - Restored for non-blog pages (homepage, solutions, contact, etc.)
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-space-grotesk",
-  display: "swap",
-  preload: true,
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-  preload: true,
-});
+// NO GOOGLE FONTS - Use system fonts for MAXIMUM performance
+const fontVariables = {
+  spaceGrotesk: {
+    variable: "--font-space-grotesk",
+    style: {
+      fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
+    }
+  },
+  inter: {
+    variable: "--font-inter",
+    style: {
+      fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
+    }
+  }
+};
 
 export const metadata: Metadata = {
   title: "TEELI.NET - Reality Rendered. Instantly.",
@@ -35,9 +36,15 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* DNS prefetch for external resources */}
-        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+        {/* CRITICAL CSS - Inline above-the-fold styles for instant render (NO heading resets) */}
+        <style dangerouslySetInnerHTML={{__html: `
+          *,::before,::after{box-sizing:border-box;border-width:0;border-style:solid;border-color:currentColor}
+          html{line-height:1.5;-webkit-text-size-adjust:100%;tab-size:4;font-family:system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif}
+          body{margin:0;background-color:#000;color:#fff;font-feature-settings:"kern";text-rendering:optimizeLegibility}
+          img,svg,video{max-width:100%;height:auto;display:block}
+        `}} />
+        
+        {/* Performance: DNS prefetch only - minimal external connections */}
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://static.cloudflareinsights.com" />
         
@@ -90,7 +97,10 @@ export default function RootLayout({
         />
       </head>
       <body 
-        className={`${spaceGrotesk.variable} ${inter.variable} font-sans antialiased`}
+        className="font-sans antialiased" 
+        style={{
+          fontFamily: "system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif"
+        }}
         suppressHydrationWarning
       >
         {/* Google Tag Manager (noscript) */}
@@ -105,8 +115,10 @@ export default function RootLayout({
           </noscript>
         )}
 
-        {/* Analytics and route tracking */}
-        {children}
+        {/* Analytics Provider for automatic route tracking */}
+        <AnalyticsProvider>
+          {children}
+        </AnalyticsProvider>
         
         {/* Vercel Analytics */}
         <Analytics />
