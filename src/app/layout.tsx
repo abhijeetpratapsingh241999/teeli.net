@@ -9,14 +9,16 @@ const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-space-grotesk",
   display: "optional",
-  preload: true,
+  preload: false,
+  fallback: ['system-ui', 'arial'],
 });
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
   display: "optional",
-  preload: true,
+  preload: false,
+  fallback: ['system-ui', 'arial'],
 });
 
 export const metadata: Metadata = {
@@ -35,11 +37,17 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Performance: Resource Hints for Critical Assets */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        {/* Performance: DNS prefetch only - no preconnect to avoid render blocking */}
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://static.cloudflareinsights.com" />
+        
+        {/* Critical: Inline font-face to prevent FOIT */}
+        <style dangerouslySetInnerHTML={{__html: `
+          @font-face{font-family:'__Space_Grotesk_fallback';src:local('Arial');ascent-override:100%;descent-override:20%;line-gap-override:0%;size-adjust:95%}
+          @font-face{font-family:'__Inter_fallback';src:local('Arial');ascent-override:90%;descent-override:22%;line-gap-override:0%;size-adjust:107%}
+        `}} />
         
         {/* Google Analytics 4 */}
         {GA4_ID && (
