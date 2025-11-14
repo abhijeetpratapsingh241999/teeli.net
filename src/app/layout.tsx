@@ -39,13 +39,15 @@ export default function RootLayout({
         {/* CRITICAL CSS - Minimal inline styles for instant render */}
         <style dangerouslySetInnerHTML={{__html: `
           *,::before,::after{box-sizing:border-box}
-          html{line-height:1.5;-webkit-text-size-adjust:100%;tab-size:4;font-family:system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif}
-          body{margin:0;background-color:#000;color:#fff;font-feature-settings:"kern"}
+          html{line-height:1.5;-webkit-text-size-adjust:100%;tab-size:4;font-family:system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;font-display:swap}
+          body{margin:0;background-color:#000;color:#fff;font-feature-settings:"kern";text-rendering:optimizeSpeed}
           img,svg,video{max-width:100%;height:auto;display:block}
           .group:hover *{will-change:auto}
         `}} />
         
-        {/* Performance: DNS prefetch for external domains */}
+        {/* Performance: Preconnect for critical third-party domains (reduces network discovery time) */}
+        <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://www.google-analytics.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         
@@ -73,17 +75,22 @@ export default function RootLayout({
           </>
         )}
 
-        {/* Google Tag Manager - Deferred */}
+        {/* Google Tag Manager - Optimized for modern browsers */}
         {GTM_ID && (
           <Script
             id="google-tag-manager"
             strategy="lazyOnload"
             dangerouslySetInnerHTML={{
               __html: `
-                (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                (function(w,d,s,l,i){
+                  w[l]=w[l]||[];
+                  w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+                  const f=d.getElementsByTagName(s)[0];
+                  const j=d.createElement(s);
+                  const dl=l!='dataLayer'?'&l='+l:'';
+                  j.async=true;
+                  j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+                  f.parentNode.insertBefore(j,f);
                 })(window,document,'script','dataLayer','${GTM_ID}');
               `,
             }}

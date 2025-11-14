@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import { getBlogPostBySlug, getAllBlogPosts, getRelatedBlogPosts } from '@/lib/blog';
 import type { Metadata } from 'next';
 import BlogPostClient from './BlogPostClient';
+import Script from 'next/script';
 
 // Generate static params for all blog posts
 export async function generateStaticParams() {
@@ -76,6 +77,21 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const relatedPosts = getRelatedBlogPosts(slug, 3);
 
   return (
-    <BlogPostClient post={post} relatedPosts={relatedPosts} />
+    <>
+      {/* Performance: Preload hero image for instant LCP */}
+      {post.image && (
+        <link
+          rel="preload"
+          as="image"
+          href={post.image}
+          fetchPriority="high"
+          // @ts-ignore - imageSrcSet is valid but not in types
+          imageSrcSet={`${post.image}?w=640 640w, ${post.image}?w=1080 1080w, ${post.image}?w=1200 1200w`}
+          imageSizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 750px"
+        />
+      )}
+      
+      <BlogPostClient post={post} relatedPosts={relatedPosts} />
+    </>
   );
 }
