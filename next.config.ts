@@ -40,17 +40,12 @@ const nextConfig: NextConfig = {
     } : false,
   },
   
-  // Webpack optimizations for bundle size
-  webpack: (config, { isServer }) => {
-    // Optimize Three.js imports
-    if (!isServer) {
-      config.resolve.alias = {
-        ...config.resolve.alias,
-        'three': 'three/build/three.module.js',
-      };
-    }
-    
-    return config;
+  // Turbopack configuration (Next.js 16 default)
+  turbopack: {
+    resolveAlias: {
+      // Optimize Three.js imports for Turbopack
+      'three': 'three/build/three.module.js',
+    },
   },
   
   basePath: '',
