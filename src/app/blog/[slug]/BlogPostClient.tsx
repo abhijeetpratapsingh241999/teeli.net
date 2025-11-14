@@ -61,16 +61,25 @@ import dynamic from 'next/dynamic';
 // DO NOT REMOVE - Required for blog visual design
 import '../blog-specific.css';
 
-// OPTIMIZED: Minimal dynamic imports with no loading states (reduces TBT)
+// PERFORMANCE OPTIMIZED: Dynamic imports with loading states for better UX
 const Header = dynamic(() => import('@/components/Header'), { ssr: true });
 const Footer = dynamic(() => import('@/components/Footer'), { ssr: true });
-const BlogThemeToggle = dynamic(() => import('@/components/BlogThemeToggle'), { ssr: false });
+const BlogThemeToggle = dynamic(() => import('@/components/BlogThemeToggle'), { 
+  ssr: false,
+  loading: () => <div className="w-12 h-12 rounded-full bg-gray-800/50 animate-pulse" />
+});
 const ReadingProgressBar = dynamic(() => import('@/components/blog-ui/ReadingProgressBar'), { ssr: false });
 
-// Below-fold components: Load client-side only
+// Below-fold components: Load client-side only with minimal loading states
 const CTASection = dynamic(() => import('@/components/blog-ui/CTASection'), { ssr: false });
-const ContinueReadingCards = dynamic(() => import('@/components/blog-ui/ContinueReadingCards'), { ssr: false });
-const TOC = dynamic(() => import('@/components/blog-ui/TOC'), { ssr: false });
+const ContinueReadingCards = dynamic(() => import('@/components/blog-ui/ContinueReadingCards'), { 
+  ssr: false,
+  loading: () => <div className="h-64 bg-transparent" />
+});
+const TOC = dynamic(() => import('@/components/blog-ui/TOC'), { 
+  ssr: false,
+  loading: () => <div className="h-48 rounded-xl bg-gray-900/30 animate-pulse mb-8" />
+});
 const SmartTable = dynamic(() => import('@/components/blog-ui/SmartTable'), { ssr: false });
 const FAQAccordion = dynamic(() => import('@/components/blog-ui/FAQAccordion'), { ssr: false });
 

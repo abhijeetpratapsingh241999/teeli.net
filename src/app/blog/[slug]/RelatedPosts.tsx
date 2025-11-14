@@ -22,14 +22,13 @@ export default function RelatedPosts({ posts }: RelatedPostsProps) {
         Continue Reading
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-        {posts.map((post, index) => (
+        {posts.map((post) => (
           <div
             key={post.slug}
-            className="group opacity-0 translate-y-5 animate-[fadeInUp_0.6s_ease-out_forwards]"
-            style={{ animationDelay: `${index * 0.1}s` }}
+            className="group"
           >
             <Link href={`/blog/${post.slug}`}>
-              <div className={`relative rounded-3xl border-2 p-6 md:p-8 backdrop-blur-xl transition-all md:hover:scale-105 overflow-hidden h-full ${
+              <div className={`relative rounded-3xl border-2 p-6 md:p-8 transition-all md:hover:scale-105 overflow-hidden h-full ${
                 theme === 'dark'
                   ? 'border-cyan-500/30 bg-gradient-to-br from-black/60 via-cyan-950/40 to-black/60 hover:border-cyan-500/70 hover:shadow-[0_0_50px_rgba(6,182,212,0.4)]'
                   : 'border-cyan-500/50 bg-white shadow-lg hover:border-cyan-600 hover:shadow-xl'
@@ -63,18 +62,6 @@ export default function RelatedPosts({ posts }: RelatedPostsProps) {
           </div>
         ))}
       </div>
-      <style jsx>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
     </div>
   );
 }

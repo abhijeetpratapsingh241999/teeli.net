@@ -22,13 +22,14 @@ interface LazyHydrateProps {
  * Reduces initial JavaScript parse/compile time
  * Improves FCP, LCP, and TTI on mobile
  * 
- * OPTIMIZED: Increased rootMargin to 200px for earlier hydration
+ * OPTIMIZED: Increased rootMargin to 300px for earlier hydration
+ * OPTIMIZED: Reduced idle timeout to 800ms for faster interactivity
  */
 export default function LazyHydrate({
   children,
   mode = 'onVisible',
   delay = 100,
-  rootMargin = '200px' // OPTIMIZED: Was 100px, now 200px for earlier visibility detection
+  rootMargin = '300px' // OPTIMIZED: Was 200px, now 300px for earlier visibility detection
 }: LazyHydrateProps) {
   const [shouldHydrate, setShouldHydrate] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -55,11 +56,11 @@ export default function LazyHydrate({
       if ('requestIdleCallback' in window) {
         const id = requestIdleCallback(
           () => setShouldHydrate(true),
-          { timeout: 1000 } // OPTIMIZED: Reduced from 1500ms to 1000ms for faster hydration
+          { timeout: 800 } // OPTIMIZED: Reduced from 1000ms to 800ms for faster hydration
         );
         return () => cancelIdleCallback(id);
       } else {
-        const timeout = setTimeout(() => setShouldHydrate(true), 1000);
+        const timeout = setTimeout(() => setShouldHydrate(true), 800);
         return () => clearTimeout(timeout);
       }
     } 

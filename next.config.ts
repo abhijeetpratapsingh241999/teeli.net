@@ -18,6 +18,8 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: 31536000, // 1 year for aggressive caching
     remotePatterns: [],
     domains: [],
+    // Performance: Custom quality settings for optimized images
+    qualities: [50, 60, 75], // Support 50 (regular), 60 (hero), 75 (default)
   },
   
   // Performance: Optimize package imports and code splitting
@@ -61,6 +63,30 @@ const nextConfig: NextConfig = {
       {
         source: '/blog/blog-images/:path*',
         destination: '/blog-images/:path*',
+      },
+    ];
+  },
+  
+  // Performance: Add caching headers for static assets
+  async headers() {
+    return [
+      {
+        source: '/blog-images/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/illustrations/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
       },
     ];
   },

@@ -28,6 +28,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   // Use thumbnail for OG/Twitter (optimized for social media)
   // Falls back to main image if thumbnail not available
   const ogImage = post.thumbnail || post.image;
+  const heroImage = post.image; // Hero image for preload
   
   return {
     title: `${post.title} | TEELI.NET Blog`,
@@ -60,6 +61,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     },
     alternates: {
       canonical: `https://teeli.net/blog/${slug}`,
+    },
+    // Performance: Preload hero image for faster LCP
+    other: {
+      ...(heroImage && {
+        'link': `<https://teeli.net${heroImage}>; rel="preload"; as="image"; fetchpriority="high"`,
+      }),
     },
   };
 }
