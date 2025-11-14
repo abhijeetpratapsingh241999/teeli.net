@@ -39,8 +39,8 @@ export default function RootLayout({
         {/* CRITICAL CSS - Minimal inline styles for instant render */}
         <style dangerouslySetInnerHTML={{__html: `
           *,::before,::after{box-sizing:border-box}
-          html{line-height:1.5;-webkit-text-size-adjust:100%;tab-size:4;font-family:system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;font-display:swap}
-          body{margin:0;background-color:#000;color:#fff;font-feature-settings:"kern";text-rendering:optimizeSpeed}
+          html{line-height:1.5;-webkit-text-size-adjust:100%;tab-size:4;font-family:system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif}
+          body{margin:0;background-color:#000;color:#fff;font-feature-settings:"kern"}
           img,svg,video{max-width:100%;height:auto;display:block}
           .group:hover *{will-change:auto}
         `}} />
