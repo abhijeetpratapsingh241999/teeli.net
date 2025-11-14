@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
   
   // Image optimization for performance
   images: {
-    formats: ['image/avif', 'image/webp'],
+    formats: ['image/avif', 'image/webp'], // AVIF first (30% smaller than WebP)
     deviceSizes: [640, 750, 828, 1080, 1200],
     imageSizes: [16, 32, 48, 64, 96, 128, 256],
     unoptimized: false,
@@ -19,7 +19,49 @@ const nextConfig: NextConfig = {
     remotePatterns: [],
     domains: [],
     // Performance: Custom quality settings for optimized images
-    qualities: [55, 65, 75], // Support 55 (regular), 65 (hero), 75 (default)
+    qualities: [50, 55, 60, 65], // Reduced: 50 (hero), 55, 60, 65
+  },
+  
+  // Aggressive caching headers for static assets
+  async headers() {
+    return [
+      {
+        source: '/blog/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/blog-images/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/illustrations/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/_next/static/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+    ];
   },
   
   // Performance: Optimize package imports and code splitting
@@ -52,44 +94,6 @@ const nextConfig: NextConfig = {
   
   basePath: '',
   assetPrefix: '',
-  
-  // Rewrite rules to fix /blog/ prefix issue for static assets
-  async rewrites() {
-    return [
-      {
-        source: '/blog/illustrations/:path*',
-        destination: '/illustrations/:path*',
-      },
-      {
-        source: '/blog/blog-images/:path*',
-        destination: '/blog-images/:path*',
-      },
-    ];
-  },
-  
-  // Performance: Add caching headers for static assets
-  async headers() {
-    return [
-      {
-        source: '/blog-images/:path*',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-      {
-        source: '/illustrations/:path*',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-    ];
-  },
 };
 
 export default nextConfig;

@@ -165,16 +165,29 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   return (
     <>
-      {/* Preload critical hero image for LCP optimization */}
+      {/* Preload critical hero image for LCP optimization with AVIF support */}
       {post.image && (
-        <link
-          rel="preload"
-          as="image"
-          href={post.image}
-          imageSrcSet={`${post.image}?w=640 640w, ${post.image}?w=768 768w, ${post.image}?w=1200 1200w`}
-          imageSizes="(max-width: 640px) 100vw, (max-width: 1024px) 800px, 1200px"
-          fetchPriority="high"
-        />
+        <>
+          <link
+            rel="preload"
+            as="image"
+            href={post.image}
+            // @ts-ignore - Next.js supports these attributes
+            imagesrcset={`${post.image}?w=640&q=50 640w, ${post.image}?w=1080&q=50 1080w, ${post.image}?w=1200&q=50 1200w`}
+            imagesizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1200px"
+            // @ts-ignore
+            fetchpriority="high"
+          />
+          {/* Preload AVIF version (30% smaller than WebP) */}
+          <link
+            rel="preload"
+            as="image"
+            type="image/avif"
+            href={post.image}
+            // @ts-ignore
+            fetchpriority="high"
+          />
+        </>
       )}
       <BlogPostClient post={post} relatedPosts={relatedPosts} />
     </>
