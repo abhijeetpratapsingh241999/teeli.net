@@ -44,23 +44,20 @@ export default function RootLayout({
           img,svg,video{max-width:100%;height:auto;display:block}
         `}} />
         
-        {/* Performance: DNS prefetch + preconnect for critical domains */}
+        {/* Performance: DNS prefetch for external domains */}
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-        <link rel="dns-prefetch" href="https://static.cloudflareinsights.com" />
-        <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://www.google-analytics.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         
-        {/* Google Analytics 4 - Optimized with async */}
+        {/* Google Analytics 4 - Deferred to not block render */}
         {GA4_ID && (
           <>
             <Script
-              strategy="afterInteractive"
+              strategy="lazyOnload"
               src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`}
-              async
             />
             <Script
               id="google-analytics"
-              strategy="afterInteractive"
+              strategy="lazyOnload"
               dangerouslySetInnerHTML={{
                 __html: `
                   window.dataLayer = window.dataLayer || [];
@@ -75,11 +72,11 @@ export default function RootLayout({
           </>
         )}
 
-        {/* Google Tag Manager - Optimized with async */}
+        {/* Google Tag Manager - Deferred */}
         {GTM_ID && (
           <Script
             id="google-tag-manager"
-            strategy="afterInteractive"
+            strategy="lazyOnload"
             dangerouslySetInnerHTML={{
               __html: `
                 (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -91,14 +88,6 @@ export default function RootLayout({
             }}
           />
         )}
-
-        {/* Cloudflare Web Analytics - Deferred */}
-        <Script
-          strategy="worker"
-          src="https://static.cloudflareinsights.com/beacon.min.js"
-          data-cf-beacon='{"token": "GENERATE_YOUR_TOKEN"}'
-          defer
-        />
       </head>
       <body 
         className="font-sans antialiased" 
