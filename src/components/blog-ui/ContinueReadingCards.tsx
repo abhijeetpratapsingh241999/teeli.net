@@ -34,7 +34,11 @@ export default function ContinueReadingCards({ posts }: ContinueReadingCardsProp
               className="group opacity-0 translate-y-5 animate-[fadeInUp_0.6s_ease-out_forwards]"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <Link href={`/blog/${post.slug}`}>
+              <Link 
+                href={`/blog/${post.slug}`}
+                aria-label={`Read more about ${post.title}`}
+                className="block h-full"
+              >
                 <div className={`relative rounded-3xl border-2 p-6 md:p-8 backdrop-blur-xl transition-all md:hover:scale-105 overflow-hidden h-full ${
                   theme === 'dark'
                     ? 'border-cyan-500/30 bg-gradient-to-br from-black/60 via-cyan-950/40 to-black/60 hover:border-cyan-500/70 hover:shadow-[0_0_50px_rgba(6,182,212,0.4)]'
