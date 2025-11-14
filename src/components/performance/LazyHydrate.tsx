@@ -55,11 +55,11 @@ export default function LazyHydrate({
       if ('requestIdleCallback' in window) {
         const id = requestIdleCallback(
           () => setShouldHydrate(true),
-          { timeout: 1500 } // OPTIMIZED: Reduced from 2000ms to 1500ms
+          { timeout: 1000 } // OPTIMIZED: Reduced from 1500ms to 1000ms for faster hydration
         );
         return () => cancelIdleCallback(id);
       } else {
-        const timeout = setTimeout(() => setShouldHydrate(true), 1500);
+        const timeout = setTimeout(() => setShouldHydrate(true), 1000);
         return () => clearTimeout(timeout);
       }
     } 

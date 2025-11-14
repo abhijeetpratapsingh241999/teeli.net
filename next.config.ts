@@ -3,6 +3,8 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* Performance-optimized config */
   compress: true, // Enable gzip compression
+  poweredByHeader: false, // Remove X-Powered-By header
+  reactStrictMode: true, // Enable strict mode for better error detection
   
   // Image optimization for performance
   images: {
@@ -18,9 +20,10 @@ const nextConfig: NextConfig = {
     domains: [],
   },
   
-  // Performance: Optimize package imports
+  // Performance: Optimize package imports and code splitting
   experimental: {
     optimizePackageImports: ['lucide-react', 'framer-motion'],
+    optimizeCss: true, // Optimize CSS during production build
   },
   
   basePath: '',
