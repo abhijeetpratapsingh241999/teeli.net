@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
-import { AnalyticsProvider } from "@/components/AnalyticsProvider";
 import Script from "next/script";
 import "./globals.css";
 
@@ -106,10 +105,8 @@ export default function RootLayout({
           </noscript>
         )}
 
-        {/* Analytics Provider for automatic route tracking */}
-        <AnalyticsProvider>
-          {children}
-        </AnalyticsProvider>
+        {/* Analytics and route tracking */}
+        {children}
         
         {/* Vercel Analytics */}
         <Analytics />
