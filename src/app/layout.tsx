@@ -36,12 +36,11 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* CRITICAL CSS - Inline above-the-fold styles for instant render */}
+        {/* CRITICAL CSS - Inline above-the-fold styles for instant render (NO heading resets) */}
         <style dangerouslySetInnerHTML={{__html: `
           *,::before,::after{box-sizing:border-box;border-width:0;border-style:solid;border-color:currentColor}
           html{line-height:1.5;-webkit-text-size-adjust:100%;tab-size:4;font-family:system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif}
           body{margin:0;background-color:#000;color:#fff;font-feature-settings:"kern";text-rendering:optimizeLegibility}
-          h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}
           img,svg,video{max-width:100%;height:auto;display:block}
         `}} />
         
