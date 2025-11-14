@@ -550,9 +550,14 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
 
   return (
     <>
-      <main className={`min-h-screen font-body transition-colors duration-300 ${
-        theme === 'dark' ? 'bg-black' : 'bg-gradient-to-br from-gray-50 to-gray-100'
-      }`}>
+      <main 
+        className={`min-h-screen font-body transition-colors duration-300 ${
+          theme === 'dark' ? 'bg-black' : 'bg-gradient-to-br from-gray-50 to-gray-100'
+        }`}
+        style={{
+          fontFamily: "system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif"
+        }}
+      >
         <ReadingProgressBar />
         <div 
           className={`fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ease-in-out ${

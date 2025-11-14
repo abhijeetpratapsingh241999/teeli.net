@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 
 /**
  * BLOG-SPECIFIC LAYOUT
@@ -28,19 +27,5 @@ export default function BlogLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <>
-      {/* Inline critical CSS for blog performance - minimal, non-breaking */}
-      <style jsx global>{`
-        .blog-layout-wrapper {
-          font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-        }
-      `}</style>
-
-      {/* Blog content wrapper */}
-      <div className="blog-layout-wrapper">
-        {children}
-      </div>
-    </>
-  );
+  return children;
 }
