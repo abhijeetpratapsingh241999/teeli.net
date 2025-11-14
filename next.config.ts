@@ -31,8 +31,6 @@ const nextConfig: NextConfig = {
     ],
     optimizeCss: true, // Optimize CSS during production build
     webpackBuildWorker: true, // Enable parallel webpack builds
-    // PERFORMANCE BOOST: Aggressive chunking for better caching
-    cssChunking: 'loose',
   },
   
   // Production optimizations
