@@ -41,18 +41,6 @@ export default function RootLayout({
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://static.cloudflareinsights.com" />
         
-        {/* Critical CSS - Inline for faster FCP */}
-        <style dangerouslySetInnerHTML={{__html: `
-          *,::before,::after{box-sizing:border-box;border:0 solid}
-          html{-webkit-text-size-adjust:100%;tab-size:4;font-family:system-ui,sans-serif}
-          body{margin:0;line-height:inherit}
-          img,svg,video{display:block;max-width:100%;height:auto}
-          button,input,select,textarea{font:inherit;color:inherit}
-          h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}
-          a{color:inherit;text-decoration:inherit}
-          :root{--font-space-grotesk:${spaceGrotesk.style.fontFamily};--font-inter:${inter.style.fontFamily}}
-        `}} />
-        
         {/* Google Analytics 4 */}
         {GA4_ID && (
           <>
