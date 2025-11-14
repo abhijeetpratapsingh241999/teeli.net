@@ -55,31 +55,22 @@ import ResponsiveImage from '@/components/blog-ui/ResponsiveImage';
 import ResponsiveVideo from '@/components/blog-ui/ResponsiveVideo';
 import MobileOnlyDefer from '@/components/performance/MobileOnlyDefer';
 import IndustryUseCasesIllustration from '@/components/blog-ui/IndustryUseCasesIllustration';
+import Footer from '@/components/Footer';
 import dynamic from 'next/dynamic';
 
 // ⚠️ CRITICAL: Blog-specific CSS for isolated styles
 // DO NOT REMOVE - Required for blog visual design
 import '../blog-specific.css';
 
-// PERFORMANCE OPTIMIZED: Dynamic imports with loading states for better UX
+// PERFORMANCE: Dynamic imports without loading states (reduces bundle size)
 const Header = dynamic(() => import('@/components/Header'), { ssr: true });
-const Footer = dynamic(() => import('@/components/Footer'), { ssr: true });
-const BlogThemeToggle = dynamic(() => import('@/components/BlogThemeToggle'), { 
-  ssr: false,
-  loading: () => <div className="w-12 h-12 rounded-full bg-gray-800/50 animate-pulse" />
-});
+const BlogThemeToggle = dynamic(() => import('@/components/BlogThemeToggle'), { ssr: false });
 const ReadingProgressBar = dynamic(() => import('@/components/blog-ui/ReadingProgressBar'), { ssr: false });
 
-// Below-fold components: Load client-side only with minimal loading states
+// Below-fold components: Load client-side only
 const CTASection = dynamic(() => import('@/components/blog-ui/CTASection'), { ssr: false });
-const ContinueReadingCards = dynamic(() => import('@/components/blog-ui/ContinueReadingCards'), { 
-  ssr: false,
-  loading: () => <div className="h-64 bg-transparent" />
-});
-const TOC = dynamic(() => import('@/components/blog-ui/TOC'), { 
-  ssr: false,
-  loading: () => <div className="h-48 rounded-xl bg-gray-900/30 animate-pulse mb-8" />
-});
+const ContinueReadingCards = dynamic(() => import('@/components/blog-ui/ContinueReadingCards'), { ssr: false });
+const TOC = dynamic(() => import('@/components/blog-ui/TOC'), { ssr: false });
 const SmartTable = dynamic(() => import('@/components/blog-ui/SmartTable'), { ssr: false });
 const FAQAccordion = dynamic(() => import('@/components/blog-ui/FAQAccordion'), { ssr: false });
 
@@ -601,6 +592,16 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
 
   return (
     <>
+      {/* CRITICAL: Preload hero image for LCP optimization */}
+      {post.image && (
+        <link 
+          rel="preload" 
+          as="image" 
+          href={post.image}
+          fetchPriority="high"
+        />
+      )}
+      
       <main className={`min-h-screen font-body transition-colors duration-300 ${
         theme === 'dark' ? 'bg-black' : 'bg-gradient-to-br from-gray-50 to-gray-100'
       }`}>

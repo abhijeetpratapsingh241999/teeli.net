@@ -51,10 +51,10 @@ export default function ResponsiveImage({
   const isHeroImage = isRoomModelHero || isRealisticRoomsHero;
   const optimizedPriority = isHeroImage ? true : priority;
   
-  // PERFORMANCE BOOST: Optimized quality settings for 95+ score
-  // Hero images: 60 quality (was 65) - still excellent visual quality
-  // Other images: 50 quality (was 55) - optimized for speed
-  const imageQuality = isHeroImage ? 60 : 50;
+  // PERFORMANCE: Balanced quality settings for optimal LCP
+  // Hero images: 65 quality - optimized for LCP without sacrificing visual quality
+  // Other images: 55 quality - balanced performance
+  const imageQuality = isHeroImage ? 65 : 55;
   
   // Apply 4:3 ratio for specific blog (1200x900), default 16:9 (1200x675)
   if (is43RatioBlog && width === 1200 && height === 675) {

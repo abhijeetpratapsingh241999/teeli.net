@@ -19,7 +19,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [],
     domains: [],
     // Performance: Custom quality settings for optimized images
-    qualities: [50, 60, 75], // Support 50 (regular), 60 (hero), 75 (default)
+    qualities: [55, 65, 75], // Support 55 (regular), 65 (hero), 75 (default)
   },
   
   // Performance: Optimize package imports and code splitting

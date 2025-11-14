@@ -62,12 +62,6 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     alternates: {
       canonical: `https://teeli.net/blog/${slug}`,
     },
-    // Performance: Preload hero image for faster LCP
-    other: {
-      ...(heroImage && {
-        'link': `<https://teeli.net${heroImage}>; rel="preload"; as="image"; fetchpriority="high"`,
-      }),
-    },
   };
 }
 

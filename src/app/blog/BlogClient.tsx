@@ -8,13 +8,10 @@ import Link from 'next/link';
 import ResponsiveImage from '@/components/blog-ui/ResponsiveImage';
 import { Calendar, Clock, User, ArrowRight, TrendingUp, Eye } from 'lucide-react';
 
-// Dynamic imports for performance
+// Dynamic imports for performance (no loading states for better LCP)
 const Header = dynamic(() => import('@/components/Header'), { ssr: true });
 const Footer = dynamic(() => import('@/components/Footer'), { ssr: true });
-const BlogThemeToggle = dynamic(() => import('@/components/BlogThemeToggle'), { 
-  ssr: false,
-  loading: () => <div className="w-12 h-12 rounded-full bg-gray-800/50 animate-pulse" />
-});
+const BlogThemeToggle = dynamic(() => import('@/components/BlogThemeToggle'), { ssr: false });
 
 interface BlogClientProps {
   initialPosts: BlogPost[];
