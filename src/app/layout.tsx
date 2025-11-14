@@ -1,25 +1,24 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { AnalyticsProvider } from "@/components/AnalyticsProvider";
 import Script from "next/script";
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-space-grotesk",
-  display: "optional",
-  preload: false,
-  fallback: ['system-ui', 'arial'],
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "optional",
-  preload: false,
-  fallback: ['system-ui', 'arial'],
-});
+// NO GOOGLE FONTS - Use system fonts for MAXIMUM performance
+const fontVariables = {
+  spaceGrotesk: {
+    variable: "--font-space-grotesk",
+    style: {
+      fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
+    }
+  },
+  inter: {
+    variable: "--font-inter",
+    style: {
+      fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
+    }
+  }
+};
 
 export const metadata: Metadata = {
   title: "TEELI.NET - Reality Rendered. Instantly.",
@@ -37,17 +36,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Performance: DNS prefetch only - no preconnect to avoid render blocking */}
-        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+        {/* Performance: DNS prefetch only - minimal external connections */}
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://static.cloudflareinsights.com" />
-        
-        {/* Critical: Inline font-face to prevent FOIT */}
-        <style dangerouslySetInnerHTML={{__html: `
-          @font-face{font-family:'__Space_Grotesk_fallback';src:local('Arial');ascent-override:100%;descent-override:20%;line-gap-override:0%;size-adjust:95%}
-          @font-face{font-family:'__Inter_fallback';src:local('Arial');ascent-override:90%;descent-override:22%;line-gap-override:0%;size-adjust:107%}
-        `}} />
         
         {/* Google Analytics 4 */}
         {GA4_ID && (
