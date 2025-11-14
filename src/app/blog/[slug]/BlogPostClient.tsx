@@ -61,45 +61,18 @@ import dynamic from 'next/dynamic';
 // DO NOT REMOVE - Required for blog visual design
 import '../blog-specific.css';
 
-// AGGRESSIVE: Dynamic imports for ALL non-critical components with loading optimization
-const Header = dynamic(() => import('@/components/Header'), { 
-  ssr: true,
-  loading: () => <div className="h-20 bg-black/50 animate-pulse" />
-});
-const Footer = dynamic(() => import('@/components/Footer'), { 
-  ssr: true,
-  loading: () => <div className="h-64 bg-black/50 animate-pulse" />
-});
-const BlogThemeToggle = dynamic(() => import('@/components/BlogThemeToggle'), { 
-  ssr: false,
-  loading: () => null
-});
-const ReadingProgressBar = dynamic(() => import('@/components/blog-ui/ReadingProgressBar'), { 
-  ssr: false,
-  loading: () => null
-});
-const CTASection = dynamic(() => import('@/components/blog-ui/CTASection'), { 
-  ssr: false,
-  loading: () => <div className="h-96 animate-pulse bg-gray-800/20 rounded-3xl" />
-});
-const ContinueReadingCards = dynamic(() => import('@/components/blog-ui/ContinueReadingCards'), { 
-  ssr: false,
-  loading: () => <div className="h-64 animate-pulse bg-gray-800/20 rounded-3xl" />
-});
+// OPTIMIZED: Minimal dynamic imports with no loading states (reduces TBT)
+const Header = dynamic(() => import('@/components/Header'), { ssr: true });
+const Footer = dynamic(() => import('@/components/Footer'), { ssr: true });
+const BlogThemeToggle = dynamic(() => import('@/components/BlogThemeToggle'), { ssr: false });
+const ReadingProgressBar = dynamic(() => import('@/components/blog-ui/ReadingProgressBar'), { ssr: false });
 
-// Dynamic imports for code splitting (ssr:false for client-only heavy components)
-const TOC = dynamic(() => import('@/components/blog-ui/TOC'), { 
-  ssr: false,
-  loading: () => null
-});
-const SmartTable = dynamic(() => import('@/components/blog-ui/SmartTable'), { 
-  ssr: false,
-  loading: () => <div className="h-32 animate-pulse bg-gray-800/20 rounded-xl" />
-});
-const FAQAccordion = dynamic(() => import('@/components/blog-ui/FAQAccordion'), { 
-  ssr: false,
-  loading: () => <div className="h-48 animate-pulse bg-gray-800/20 rounded-xl" />
-});
+// Below-fold components: Load client-side only
+const CTASection = dynamic(() => import('@/components/blog-ui/CTASection'), { ssr: false });
+const ContinueReadingCards = dynamic(() => import('@/components/blog-ui/ContinueReadingCards'), { ssr: false });
+const TOC = dynamic(() => import('@/components/blog-ui/TOC'), { ssr: false });
+const SmartTable = dynamic(() => import('@/components/blog-ui/SmartTable'), { ssr: false });
+const FAQAccordion = dynamic(() => import('@/components/blog-ui/FAQAccordion'), { ssr: false });
 
 /**
  * IconBullet Component Usage Examples:

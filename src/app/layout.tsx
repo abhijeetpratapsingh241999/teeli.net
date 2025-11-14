@@ -36,17 +36,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Performance optimization meta tags */}
-        <meta httpEquiv="x-dns-prefetch-control" content="on" />
-        
-        {/* CRITICAL CSS - Inline above-the-fold styles for instant render (NO heading resets) */}
+        {/* CRITICAL CSS - Minimal inline styles for instant render */}
         <style dangerouslySetInnerHTML={{__html: `
           *,::before,::after{box-sizing:border-box}
-          html{line-height:1.5;-webkit-text-size-adjust:100%;tab-size:4;font-family:system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;font-display:swap}
-          body{margin:0;background-color:#000;color:#fff;font-feature-settings:"kern";text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+          html{line-height:1.5;-webkit-text-size-adjust:100%;tab-size:4;font-family:system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif}
+          body{margin:0;background-color:#000;color:#fff;font-feature-settings:"kern"}
           img,svg,video{max-width:100%;height:auto;display:block}
-          .animate-pulse{animation:pulse 2s cubic-bezier(0.4,0,0.6,1) infinite}
-          @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
         `}} />
         
         {/* Performance: DNS prefetch for external domains */}

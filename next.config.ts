@@ -30,6 +30,27 @@ const nextConfig: NextConfig = {
       '@vercel/analytics'
     ],
     optimizeCss: true, // Optimize CSS during production build
+    webpackBuildWorker: true, // Enable parallel webpack builds
+  },
+  
+  // Production optimizations
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production' ? {
+      exclude: ['error', 'warn'],
+    } : false,
+  },
+  
+  // Webpack optimizations for bundle size
+  webpack: (config, { isServer }) => {
+    // Optimize Three.js imports
+    if (!isServer) {
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        'three': 'three/build/three.module.js',
+      };
+    }
+    
+    return config;
   },
   
   basePath: '',
