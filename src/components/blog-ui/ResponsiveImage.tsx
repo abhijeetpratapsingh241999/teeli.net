@@ -48,13 +48,13 @@ export default function ResponsiveImage({
                           src.includes('room-3d-model-hero');
   const isRealisticRoomsHero = pathname?.includes('realistic-rooms-techniques-lighting-composition-photoreal-renders-2025') && 
                                src.includes('realistic-room-hero');
-  const isHeroImage = isRoomModelHero || isRealisticRoomsHero;
-  const optimizedPriority = isHeroImage ? true : priority;
+  const isHeroImage = isRoomModelHero || isRealisticRoomsHero || priority;
+  const optimizedPriority = priority;
   
   // PERFORMANCE: Balanced quality settings for optimal LCP
-  // Hero images: 65 quality - optimized for LCP without sacrificing visual quality
-  // Other images: 55 quality - balanced performance
-  const imageQuality = isHeroImage ? 65 : 55;
+  // Hero images: 75 quality - optimized for LCP without sacrificing visual quality
+  // Other images: 60 quality - balanced performance
+  const imageQuality = isHeroImage ? 75 : 60;
   
   // Apply 4:3 ratio for specific blog (1200x900), default 16:9 (1200x675)
   if (is43RatioBlog && width === 1200 && height === 675) {
@@ -138,9 +138,9 @@ export default function ResponsiveImage({
         width={width}
         height={height}
         loading={priority ? "eager" : "lazy"}
-        decoding="async"
+        decoding={priority ? "sync" : "async"}
         fetchPriority={priority ? "high" : "auto"}
-        sizes="(max-width: 640px) 100vw, (max-width: 768px) 90vw, (max-width: 1024px) 650px, 750px"
+        sizes="(max-width: 640px) 100vw, (max-width: 768px) 90vw, (max-width: 1024px) 800px, 1200px"
         placeholder={blurDataURL ? "blur" : "empty"}
         blurDataURL={blurDataURL}
         className={`${className} transition-opacity duration-300 ${

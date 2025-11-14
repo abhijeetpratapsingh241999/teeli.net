@@ -212,7 +212,7 @@ export default function SocialShare({
   `;
 
   return (
-    <div className={className}>
+    <div className={className} role="group" aria-label="Share this article on social media">
       {/* Mobile: 2 rows (4 icons + 5 icons) | Desktop: Flexible wrap */}
       <div className="flex flex-col gap-2.5 sm:flex-row sm:flex-wrap sm:gap-2">
         {/* Row 1: First 4 icons on mobile */}

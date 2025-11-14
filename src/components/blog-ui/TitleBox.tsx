@@ -2,7 +2,10 @@
 
 import { useBlogTheme } from '@/components/BlogThemeProvider';
 import LikeButton from './LikeButton';
-import SocialShare from './SocialShare';
+import dynamic from 'next/dynamic';
+
+// Lazy load SocialShare (below fold, 154KB saved on initial load)
+const SocialShare = dynamic(() => import('./SocialShare'), { ssr: false });
 
 interface TitleBoxProps {
   slug: string;

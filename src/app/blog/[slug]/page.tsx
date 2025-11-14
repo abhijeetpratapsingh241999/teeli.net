@@ -164,6 +164,19 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const relatedPosts = getRelatedBlogPosts(slug, 3);
 
   return (
-    <BlogPostClient post={post} relatedPosts={relatedPosts} />
+    <>
+      {/* Preload critical hero image for LCP optimization */}
+      {post.image && (
+        <link
+          rel="preload"
+          as="image"
+          href={post.image}
+          imageSrcSet={`${post.image}?w=640 640w, ${post.image}?w=768 768w, ${post.image}?w=1200 1200w`}
+          imageSizes="(max-width: 640px) 100vw, (max-width: 1024px) 800px, 1200px"
+          fetchPriority="high"
+        />
+      )}
+      <BlogPostClient post={post} relatedPosts={relatedPosts} />
+    </>
   );
 }
