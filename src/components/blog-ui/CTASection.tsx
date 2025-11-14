@@ -51,33 +51,37 @@ export default function CTASection() {
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             {/* Primary Button */}
-            <Link href="/contact">
-              <button className={`group relative w-full sm:w-auto px-8 py-4 rounded-2xl font-bold text-base transition-all duration-300 overflow-hidden ${
+            <Link 
+              href="/contact"
+              className={`group relative w-full sm:w-auto px-8 py-4 rounded-2xl font-bold text-base transition-all duration-300 overflow-hidden inline-flex items-center justify-center gap-2 ${
                 theme === 'dark'
                   ? 'bg-gradient-to-r from-cyan-600 via-purple-600 to-pink-600 text-white shadow-2xl shadow-cyan-500/40 hover:shadow-cyan-500/60 hover:scale-105'
                   : 'bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 text-white shadow-2xl shadow-cyan-400/40 hover:shadow-cyan-400/60 hover:scale-105'
-              }`}>
-                <span className="relative z-10 flex items-center gap-2">
-                  Get Started Today
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </span>
-                {/* Shine effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-              </button>
+              }`}
+              aria-label="Get started with Teeli.net today"
+            >
+              <span className="relative z-10 flex items-center gap-2">
+                Get Started Today
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </span>
+              {/* Shine effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
             </Link>
             
             {/* Secondary Button */}
-            <Link href="/solutions/ai-rendering">
-              <button className={`group w-full sm:w-auto px-8 py-4 rounded-2xl font-bold text-base transition-all duration-300 border-2 backdrop-blur-sm ${
+            <Link 
+              href="/solutions/ai-rendering"
+              className={`group w-full sm:w-auto px-8 py-4 rounded-2xl font-bold text-base transition-all duration-300 border-2 backdrop-blur-sm inline-flex items-center justify-center gap-2 ${
                 theme === 'dark'
                   ? 'border-cyan-400/50 text-cyan-300 hover:border-cyan-300 hover:bg-cyan-500/20 hover:shadow-lg hover:shadow-cyan-500/20 hover:scale-105'
                   : 'border-cyan-500/50 text-cyan-700 hover:border-cyan-600 hover:bg-cyan-100/50 hover:shadow-lg hover:shadow-cyan-400/20 hover:scale-105'
-              }`}>
-                <span className="flex items-center gap-2">
-                  Explore Solutions
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </span>
-              </button>
+              }`}
+              aria-label="Explore AI rendering solutions"
+            >
+              <span className="flex items-center gap-2">
+                Explore Solutions
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </span>
             </Link>
           </div>
         </div>
