@@ -22,7 +22,13 @@ const nextConfig: NextConfig = {
   
   // Performance: Optimize package imports and code splitting
   experimental: {
-    optimizePackageImports: ['lucide-react', 'framer-motion'],
+    optimizePackageImports: [
+      'lucide-react', 
+      'framer-motion',
+      'react',
+      'react-dom',
+      '@vercel/analytics'
+    ],
     optimizeCss: true, // Optimize CSS during production build
   },
   

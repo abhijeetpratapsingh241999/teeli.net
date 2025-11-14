@@ -1,18 +1,12 @@
 "use client";
 
 import { BlogThemeProvider, useBlogTheme } from '@/components/BlogThemeProvider';
-import BlogThemeToggle from '@/components/BlogThemeToggle';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ReactNode, useState, useEffect, useRef } from 'react';
 import { BlogPost } from '@/lib/blog';
 import IntroBox from '@/components/blog-ui/IntroBox';
 import Callout from '@/components/blog-ui/Callout';
-import ReadingProgressBar from '@/components/blog-ui/ReadingProgressBar';
-import CTASection from '@/components/blog-ui/CTASection';
-import ContinueReadingCards from '@/components/blog-ui/ContinueReadingCards';
 import { generateAllSchemas } from '@/lib/seo-schema';
 import Heading from '@/components/blog-ui/Heading';
 import IconListItem from '@/components/blog-ui/IconListItem';
@@ -24,6 +18,14 @@ import ResponsiveVideo from '@/components/blog-ui/ResponsiveVideo';
 import MobileOnlyDefer from '@/components/performance/MobileOnlyDefer';
 import IndustryUseCasesIllustration from '@/components/blog-ui/IndustryUseCasesIllustration';
 import dynamic from 'next/dynamic';
+
+// AGGRESSIVE: Dynamic imports for ALL non-critical components (with ssr:true for SEO)
+const Header = dynamic(() => import('@/components/Header'), { ssr: true });
+const Footer = dynamic(() => import('@/components/Footer'), { ssr: true });
+const BlogThemeToggle = dynamic(() => import('@/components/BlogThemeToggle'), { ssr: false });
+const ReadingProgressBar = dynamic(() => import('@/components/blog-ui/ReadingProgressBar'), { ssr: false });
+const CTASection = dynamic(() => import('@/components/blog-ui/CTASection'), { ssr: true });
+const ContinueReadingCards = dynamic(() => import('@/components/blog-ui/ContinueReadingCards'), { ssr: true });
 
 // Dynamic imports for code splitting (ssr:false for client-only heavy components)
 const TOC = dynamic(() => import('@/components/blog-ui/TOC'), { ssr: false });
