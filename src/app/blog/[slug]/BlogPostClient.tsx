@@ -1,5 +1,43 @@
 "use client";
 
+/**
+ * ============================================
+ * BlogPostClient - Main Blog Post Component
+ * ============================================
+ * 
+ * 📋 PURPOSE:
+ * Renders individual blog posts with isolated CSS,
+ * theme support, and dynamic component loading.
+ * 
+ * 🎯 CSS SEPARATION STRATEGY:
+ * - Imports blog-specific.css for isolated blog styles
+ * - Wraps content in .blog-post-container for CSS scoping
+ * - Prevents blog styles from affecting website pages
+ * - Uses BlogThemeProvider for dark/light theme support
+ * 
+ * ⚠️ CRITICAL - DO NOT REMOVE:
+ * - CSS import: import '../blog-specific.css'
+ * - Wrapper div: <div className="blog-post-container">
+ * - BlogThemeProvider wrapper (theme context)
+ * 
+ * 🔧 MAINTENANCE:
+ * - Adding components: Import and use inside BlogPostContent
+ * - Modifying styles: Edit ../blog-specific.css
+ * - Adding metadata: Edit ../page.tsx (server component)
+ * 
+ * 📦 DEPENDENCIES:
+ * - blog-specific.css (5KB, scoped styles)
+ * - BlogThemeProvider (theme context)
+ * - Dynamic imports (performance optimization)
+ * 
+ * 🔗 RELATED FILES:
+ * - src/app/blog/blog-specific.css (CSS styles)
+ * - src/app/blog/[slug]/page.tsx (metadata)
+ * - src/app/blog/README.md (architecture guide)
+ * 
+ * ============================================
+ */
+
 import { BlogThemeProvider, useBlogTheme } from '@/components/BlogThemeProvider';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -18,6 +56,9 @@ import ResponsiveVideo from '@/components/blog-ui/ResponsiveVideo';
 import MobileOnlyDefer from '@/components/performance/MobileOnlyDefer';
 import IndustryUseCasesIllustration from '@/components/blog-ui/IndustryUseCasesIllustration';
 import dynamic from 'next/dynamic';
+
+// ⚠️ CRITICAL: Blog-specific CSS for isolated styles
+// DO NOT REMOVE - Required for blog visual design
 import '../blog-specific.css';
 
 // AGGRESSIVE: Dynamic imports for ALL non-critical components (with ssr:true for SEO)
@@ -710,9 +751,44 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
   );
 }
 
+/**
+ * BlogPostClient - Main Export Component
+ * 
+ * @param {BlogPost} post - Blog post data from JSON file
+ * @param {BlogPost[]} relatedPosts - Related blog posts for sidebar
+ * 
+ * 🎯 ARCHITECTURE:
+ * - BlogThemeProvider: Provides theme context (dark/light mode)
+ * - .blog-post-container: CSS scoping wrapper for isolated styles
+ * - BlogPostContent: Main content rendering component (700+ lines)
+ * 
+ * ⚠️ CRITICAL WRAPPER - DO NOT REMOVE:
+ * The <div className="blog-post-container"> wrapper is ESSENTIAL for:
+ * 1. CSS isolation (blog styles don't affect website)
+ * 2. Scoping all styles in blog-specific.css
+ * 3. Preventing side effects on homepage/other pages
+ * 
+ * Removing this wrapper will break blog visual design!
+ * 
+ * 📦 WHAT'S PRESERVED:
+ * - All 700+ lines of BlogPostContent rendering logic
+ * - All dynamic imports (Header, Footer, TOC, etc.)
+ * - All analytics (GA4, GTM, Vercel)
+ * - All SEO schemas (Article, FAQ, HowTo, etc.)
+ * - All theme functionality (dark/light toggle)
+ * - All interactive features (like button, TOC, etc.)
+ * 
+ * 🔧 MAINTENANCE:
+ * - To modify blog styles: Edit ../blog-specific.css
+ * - To add components: Import and use in BlogPostContent
+ * - To change wrapper: Update both here and blog-specific.css
+ * 
+ * @returns JSX.Element - Fully rendered blog post page
+ */
 export default function BlogPostClient({ post, relatedPosts }: BlogPostClientProps) {
   return (
     <BlogThemeProvider>
+      {/* ⚠️ CRITICAL: CSS scoping wrapper - DO NOT REMOVE */}
       <div className="blog-post-container">
         <BlogPostContent post={post} relatedPosts={relatedPosts} />
       </div>
