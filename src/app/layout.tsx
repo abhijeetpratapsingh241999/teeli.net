@@ -88,7 +88,13 @@ export default function RootLayout({
           data-cf-beacon='{"token": "GENERATE_YOUR_TOKEN"}'
         />
       </head>
-      <body className={`${spaceGrotesk.variable} ${inter.variable} font-sans antialiased`} suppressHydrationWarning>
+      <body 
+        className="font-sans antialiased" 
+        style={{
+          fontFamily: "system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif"
+        }}
+        suppressHydrationWarning
+      >
         {/* Google Tag Manager (noscript) */}
         {GTM_ID && (
           <noscript>
