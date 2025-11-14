@@ -38,7 +38,7 @@ export default function RootLayout({
       <head>
         {/* CRITICAL CSS - Inline above-the-fold styles for instant render (NO heading resets) */}
         <style dangerouslySetInnerHTML={{__html: `
-          *,::before,::after{box-sizing:border-box;border-width:0;border-style:solid;border-color:currentColor}
+          *,::before,::after{box-sizing:border-box}
           html{line-height:1.5;-webkit-text-size-adjust:100%;tab-size:4;font-family:system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif}
           body{margin:0;background-color:#000;color:#fff;font-feature-settings:"kern";text-rendering:optimizeLegibility}
           img,svg,video{max-width:100%;height:auto;display:block}

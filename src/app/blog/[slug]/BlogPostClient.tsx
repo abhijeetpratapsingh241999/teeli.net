@@ -18,6 +18,7 @@ import ResponsiveVideo from '@/components/blog-ui/ResponsiveVideo';
 import MobileOnlyDefer from '@/components/performance/MobileOnlyDefer';
 import IndustryUseCasesIllustration from '@/components/blog-ui/IndustryUseCasesIllustration';
 import dynamic from 'next/dynamic';
+import '../blog-specific.css';
 
 // AGGRESSIVE: Dynamic imports for ALL non-critical components (with ssr:true for SEO)
 const Header = dynamic(() => import('@/components/Header'), { ssr: true });
@@ -712,7 +713,9 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
 export default function BlogPostClient({ post, relatedPosts }: BlogPostClientProps) {
   return (
     <BlogThemeProvider>
-      <BlogPostContent post={post} relatedPosts={relatedPosts} />
+      <div className="blog-post-container">
+        <BlogPostContent post={post} relatedPosts={relatedPosts} />
+      </div>
     </BlogThemeProvider>
   );
 }

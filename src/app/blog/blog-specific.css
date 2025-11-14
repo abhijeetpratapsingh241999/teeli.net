@@ -1,0 +1,131 @@
+/* ============================================
+   BLOG-SPECIFIC CSS - Visual Restoration
+   ============================================
+   Purpose: Restore borders, shadows, and colors
+   for blog section only without affecting other
+   pages (homepage, solutions, company, etc.)
+   ============================================ */
+
+/* RESTORE BORDERS - Only for Tailwind border classes */
+.blog-post-container .border {
+  border-width: 1px !important;
+}
+
+.blog-post-container .border-2 {
+  border-width: 2px !important;
+}
+
+.blog-post-container .border-4 {
+  border-width: 4px !important;
+}
+
+.blog-post-container .border-8 {
+  border-width: 8px !important;
+}
+
+/* RESTORE SHADOWS - Ensure visibility */
+.blog-post-container .shadow-sm {
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05) !important;
+}
+
+.blog-post-container .shadow {
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1) !important;
+}
+
+.blog-post-container .shadow-md {
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1) !important;
+}
+
+.blog-post-container .shadow-lg {
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1) !important;
+}
+
+.blog-post-container .shadow-xl {
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1) !important;
+}
+
+.blog-post-container .shadow-2xl {
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25) !important;
+}
+
+/* RESTORE COLORED BORDERS - Blog theme colors */
+.blog-post-container .border-cyan-500\/30 {
+  border-color: rgba(6, 182, 212, 0.3) !important;
+}
+
+.blog-post-container .border-cyan-500\/20 {
+  border-color: rgba(6, 182, 212, 0.2) !important;
+}
+
+.blog-post-container .border-cyan-400\/30 {
+  border-color: rgba(34, 211, 238, 0.3) !important;
+}
+
+.blog-post-container .border-purple-500\/30 {
+  border-color: rgba(168, 85, 247, 0.3) !important;
+}
+
+.blog-post-container .border-white\/50 {
+  border-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.blog-post-container .border-white\/10 {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* RESTORE COLORED SHADOWS - Enhanced depth */
+.blog-post-container .shadow-cyan-500\/20 {
+  --tw-shadow-color: rgba(6, 182, 212, 0.2);
+  --tw-shadow: var(--tw-shadow-colored);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important;
+}
+
+.blog-post-container .shadow-cyan-500\/30 {
+  --tw-shadow-color: rgba(6, 182, 212, 0.3);
+  --tw-shadow: var(--tw-shadow-colored);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important;
+}
+
+/* ENSURE ROUNDED CORNERS WORK */
+.blog-post-container .rounded-xl {
+  border-radius: 0.75rem !important;
+}
+
+.blog-post-container .rounded-2xl {
+  border-radius: 1rem !important;
+}
+
+.blog-post-container .rounded-3xl {
+  border-radius: 1.5rem !important;
+}
+
+/* RESPONSIVE VARIANTS */
+@media (min-width: 640px) {
+  .blog-post-container .sm\:rounded-xl {
+    border-radius: 0.75rem !important;
+  }
+  
+  .blog-post-container .sm\:rounded-2xl {
+    border-radius: 1rem !important;
+  }
+  
+  .blog-post-container .sm\:rounded-3xl {
+    border-radius: 1.5rem !important;
+  }
+}
+
+/* MAINTAIN BACKDROP BLUR */
+.blog-post-container .backdrop-blur-xl {
+  backdrop-filter: blur(24px) !important;
+}
+
+/* PRESERVE HOVER STATES */
+.blog-post-container .hover\:shadow-xl:hover {
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1) !important;
+}
+
+.blog-post-container .hover\:shadow-2xl:hover {
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25) !important;
+}
+
+/* END OF BLOG-SPECIFIC CSS */
