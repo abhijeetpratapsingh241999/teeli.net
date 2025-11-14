@@ -1,15 +1,9 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 import { AnalyticsProvider } from "@/components/AnalyticsProvider";
 import Script from "next/script";
 import "./globals.css";
-import dynamic from "next/dynamic";
-
-// Lazy load Vercel Analytics
-const Analytics = dynamic(
-  () => import("@vercel/analytics/react").then((mod) => mod.Analytics),
-  { ssr: false }
-);
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
