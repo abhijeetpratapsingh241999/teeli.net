@@ -184,34 +184,20 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       
       {/* 
         PERFORMANCE FIX #1: Optimized Hero Image Preload
-        - Responsive srcset for all viewport sizes (mobile to 4K)
-        - Quality 50 for AVIF format (optimal compression)
+        - Direct preload without query parameters (static WebP files)
         - fetchpriority="high" for LCP optimization
+        - WebP format with instant decode (20-50KB files)
         - Future-proof: Works for all blogs automatically
       */}
       {post.image && (
-        <>
-          {/* Primary preload with comprehensive responsive srcset */}
-          <link
-            rel="preload"
-            as="image"
-            href={post.image}
-            // @ts-ignore - Next.js supports these attributes
-            imageSrcSet={`${post.image}?w=640&q=50 640w, ${post.image}?w=828&q=50 828w, ${post.image}?w=1080&q=50 1080w, ${post.image}?w=1200&q=50 1200w, ${post.image}?w=1920&q=50 1920w`}
-            imageSizes="(max-width: 640px) 100vw, (max-width: 768px) 90vw, (max-width: 1024px) 85vw, (max-width: 1280px) 1200px, 1200px"
-            // @ts-ignore
-            fetchPriority="high"
-          />
-          {/* AVIF format hint for modern browsers (30% smaller than WebP) */}
-          <link
-            rel="preload"
-            as="image"
-            type="image/avif"
-            href={post.image}
-            // @ts-ignore
-            fetchPriority="high"
-          />
-        </>
+        <link
+          rel="preload"
+          as="image"
+          href={post.image}
+          type="image/webp"
+          // @ts-ignore
+          fetchPriority="high"
+        />
       )}
       <BlogPostClient post={post} relatedPosts={relatedPosts} />
     </>
