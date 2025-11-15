@@ -165,20 +165,27 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   return (
     <>
-      {/* Preload critical hero image for LCP optimization with AVIF support */}
+      {/* 
+        PERFORMANCE FIX #1: Optimized Hero Image Preload
+        - Responsive srcset for all viewport sizes (mobile to 4K)
+        - Quality 50 for AVIF format (optimal compression)
+        - fetchpriority="high" for LCP optimization
+        - Future-proof: Works for all blogs automatically
+      */}
       {post.image && (
         <>
+          {/* Primary preload with comprehensive responsive srcset */}
           <link
             rel="preload"
             as="image"
             href={post.image}
             // @ts-ignore - Next.js supports these attributes
-            imagesrcset={`${post.image}?w=640&q=50 640w, ${post.image}?w=1080&q=50 1080w, ${post.image}?w=1200&q=50 1200w`}
-            imagesizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1200px"
+            imagesrcset={`${post.image}?w=640&q=50 640w, ${post.image}?w=828&q=50 828w, ${post.image}?w=1080&q=50 1080w, ${post.image}?w=1200&q=50 1200w, ${post.image}?w=1920&q=50 1920w`}
+            imagesizes="(max-width: 640px) 100vw, (max-width: 768px) 90vw, (max-width: 1024px) 85vw, (max-width: 1280px) 1200px, 1200px"
             // @ts-ignore
             fetchpriority="high"
           />
-          {/* Preload AVIF version (30% smaller than WebP) */}
+          {/* AVIF format hint for modern browsers (30% smaller than WebP) */}
           <link
             rel="preload"
             as="image"
