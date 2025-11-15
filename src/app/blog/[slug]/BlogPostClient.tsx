@@ -43,19 +43,14 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ReactNode, useState, useEffect, useRef } from 'react';
 import { BlogPost } from '@/lib/blog';
-import IntroBox from '@/components/blog-ui/IntroBox';
-import Callout from '@/components/blog-ui/Callout';
 import { generateAllSchemas } from '@/lib/seo-schema';
 import Heading from '@/components/blog-ui/Heading';
 import IconListItem from '@/components/blog-ui/IconListItem';
 import IconBullet from '@/components/blog-ui/IconBullet';
 import TitleBox from '@/components/blog-ui/TitleBox';
-import VideoPlayer from '@/components/blog-ui/VideoPlayer';
 import ResponsiveImage from '@/components/blog-ui/ResponsiveImage';
 import ResponsiveVideo from '@/components/blog-ui/ResponsiveVideo';
 import LazyHeroVideo from '@/components/blog-ui/LazyHeroVideo';
-import MobileOnlyDefer from '@/components/performance/MobileOnlyDefer';
-import IndustryUseCasesIllustration from '@/components/blog-ui/IndustryUseCasesIllustration';
 import Footer from '@/components/Footer';
 import dynamic from 'next/dynamic';
 
@@ -74,6 +69,29 @@ const ContinueReadingCards = dynamic(() => import('@/components/blog-ui/Continue
 const TOC = dynamic(() => import('@/components/blog-ui/TOC'), { ssr: false });
 const SmartTable = dynamic(() => import('@/components/blog-ui/SmartTable'), { ssr: false });
 const FAQAccordion = dynamic(() => import('@/components/blog-ui/FAQAccordion'), { ssr: false });
+
+// 🚀 FIX #3: CODE SPLITTING - Heavy/below-fold components lazy loaded
+// Bundle size reduction: ~40-60KB (154KB → 94KB estimated)
+// These components are NOT needed for initial render (LCP improvement)
+const IntroBox = dynamic(() => import('@/components/blog-ui/IntroBox'), { 
+  ssr: false,
+  loading: () => <div className="h-24 w-full animate-pulse bg-gray-800/20 rounded-xl" />
+});
+const Callout = dynamic(() => import('@/components/blog-ui/Callout'), { 
+  ssr: false,
+  loading: () => <div className="h-20 w-full animate-pulse bg-cyan-500/10 rounded-lg" />
+});
+const VideoPlayer = dynamic(() => import('@/components/blog-ui/VideoPlayer'), { 
+  ssr: false,
+  loading: () => <div className="h-64 w-full animate-pulse bg-gray-900 rounded-xl" />
+});
+const MobileOnlyDefer = dynamic(() => import('@/components/performance/MobileOnlyDefer'), { 
+  ssr: false 
+});
+const IndustryUseCasesIllustration = dynamic(() => import('@/components/blog-ui/IndustryUseCasesIllustration'), { 
+  ssr: false,
+  loading: () => <div className="h-96 w-full animate-pulse bg-gray-800/20 rounded-xl my-8" />
+});
 
 /**
  * IconBullet Component Usage Examples:
