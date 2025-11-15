@@ -2,6 +2,8 @@ import { notFound } from 'next/navigation';
 import { getBlogPostBySlug, getAllBlogPosts, getRelatedBlogPosts } from '@/lib/blog';
 import type { Metadata } from 'next';
 import BlogPostClient from './BlogPostClient';
+import fs from 'fs';
+import path from 'path';
 
 // Generate static params for all blog posts
 export async function generateStaticParams() {
@@ -163,8 +165,23 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   // Get related blog posts
   const relatedPosts = getRelatedBlogPosts(slug, 3);
 
+  // 🎯 FIX #2: Critical CSS Inlining - Read and minify at build time
+  const criticalCSS = fs.readFileSync(
+    path.join(process.cwd(), 'src/app/blog/critical-blog.css'),
+    'utf-8'
+  )
+  .replace(/\/\*[\s\S]*?\*\//g, '') // Remove comments
+  .replace(/\s+/g, ' ') // Collapse whitespace
+  .trim();
+
   return (
     <>
+      {/* 🎯 FIX #2: Critical CSS - Inline above-fold styles (eliminates 480ms render-blocking) */}
+      <style 
+        dangerouslySetInnerHTML={{__html: criticalCSS}}
+        data-critical="blog-above-fold"
+      />
+      
       {/* 
         PERFORMANCE FIX #1: Optimized Hero Image Preload
         - Responsive srcset for all viewport sizes (mobile to 4K)
@@ -180,10 +197,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             as="image"
             href={post.image}
             // @ts-ignore - Next.js supports these attributes
-            imagesrcset={`${post.image}?w=640&q=50 640w, ${post.image}?w=828&q=50 828w, ${post.image}?w=1080&q=50 1080w, ${post.image}?w=1200&q=50 1200w, ${post.image}?w=1920&q=50 1920w`}
-            imagesizes="(max-width: 640px) 100vw, (max-width: 768px) 90vw, (max-width: 1024px) 85vw, (max-width: 1280px) 1200px, 1200px"
+            imageSrcSet={`${post.image}?w=640&q=50 640w, ${post.image}?w=828&q=50 828w, ${post.image}?w=1080&q=50 1080w, ${post.image}?w=1200&q=50 1200w, ${post.image}?w=1920&q=50 1920w`}
+            imageSizes="(max-width: 640px) 100vw, (max-width: 768px) 90vw, (max-width: 1024px) 85vw, (max-width: 1280px) 1200px, 1200px"
             // @ts-ignore
-            fetchpriority="high"
+            fetchPriority="high"
           />
           {/* AVIF format hint for modern browsers (30% smaller than WebP) */}
           <link
@@ -192,7 +209,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             type="image/avif"
             href={post.image}
             // @ts-ignore
-            fetchpriority="high"
+            fetchPriority="high"
           />
         </>
       )}

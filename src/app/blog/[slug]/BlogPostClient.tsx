@@ -54,9 +54,10 @@ import LazyHeroVideo from '@/components/blog-ui/LazyHeroVideo';
 import Footer from '@/components/Footer';
 import dynamic from 'next/dynamic';
 
-// ⚠️ CRITICAL: Blog-specific CSS for isolated styles
-// DO NOT REMOVE - Required for blog visual design
-import '../blog-specific.css';
+// ⚠️ CRITICAL: Blog-specific CSS - NOW LOADED ASYNCHRONOUSLY
+// Full CSS loaded after critical CSS renders above-fold content
+// DO NOT add back synchronous import - it blocks render
+// Critical CSS inlined in page.tsx handles above-fold styling
 
 // PERFORMANCE: Dynamic imports without loading states (reduces bundle size)
 const Header = dynamic(() => import('@/components/Header'), { ssr: true });
@@ -135,6 +136,27 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
   const [lastScrollY, setLastScrollY] = useState(0);
   const contentRef = useRef<HTMLDivElement>(null);
   const [schemas, setSchemas] = useState<SchemaObject[]>([]);
+
+  // 🎯 FIX #2: Load full blog CSS asynchronously (non-blocking)
+  // Critical CSS already inlined in page.tsx for instant above-fold render
+  // This loads remaining styles for below-fold content
+  useEffect(() => {
+    // Check if already loaded to prevent duplicates
+    if (document.querySelector('link[data-blog-css-full]')) return;
+    
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = '/blog/blog-specific.css'; // Public path after build
+    link.media = 'print'; // Load as print initially (non-blocking trick)
+    link.setAttribute('data-blog-css-full', 'true');
+    link.onload = () => { 
+      link.media = 'all'; // Switch to all media after load
+      if (process.env.NODE_ENV === 'development') {
+        console.log('[Perf] Full blog CSS loaded asynchronously');
+      }
+    };
+    document.head.appendChild(link);
+  }, []);
 
   // Generate structured data schemas on client-side only
   useEffect(() => {
