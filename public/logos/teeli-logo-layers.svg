@@ -1,0 +1,70 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Cyan to Blue Gradient -->
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Purple to Pink Gradient -->
+    <linearGradient id="grad2" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ec4899;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Glow effect -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <!-- Subtle shadow -->
+    <filter id="subtleShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+      <feOffset dx="0" dy="2" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.2"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Concept: Overlapping layers representing 3D rendering/visualization -->
+  
+  <!-- Layer 1 - Background layer (represents base mesh) -->
+  <path d="M 60 80 L 100 60 L 140 80 L 140 120 L 100 140 L 60 120 Z" 
+        fill="url(#grad1)" 
+        opacity="0.3" 
+        filter="url(#subtleShadow)"/>
+  
+  <!-- Layer 2 - Middle layer (represents texture/material) -->
+  <path d="M 70 90 L 100 75 L 130 90 L 130 120 L 100 135 L 70 120 Z" 
+        fill="url(#grad1)" 
+        opacity="0.6" 
+        filter="url(#subtleShadow)"/>
+  
+  <!-- Layer 3 - Front layer (represents final render) -->
+  <path d="M 80 100 L 100 90 L 120 100 L 120 120 L 100 130 L 80 120 Z" 
+        fill="url(#grad2)" 
+        filter="url(#glow)"/>
+  
+  <!-- Central accent - representing rendering point/focus -->
+  <circle cx="100" cy="110" r="8" fill="#fff" opacity="0.9"/>
+  <circle cx="100" cy="110" r="4" fill="url(#grad2)"/>
+  
+  <!-- Corner accents - modern geometric details -->
+  <circle cx="120" cy="100" r="3" fill="#06b6d4" opacity="0.7"/>
+  <circle cx="80" cy="120" r="3" fill="#ec4899" opacity="0.7"/>
+  <circle cx="100" cy="90" r="3" fill="#8b5cf6" opacity="0.7"/>
+  
+  <!-- Edge highlights for depth -->
+  <line x1="100" y1="90" x2="120" y2="100" stroke="#fff" stroke-width="1.5" opacity="0.4"/>
+  <line x1="100" y1="130" x2="120" y2="120" stroke="#fff" stroke-width="1.5" opacity="0.3"/>
+</svg>

@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from 'react';
-import { Search, User, Menu, X, ChevronDown } from 'lucide-react';
+import { User, Menu, X, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import TeeliLogo from './AnimatedGlobe';
 
 const navItems = ["Home", "Solutions", "Technology", "Projects", "Insights", "Company"];
@@ -53,9 +54,9 @@ const dropdownItems: Record<string, { label: string; href: string; icon?: string
 };
 
 export default function Header() {
+  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const [showSearch, setShowSearch] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -64,6 +65,9 @@ export default function Header() {
   const hasDropdown = (item: string) => {
     return Object.keys(dropdownItems).includes(item);
   };
+
+  // Encode current path for returnUrl
+  const returnUrl = encodeURIComponent(pathname || '/');
 
   return (
     <header className="fixed top-0 left-0 z-30 w-full p-6">
@@ -143,18 +147,9 @@ export default function Header() {
 
         {/* Right Section */}
         <div className="flex items-center gap-3">
-          {/* Search Icon Button */}
-          <button 
-            onClick={() => setShowSearch(!showSearch)}
-            className="hidden lg:flex rounded-full border border-white/20 p-2 text-zinc-300 transition-colors hover:border-cyan-400 hover:text-white"
-            aria-label="Toggle search"
-          >
-            <Search className="h-4 w-4" />
-          </button>
-          
           {/* Profile/Login Icon */}
           <Link 
-            href="/login"
+            href={`/login?returnUrl=${returnUrl}`}
             className="hidden lg:flex rounded-full border border-white/20 p-2 text-zinc-300 transition-colors hover:border-cyan-400 hover:text-white"
             title="Sign In"
           >
@@ -175,58 +170,6 @@ export default function Header() {
           </button>
         </div>
       </div>
-
-      {/* Search Popup Modal */}
-      <AnimatePresence>
-        {showSearch && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm"
-            onClick={() => setShowSearch(false)}
-          >
-            <motion.div
-              initial={{ y: -50, opacity: 0, scale: 0.95 }}
-              animate={{ y: 0, opacity: 1, scale: 1 }}
-              exit={{ y: -50, opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
-              className="absolute top-24 left-1/2 transform -translate-x-1/2 w-full max-w-2xl mx-4"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="relative rounded-2xl border border-cyan-500/30 bg-black/95 backdrop-blur-xl p-6 shadow-2xl"
-                style={{ boxShadow: '0 20px 60px rgba(0, 255, 255, 0.2), inset 0 0 30px rgba(0, 255, 255, 0.05)' }}
-              >
-                {/* Close button */}
-                <button
-                  onClick={() => setShowSearch(false)}
-                  className="absolute top-4 right-4 rounded-full border border-white/20 p-2 text-zinc-300 transition-colors hover:border-cyan-400 hover:text-white"
-                  aria-label="Close search"
-                >
-                  <X className="h-5 w-5" />
-                </button>
-                
-                {/* Search Input */}
-                <div className="relative">
-                  <input
-                    type="text"
-                    placeholder="Search articles, topics, or keywords..."
-                    autoFocus
-                    className="w-full font-sans rounded-xl border border-white/20 bg-white/5 py-4 pl-12 pr-4 text-base text-white placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-cyan-400/50 focus:border-cyan-400/50"
-                  />
-                  <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-cyan-400" />
-                </div>
-                
-                {/* Search suggestions or recent searches */}
-                <div className="mt-4 text-sm text-zinc-400">
-                  <p>Popular searches: AI Rendering, Cloud GPU, Sustainability</p>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* Mobile Menu - Slide down from top */}
       <AnimatePresence>
@@ -312,27 +255,17 @@ export default function Header() {
                 </ul>
               </nav>
 
-              {/* Mobile Search */}
-              <div className="mt-6 relative">
-                <input
-                  type="text"
-                  placeholder="Search"
-                  className="w-full font-sans rounded-full border border-white/20 bg-black/50 py-2.5 pl-4 pr-10 text-sm text-white placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-cyan-400/50"
-                />
-                <Search className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-400" />
-              </div>
-
               {/* User button */}
               <div className="mt-4 space-y-2">
                 <Link
-                  href="/login"
+                  href={`/login?returnUrl=${returnUrl}`}
                   onClick={toggleMenu}
                   className="block w-full rounded-full border border-white/20 bg-black/50 p-3 text-zinc-300 transition-colors hover:border-cyan-400 hover:text-white text-center"
                 >
                   Sign In
                 </Link>
                 <Link
-                  href="/signup"
+                  href={`/signup?returnUrl=${returnUrl}`}
                   onClick={toggleMenu}
                   className="block w-full rounded-full border border-cyan-400/50 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 p-3 text-white transition-colors hover:from-cyan-500/30 hover:to-purple-500/30 text-center font-semibold"
                 >

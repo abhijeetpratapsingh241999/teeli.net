@@ -3,10 +3,13 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { Mail, Lock, Eye, EyeOff, ArrowRight, Sparkles, User, Check } from 'lucide-react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { Mail, Lock, Eye, EyeOff, ArrowRight, Sparkles, User, Check, X } from 'lucide-react';
 import Header from '@/components/Header';
 
 export default function SignupPage() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -18,6 +21,12 @@ export default function SignupPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [acceptTerms, setAcceptTerms] = useState(false);
+
+  const handleClose = () => {
+    // Get returnUrl from query params
+    const returnUrl = searchParams.get('returnUrl') || '/';
+    router.push(returnUrl);
+  };
 
   const validateForm = () => {
     const newErrors: { [key: string]: string } = {};
@@ -124,6 +133,15 @@ export default function SignupPage() {
           <div className="relative rounded-3xl border-2 border-purple-500/30 bg-gradient-to-br from-black/80 via-purple-950/20 to-black/80 backdrop-blur-xl p-6 sm:p-8 md:p-10 lg:p-8 xl:p-10 shadow-2xl"
             style={{ boxShadow: '0 20px 60px rgba(147, 51, 234, 0.1), inset 0 0 30px rgba(147, 51, 234, 0.05)' }}
           >
+            {/* Close Button */}
+            <button
+              onClick={handleClose}
+              className="absolute top-4 right-4 z-10 rounded-full border border-white/20 p-2 text-zinc-300 transition-colors hover:border-purple-400 hover:text-white hover:bg-purple-500/10"
+              aria-label="Close"
+            >
+              <X className="h-5 w-5" />
+            </button>
+
             {/* Decorative elements */}
             <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-500/10 to-transparent rounded-bl-full"></div>
             <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-cyan-500/10 to-transparent rounded-tr-full"></div>

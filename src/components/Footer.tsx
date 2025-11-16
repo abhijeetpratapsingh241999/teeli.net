@@ -104,7 +104,7 @@ export default function Footer() {
         <div className={`border-t pt-8 ${theme === 'dark' ? 'border-white/10' : 'border-gray-200'}`}>
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
             <div className={`text-xs ${theme === 'dark' ? 'text-zinc-500' : 'text-gray-500'}`}>
-              © 2024 TEELI.NET. All rights reserved.
+              © 2026 TEELI.NET. All rights reserved.
             </div>
             <div className={`flex gap-6 text-xs ${theme === 'dark' ? 'text-zinc-500' : 'text-gray-500'}`}>
               <Link href="/terms" className={`transition-colors ${theme === 'dark' ? 'hover:text-cyan-400' : 'hover:text-cyan-600'}`}>Terms of Service</Link>

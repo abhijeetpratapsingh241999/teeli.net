@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEELI Logo Test - Compare Designs</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #06b6d4, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            text-align: center;
+            margin-bottom: 50px;
+            opacity: 0.7;
+            font-size: 1.1rem;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .logo-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .logo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(6, 182, 212, 0.2);
+            border-color: rgba(6, 182, 212, 0.3);
+        }
+        
+        .logo-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #06b6d4;
+        }
+        
+        .logo-description {
+            font-size: 0.9rem;
+            opacity: 0.6;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+        
+        .logo-container {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 250px;
+        }
+        
+        .logo-container svg {
+            max-width: 100%;
+            height: auto;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+        }
+        
+        .specs {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .spec-item {
+            text-align: center;
+        }
+        
+        .spec-label {
+            font-size: 0.75rem;
+            opacity: 0.5;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .spec-value {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #8b5cf6;
+            margin-top: 5px;
+        }
+        
+        .current-logo {
+            border: 2px solid #ef4444;
+        }
+        
+        .current-badge {
+            display: inline-block;
+            background: #ef4444;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            margin-left: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .comparison-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 60px;
+        }
+        
+        .comparison-title {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #06b6d4;
+        }
+        
+        .background-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .bg-option {
+            padding: 60px 20px;
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+            border: 2px solid transparent;
+        }
+        
+        .bg-option:hover {
+            transform: scale(1.05);
+            border-color: #06b6d4;
+        }
+        
+        .bg-dark {
+            background: #0f172a;
+        }
+        
+        .bg-light {
+            background: #ffffff;
+        }
+        
+        .bg-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .bg-blue {
+            background: #1e40af;
+        }
+        
+        .notes {
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(6, 182, 212, 0.1);
+            border-left: 4px solid #06b6d4;
+            border-radius: 8px;
+        }
+        
+        .notes h3 {
+            margin-bottom: 10px;
+            color: #06b6d4;
+        }
+        
+        .notes ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+        
+        .notes li {
+            margin: 8px 0;
+            opacity: 0.8;
+        }
+        
+        .notes li:before {
+            content: "✓ ";
+            color: #06b6d4;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 TEELI Logo Comparison</h1>
+        <p class="subtitle">Choose the best logo for your brand identity</p>
+        
+        <div class="grid">
+            <!-- Option 1: Modern T Logo -->
+            <div class="logo-card">
+                <h2 class="logo-title">Option 1: Modern "T"</h2>
+                <p class="logo-description">
+                    Bold, geometric "T" with 3D depth effect. Clean and professional with cyan-purple gradient.
+                </p>
+                <div class="logo-container">
+                    <img src="/logos/teeli-logo-new.svg" alt="TEELI Modern T Logo" width="180" height="180">
+                </div>
+                <div class="specs">
+                    <div class="spec-item">
+                        <div class="spec-label">Size</div>
+                        <div class="spec-value">180×180</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Style</div>
+                        <div class="spec-value">Geometric</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Concept</div>
+                        <div class="spec-value">Letter "T"</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Option 2: Layered Logo -->
+            <div class="logo-card">
+                <h2 class="logo-title">Option 2: Layered Hexagon</h2>
+                <p class="logo-description">
+                    Overlapping layers representing 3D rendering process. Symbolizes depth and visualization technology.
+                </p>
+                <div class="logo-container">
+                    <img src="/logos/teeli-logo-layers.svg" alt="TEELI Layered Logo" width="200" height="200">
+                </div>
+                <div class="specs">
+                    <div class="spec-item">
+                        <div class="spec-label">Size</div>
+                        <div class="spec-value">200×200</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Style</div>
+                        <div class="spec-value">Abstract</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Concept</div>
+                        <div class="spec-value">3D Layers</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Option 3: Vision Logo -->
+            <div class="logo-card">
+                <h2 class="logo-title">Option 3: Vision Eye</h2>
+                <p class="logo-description">
+                    Abstract eye representing visualization and vision. Modern tech aesthetic with scan-line accents.
+                </p>
+                <div class="logo-container">
+                    <img src="/logos/teeli-logo-vision.svg" alt="TEELI Vision Logo" width="200" height="200">
+                </div>
+                <div class="specs">
+                    <div class="spec-item">
+                        <div class="spec-label">Size</div>
+                        <div class="spec-value">200×200</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Style</div>
+                        <div class="spec-value">Tech/Modern</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Concept</div>
+                        <div class="spec-value">Vision/AI</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Current Logo for Comparison -->
+            <div class="logo-card current-logo">
+                <h2 class="logo-title">
+                    Current Logo
+                    <span class="current-badge">Active</span>
+                </h2>
+                <p class="logo-description">
+                    Existing cube-based logo. Provided for size and style comparison.
+                </p>
+                <div class="logo-container">
+                    <img src="/logos/teeli-logo.svg" alt="Current TEELI Logo" width="120" height="120">
+                </div>
+                <div class="specs">
+                    <div class="spec-item">
+                        <div class="spec-label">Size</div>
+                        <div class="spec-value">120×120</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Style</div>
+                        <div class="spec-value">3D Cube</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Status</div>
+                        <div class="spec-value">Current</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="comparison-section">
+            <h2 class="comparison-title">Background Test</h2>
+            <p style="text-align: center; opacity: 0.7; margin-bottom: 30px;">
+                Scroll down to see how logos look on different backgrounds
+            </p>
+            
+            <div class="background-options">
+                <div class="bg-option bg-dark">
+                    <img src="/logos/teeli-logo-new.svg" width="100" height="100" alt="Dark bg">
+                    <p style="margin-top: 15px; font-size: 0.9rem;">Dark Background</p>
+                </div>
+                
+                <div class="bg-option bg-light">
+                    <img src="/logos/teeli-logo-new.svg" width="100" height="100" alt="Light bg">
+                    <p style="margin-top: 15px; font-size: 0.9rem; color: #0f172a;">Light Background</p>
+                </div>
+                
+                <div class="bg-option bg-gradient">
+                    <img src="/logos/teeli-logo-new.svg" width="100" height="100" alt="Gradient bg">
+                    <p style="margin-top: 15px; font-size: 0.9rem;">Gradient Background</p>
+                </div>
+                
+                <div class="bg-option bg-blue">
+                    <img src="/logos/teeli-logo-new.svg" width="100" height="100" alt="Blue bg">
+                    <p style="margin-top: 15px; font-size: 0.9rem;">Solid Blue</p>
+                </div>
+            </div>
+            
+            <div style="margin-top: 40px; padding: 30px; background: rgba(255,255,255,0.05); border-radius: 15px;">
+                <h3 style="margin-bottom: 15px; color: #8b5cf6;">Size Variations</h3>
+                <div style="display: flex; gap: 30px; align-items: center; justify-content: center; flex-wrap: wrap;">
+                    <div style="text-align: center;">
+                        <img src="/logos/teeli-logo-new.svg" width="50" height="50" alt="Small">
+                        <p style="margin-top: 10px; font-size: 0.8rem; opacity: 0.6;">50×50 (Favicon)</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <img src="/logos/teeli-logo-new.svg" width="80" height="80" alt="Medium">
+                        <p style="margin-top: 10px; font-size: 0.8rem; opacity: 0.6;">80×80 (Mobile)</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <img src="/logos/teeli-logo-new.svg" width="120" height="120" alt="Large">
+                        <p style="margin-top: 10px; font-size: 0.8rem; opacity: 0.6;">120×120 (Desktop)</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <img src="/logos/teeli-logo-new.svg" width="180" height="180" alt="XL">
+                        <p style="margin-top: 10px; font-size: 0.8rem; opacity: 0.6;">180×180 (Hero)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="notes">
+            <h3>📋 Design Notes</h3>
+            <ul>
+                <li><strong>All logos are SVG:</strong> Infinite scalability without quality loss</li>
+                <li><strong>Brand colors:</strong> Cyan (#06b6d4) to Purple (#8b5cf6) gradient (TEELI brand)</li>
+                <li><strong>Size increase:</strong> New logos are 180-200px vs current 120px (+50% larger)</li>
+                <li><strong>Modern aesthetic:</strong> Gradients, glows, and 3D effects for tech feel</li>
+                <li><strong>Unique designs:</strong> No cube, completely original concepts</li>
+                <li><strong>Performance:</strong> Lightweight SVG (~2-3KB per logo)</li>
+            </ul>
+        </div>
+        
+        <div style="margin-top: 40px; padding: 30px; background: rgba(139, 92, 246, 0.1); border-radius: 15px; border-left: 4px solid #8b5cf6;">
+            <h3 style="margin-bottom: 15px; color: #8b5cf6;">💡 Recommendation</h3>
+            <p style="line-height: 1.8; opacity: 0.9;">
+                <strong>Option 1 (Modern "T"):</strong> Best for brand recognition, simple and memorable.<br>
+                <strong>Option 2 (Layered Hexagon):</strong> Best for representing 3D/rendering technology.<br>
+                <strong>Option 3 (Vision Eye):</strong> Best for AI/vision-focused branding.
+            </p>
+            <p style="margin-top: 15px; opacity: 0.7; font-size: 0.9rem;">
+                Test all three in your actual header/navigation to see which feels best in context!
+            </p>
+        </div>
+    </div>
+</body>
+</html>

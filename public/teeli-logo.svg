@@ -1,0 +1,55 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Tech gradient -->
+    <linearGradient id="techGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Accent gradient -->
+    <linearGradient id="accentGrad" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ec4899;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Modern glow -->
+    <filter id="modernGlow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Concept: Abstract "eye" representing visualization/vision -->
+  
+  <!-- Outer ring -->
+  <ellipse cx="100" cy="100" rx="60" ry="35" 
+           fill="none" 
+           stroke="url(#techGrad)" 
+           stroke-width="8" 
+           opacity="0.8"
+           filter="url(#modernGlow)"/>
+  
+  <!-- Inner ring -->
+  <ellipse cx="100" cy="100" rx="45" ry="25" 
+           fill="none" 
+           stroke="url(#techGrad)" 
+           stroke-width="4" 
+           opacity="0.6"/>
+  
+  <!-- Central iris (main focal point) -->
+  <circle cx="100" cy="100" r="20" fill="url(#accentGrad)" filter="url(#modernGlow)"/>
+  
+  <!-- Pupil highlight -->
+  <circle cx="100" cy="100" r="10" fill="#1e293b" opacity="0.8"/>
+  
+  <!-- Light reflection -->
+  <circle cx="106" cy="94" r="4" fill="#fff" opacity="0.9"/>
+  <circle cx="108" cy="96" r="2" fill="#fff" opacity="0.7"/>
+  
+  <!-- Modern accent lines (scan lines effect) -->
+  <line x1="40" y1="100" x2="70" y2="100" stroke="url(#techGrad)" stroke-width="2" opacity="0.5"/>
+  <line x1="130" y1="100" x2="160" y2="100" stroke="url(#accentGrad)" stroke-width="2" opacity="0.5"/>
+</svg>

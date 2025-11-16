@@ -3,15 +3,24 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { Mail, Lock, Eye, EyeOff, ArrowRight, Sparkles } from 'lucide-react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { Mail, Lock, Eye, EyeOff, ArrowRight, Sparkles, X } from 'lucide-react';
 import Header from '@/components/Header';
 
 export default function LoginPage() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
+
+  const handleClose = () => {
+    // Get returnUrl from query params
+    const returnUrl = searchParams.get('returnUrl') || '/';
+    router.push(returnUrl);
+  };
 
   const validateForm = () => {
     const newErrors: { email?: string; password?: string } = {};
@@ -69,6 +78,15 @@ export default function LoginPage() {
           <div className="relative rounded-3xl border-2 border-cyan-500/30 bg-gradient-to-br from-black/80 via-cyan-950/20 to-black/80 backdrop-blur-xl p-6 sm:p-8 md:p-10 lg:p-8 xl:p-10 shadow-2xl"
             style={{ boxShadow: '0 20px 60px rgba(0, 255, 255, 0.1), inset 0 0 30px rgba(0, 255, 255, 0.05)' }}
           >
+            {/* Close Button */}
+            <button
+              onClick={handleClose}
+              className="absolute top-4 right-4 z-10 rounded-full border border-white/20 p-2 text-zinc-300 transition-colors hover:border-cyan-400 hover:text-white hover:bg-cyan-500/10"
+              aria-label="Close"
+            >
+              <X className="h-5 w-5" />
+            </button>
+
             {/* Decorative elements */}
             <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-cyan-500/10 to-transparent rounded-bl-full"></div>
             <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-purple-500/10 to-transparent rounded-tr-full"></div>

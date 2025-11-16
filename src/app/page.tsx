@@ -921,7 +921,7 @@ export default function Home() {
           <div className="border-t border-white/10 pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
               <div className="text-zinc-500 text-xs">
-                © 2024 TEELI.NET. All rights reserved.
+                © 2026 TEELI.NET. All rights reserved.
               </div>
               <div className="flex gap-6 text-xs text-zinc-500">
                 <Link href="/terms" className="hover:text-cyan-400 transition-colors">Terms of Service</Link>
