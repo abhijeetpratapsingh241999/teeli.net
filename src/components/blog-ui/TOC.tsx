@@ -115,7 +115,7 @@ export default function TOC({ contentRef }: TOCProps) {
 
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className={`w-full flex items-center justify-center gap-2 px-5 py-3 transition-all text-sm font-semibold ${
+            className={`w-full flex items-center justify-center gap-2 px-5 py-3 transition-all text-sm font-semibold cursor-pointer ${
               theme === 'dark' 
                 ? 'text-cyan-400 hover:bg-gray-800/50 hover:text-cyan-300' 
                 : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
@@ -151,7 +151,7 @@ export default function TOC({ contentRef }: TOCProps) {
                     >
                       <button
                         onClick={() => handleClick(item.id)}
-                        className={`text-left w-full text-sm transition-all duration-200 py-2.5 px-3 rounded-lg flex items-start gap-2 ${
+                        className={`text-left w-full text-sm transition-all duration-200 py-2.5 px-3 rounded-lg flex items-start gap-2 cursor-pointer ${
                           activeId === item.id
                             ? theme === 'dark'
                               ? 'bg-cyan-900/40 text-cyan-300 font-semibold shadow-sm'
@@ -188,7 +188,7 @@ export default function TOC({ contentRef }: TOCProps) {
         {/* Floating Button - Rectangle with Icon */}
         <button
           onClick={() => setIsOpen(true)}
-          className={`fixed right-4 bottom-20 z-40 px-4 py-3 rounded-lg shadow-lg font-semibold text-sm transition-transform hover:scale-105 flex items-center gap-2 ${
+          className={`fixed right-4 bottom-20 z-40 px-4 py-3 rounded-lg shadow-lg font-semibold text-sm transition-transform hover:scale-105 flex items-center gap-2 cursor-pointer ${
             theme === 'dark'
               ? 'bg-gradient-to-r from-cyan-600 to-purple-600 text-white border-2 border-cyan-400/30'
               : 'bg-gradient-to-r from-cyan-500 to-purple-500 text-white border-2 border-white/50'
@@ -234,7 +234,7 @@ export default function TOC({ contentRef }: TOCProps) {
             </div>
             <button
               onClick={() => setIsOpen(false)}
-              className={`p-1 rounded-full transition-colors ${
+              className={`p-1 rounded-full transition-colors cursor-pointer ${
                 theme === 'dark'
                   ? 'text-zinc-200 hover:bg-gray-800/50'
                   : 'text-gray-800 hover:bg-gray-200'
@@ -261,7 +261,7 @@ export default function TOC({ contentRef }: TOCProps) {
                         handleClick(item.id);
                         setIsOpen(false);
                       }}
-                      className={`text-left w-full text-sm transition-all duration-200 py-2 px-3 rounded ${
+                      className={`text-left w-full text-sm transition-all duration-200 py-2 px-3 rounded cursor-pointer ${
                         activeId === item.id
                           ? theme === 'dark'
                             ? 'bg-cyan-900/40 text-cyan-300 font-semibold'

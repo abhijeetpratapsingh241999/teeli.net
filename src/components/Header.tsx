@@ -1,11 +1,10 @@
 "use client";
 
-import { useState } from 'react';
-import { User, Menu, X, ChevronDown } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { User, Menu, X, ChevronDown, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import TeeliLogo from './AnimatedGlobe';
 
 const navItems = ["Home", "Solutions", "Technology", "Projects", "Insights", "Company"];
 
@@ -57,6 +56,15 @@ export default function Header() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -66,214 +74,218 @@ export default function Header() {
     return Object.keys(dropdownItems).includes(item);
   };
 
-  // Encode current path for returnUrl
   const returnUrl = encodeURIComponent(pathname || '/');
 
   return (
-    <header className="fixed top-0 left-0 z-30 w-full p-6">
-      <div className="mx-auto flex max-w-7xl items-center justify-between rounded-full bg-black/30 p-2 px-6 backdrop-blur-sm" style={{ boxShadow: '0 0 20px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 255, 255, 0.1), inset 0 0 20px rgba(0, 0, 0, 0.3)' }}>
-        {/* Logo */}
-        <div className="flex items-center gap-2">
-          <TeeliLogo />
-          <span className="font-heading text-lg font-bold text-white">TEELI.NET</span>
-        </div>
+    <header className={`fixed top-0 left-0 z-50 w-full transition-all duration-300 ${
+      scrolled ? 'py-2' : 'py-4'
+    }`}>
+      <div className="mx-auto max-w-7xl px-4 md:px-6">
+        <div className={`relative flex items-center justify-between rounded-2xl transition-all duration-300 ${
+          scrolled 
+            ? 'bg-black/90 backdrop-blur-xl border border-white/10 shadow-2xl py-3 px-6' 
+            : 'bg-black/60 backdrop-blur-md border border-white/5 py-4 px-6'
+        }`}>
+          
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-2 group">
+            <div className="relative">
+              <div className="text-2xl font-black bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">
+                TEELI
+              </div>
+              <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 blur-lg opacity-0 group-hover:opacity-100 transition-opacity -z-10"></div>
+            </div>
+          </Link>
 
-        {/* Desktop Navigation Links */}
-        <nav className="hidden lg:flex">
-          <ul className="flex items-center gap-0.5">
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center gap-1">
             {navItems.map((item) => (
-              <li 
+              <div
                 key={item}
                 className="relative"
                 onMouseEnter={() => hasDropdown(item) && setOpenDropdown(item)}
                 onMouseLeave={() => setOpenDropdown(null)}
               >
                 {hasDropdown(item) ? (
-                  <div className="relative">
-                    <Link href={getNavLink(item)} className="flex items-center gap-1 px-3 py-2 text-sm text-zinc-300 transition-colors hover:text-white rounded-lg hover:bg-white/5">
+                  <div>
+                    <button className={`flex items-center gap-1 px-4 py-2 text-sm font-medium rounded-lg transition-all ${
+                      pathname === getNavLink(item)
+                        ? 'text-white bg-white/10'
+                        : 'text-zinc-400 hover:text-white hover:bg-white/5'
+                    }`}>
                       {item}
-                      <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-300 ${openDropdown === item ? 'rotate-180' : ''}`} />
-                    </Link>
+                      <ChevronDown className={`h-3.5 w-3.5 transition-transform ${openDropdown === item ? 'rotate-180' : ''}`} />
+                    </button>
                     
-                    {/* Dropdown Menu */}
                     <AnimatePresence>
                       {openDropdown === item && (
                         <motion.div
-                          initial={{ opacity: 0, y: -10 }}
+                          initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -10 }}
-                          transition={{ duration: 0.3 }}
-                          className="absolute top-full left-0 mt-2 min-w-[220px] rounded-2xl border border-cyan-500/30 bg-black/95 backdrop-blur-xl p-2 shadow-2xl"
-                          style={{ boxShadow: '0 20px 60px rgba(0, 255, 255, 0.1), inset 0 0 30px rgba(0, 255, 255, 0.05)' }}
+                          exit={{ opacity: 0, y: 10 }}
+                          transition={{ duration: 0.2 }}
+                          className="absolute top-full left-0 mt-2 min-w-[220px] rounded-xl border border-white/10 bg-black/95 backdrop-blur-xl p-1.5 shadow-xl"
                         >
-                          {dropdownItems[item]?.map((subItem, index) => (
-                            <motion.div
+                          {dropdownItems[item]?.map((subItem) => (
+                            <Link
                               key={subItem.href}
-                              initial={{ opacity: 0, x: -10 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: index * 0.05 }}
+                              href={subItem.href}
+                              className="flex items-center justify-between px-3 py-2.5 text-sm text-zinc-400 rounded-lg hover:text-white hover:bg-white/10 transition-all group"
                             >
-                              <Link
-                                href={subItem.href}
-                                className="block px-4 py-3 text-sm text-zinc-300 rounded-lg hover:bg-gradient-to-r hover:from-cyan-500/20 hover:to-purple-500/20 hover:text-white transition-all group"
-                              >
-                                <div className="flex items-center justify-between">
-                                  <div className="flex items-center gap-3">
-                                    {/* Glowing icon */}
-                                    <div className="relative">
-                                      <div className="w-2 h-2 rounded-full bg-gradient-to-r from-cyan-400 to-purple-500 opacity-50 group-hover:opacity-100 transition-opacity shadow-lg group-hover:shadow-cyan-500/50 group-hover:animate-pulse"></div>
-                                      <div className="absolute inset-0 w-2 h-2 rounded-full bg-gradient-to-r from-cyan-400 to-purple-500 opacity-0 group-hover:opacity-50 blur-sm group-hover:animate-pulse"></div>
-                                    </div>
-                                    <span className="group-hover:translate-x-1 transition-transform">{subItem.label}</span>
-                                  </div>
-                                  <span className="opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-                                </div>
-                              </Link>
-                            </motion.div>
+                              <span>{subItem.label}</span>
+                              <ArrowRight className="h-3.5 w-3.5 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                            </Link>
                           ))}
                         </motion.div>
                       )}
                     </AnimatePresence>
                   </div>
                 ) : (
-                  <Link href={getNavLink(item)} className="block px-3 py-2 text-sm text-zinc-300 transition-colors hover:text-white rounded-lg hover:bg-white/5">
+                  <Link
+                    href={getNavLink(item)}
+                    className={`block px-4 py-2 text-sm font-medium rounded-lg transition-all ${
+                      pathname === getNavLink(item)
+                        ? 'text-white bg-white/10'
+                        : 'text-zinc-400 hover:text-white hover:bg-white/5'
+                    }`}
+                  >
                     {item}
                   </Link>
                 )}
-              </li>
+              </div>
             ))}
-          </ul>
-        </nav>
+          </nav>
 
-        {/* Right Section */}
-        <div className="flex items-center gap-3">
-          {/* Profile/Login Icon */}
-          <Link 
-            href={`/login?returnUrl=${returnUrl}`}
-            className="hidden lg:flex rounded-full border border-white/20 p-2 text-zinc-300 transition-colors hover:border-cyan-400 hover:text-white"
-            title="Sign In"
-          >
-            <User className="h-4 w-4" />
-          </Link>
-          
-          {/* Mobile Menu Icon */}
-          <button
-            onClick={toggleMenu}
-            className="lg:hidden rounded-full border border-white/20 p-2 text-zinc-300 transition-colors hover:border-cyan-400 hover:text-white"
-            aria-label="Toggle menu"
-          >
-            {isMenuOpen ? (
-              <X className="h-5 w-5" />
-            ) : (
-              <Menu className="h-5 w-5" />
-            )}
-          </button>
+          {/* Right Actions */}
+          <div className="flex items-center gap-3">
+            <Link
+              href="/get-started"
+              className="hidden md:block px-5 py-2 text-sm font-semibold text-white bg-gradient-to-r from-cyan-500 to-blue-600 rounded-lg hover:shadow-lg hover:shadow-cyan-500/25 transition-all"
+            >
+              Get Started
+            </Link>
+            
+            <Link
+              href={`/login?returnUrl=${returnUrl}`}
+              className="hidden lg:flex items-center justify-center w-9 h-9 rounded-lg border border-white/10 text-zinc-400 hover:text-white hover:border-white/20 hover:bg-white/5 transition-all"
+            >
+              <User className="h-4 w-4" />
+            </Link>
+            
+            <button
+              onClick={toggleMenu}
+              className="lg:hidden flex items-center justify-center w-9 h-9 rounded-lg border border-white/10 text-zinc-400 hover:text-white hover:border-white/20 hover:bg-white/5 transition-all"
+            >
+              {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* Mobile Menu - Slide down from top */}
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isMenuOpen && (
-          <motion.div
-            initial={{ y: -100, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -100, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            className="lg:hidden fixed top-0 left-0 w-full h-screen bg-black/80 backdrop-blur-xl border-b border-cyan-400/30 overflow-y-auto"
-            style={{ 
-              boxShadow: '0 10px 40px rgba(0, 0, 0, 0.5), 0 0 60px rgba(0, 255, 255, 0.1), inset 0 0 100px rgba(0, 255, 255, 0.05)',
-              background: 'linear-gradient(to bottom, rgba(0, 20, 40, 0.9), rgba(0, 10, 20, 0.8)), url("data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.02"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")'
-            }}
-          >
-            <div className="mx-auto max-w-7xl px-6 py-12 pt-20">
-              {/* Close button */}
-              <div className="flex justify-end mb-6">
-                <button
-                  onClick={toggleMenu}
-                  className="rounded-full border border-white/20 p-2 text-zinc-300 transition-colors hover:border-cyan-400 hover:text-white"
-                >
-                  <X className="h-5 w-5" />
-                </button>
-              </div>
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="lg:hidden fixed inset-0 bg-black/70 backdrop-blur-sm z-40"
+              onClick={toggleMenu}
+            />
+            
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'tween', duration: 0.3 }}
+              className="lg:hidden fixed top-0 right-0 w-80 h-screen bg-black/95 backdrop-blur-xl border-l border-white/10 z-50 overflow-y-auto"
+            >
+              <div className="p-6">
+                <div className="flex items-center justify-between mb-8">
+                  <div className="text-xl font-black bg-gradient-to-br from-cyan-400 to-purple-600 bg-clip-text text-transparent">
+                    TEELI
+                  </div>
+                  <button
+                    onClick={toggleMenu}
+                    className="flex items-center justify-center w-9 h-9 rounded-lg border border-white/10 text-zinc-400 hover:text-white hover:bg-white/5 transition-all"
+                  >
+                    <X className="h-5 w-5" />
+                  </button>
+                </div>
 
-              {/* Navigation Items */}
-              <nav>
-                <ul className="flex flex-col gap-2">
-                  {navItems.map((item, index) => (
-                    <li key={item}>
-                      <motion.div
-                        initial={{ x: -20, opacity: 0 }}
-                        animate={{ x: 0, opacity: 1 }}
-                        transition={{ delay: index * 0.05 }}
-                      >
-                        {hasDropdown(item) ? (
-                          <div>
-                            <button
-                              onClick={() => setOpenDropdown(openDropdown === item ? null : item)}
-                              className="w-full flex items-center justify-between text-lg text-zinc-300 transition-colors hover:text-cyan-400 py-3 border-b border-white/10 hover:border-cyan-400/50"
-                            >
-                              <span>{item}</span>
-                              <ChevronDown className={`h-5 w-5 transition-transform duration-300 ${openDropdown === item ? 'rotate-180' : ''}`} />
-                            </button>
-                            <AnimatePresence>
-                              {openDropdown === item && (
-                                <motion.div
-                                  initial={{ height: 0, opacity: 0 }}
-                                  animate={{ height: 'auto', opacity: 1 }}
-                                  exit={{ height: 0, opacity: 0 }}
-                                  transition={{ duration: 0.3 }}
-                                  className="overflow-hidden"
-                                >
-                                  <div className="pl-4 pt-2 pb-2 space-y-2">
-                                    {dropdownItems[item]?.map((subItem) => (
-                                      <Link
-                                        key={subItem.href}
-                                        href={subItem.href}
-                                        onClick={toggleMenu}
-                                        className="block text-base text-zinc-400 transition-colors hover:text-cyan-400 py-2"
-                                      >
-                                        {subItem.label}
-                                      </Link>
-                                    ))}
-                                  </div>
-                                </motion.div>
-                              )}
-                            </AnimatePresence>
-                          </div>
-                        ) : (
-                          <Link
-                            href={getNavLink(item)}
-                            onClick={toggleMenu}
-                            className="block text-lg text-zinc-300 transition-colors hover:text-cyan-400 py-3 border-b border-white/10 hover:border-cyan-400/50"
+                <nav className="space-y-1 mb-8">
+                  {navItems.map((item) => (
+                    <div key={item}>
+                      {hasDropdown(item) ? (
+                        <div>
+                          <button
+                            onClick={() => setOpenDropdown(openDropdown === item ? null : item)}
+                            className="w-full flex items-center justify-between px-4 py-3 text-sm font-medium text-zinc-400 hover:text-white hover:bg-white/5 rounded-lg transition-all"
                           >
                             {item}
-                          </Link>
-                        )}
-                      </motion.div>
-                    </li>
+                            <ChevronDown className={`h-4 w-4 transition-transform ${openDropdown === item ? 'rotate-180' : ''}`} />
+                          </button>
+                          
+                          <AnimatePresence>
+                            {openDropdown === item && (
+                              <motion.div
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ height: 'auto', opacity: 1 }}
+                                exit={{ height: 0, opacity: 0 }}
+                                className="overflow-hidden"
+                              >
+                                <div className="pl-4 py-2 space-y-1">
+                                  {dropdownItems[item]?.map((subItem) => (
+                                    <Link
+                                      key={subItem.href}
+                                      href={subItem.href}
+                                      onClick={toggleMenu}
+                                      className="flex items-center gap-2 px-4 py-2.5 text-sm text-zinc-500 hover:text-white hover:bg-white/5 rounded-lg transition-all"
+                                    >
+                                      <div className="w-1 h-1 rounded-full bg-cyan-400"></div>
+                                      {subItem.label}
+                                    </Link>
+                                  ))}
+                                </div>
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </div>
+                      ) : (
+                        <Link
+                          href={getNavLink(item)}
+                          onClick={toggleMenu}
+                          className="block px-4 py-3 text-sm font-medium text-zinc-400 hover:text-white hover:bg-white/5 rounded-lg transition-all"
+                        >
+                          {item}
+                        </Link>
+                      )}
+                    </div>
                   ))}
-                </ul>
-              </nav>
+                </nav>
 
-              {/* User button */}
-              <div className="mt-4 space-y-2">
-                <Link
-                  href={`/login?returnUrl=${returnUrl}`}
-                  onClick={toggleMenu}
-                  className="block w-full rounded-full border border-white/20 bg-black/50 p-3 text-zinc-300 transition-colors hover:border-cyan-400 hover:text-white text-center"
-                >
-                  Sign In
-                </Link>
-                <Link
-                  href={`/signup?returnUrl=${returnUrl}`}
-                  onClick={toggleMenu}
-                  className="block w-full rounded-full border border-cyan-400/50 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 p-3 text-white transition-colors hover:from-cyan-500/30 hover:to-purple-500/30 text-center font-semibold"
-                >
-                  Sign Up
-                </Link>
+                <div className="space-y-3 pt-6 border-t border-white/10">
+                  <Link
+                    href={`/login?returnUrl=${returnUrl}`}
+                    onClick={toggleMenu}
+                    className="flex items-center justify-center gap-2 w-full px-4 py-3 text-sm font-medium text-zinc-400 border border-white/10 rounded-lg hover:text-white hover:bg-white/5 transition-all"
+                  >
+                    <User className="h-4 w-4" />
+                    Sign In
+                  </Link>
+                  
+                  <Link
+                    href="/get-started"
+                    onClick={toggleMenu}
+                    className="block w-full px-4 py-3 text-sm font-semibold text-white bg-gradient-to-r from-cyan-500 to-blue-600 rounded-lg hover:shadow-lg hover:shadow-cyan-500/25 transition-all text-center"
+                  >
+                    Get Started
+                  </Link>
+                </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </header>

@@ -1,6 +1,10 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
+import dynamic from 'next/dynamic';
+
+const BlogThemeToggle = dynamic(() => import('@/components/BlogThemeToggle'), { ssr: false });
 
 type Theme = 'dark' | 'light';
 
@@ -14,6 +18,7 @@ export const BlogThemeContext = createContext<BlogThemeContextType | undefined>(
 export function BlogThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>('dark');
   const [mounted, setMounted] = useState(false);
+  const pathname = usePathname();
 
   // Initialize theme on mount - only on client to avoid hydration mismatch
   useEffect(() => {
@@ -44,9 +49,20 @@ export function BlogThemeProvider({ children }: { children: React.ReactNode }) {
   // Use default theme during SSR to prevent hydration mismatch
   const displayTheme = mounted ? theme : 'dark';
 
+  // Hide theme toggle on specific pages
+  const hideToggleOnPages = ['/blog/about', '/blog/authors', '/blog/newsletter'];
+  const shouldShowToggle = mounted && !hideToggleOnPages.includes(pathname);
+
   return (
     <BlogThemeContext.Provider value={{ theme: displayTheme, toggleTheme }}>
       {children}
+      
+      {/* Global Theme Toggle - Hidden on About, Authors, Newsletter pages */}
+      {shouldShowToggle && (
+        <div className="fixed bottom-8 right-8 z-50">
+          <BlogThemeToggle />
+        </div>
+      )}
     </BlogThemeContext.Provider>
   );
 }

@@ -39,6 +39,44 @@ export interface BlogPost {
   faq?: FAQItem[];
 }
 
+// Recursive function to read all JSON files from nested folders
+function readBlogPostsRecursive(dir: string): BlogPost[] {
+  const posts: BlogPost[] = [];
+  
+  try {
+    const items = fs.readdirSync(dir, { withFileTypes: true });
+    
+    for (const item of items) {
+      const fullPath = path.join(dir, item.name);
+      
+      if (item.isDirectory()) {
+        // Recursively read subdirectories (topic folders)
+        const subPosts = readBlogPostsRecursive(fullPath);
+        posts.push(...subPosts);
+      } else if (item.isFile() && item.name.endsWith('.json') && !item.name.includes('template')) {
+        try {
+          let fileContent = fs.readFileSync(fullPath, 'utf-8');
+          // Remove BOM if present
+          if (fileContent.length > 0 && fileContent.charCodeAt(0) === 0xFEFF) {
+            fileContent = fileContent.slice(1);
+          }
+          fileContent = fileContent.trim();
+          const post = JSON.parse(fileContent);
+          // Remove content for listing pages
+          const { content, ...metadata } = post;
+          posts.push(metadata);
+        } catch (error) {
+          console.error(`Error parsing blog file ${item.name}:`, error);
+        }
+      }
+    }
+  } catch (error) {
+    console.error(`Error reading directory ${dir}:`, error);
+  }
+  
+  return posts;
+}
+
 // Get all blog posts metadata (without full content for listing)
 export function getAllBlogPosts(): BlogPost[] {
   try {
@@ -48,30 +86,7 @@ export function getAllBlogPosts(): BlogPost[] {
       return [];
     }
 
-    const files = fs.readdirSync(blogDir);
-    const posts: BlogPost[] = [];
-
-    files.forEach((file) => {
-      if (file.endsWith('.json') && !file.includes('template')) {
-        try {
-          const filePath = path.join(blogDir, file);
-          let fileContent = fs.readFileSync(filePath, 'utf-8');
-          // Remove BOM if present (check if file has content first)
-          if (fileContent.length > 0 && fileContent.charCodeAt(0) === 0xFEFF) {
-            fileContent = fileContent.slice(1);
-          }
-          // Trim whitespace that might cause issues
-          fileContent = fileContent.trim();
-          const post = JSON.parse(fileContent);
-          // Remove content for listing pages
-          const { content, ...metadata } = post;
-          posts.push(metadata);
-        } catch (error) {
-          console.error(`Error parsing blog file ${file}:`, error);
-        }
-      }
-    });
-
+    const posts = readBlogPostsRecursive(blogDir);
     return posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   } catch (error) {
     console.error('Error loading blog posts:', error);
@@ -106,12 +121,36 @@ function extractFAQFromContent(content: string): { faqItems: FAQItem[], cleanedC
   return { faqItems, cleanedContent };
 }
 
+// Recursive function to find blog post by slug in nested folders
+function findBlogPostBySlug(dir: string, slug: string): string | null {
+  try {
+    const items = fs.readdirSync(dir, { withFileTypes: true });
+    
+    for (const item of items) {
+      const fullPath = path.join(dir, item.name);
+      
+      if (item.isDirectory()) {
+        // Recursively search in subdirectories
+        const found = findBlogPostBySlug(fullPath, slug);
+        if (found) return found;
+      } else if (item.isFile() && item.name === `${slug}.json`) {
+        return fullPath;
+      }
+    }
+  } catch (error) {
+    console.error(`Error searching directory ${dir}:`, error);
+  }
+  
+  return null;
+}
+
 // Get a single blog post by slug (with full content)
 export function getBlogPostBySlug(slug: string): BlogPost | null {
   try {
-    const filePath = path.join(process.cwd(), 'content', 'blog', `${slug}.json`);
+    const blogDir = path.join(process.cwd(), 'content', 'blog');
+    const filePath = findBlogPostBySlug(blogDir, slug);
     
-    if (!fs.existsSync(filePath)) {
+    if (!filePath || !fs.existsSync(filePath)) {
       return null;
     }
 

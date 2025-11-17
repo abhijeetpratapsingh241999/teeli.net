@@ -7,8 +7,27 @@ export default function FAQAccordion({ faq }: { faq: { question: string; answer:
   
   if (!faq || faq.length === 0) return null;
 
+  // Generate FAQ Schema.org structured data
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faq.map(item => ({
+      "@type": "Question",
+      "name": item.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.answer
+      }
+    }))
+  };
+
   return (
     <div className="mt-6 sm:mt-8">
+      {/* FAQ Schema.org JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <div className="space-y-4">
         {faq.map((item, index) => (
           <FAQItem key={index} q={item.question} a={item.answer} theme={theme} />

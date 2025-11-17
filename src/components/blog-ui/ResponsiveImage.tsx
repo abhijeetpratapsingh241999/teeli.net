@@ -38,6 +38,8 @@ export default function ResponsiveImage({
   className = "w-full h-auto rounded-xl sm:rounded-2xl border-2 border-cyan-500/30 shadow-2xl"
 }: ResponsiveImageProps) {
   const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
+  const [imgError, setImgError] = useState(false);
   const pathname = usePathname();
   
   // Check if current blog needs 4:3 ratio
@@ -82,6 +84,21 @@ export default function ResponsiveImage({
   // - Direct browser decode (faster for small files)
   // - Instant LCP improvement
   if (useNativeImg) {
+    // If hero image fails, show placeholder
+    if (hasError) {
+      return (
+        <div className={`relative overflow-hidden flex items-center justify-center bg-gradient-to-br from-gray-900/50 to-gray-800/50 border-2 border-gray-700/30 rounded-xl sm:rounded-2xl ${className}`} style={{ minHeight: '400px' }}>
+          <div className="text-center p-8">
+            <svg className="w-20 h-20 mx-auto mb-4 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            <p className="text-base text-gray-400 font-semibold">{alt || 'Hero image'}</p>
+            <p className="text-sm text-gray-600 mt-2">Image coming soon</p>
+          </div>
+        </div>
+      );
+    }
+    
     return (
       <div className="relative overflow-hidden">
         <img
@@ -100,7 +117,11 @@ export default function ResponsiveImage({
             }
           }}
           onError={(e) => {
-            console.error(`[ResponsiveImage] Hero Load Error - ${src}`, e);
+            // Silent error - show placeholder instead
+            if (process.env.NODE_ENV === 'development') {
+              console.log(`[ResponsiveImage] Hero not found (showing placeholder) - ${src.split('/').pop()}`);
+            }
+            setHasError(true);
             setIsLoading(false);
           }}
           style={{
@@ -139,6 +160,21 @@ export default function ResponsiveImage({
 
   // Regular SVG files: Use native <img> tag for animations & compatibility
   if (isSVG) {
+    // If SVG fails to load, show placeholder instead of error
+    if (hasError) {
+      return (
+        <div className={`relative overflow-hidden flex items-center justify-center bg-gray-900/30 border-2 border-dashed border-gray-700/50 rounded-xl sm:rounded-2xl ${className}`} style={{ minHeight: '300px' }}>
+          <div className="text-center p-6">
+            <svg className="w-16 h-16 mx-auto mb-3 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            <p className="text-sm text-gray-500 font-medium">{alt || 'Diagram placeholder'}</p>
+            <p className="text-xs text-gray-600 mt-1">Image coming soon</p>
+          </div>
+        </div>
+      );
+    }
+    
     return (
       <div className="relative overflow-hidden">
         <img
@@ -157,7 +193,11 @@ export default function ResponsiveImage({
             }
           }}
           onError={(e) => {
-            console.error(`[ResponsiveImage] SVG Load Error - ${src}`, e);
+            // Silent error handling - just show placeholder
+            if (process.env.NODE_ENV === 'development') {
+              console.log(`[ResponsiveImage] SVG not found (showing placeholder) - ${src.split('/').pop()}`);
+            }
+            setHasError(true);
             setIsLoading(false);
           }}
           style={{
@@ -171,6 +211,20 @@ export default function ResponsiveImage({
   }
 
   // Raster images (non-hero): Use Next.js Image optimization
+  if (imgError) {
+    return (
+      <div className={`relative overflow-hidden flex items-center justify-center bg-gray-900/30 border-2 border-dashed border-gray-700/50 rounded-xl sm:rounded-2xl ${className}`} style={{ minHeight: '300px' }}>
+        <div className="text-center p-6">
+          <svg className="w-16 h-16 mx-auto mb-3 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+          <p className="text-sm text-gray-500 font-medium">{alt || 'Image placeholder'}</p>
+          <p className="text-xs text-gray-600 mt-1">Image coming soon</p>
+        </div>
+      </div>
+    );
+  }
+  
   return (
     <div className="relative overflow-hidden">
       <Image
@@ -192,6 +246,13 @@ export default function ResponsiveImage({
           if (process.env.NODE_ENV === 'development') {
             console.log(`[ResponsiveImage] Loaded - ${src.split('/').pop()}`);
           }
+        }}
+        onError={() => {
+          if (process.env.NODE_ENV === 'development') {
+            console.log(`[ResponsiveImage] Image not found (showing placeholder) - ${src.split('/').pop()}`);
+          }
+          setImgError(true);
+          setIsLoading(false);
         }}
         quality={imageQuality}
         style={{

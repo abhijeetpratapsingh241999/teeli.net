@@ -2,8 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useBlogTheme } from '@/components/BlogThemeProvider';
-import { fetchLikeData, toggleLike, formatLikeCount } from '@/lib/likes';
-import { trackEvent } from '@/lib/analytics-ga4';
+import { getLikeCount, isPostLiked, toggleLike as toggleLikeStorage } from '@/lib/likeSystem';
 
 interface LikeButtonProps {
   slug: string;
@@ -13,7 +12,7 @@ interface LikeButtonProps {
  * LikeButton Component
  * 
  * Displays a heart icon that users can click to like/unlike a blog post.
- * Supports both API-based storage (KV) and localStorage fallback.
+ * Uses localStorage for client-side like tracking.
  * Shows formatted like count (e.g., 1.2k, 10k).
  */
 export default function LikeButton({ slug }: LikeButtonProps) {
@@ -25,11 +24,12 @@ export default function LikeButton({ slug }: LikeButtonProps) {
 
   // Fetch initial like data on mount
   useEffect(() => {
-    const loadLikeData = async () => {
+    const loadLikeData = () => {
       try {
-        const data = await fetchLikeData(slug);
-        setLiked(data.liked);
-        setCount(data.count);
+        const currentLiked = isPostLiked(slug);
+        const currentCount = getLikeCount(slug);
+        setLiked(currentLiked);
+        setCount(currentCount);
       } catch (err) {
         console.error('Failed to load like data:', err);
       } finally {
@@ -41,37 +41,30 @@ export default function LikeButton({ slug }: LikeButtonProps) {
   }, [slug]);
 
   // Handle like toggle
-  const handleLike = async () => {
+  const handleLike = () => {
     if (isAnimating) return;
 
-    // Optimistic update
-    const newLiked = !liked;
-    const optimisticCount = newLiked ? count + 1 : Math.max(0, count - 1);
-    
-    setLiked(newLiked);
-    setCount(optimisticCount);
     setIsAnimating(true);
 
-    // Track analytics event
-    trackEvent('like_toggle', {
-      slug,
-      action: newLiked ? 'like' : 'unlike',
-      count: optimisticCount,
-    });
-
     try {
-      // Call API
-      const data = await toggleLike(slug, liked);
-      setLiked(data.liked);
-      setCount(data.count);
+      const result = toggleLikeStorage(slug);
+      setLiked(result.liked);
+      setCount(result.count);
     } catch (err) {
-      // Revert on error
       console.error('Failed to toggle like:', err);
-      setLiked(liked);
-      setCount(count);
     } finally {
       setTimeout(() => setIsAnimating(false), 300);
     }
+  };
+
+  const formatLikeCount = (num: number): string => {
+    if (num >= 1000000) {
+      return (num / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
+    }
+    if (num >= 1000) {
+      return (num / 1000).toFixed(1).replace(/\.0$/, '') + 'k';
+    }
+    return num.toString();
   };
 
   if (isLoading) {

@@ -38,12 +38,13 @@
  * ============================================
  */
 
-import { BlogThemeProvider, useBlogTheme } from '@/components/BlogThemeProvider';
+import { useBlogTheme } from '@/components/BlogThemeProvider';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ReactNode, useState, useEffect, useRef } from 'react';
 import { BlogPost } from '@/lib/blog';
 import { generateAllSchemas } from '@/lib/seo-schema';
+import Breadcrumb from '@/components/blog/Breadcrumb';
 import Heading from '@/components/blog-ui/Heading';
 import IconListItem from '@/components/blog-ui/IconListItem';
 import IconBullet from '@/components/blog-ui/IconBullet';
@@ -51,7 +52,6 @@ import TitleBox from '@/components/blog-ui/TitleBox';
 import ResponsiveImage from '@/components/blog-ui/ResponsiveImage';
 import ResponsiveVideo from '@/components/blog-ui/ResponsiveVideo';
 import LazyHeroVideo from '@/components/blog-ui/LazyHeroVideo';
-import Footer from '@/components/Footer';
 import dynamic from 'next/dynamic';
 
 // ⚠️ CRITICAL: Blog-specific CSS - NOW LOADED ASYNCHRONOUSLY
@@ -60,7 +60,6 @@ import dynamic from 'next/dynamic';
 // Critical CSS inlined in page.tsx handles above-fold styling
 
 // PERFORMANCE: Dynamic imports without loading states (reduces bundle size)
-const Header = dynamic(() => import('@/components/Header'), { ssr: true });
 const BlogThemeToggle = dynamic(() => import('@/components/BlogThemeToggle'), { ssr: false });
 const ReadingProgressBar = dynamic(() => import('@/components/blog-ui/ReadingProgressBar'), { ssr: false });
 
@@ -132,8 +131,6 @@ type SchemaObject = Record<string, unknown>;
 
 function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
   const { theme } = useBlogTheme();
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
   const contentRef = useRef<HTMLDivElement>(null);
   const [schemas, setSchemas] = useState<SchemaObject[]>([]);
 
@@ -163,27 +160,6 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
     const generatedSchemas = generateAllSchemas(post);
     setSchemas(generatedSchemas);
   }, [post]);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      
-      if (currentScrollY > 200) {
-        if (currentScrollY < lastScrollY) {
-          setIsScrolled(false);
-        } else {
-          setIsScrolled(true);
-        }
-      } else {
-        setIsScrolled(false);
-      }
-      
-      setLastScrollY(currentScrollY);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
 
   const renderContent = (content: string) => {
     // DISABLED: Auto-resolve image paths - now using /blog/ folder directly
@@ -643,17 +619,10 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
         />
       )}
       
-      <main className={`min-h-screen font-body transition-colors duration-300 ${
+      <div className={`min-h-screen font-body transition-colors duration-300 ${
         theme === 'dark' ? 'bg-black' : 'bg-gradient-to-br from-gray-50 to-gray-100'
       }`}>
         <ReadingProgressBar />
-        <div 
-          className={`fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ease-in-out ${
-            isScrolled ? '-translate-y-full' : 'translate-y-0'
-          }`}
-        >
-          <Header />
-        </div>
         
         {/* Back to Blog Button */}
         <div className="fixed bottom-4 sm:bottom-8 left-2 sm:left-4 md:left-8 z-40">
@@ -670,66 +639,15 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
           </Link>
         </div>
 
-        {/* Theme Toggle Button */}
-        <div className="fixed bottom-4 sm:bottom-8 right-2 sm:right-4 md:right-8 z-40">
-          <BlogThemeToggle />
-        </div>
-
-        <article className="max-w-4xl mx-auto px-3 sm:px-4 md:px-6 pt-32 pb-16 sm:pb-24 md:pb-32">
+      <article className="max-w-4xl mx-auto px-3 sm:px-4 md:px-6 pt-32 pb-16 sm:pb-24 md:pb-32">
           {/* Breadcrumb Navigation */}
-          <nav aria-label="Breadcrumb" className="mb-6 sm:mb-8">
-            <ol className="flex items-center space-x-2 text-sm" itemScope itemType="https://schema.org/BreadcrumbList">
-              <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-                <Link 
-                  href="/" 
-                  itemProp="item"
-                  className={`transition-colors duration-200 ${
-                    theme === 'dark' 
-                      ? 'text-gray-400 hover:text-cyan-400' 
-                      : 'text-gray-600 hover:text-blue-600'
-                  }`}
-                >
-                  <span itemProp="name">Home</span>
-                </Link>
-                <meta itemProp="position" content="1" />
-              </li>
-              <li className={theme === 'dark' ? 'text-gray-600' : 'text-gray-400'}>
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
-                </svg>
-              </li>
-              <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-                <Link 
-                  href="/blog" 
-                  itemProp="item"
-                  className={`transition-colors duration-200 ${
-                    theme === 'dark' 
-                      ? 'text-gray-400 hover:text-cyan-400' 
-                      : 'text-gray-600 hover:text-blue-600'
-                  }`}
-                >
-                  <span itemProp="name">Blog</span>
-                </Link>
-                <meta itemProp="position" content="2" />
-              </li>
-              <li className={theme === 'dark' ? 'text-gray-600' : 'text-gray-400'}>
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
-                </svg>
-              </li>
-              <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-                <span 
-                  itemProp="name"
-                  className={`font-medium ${
-                    theme === 'dark' ? 'text-cyan-400' : 'text-blue-600'
-                  }`}
-                >
-                  {post.category}
-                </span>
-                <meta itemProp="position" content="3" />
-              </li>
-            </ol>
-          </nav>
+          <Breadcrumb 
+            items={[
+              { label: 'Home', href: '/' },
+              { label: 'Blog', href: '/blog' },
+              { label: post.title, current: true }
+            ]}
+          />
 
           {/* Title Box with Like Button */}
           <TitleBox
@@ -795,10 +713,7 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
             dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
           />
         ))}
-      </main>
-
-      {/* Footer */}
-      <Footer />
+      </div>
     </>
   );
 }
@@ -810,7 +725,7 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
  * @param {BlogPost[]} relatedPosts - Related blog posts for sidebar
  * 
  * 🎯 ARCHITECTURE:
- * - BlogThemeProvider: Provides theme context (dark/light mode)
+ * - Blog layout.tsx handles Header/Footer (nested layout)
  * - .blog-post-container: CSS scoping wrapper for isolated styles
  * - BlogPostContent: Main content rendering component (700+ lines)
  * 
@@ -824,7 +739,7 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
  * 
  * 📦 WHAT'S PRESERVED:
  * - All 700+ lines of BlogPostContent rendering logic
- * - All dynamic imports (Header, Footer, TOC, etc.)
+ * - All dynamic imports (TOC, CTASection, etc.)
  * - All analytics (GA4, GTM, Vercel)
  * - All SEO schemas (Article, FAQ, HowTo, etc.)
  * - All theme functionality (dark/light toggle)
@@ -839,11 +754,8 @@ function BlogPostContent({ post, relatedPosts }: BlogPostClientProps) {
  */
 export default function BlogPostClient({ post, relatedPosts }: BlogPostClientProps) {
   return (
-    <BlogThemeProvider>
-      {/* ⚠️ CRITICAL: CSS scoping wrapper - DO NOT REMOVE */}
-      <div className="blog-post-container">
-        <BlogPostContent post={post} relatedPosts={relatedPosts} />
-      </div>
-    </BlogThemeProvider>
+    <div className="blog-post-container">
+      <BlogPostContent post={post} relatedPosts={relatedPosts} />
+    </div>
   );
 }

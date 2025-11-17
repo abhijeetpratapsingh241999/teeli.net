@@ -2,15 +2,14 @@
 
 import { useState, useMemo } from 'react';
 import dynamic from 'next/dynamic';
-import { BlogThemeProvider, useBlogTheme } from '@/components/BlogThemeProvider';
+import { useBlogTheme } from '@/components/BlogThemeProvider';
 import { BlogPost } from '@/lib/blog';
 import Link from 'next/link';
 import ResponsiveImage from '@/components/blog-ui/ResponsiveImage';
+import Breadcrumb from '@/components/blog/Breadcrumb';
 import { Calendar, Clock, User, ArrowRight, TrendingUp, Eye } from 'lucide-react';
 
 // Dynamic imports for performance (no loading states for better LCP)
-const Header = dynamic(() => import('@/components/Header'), { ssr: true });
-const Footer = dynamic(() => import('@/components/Footer'), { ssr: true });
 const BlogThemeToggle = dynamic(() => import('@/components/BlogThemeToggle'), { ssr: false });
 
 interface BlogClientProps {
@@ -165,33 +164,17 @@ function BlogContent({ initialPosts, categories }: BlogClientProps) {
         />
       )}
 
-      <main className={`relative min-h-screen w-full transition-colors duration-300 ${theme === 'dark' ? 'bg-black' : 'bg-gradient-to-br from-gray-50 to-gray-100'}`}>
-        <Header />
-        
-        {/* Theme Toggle Button */}
-        <div className="fixed bottom-8 right-8 z-40">
-          <BlogThemeToggle />
-        </div>
-        
+      <div className={`relative min-h-screen w-full transition-colors duration-300 ${theme === 'dark' ? 'bg-black' : 'bg-gradient-to-br from-gray-50 to-gray-100'}`}>
         {/* Hero Section */}
         <section className="relative pt-32 pb-20 px-4 md:px-6">
           <div className="mx-auto max-w-7xl">
             {/* Breadcrumb Navigation */}
-            <nav aria-label="Breadcrumb" className="mb-8">
-              <ol className="flex items-center gap-2 text-sm">
-                <li>
-                  <Link 
-                    href="/" 
-                    className={`hover:underline ${theme === 'dark' ? 'text-zinc-400 hover:text-white' : 'text-gray-600 hover:text-gray-900'}`}
-                    aria-label="Navigate to home page"
-                  >
-                    Home
-                  </Link>
-                </li>
-                <li aria-hidden="true" className={theme === 'dark' ? 'text-zinc-600' : 'text-gray-400'}>/</li>
-                <li className={theme === 'dark' ? 'text-white font-semibold' : 'text-gray-900 font-semibold'}>Blog</li>
-              </ol>
-            </nav>
+            <Breadcrumb 
+              items={[
+                { label: 'Home', href: '/' },
+                { label: 'Blog', current: true }
+              ]} 
+            />
 
             <div
               className="text-center mb-16"
@@ -636,19 +619,12 @@ function BlogContent({ initialPosts, categories }: BlogClientProps) {
             )}
           </div>
         </section>
-      </main>
-
-      {/* Footer */}
-      <Footer />
+      </div>
     </>
   );
 }
 
 export default function BlogClient(props: BlogClientProps) {
-  return (
-    <BlogThemeProvider>
-      <BlogContent {...props} />
-    </BlogThemeProvider>
-  );
+  return <BlogContent {...props} />;
 }
 

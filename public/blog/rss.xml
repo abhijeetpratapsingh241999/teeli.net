@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>TEELI Blog</title>
+    <link>https://teeli.net/blog</link>
+    <description>Insights on 3D rendering, AI, cloud computing, and emerging technologies</description>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 17 Nov 2024 00:00:00 GMT</lastBuildDate>
+    <atom:link href="https://teeli.net/blog/rss.xml" rel="self" type="application/rss+xml"/>
+    
+    <item>
+      <title>Agentic AI Architecture: Use Cases &amp; Risks 2025</title>
+      <link>https://teeli.net/blog/agentic-ai-architecture-use-cases-risks-2025</link>
+      <description>Explore autonomous AI agents, their architecture patterns, real-world applications, and implementation risks.</description>
+      <pubDate>Fri, 15 Nov 2024 00:00:00 GMT</pubDate>
+      <guid>https://teeli.net/blog/agentic-ai-architecture-use-cases-risks-2025</guid>
+    </item>
+
+    <item>
+      <title>3D Rendering House: Complete Guide</title>
+      <link>https://teeli.net/blog/3d-rendering-house-complete-guide</link>
+      <description>Master architectural visualization with photorealistic exterior and interior renders.</description>
+      <pubDate>Wed, 13 Nov 2024 00:00:00 GMT</pubDate>
+      <guid>https://teeli.net/blog/3d-rendering-house-complete-guide</guid>
+    </item>
+
+    <item>
+      <title>3D Product Rendering: Process, Tools &amp; Visualization</title>
+      <link>https://teeli.net/blog/3d-product-rendering-process-tools-visualization</link>
+      <description>Complete workflow for creating stunning product visualizations with professional techniques.</description>
+      <pubDate>Mon, 11 Nov 2024 00:00:00 GMT</pubDate>
+      <guid>https://teeli.net/blog/3d-product-rendering-process-tools-visualization</guid>
+    </item>
+
+    <item>
+      <title>Interior Rendering: Complete Guide</title>
+      <link>https://teeli.net/blog/interior-rendering-complete-guide</link>
+      <description>Professional techniques for photorealistic interior visualization and space design.</description>
+      <pubDate>Sat, 09 Nov 2024 00:00:00 GMT</pubDate>
+      <guid>https://teeli.net/blog/interior-rendering-complete-guide</guid>
+    </item>
+
+    <item>
+      <title>Realistic Rooms: Techniques, Lighting &amp; Composition</title>
+      <link>https://teeli.net/blog/realistic-rooms-techniques-lighting-composition-photoreal-renders-2025</link>
+      <description>Advanced techniques for creating photorealistic interior spaces with perfect lighting.</description>
+      <pubDate>Thu, 07 Nov 2024 00:00:00 GMT</pubDate>
+      <guid>https://teeli.net/blog/realistic-rooms-techniques-lighting-composition-photoreal-renders-2025</guid>
+    </item>
+
+  </channel>
+</rss>

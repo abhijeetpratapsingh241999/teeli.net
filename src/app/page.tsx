@@ -5,8 +5,11 @@ import dynamic from 'next/dynamic'
 import Header from '@/components/Header';
 import AnimatedHeroText from '@/components/AnimatedHeroText';
 import { motion } from 'framer-motion';
-import { Twitter, Linkedin, Instagram, Github } from 'lucide-react';
+import { Twitter, Linkedin, Instagram, Github, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import StatsCounter from '@/components/StatsCounter';
+import TestimonialsCarousel from '@/components/TestimonialsCarousel';
+import TechStackSlider from '@/components/TechStackSlider';
 
 const Scene = dynamic(() => import('@/components/Scene'), { ssr: false })
 
@@ -379,64 +382,6 @@ export default function Home() {
                 <span className="px-3 py-1 bg-pink-900/30 border border-pink-500/30 rounded-full text-xs text-pink-300">VR Worlds</span>
                 <span className="px-3 py-1 bg-pink-900/30 border border-pink-500/30 rounded-full text-xs text-pink-300">Web3 Projects</span>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Live Demo / Try It Now - Container #6 */}
-      <section className="relative min-h-screen w-full bg-gradient-to-b from-black via-purple-950/10 to-black overflow-hidden">
-        {/* Content Container */}
-        <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col items-center justify-center px-4 md:px-6 py-12 md:py-20">
-          {/* Section Title */}
-          <h2 className="font-heading bg-gradient-to-r from-cyan-300 via-purple-300 to-pink-300 bg-clip-text text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-transparent mb-8 md:mb-12 leading-tight text-center">
-            Try It Now
-          </h2>
-          
-          <p className="text-zinc-400 text-center text-lg md:text-xl mb-12 max-w-2xl">
-            Experience the future of 3D rendering. Drop an image and watch it transform in real-time.
-          </p>
-
-          {/* Demo Card */}
-          <div className="relative w-full max-w-4xl">
-            <div className="group relative rounded-3xl border-2 border-cyan-500/20 bg-gradient-to-br from-black/80 via-purple-950/40 to-black/80 backdrop-blur-xl p-8 md:p-12 transition-all hover:border-cyan-500/50 hover:shadow-[0_0_60px_rgba(0,255,255,0.2)]">
-              {/* Glow Effect */}
-              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-500 to-transparent opacity-50"></div>
-              
-              {/* Upload Area */}
-              <div className="relative border-2 border-dashed border-cyan-500/30 rounded-2xl p-12 md:p-16 text-center bg-black/30 hover:border-cyan-500/50 hover:bg-black/40 transition-all cursor-pointer group/upload">
-                <div className="mb-6">
-                  <div className="text-6xl md:text-7xl mb-4 group-hover/upload:scale-110 transition-transform inline-block">📤</div>
-                </div>
-                <h3 className="font-heading text-2xl md:text-3xl font-bold text-white mb-4">
-                  Drop an image to get instant 3D preview
-                </h3>
-                <p className="text-zinc-400 text-sm md:text-base mb-6">
-                  Supported formats: JPG, PNG, GIF, or CAD files
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <button className="px-8 py-4 rounded-full bg-gradient-to-r from-cyan-400 to-purple-500 font-semibold text-white hover:from-cyan-500 hover:to-purple-600 transition-all hover:scale-105 shadow-lg shadow-cyan-500/20">
-                    Choose File
-                  </button>
-                  <button className="px-8 py-4 rounded-full border-2 border-cyan-500/50 bg-transparent font-semibold text-cyan-300 hover:bg-cyan-500/10 hover:border-cyan-500 transition-all">
-                    Use Sample
-                  </button>
-                </div>
-              </div>
-
-              {/* Call to Action */}
-              <div className="mt-8 text-center">
-                <button className="px-10 py-5 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 font-bold text-lg text-white hover:from-purple-700 hover:to-pink-700 transition-all hover:scale-105 shadow-xl shadow-purple-500/30 animate-pulse hover:animate-none">
-                  🚀 Launch TEELI Playground
-                </button>
-              </div>
-            </div>
-
-            {/* Feature Pills */}
-            <div className="flex flex-wrap justify-center gap-4 mt-8">
-              <span className="px-4 py-2 bg-cyan-900/20 border border-cyan-500/30 rounded-full text-xs md:text-sm text-cyan-300 backdrop-blur-sm">⚡ Instant Processing</span>
-              <span className="px-4 py-2 bg-purple-900/20 border border-purple-500/30 rounded-full text-xs md:text-sm text-purple-300 backdrop-blur-sm">🎨 AI-Powered</span>
-              <span className="px-4 py-2 bg-pink-900/20 border border-pink-500/30 rounded-full text-xs md:text-sm text-pink-300 backdrop-blur-sm">☁️ Cloud Rendered</span>
             </div>
           </div>
         </div>
@@ -859,6 +804,168 @@ export default function Home() {
                 ))}
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section - Container #9 */}
+      <section className="relative w-full bg-gradient-to-b from-black via-purple-950/10 to-black py-20 md:py-32">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="font-heading bg-gradient-to-r from-cyan-300 via-purple-300 to-pink-300 bg-clip-text text-4xl md:text-5xl lg:text-6xl font-bold text-transparent mb-4">
+              Trusted by Professionals
+            </h2>
+            <p className="text-zinc-400 text-lg md:text-xl max-w-3xl mx-auto">
+              Join thousands of creators, architects, and designers who trust TEELI for their rendering needs
+            </p>
+          </div>
+          <StatsCounter />
+        </div>
+      </section>
+
+      {/* Testimonials Section - Container #10 */}
+      <section className="relative w-full bg-gradient-to-b from-black via-cyan-950/10 to-black py-20 md:py-32 overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0" style={{
+            backgroundImage: 'linear-gradient(rgba(6, 182, 212, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(6, 182, 212, 0.1) 1px, transparent 1px)',
+            backgroundSize: '50px 50px'
+          }}></div>
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="font-heading bg-gradient-to-r from-purple-300 via-pink-300 to-cyan-300 bg-clip-text text-4xl md:text-5xl lg:text-6xl font-bold text-transparent mb-4">
+              What Our Clients Say
+            </h2>
+            <p className="text-zinc-400 text-lg md:text-xl max-w-3xl mx-auto">
+              Real feedback from real users who are transforming their workflows with TEELI
+            </p>
+          </div>
+          <TestimonialsCarousel />
+        </div>
+      </section>
+
+      {/* Tech Stack Section - Container #11 */}
+      <section className="relative w-full bg-gradient-to-b from-black via-black to-purple-950/20 py-20 md:py-32">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="font-heading bg-gradient-to-r from-cyan-300 via-purple-300 to-pink-300 bg-clip-text text-4xl md:text-5xl lg:text-6xl font-bold text-transparent mb-4">
+              Powered By Industry Leaders
+            </h2>
+            <p className="text-zinc-400 text-lg md:text-xl max-w-3xl mx-auto">
+              Built on the most reliable and cutting-edge technology stack
+            </p>
+          </div>
+          <TechStackSlider />
+        </div>
+      </section>
+
+      {/* Blog Preview Section - Container #12 */}
+      <section className="relative w-full bg-gradient-to-b from-purple-950/20 via-black to-black py-20 md:py-32">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex justify-between items-end mb-12">
+            <div>
+              <h2 className="font-heading bg-gradient-to-r from-purple-300 via-pink-300 to-cyan-300 bg-clip-text text-4xl md:text-5xl lg:text-6xl font-bold text-transparent mb-4">
+                Latest Insights
+              </h2>
+              <p className="text-zinc-400 text-lg md:text-xl max-w-2xl">
+                Explore our latest articles on 3D rendering, AI, and cloud technology
+              </p>
+            </div>
+            <Link
+              href="/blog"
+              className="hidden md:flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-cyan-500 to-purple-500 text-white font-semibold hover:shadow-lg hover:shadow-cyan-500/50 transition-all hover:scale-105"
+            >
+              View All Posts
+              <ArrowRight className="w-5 h-5" />
+            </Link>
+          </div>
+
+          {/* Blog Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Blog Card 1 */}
+            <Link
+              href="/blog/agentic-ai-architecture-use-cases-risks-2025"
+              className="group relative rounded-2xl border border-cyan-500/20 bg-gradient-to-br from-black/40 to-purple-950/20 overflow-hidden hover:border-cyan-500/50 transition-all hover:shadow-[0_0_30px_rgba(0,255,255,0.2)]"
+            >
+              <div className="aspect-[16/9] bg-gradient-to-br from-purple-600/20 to-cyan-600/20 flex items-center justify-center text-6xl">
+                🤖
+              </div>
+              <div className="p-6">
+                <div className="text-xs text-cyan-400 font-semibold mb-2">AI & ML</div>
+                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-cyan-300 transition-colors line-clamp-2">
+                  Agentic AI Architecture: Use Cases & Risks 2025
+                </h3>
+                <p className="text-zinc-400 text-sm line-clamp-2 mb-4">
+                  Understanding autonomous AI agents and their implementation patterns for modern applications.
+                </p>
+                <div className="flex items-center gap-2 text-sm text-zinc-500">
+                  <span>10 min read</span>
+                  <span>•</span>
+                  <span>8.9K views</span>
+                </div>
+              </div>
+            </Link>
+
+            {/* Blog Card 2 */}
+            <Link
+              href="/blog/3d-rendering-house-complete-guide"
+              className="group relative rounded-2xl border border-cyan-500/20 bg-gradient-to-br from-black/40 to-purple-950/20 overflow-hidden hover:border-cyan-500/50 transition-all hover:shadow-[0_0_30px_rgba(0,255,255,0.2)]"
+            >
+              <div className="aspect-[16/9] bg-gradient-to-br from-cyan-600/20 to-blue-600/20 flex items-center justify-center text-6xl">
+                🏠
+              </div>
+              <div className="p-6">
+                <div className="text-xs text-blue-400 font-semibold mb-2">3D RENDERING</div>
+                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-cyan-300 transition-colors line-clamp-2">
+                  3D Rendering House: Complete Guide
+                </h3>
+                <p className="text-zinc-400 text-sm line-clamp-2 mb-4">
+                  Master architectural visualization with photorealistic exterior and interior renders.
+                </p>
+                <div className="flex items-center gap-2 text-sm text-zinc-500">
+                  <span>8 min read</span>
+                  <span>•</span>
+                  <span>12.5K views</span>
+                </div>
+              </div>
+            </Link>
+
+            {/* Blog Card 3 */}
+            <Link
+              href="/blog/3d-product-rendering-process-tools-visualization"
+              className="group relative rounded-2xl border border-cyan-500/20 bg-gradient-to-br from-black/40 to-purple-950/20 overflow-hidden hover:border-cyan-500/50 transition-all hover:shadow-[0_0_30px_rgba(0,255,255,0.2)]"
+            >
+              <div className="aspect-[16/9] bg-gradient-to-br from-pink-600/20 to-purple-600/20 flex items-center justify-center text-6xl">
+                📦
+              </div>
+              <div className="p-6">
+                <div className="text-xs text-purple-400 font-semibold mb-2">PRODUCT DESIGN</div>
+                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-cyan-300 transition-colors line-clamp-2">
+                  3D Product Rendering: Process & Tools
+                </h3>
+                <p className="text-zinc-400 text-sm line-clamp-2 mb-4">
+                  Complete workflow for creating stunning product visualizations and e-commerce assets.
+                </p>
+                <div className="flex items-center gap-2 text-sm text-zinc-500">
+                  <span>12 min read</span>
+                  <span>•</span>
+                  <span>7.8K views</span>
+                </div>
+              </div>
+            </Link>
+          </div>
+
+          {/* Mobile View All Button */}
+          <div className="md:hidden mt-8 text-center">
+            <Link
+              href="/blog"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-cyan-500 to-purple-500 text-white font-semibold hover:shadow-lg hover:shadow-cyan-500/50 transition-all"
+            >
+              View All Posts
+              <ArrowRight className="w-5 h-5" />
+            </Link>
           </div>
         </div>
       </section>

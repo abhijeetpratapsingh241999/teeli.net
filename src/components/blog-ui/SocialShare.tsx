@@ -195,6 +195,7 @@ export default function SocialShare({
     transition-all duration-200 hover:scale-110 active:scale-95
     focus:outline-none focus:ring-2 focus:ring-offset-2
     w-11 h-11 flex items-center justify-center
+    cursor-pointer
   `;
 
   const iconClass = "w-5 h-5";

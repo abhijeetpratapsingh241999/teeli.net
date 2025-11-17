@@ -44,14 +44,20 @@ export default function Footer() {
               <Link href="/company/about" className={`transition-colors text-sm ${
                 theme === 'dark' ? 'text-zinc-400 hover:text-cyan-400' : 'text-gray-600 hover:text-cyan-600'
               }`}>About</Link>
-              <Link href="/docs" className={`transition-colors text-sm ${
+              <Link href="/blog/about" className={`transition-colors text-sm ${
                 theme === 'dark' ? 'text-zinc-400 hover:text-purple-400' : 'text-gray-600 hover:text-purple-600'
-              }`}>Tech Docs</Link>
-              <Link href="/privacy" className={`transition-colors text-sm ${
+              }`}>Blog About</Link>
+              <Link href="/blog/authors" className={`transition-colors text-sm ${
                 theme === 'dark' ? 'text-zinc-400 hover:text-pink-400' : 'text-gray-600 hover:text-pink-600'
+              }`}>Authors</Link>
+              <Link href="/blog/newsletter" className={`transition-colors text-sm ${
+                theme === 'dark' ? 'text-zinc-400 hover:text-cyan-400' : 'text-gray-600 hover:text-cyan-600'
+              }`}>Newsletter</Link>
+              <Link href="/privacy" className={`transition-colors text-sm ${
+                theme === 'dark' ? 'text-zinc-400 hover:text-purple-400' : 'text-gray-600 hover:text-purple-600'
               }`}>Privacy</Link>
               <Link href="/contact" className={`transition-colors text-sm ${
-                theme === 'dark' ? 'text-zinc-400 hover:text-cyan-400' : 'text-gray-600 hover:text-cyan-600'
+                theme === 'dark' ? 'text-zinc-400 hover:text-pink-400' : 'text-gray-600 hover:text-pink-600'
               }`}>Contact</Link>
             </div>
           </div>
