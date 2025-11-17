@@ -12,7 +12,7 @@ export async function GET() {
       title: post.title,
       description: post.metaDescription || post.excerpt,
       date: post.date,
-      tags: post.tags
+      tags: post.category ? [post.category] : []
     }));
 
     const rss = generateBlogRSS(rssPosts, {
