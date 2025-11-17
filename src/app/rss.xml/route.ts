@@ -10,7 +10,7 @@ export async function GET() {
     const rssPosts = posts.map(post => ({
       slug: post.slug,
       title: post.title,
-      description: post.description,
+      description: post.metaDescription || post.excerpt,
       date: post.date,
       tags: post.tags
     }));
